@@ -46,19 +46,21 @@ std::vector<MapCell *> AStarPathFinding::runPathFinding() {
     this->_startCell.setFinalCost(this->_startCell.getGlobalCost() + this->_startCell.getHeuristicCost());
     openSet.push(&this->_startCell);
     // UNCOMMENT FOR DEBUG
-
+    /*
     std::cout << "Size X : " << this->_map[0].size() << std::endl;
     std::cout << "Size Y : " << this->_map.size() << std::endl;
     std::cout << "Start cell : " << this->_startCell.getPosX() << " : " << this->_startCell.getPosY() << std::endl;
     std::cout << "Goal cell : " << this->_goalCell.getPosX() << " : " << this->_goalCell.getPosY() << std::endl;
-
+    */
     while (!openSet.empty()) {
         MapCell *cell = openSet.top();
         openSet.pop();
         if (((cell->getPosX() == this->_goalCell.getPosX()) && (cell->getPosY() == this->_goalCell.getPosY()))
         || (cell->getType() == 'B')) {
             std::cout << "Found goal" << std::endl;
-            MapCell *pCell = cell;
+            // SHARED PTR HERE !!!!!
+            //shared_ptr<MapCell> pCell;
+            MapCell *pCell = cell; // HERE --> SHOULD COPY AND NOT TAKE ADDRESSE ?
             while (pCell->getParentCell() != nullptr) {
                 returnPath.push_back(pCell);
                 pCell = pCell->getParentCell();

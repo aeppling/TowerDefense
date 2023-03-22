@@ -79,8 +79,14 @@ build CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
 
-build CMakeFiles/untitled1.dir/TestUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/TestUnit.cpp || cmake_object_order_depends_target_untitled1
-  DEP_FILE = CMakeFiles\untitled1.dir\TestUnit.cpp.obj.d
+build CMakeFiles/untitled1.dir/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/TDUnit.cpp || cmake_object_order_depends_target_untitled1
+  DEP_FILE = CMakeFiles\untitled1.dir\TDUnit.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
+
+build CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/RetrieveLevel.cpp || cmake_object_order_depends_target_untitled1
+  DEP_FILE = CMakeFiles\untitled1.dir\RetrieveLevel.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -93,7 +99,7 @@ build CMakeFiles/untitled1.dir/TestUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/mapParser.cpp.obj CMakeFiles/untitled1.dir/TDMap.cpp.obj CMakeFiles/untitled1.dir/MapCell.cpp.obj CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/TestUnit.cpp.obj
+build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/mapParser.cpp.obj CMakeFiles/untitled1.dir/TDMap.cpp.obj CMakeFiles/untitled1.dir/MapCell.cpp.obj CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/TDUnit.cpp.obj CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir

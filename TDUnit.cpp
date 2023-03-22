@@ -3,16 +3,9 @@
 //
 
 #include <iostream>
-#include "TestUnit.hpp"
+#include "TDUnit.hpp"
 
-TestUnit::TestUnit(int posX, int posY) : _posX(posX), _posY(posY) {
-    this->_speed = 500;
-    this->_timeOfLastMove = std::chrono::steady_clock::now();
-}
-
-TestUnit::~TestUnit() {}
-
-void    TestUnit::live() {
+void    TDUnit::live() {
     while (!(this->isAtBase())) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
@@ -28,24 +21,38 @@ void    TestUnit::live() {
     std::cout << "Unit has arrived" << std::endl;
 }
 
-void    TestUnit::move() {
-    MapCell *nextTo = this->_path.at(0);
-    this->_posX = nextTo->getPosX();
-    this->_posY = nextTo->getPosY();
+void    TDUnit::run() {
+    this->_thread = std::thread(&TDUnit::live, this);
+}
+
+void    TDUnit::move() {
+   // MapCell *nextTo = this->_path.at(0);
+    //std::cout << "next pos : " << nextTo->getPosX() << ":" << nextTo->getPosY() << std::endl;
+    this->_posX = this->_path.at(0)->getPosX();
+    this->_posY = this->_path.at(0)->getPosY();
     this->_path.erase(this->_path.begin());
 }
 
-void    TestUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY) {
+void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY) {
+    //std::vector<std::vector<MapCell>> uniqueMap;
+
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
     // HERE I NEED TO REPLACE DEST COORD BY NEAREST BASE
     this->_path = pathFinder.runPathFinding();
+
+    int i = 0;
+    std::cout << "Path of " << this->getTypeName() << std::endl;
+    while (i < this->_path.size()) {
+        std::cout << "x:" << this->_path[i]->getPosX() << " y:" << this->_path[i]->getPosY() << std::endl;
+        i++;
+    }
 }
 
-void    TestUnit::setPath(std::vector<MapCell*> path) {
+void    TDUnit::setPath(std::vector<MapCell*> path) {
     this->_path = path;
 }
 
-bool    TestUnit::isAtBase() {
+bool    TDUnit::isAtBase() {
     if (this->_path.size() > 0) {
         return (false);
     }
