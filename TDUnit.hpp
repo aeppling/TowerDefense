@@ -23,7 +23,7 @@ public:
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
-    std::shared_ptr<std::vector<MapCell*>> _path; // PATH TO TAKE
+    std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
     std::thread _thread;
 
     // CONSTRUCTOR & OVERLOADS
@@ -36,7 +36,7 @@ public:
         this->_timeOfLastMove = std::chrono::steady_clock::now();
     }
     ~TDUnit() {
-       // this->_thread.join();
+        this->_thread.join();
     }
     virtual std::string getTypeName() {
         return "Enemy";
