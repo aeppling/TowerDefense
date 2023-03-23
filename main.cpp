@@ -163,13 +163,20 @@ int main() {
     TDMap map("../mapfilePathFinding.txt");
     Bats myUnit(1,1);
     Cowards myUnit2(20, 20);
+    Golem myUnit3(1,1);
+    Dragon myUnit4(1,1);
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
     // COPY MAP VECTOR INSIDE SEARCH PATH ?
     myUnit.searchPath(nmap, baseCell->getPosX(), baseCell->getPosY()); // set base coord while retrieving the map
     myUnit.run();
-    sleep(2);
+    sleep(10);
     myUnit2.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
     myUnit2.run();
     //displayDebugMap2((nmap));
+    sleep(10);
+    myUnit3.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit3.run();
+    myUnit4.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit4.run();
     return (0);
 }

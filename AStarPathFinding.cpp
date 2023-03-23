@@ -37,7 +37,7 @@ bool AStarPathFinding::isInClosedList(MapCell &toFind) {
     return (check);
 }
 
-std::vector<MapCell *> AStarPathFinding::runPathFinding() {
+std::shared_ptr<std::vector<MapCell *>> AStarPathFinding::runPathFinding(std::shared_ptr<std::vector<MapCell*>> pathToFill) {
     std::priority_queue<MapCell*, std::vector<MapCell*>, compareCellPriority> openSet;
     std::vector<MapCell*> path;
     std::vector<MapCell*> returnPath;
@@ -68,7 +68,9 @@ std::vector<MapCell *> AStarPathFinding::runPathFinding() {
             returnPath.push_back(&this->_startCell);
             std::reverse(returnPath.begin(), returnPath.end());
             std::cout << "Return path here" << std::endl;
-            return (returnPath);
+            //MAPCELL * OR MAPCELL NO PTR ?
+            std::shared_ptr<std::vector<MapCell*>> ptr = std::make_shared<std::vector<MapCell*> >(returnPath);
+            return (ptr);
         }
         this->_closeSet.push_back(cell);
         // TRYING NEIGHBORS
@@ -112,7 +114,8 @@ std::vector<MapCell *> AStarPathFinding::runPathFinding() {
             }
         }
     }
-    return (path);
+    std::shared_ptr<std::vector<MapCell*>> ptr = nullptr;
+    return (ptr);
 }
 
 bool        AStarPathFinding::openSetContains(std::priority_queue<MapCell*, std::vector<MapCell*>, compareCellPriority>& openSet, MapCell* cell) {

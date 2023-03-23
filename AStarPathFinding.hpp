@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <queue>
+#include <memory>
 
 #include "TDMap.hpp"
 
@@ -27,7 +28,7 @@ public:
 
     ~AStarPathFinding();
 
-    std::vector<MapCell *> runPathFinding();
+    std::shared_ptr<std::vector<MapCell *>> runPathFinding(std::shared_ptr<std::vector<MapCell*>> pathToFill);
 
     bool isInClosedList(MapCell &toFind);
     bool openSetContains(std::priority_queue<MapCell *, std::vector<MapCell *>, compareCellPriority> &openSet, MapCell *cell);
