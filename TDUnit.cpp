@@ -18,7 +18,7 @@ void    TDUnit::live() {
             }
         }
     }
-    std::cout << "Unit has arrived" << std::endl;
+    std::cout << this->getTypeName() << " has arrived" << std::endl;
 }
 
 void    TDUnit::run() {
