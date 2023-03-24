@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "SFMLLoader.hpp"
 #include "mapParser.hpp"
 #include "AStarPathFinding.hpp"
 #include "TDUnit.hpp"
@@ -110,7 +111,10 @@ bool    testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spaw
 }
 
 int main() {
+//    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
+//    sf::Texture text;
+  //  sf::Text tt;
    /*
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
     std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;

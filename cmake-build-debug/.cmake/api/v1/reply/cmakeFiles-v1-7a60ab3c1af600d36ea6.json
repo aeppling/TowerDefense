@@ -152,13 +152,13 @@
 			"path" : "lib/cmake/SFML/SFMLConfig.cmake"
 		},
 		{
-			"path" : "lib/cmake/SFML/SFMLSharedTargets.cmake"
+			"path" : "lib/cmake/SFML/SFMLStaticTargets.cmake"
 		},
 		{
-			"path" : "lib/cmake/SFML/SFMLSharedTargets-debug.cmake"
+			"path" : "lib/cmake/SFML/SFMLStaticTargets-debug.cmake"
 		},
 		{
-			"path" : "lib/cmake/SFML/SFMLSharedTargets-release.cmake"
+			"path" : "lib/cmake/SFML/SFMLStaticTargets-release.cmake"
 		},
 		{
 			"path" : "lib/cmake/SFML/SFMLConfigDependencies.cmake"
