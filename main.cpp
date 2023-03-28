@@ -110,13 +110,49 @@ bool    testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spaw
     file.close();
 }
 
-int main() {
-//    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-
-//    sf::Texture text;
-  //  sf::Text tt;
-   /*
+int runUnits(TDMap &map, MapCell baseCell) {
+    Bats myUnit(1,1);
+    Cowards myUnit2(20, 20);
+    Golem myUnit3(1,1);
+    Dragon myUnit4(1,1);
+    //COPY MAP VECTOR FOR PATH FINDING
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
+    myUnit.searchPath(nmap, baseCell->getPosX(), baseCell->getPosY()); // set base coord while retrieving the map
+    myUnit.run();
+    myUnit2.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit2.run();
+    myUnit3.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit3.run();
+    myUnit4.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit4.run();
+}
+
+int runWindow(sf::RenderWindow &window, TDMap &map) {
+    while (window.isOpen()) {
+        sf::Event event;
+        window.clear(sf::Color::Black);
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                    // Handle other events here
+            }
+        }
+        int s = 0;
+        while (s != map.getMaxSprite()) {
+            window.draw(map.getSprite(s));
+            s++;
+        }
+        window.display();
+        // Update the game state
+        // Draw the game
+        // etc.
+    }
+}
+
+int main() {
+   /* UNCOMMENT TO DEBUG PATH FINDING
     std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;
     std::cout << "GOAL CELL 1 x/y : " << (*nmap)[10][10].getPosX() << " : " << (*nmap)[10][10].getPosY() << std::endl;
     AStarPathFinding pathFinder((*nmap), (*nmap)[0][1], (*nmap)[20][29]);
@@ -132,6 +168,7 @@ int main() {
         std::cout << "NO PATH FOUND !!!" << std::endl;
     }
 */
+   // RETRIEVE ENEMY LIST
    std::vector<std::vector<TDUnit*>> enemyList;
    RetrieveLevel retrieveLevel(1);
    enemyList = retrieveLevel.getNextLevel();
@@ -139,22 +176,10 @@ int main() {
        std::cout << "Couldn't retrieve level informations, leaving..." << std::endl;
        return (-1);
    }
-   // UNCOMMENT TO DEBUG WAVES RETRIEVE
-  /* int x = 0;
-   while (x != enemyList.size()) {
-       std::cout << "Wave " << x + 1 << " :" << std::endl;
-       int w = 0;
-       while (w != enemyList[x].size()) {
-           std::cout << enemyList[x][w]->getTypeName() << std::endl;
-           w++;
-       }
-       std::cout << std::endl;
-       x++;
-   }
-*/
-   MapCell *baseCell = new MapCell('B', -1, -1);
+    // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
+    MapCell *baseCell = new MapCell('B', -1, -1);
    std::vector<MapCell*> spawnCells;
-    if (testMap("../mapfilePathFinding.txt", baseCell, spawnCells) == false) {
+    if (testMap("mapfilePathFinding.txt", baseCell, spawnCells) == false) {
         std::cout << "Cannot load level : Map is not valid." << std::endl;
         return (-1);
     }
@@ -164,20 +189,24 @@ int main() {
         i++;
     }
     std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
-    TDMap map("../mapfilePathFinding.txt");
-    Bats myUnit(1,1);
-    Cowards myUnit2(20, 20);
-    Golem myUnit3(1,1);
-    Dragon myUnit4(1,1);
-    std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
-    myUnit.searchPath(nmap, baseCell->getPosX(), baseCell->getPosY()); // set base coord while retrieving the map
-    myUnit.run();
-    myUnit2.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
-    myUnit2.run();
-    //displayDebugMap2((nmap));
-    myUnit3.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
-    myUnit3.run();
-    myUnit4.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
-    myUnit4.run();
+    // SETTING WINDOW AND MAP
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window");
+    window.setActive(true); // ACTIVE OPENGL CONTEXT
+    SFMLLoader sfmlLoader;
+    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
+    // LAUNCHING SFML WINDOW
+    std::cout << "Total sprites : " << map.getMaxSprite() << " a Total cell : " << 21 * 30 << std::endl;
+    // WINDOW LOOP WAS HERE BELOW
+    std::thread windowDisplay(&runWindow, window, map);
+    // TESTING UNITS WAS HERE BELOW
+    std::thread unitRun(&runUnits, map, baseCell);
+/*    sf::ContextSettings settings;   <---- USELESS ?
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 4;
+    settings.majorVersion = 3;
+    settings.minorVersion = 3;
+    settings.attributeFlags = sf::ContextSettings::Core;*/
+    window.setActive(false); // UNACTIVE OPENGL CONTEXT
     return (0);
 }

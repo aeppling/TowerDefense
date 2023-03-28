@@ -16,6 +16,12 @@ private:
 public:
     SFMLLoader();
     ~SFMLLoader();
+    // GETTERS
+    sf::Texture getPathCell() { return (this->_pathCell); }
+    sf::Texture getWallCell() { return (this->_wallCell); }
+    sf::Texture getNotWalkableCell() { return (this->_notWalkableCell); }
+    sf::Texture getMapBorder() { return (this->_mapBorder); }
+
 };
 
 #endif //UNTITLED1_SFMLLOADER_HPP

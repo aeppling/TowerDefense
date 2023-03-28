@@ -69,7 +69,7 @@ std::vector<TDUnit*> RetrieveLevel::getWaveFromString(std::string waveString) {
 }
 
 std::vector<std::vector<TDUnit*>> RetrieveLevel::getNextLevel() {
-    std::string path_to_open("../level_" + std::to_string(this->_actual_level) + ".txt");
+    std::string path_to_open("level_" + std::to_string(this->_actual_level) + ".txt");
     std::ifstream levelFile;
     std::vector<std::vector<TDUnit*>> enemyLevel;
     int i = 1;

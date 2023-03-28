@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_untitled1: phony || CMakeFiles/untitled1
 build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/main.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -60,7 +60,7 @@ build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/u
 build CMakeFiles/untitled1.dir/mapParser.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/mapParser.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\mapParser.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -68,7 +68,7 @@ build CMakeFiles/untitled1.dir/mapParser.cpp.obj: CXX_COMPILER__untitled1_Debug 
 build CMakeFiles/untitled1.dir/TDMap.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/TDMap.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\TDMap.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -76,7 +76,7 @@ build CMakeFiles/untitled1.dir/TDMap.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/
 build CMakeFiles/untitled1.dir/MapCell.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/MapCell.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\MapCell.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -84,7 +84,7 @@ build CMakeFiles/untitled1.dir/MapCell.cpp.obj: CXX_COMPILER__untitled1_Debug C$
 build CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/AStarPathFinding.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\AStarPathFinding.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -92,7 +92,7 @@ build CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1
 build CMakeFiles/untitled1.dir/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/TDUnit.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\TDUnit.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -100,7 +100,7 @@ build CMakeFiles/untitled1.dir/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C$:
 build CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/RetrieveLevel.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\RetrieveLevel.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -108,7 +108,7 @@ build CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_De
 build CMakeFiles/untitled1.dir/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/SFMLLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\SFMLLoader.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir

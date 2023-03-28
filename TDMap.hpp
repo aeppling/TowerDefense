@@ -16,7 +16,7 @@ private:
     std::vector<sf::Sprite>             _tilesSprites;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
-    TDMap(std::string filename);
+    TDMap(std::string filename, SFMLLoader sfmlLoader, int winSizeX, int winSizeY);
     ~TDMap();
 
     // MAP CONSTRUCTION
@@ -24,13 +24,15 @@ public:
     void displayAsciiMap();
 
     // GETTER & SETTER
+    sf::Sprite                          getSprite(int i) { return (this->_tilesSprites.at(i)); }
+    int                                 getMaxSprite() { return(this->_tilesSprites.size()); }
     std::vector<std::vector<MapCell>>   *getMapVector() { return(&this->_map); };
     int                                 getSizeY() { return(this->_map.size()); };
     int                                 getSizeX() { return(this->_map[0].size()); };
 
     // INITIALISE
     void setAllPositions();
-    void setAllTextures();
+    void setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY);
 };
 
 #endif //UNTITLED1_TDMAP_HPP

@@ -5,8 +5,11 @@ set(CMAKE_CXX_STANDARD 14)
 # set(SFML_STATIC_LIBRARIES TRUE)
 ## In most cases better set in the CMake cache
 set(SFML_STATIC_LIBRARIES TRUE)
-
 set(SFML_DIR "lib/cmake/SFML")
+#set(GLEW_STATIC TRUE)
+#set(GLEW_INCLUDE_DIR "include/")
+#find_package(GLEW REQUIRED)
+#set(GLEW_LIBRARIES "lib/")
 include_directories(include)
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
 add_executable(untitled1 main.cpp mapParser.hpp TDMap.hpp mapParser.cpp TDMap.cpp MapCell.hpp MapCell.cpp AStarPathFinding.hpp AStarPathFinding.cpp TDUnit.cpp TDUnit.hpp RetrieveLevel.cpp RetrieveLevel.hpp SFMLLoader.hpp SFMLLoader.cpp)
