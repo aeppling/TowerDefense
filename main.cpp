@@ -162,6 +162,7 @@ void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> 
     int unit_count = 0;
 
     while (wave_count != enemyList.size()) {
+        unit_count = 0;
         while (unit_count != enemyList.at(wave_count).size()) {
             enemyList.at(wave_count).at(unit_count)->setSprite(sfmlLoader, winSizeX, winSizeY, mapSizeX, mapSizeY);
             unit_count++;
@@ -174,7 +175,7 @@ bool isBuildable() {
     // your implementation here
 }
 
-void setObstacleTest(TDMap &map, sf::RenderWindow &window) {
+void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
@@ -182,11 +183,13 @@ void setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         std::cout << "Clicked on case x:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX();
         std::cout << " y:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosY() << std::endl;
         map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+        map.refreshTextures(sfmlLoader);
         // ...
     }
 }
 
-void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell, std::vector<std::vector<TDUnit *>> &enemyList) {
+void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
+                        std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader) {
     int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     // SETTING UP MOUSE POINTER
     window.setMouseCursorVisible(false);
@@ -216,35 +219,41 @@ void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                     isBuilding = false;
             }
             if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (isBuilding == true) {
-                    setObstacleTest(std::ref(map), std::ref(window));
-                }
+                if (isBuilding == true)
+                    setObstacleTest(std::ref(map), std::ref(window), sfmlLoader);
             }
         }
         int s = 0;
+        //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
+        if (isBuilding == true) {
+        }
         // DISPLAY MAP
-        while (s != map.getTileMaxSprite()) {
-            window.draw(map.getTileSprite(s));
+        while (s != map.getTileMaxSpriteY()) {
+            int s2 = 0;
+            while (s2 != map.getTileMaxSpriteX(s)) {
+                window.draw(map.getTileSprite(s, s2));
+                s2++;
+            }
             s++;
         }
-        // RUN WAVE
+        // RUN WAVE IF NOT ALREADY RUNNING
         if (isWaveClean == true) {
             isWaveClean = false;
             unsigned int basePosX = baseCell->getPosX();
             unsigned int basePosY = baseCell->getPosY();
             unitThread = std::thread(runUnits, std::ref(enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY), std::ref(wave));
         }
-        //DISPLAY BUILDING AREA (before enemies)
-        if (isBuilding == true)
-            std::cout << "doit";
         // DISPLAY ENEMIES
         s = 0;
         while (s != enemyList.at(wave).size()) {
             window.draw(enemyList.at(wave).at(s)->getSprite());
             s++;
         }
-        // DISPLAY MOUSE
-        mousePointer.setColor(sf::Color::Blue);
+        // SET AND DISPLAY MOUSE
+        if (isBuilding == true)
+            mousePointer.setColor(sf::Color::Blue);
+        else
+            mousePointer.setColor(sf::Color::Cyan);
         sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
         mousePointer.setPosition(mousePositionScreen.x, mousePositionScreen.y);
         window.draw(mousePointer);
@@ -287,8 +296,10 @@ int main() {
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
+    std::cout << "debug1" << std::endl;
     setUnitsTextures(sfmlLoader, enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    std::cout << "debug2" << std::endl;
     // WINDOW LOOP AND MOUSE SETUP
-    runWindowLevelLoop(window, map, baseCell, enemyList);
+    runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
     return (0);
 }

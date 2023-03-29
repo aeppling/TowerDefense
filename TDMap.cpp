@@ -23,7 +23,7 @@ void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
     int y = 0;
     while (y != this->_map.size()) {
         int x = 0;
-//        std::vector<sf::Sprite> newSpriteLine;
+        std::vector<sf::Sprite> newSpriteLine;
         while (x != this->_map.at(y).size()) {
             sf::Sprite newSprite;
             if (this->_map.at(y).at(x).getType() == 'S') {
@@ -45,7 +45,37 @@ void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
             sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
             newSprite.setTextureRect(textureRect);
             newSprite.setPosition(this->_map.at(y).at(x).getPosX() * cellSize, this->_map.at(y).at(x).getPosY() * cellSize);
-            this->_tilesSprites.push_back(newSprite);
+            newSpriteLine.push_back(newSprite);
+            x++;
+        }
+        this->_tilesSprites.push_back(newSpriteLine);
+        y++;
+    }
+}
+
+void TDMap::refreshTextures(SFMLLoader &sfmlLoader) {
+    int y = 0;
+    while (y != this->_map.size()) {
+        int x = 0;
+        while (x != this->_map.at(y).size()) {
+            switch (this->_map.at(y).at(x).getType()) {
+                case 'X':
+                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
+                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Green);
+                    break;
+                case 'W':
+                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getWallCell());
+                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Red);
+                    break;
+                case 'S':
+                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
+                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Yellow);
+                    break;
+                case 'B':
+                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
+                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Blue);
+                    break;
+            }
             x++;
         }
         y++;

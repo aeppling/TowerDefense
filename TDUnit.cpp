@@ -35,10 +35,10 @@ void    TDUnit::run() {
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-/*    if (nextTo->isWalkable() == false) {
+    if (nextTo->getType() == 'W') {
         std::cout << "BLOOOOOOOOOOOOOOOOOOOOOOOOOOCKED" << std::endl;
         //RERUN PATH FINDING
-    }*/
+    }
     this->_posX = nextTo->getPosX();
     this->_posY = nextTo->getPosY();
     this->_sprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);
