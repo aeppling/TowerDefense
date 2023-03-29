@@ -24,8 +24,8 @@ public:
     void displayAsciiMap();
 
     // GETTER & SETTER
-    sf::Sprite                          getSprite(int i) { return (this->_tilesSprites.at(i)); }
-    int                                 getMaxSprite() { return(this->_tilesSprites.size()); }
+    sf::Sprite                          getTileSprite(int i) { return (this->_tilesSprites.at(i)); }
+    int                                 getTileMaxSprite() { return(this->_tilesSprites.size()); }
     std::vector<std::vector<MapCell>>   *getMapVector() { return(&this->_map); };
     int                                 getSizeY() { return(this->_map.size()); };
     int                                 getSizeX() { return(this->_map[0].size()); };

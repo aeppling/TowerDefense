@@ -8,6 +8,7 @@
 #include <chrono>
 #include <thread>
 #include "AStarPathFinding.hpp"
+#include "SFMLLoader.hpp"
 
 #include <iostream>
 #include <string>
@@ -25,6 +26,9 @@ public:
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
     std::thread _thread;
+
+    // SFML
+    sf::Sprite  _sprite;
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY) {
@@ -59,6 +63,9 @@ public:
         std::string description = getTypeName() + " (HP: " + std::to_string(this->_health_points) + ", Resistance: " + std::to_string(this->_resistance);
         return description;
     }
+
+    // SFML
+    void setSprite(SFMLLoader sfmlLoader, int winSizeX, int winSizeY, TDMap map);
 };
 
 class Goblin : public TDUnit {

@@ -64,6 +64,27 @@ void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     // PATH NO LONGER EXIST AFTER THIS???!!!
 }
 
+void    TDUnit::setSprite(SFMLLoader sfmlLoader, int winSizeX, int winSizeY, TDMap map) {
+    // GET SIZE RATIO OF UNITS SPRITE FROM WINDOW AND MAP
+   /* int smallerWinSize = std::min(winSizeX, winSizeY);
+    int largerMapSize = std::max(this->_map.size(), this->_map[0].size());
+    int cellSize = std::min(smallerWinSize / largerMapSize, smallerWinSize / largerMapSize);
+
+    if ((this->_map.size() > 30) || (this->_map[0].size() > 30))
+        cellSize = cellSize / 1.1;
+    if ((this->_map.size() > 40) || (this->_map[0].size() > 40))
+        cellSize = cellSize / 1.2;
+    if ((this->_map.size() > 60) || (this->_map[0].size() > 60))
+        cellSize = cellSize / 1.3;*/
+    /*sf::Sprite newSprite;
+    newSprite.setTexture(sfmlLoader.getPathCell());
+    newSprite.setColor(sf::Color::Yellow);
+    sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
+    newSprite.setTextureRect(textureRect);
+    newSprite.setPosition(this->_map.at(y).at(x).getPosX() * cellSize, this->_map.at(y).at(x).getPosY() * cellSize);
+    this->_sprite = newSprite;*/
+}
+
 bool    TDUnit::isAtBase() {
     if (this->_path.size() > 0) {
         return (false);

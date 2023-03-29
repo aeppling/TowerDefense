@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
+#include <mutex>
 
 #include "SFMLLoader.hpp"
 #include "mapParser.hpp"
@@ -110,71 +111,41 @@ bool    testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spaw
     file.close();
 }
 
-void runUnits(TDMap &map, unsigned int basePosX, unsigned int basePosY) {
-    Bats myUnit(1,1);
+void runUnits(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX, unsigned int &basePosY, unsigned int wave) {
+     //TEST WITHOUT ENNEMYILST VECTOR
+    /*Bats myUnit(1,1);
     Cowards myUnit2(20, 20);
-    Golem myUnit3(1,1);
-    Dragon myUnit4(1,1);
-    //COPY MAP VECTOR FOR PATH FINDING
-    std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
     myUnit.searchPath(nmap, basePosX, basePosY); // set base coord while retrieving the map
     myUnit.run();
     myUnit2.searchPath(nmap, basePosX, basePosY);
-    myUnit2.run();
-    myUnit3.searchPath(nmap, basePosX, basePosY);
-    myUnit3.run();
-    myUnit4.searchPath(nmap, basePosX, basePosY);
-    myUnit4.run();
+    myUnit2.run();*/
+    std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
+    int unitCount = 0;
+    while (unitCount != enemyList.at(wave).size()) {
+        enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
+        enemyList.at(wave).at(unitCount)->run();
+        unitCount++;
+    }
 }
 
-void runWindow(/*TDMap &map, sf::RenderWindow window*/) {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window");
-    window.setActive(true); // ACTIVE OPENGL CONTEXT
-    SFMLLoader sfmlLoader;
-    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
-    // LAUNCHING SFML WINDOW
-    std::cout << "Total sprites : " << map.getMaxSprite() << " a Total cell : " << 21 * 30 << std::endl;
-    while (window.isOpen()) {
-        sf::Event event;
-        window.clear(sf::Color::Black);
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case sf::Event::Closed:
-                    window.close();
-                    break;
-                    // Handle other events here
-            }
-        }
-        int s = 0;
-        while (s != map.getMaxSprite()) {
-            window.draw(map.getSprite(s));
-            s++;
-        }
-        window.display();
-        // Update the game state
-        // Draw the game
-        // etc.
-    }
-    window.setActive(false); // UNACTIVE OPENGL CONTEXT
-}
+/* UNCOMMENT TO DEBUG PATH FINDING
+ std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;
+ std::cout << "GOAL CELL 1 x/y : " << (*nmap)[10][10].getPosX() << " : " << (*nmap)[10][10].getPosY() << std::endl;
+ AStarPathFinding pathFinder((*nmap), (*nmap)[0][1], (*nmap)[20][29]);
+ std::vector<MapCell*> path = pathFinder.runPathFinding();
+ int i = 0;
+ while (i != path.size()) {
+     std::cout << path[i]->getPosX() << " : " << path[i]->getPosY() << " | ";
+     i++;
+ }
+ std::cout << std::endl;
+ displayDebugMap((nmap), path);
+ if (path.empty()) {
+     std::cout << "NO PATH FOUND !!!" << std::endl;
+ }
+*/
 
 int main() {
-   /* UNCOMMENT TO DEBUG PATH FINDING
-    std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;
-    std::cout << "GOAL CELL 1 x/y : " << (*nmap)[10][10].getPosX() << " : " << (*nmap)[10][10].getPosY() << std::endl;
-    AStarPathFinding pathFinder((*nmap), (*nmap)[0][1], (*nmap)[20][29]);
-    std::vector<MapCell*> path = pathFinder.runPathFinding();
-    int i = 0;
-    while (i != path.size()) {
-        std::cout << path[i]->getPosX() << " : " << path[i]->getPosY() << " | ";
-        i++;
-    }
-    std::cout << std::endl;
-    displayDebugMap((nmap), path);
-    if (path.empty()) {
-        std::cout << "NO PATH FOUND !!!" << std::endl;
-    }
-*/
    // RETRIEVE ENEMY LIST
    std::vector<std::vector<TDUnit*>> enemyList;
    RetrieveLevel retrieveLevel(1);
@@ -197,21 +168,50 @@ int main() {
     }
     std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
     // SETTING WINDOW AND MAP
-
-    // WINDOW LOOP WAS HERE BELOW
-    std::thread windowDisplay(runWindow);
-    windowDisplay.join();
-    // TESTING UNITS WAS HERE BELOW
-/*    unsigned int basePosX = baseCell->getPosX();
-    unsigned int basePosY = baseCell->getPosY();
-    runUnits(map, basePosX, basePosY);*/
-
-/*    sf::ContextSettings settings;   <---- USELESS ?
+    sf::ContextSettings settings;
     settings.depthBits = 24;
     settings.stencilBits = 8;
     settings.antialiasingLevel = 4;
-    settings.majorVersion = 3;
-    settings.minorVersion = 3;
-    settings.attributeFlags = sf::ContextSettings::Core;*/
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
+    window.setActive(true);
+    SFMLLoader sfmlLoader;
+    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
+    // WINDOW LOOP IN THREAD
+    std::thread unitThread;
+    bool isWaveClean = true;
+    unsigned int wave = 0;
+    while (window.isOpen()) {
+        sf::Event event;
+        window.clear(sf::Color::Black);
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                    // Handle other events here
+            }
+        }
+        int s = 0;
+        while (s != map.getTileMaxSprite()) {
+            window.draw(map.getTileSprite(s));
+            s++;
+        }
+        if (isWaveClean == true) {
+            isWaveClean = false;
+            unsigned int basePosX = baseCell->getPosX();
+            unsigned int basePosY = baseCell->getPosY();
+            unitThread = std::thread(runUnits, std::ref(enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY), std::ref(wave));
+        }
+        s = 0;
+        while (s != enemyList.at(wave).size()) {
+            //window.draw(enemyList.at(wave).at(s)->getTypeName());
+            s++;
+        }
+        // Update the game state
+        // Draw the game
+        // etc.
+        window.display();
+    }
+    window.setActive(false);
     return (0);
 }
