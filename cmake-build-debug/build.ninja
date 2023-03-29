@@ -113,6 +113,14 @@ build CMakeFiles/untitled1.dir/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Debug
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
 
+build CMakeFiles/untitled1.dir/SizeRatioCalculator.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/SizeRatioCalculator.cpp || cmake_object_order_depends_target_untitled1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\untitled1.dir\SizeRatioCalculator.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -isystem C:/untitled1/include
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled1
@@ -121,7 +129,7 @@ build CMakeFiles/untitled1.dir/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Debug
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/mapParser.cpp.obj CMakeFiles/untitled1.dir/TDMap.cpp.obj CMakeFiles/untitled1.dir/MapCell.cpp.obj CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/TDUnit.cpp.obj CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/SFMLLoader.cpp.obj | ../lib/libsfml-system-s-d.a ../lib/libsfml-window-s-d.a ../lib/libsfml-graphics-s-d.a ../lib/libsfml-network-s-d.a ../lib/libsfml-audio-s-d.a ../lib/libsfml-window-s-d.a ../lib/libfreetype.a ../lib/libsfml-system-s-d.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
+build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/mapParser.cpp.obj CMakeFiles/untitled1.dir/TDMap.cpp.obj CMakeFiles/untitled1.dir/MapCell.cpp.obj CMakeFiles/untitled1.dir/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/TDUnit.cpp.obj CMakeFiles/untitled1.dir/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/SizeRatioCalculator.cpp.obj | ../lib/libsfml-system-s-d.a ../lib/libsfml-window-s-d.a ../lib/libsfml-graphics-s-d.a ../lib/libsfml-network-s-d.a ../lib/libsfml-audio-s-d.a ../lib/libsfml-window-s-d.a ../lib/libfreetype.a ../lib/libsfml-system-s-d.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
   FLAGS = -g
   LINK_LIBRARIES = ../lib/libsfml-system-s-d.a  ../lib/libsfml-window-s-d.a  ../lib/libsfml-graphics-s-d.a  ../lib/libsfml-network-s-d.a  ../lib/libsfml-audio-s-d.a  ../lib/libsfml-window-s-d.a  -lgdi32  -lOpenGL32  ../lib/libfreetype.a  -lws2_32  ../lib/libsfml-system-s-d.a  -lwinmm  ../lib/libopenal32.a  ../lib/libvorbisfile.a  ../lib/libvorbisenc.a  ../lib/libvorbis.a  ../lib/libogg.a  ../lib/libFLAC.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir

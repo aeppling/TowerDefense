@@ -29,6 +29,7 @@ public:
 
     // SFML
     sf::Sprite  _sprite;
+    int         _unitSize;
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY) {
@@ -65,7 +66,8 @@ public:
     }
 
     // SFML
-    void setSprite(SFMLLoader sfmlLoader, int winSizeX, int winSizeY, TDMap map);
+    void setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
+    sf::Sprite getSprite() {return (this->_sprite); };
 };
 
 class Goblin : public TDUnit {

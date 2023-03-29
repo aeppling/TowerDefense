@@ -39,6 +39,7 @@ public:
     unsigned int getFinalCost() { return(this->_finalCost); };
     unsigned int getGlobalCost() { return(this->_globalCost); };
     unsigned int getHeuristicCost() { return(this->_heuristicCost); };
+    void         setType(char newType) { this->_type = newType; };
     void         setFinalCost(unsigned int finalCost) { this->_finalCost = finalCost; };
     void         setGlobalCost(unsigned int globalCost) { this->_globalCost = globalCost; };
     void         setHeuristicCost(unsigned int heuristicCost) { this->_heuristicCost = heuristicCost; };

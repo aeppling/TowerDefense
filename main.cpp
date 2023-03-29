@@ -8,6 +8,7 @@
 #include "AStarPathFinding.hpp"
 #include "TDUnit.hpp"
 #include "RetrieveLevel.hpp"
+#include "SizeRatioCalculator.hpp"
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
@@ -43,9 +44,19 @@ void displayDebugMap2(std::vector<std::vector<MapCell>> *map) {
     int x;
     int y = 0;
 
+    int firstLine = 0;
+    std::cout << "     ";
+    while (firstLine != map->at(0).size()) {
+        std::cout << firstLine << " ";
+        firstLine++;
+    }
+    std::cout << std::endl;
     while (y != map->size()) {
         x = 0;
-        std::cout << y << " : ";
+        if (y < 10)
+            std::cout << y << " :  ";
+        else
+            std::cout << y << " : ";
         while (x != (*map)[y].size()) {
             std::cout << (*map)[y][x].getType() << " ";
             x++;
@@ -145,6 +156,104 @@ void runUnits(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned
  }
 */
 
+void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
+                      int winSizeX, int winSizeY, int mapSizeX, int mapSizeY) {
+    int wave_count = 0;
+    int unit_count = 0;
+
+    while (wave_count != enemyList.size()) {
+        while (unit_count != enemyList.at(wave_count).size()) {
+            enemyList.at(wave_count).at(unit_count)->setSprite(sfmlLoader, winSizeX, winSizeY, mapSizeX, mapSizeY);
+            unit_count++;
+        }
+        wave_count++;
+    }
+}
+
+bool isBuildable() {
+    // your implementation here
+}
+
+void setObstacleTest(TDMap &map, sf::RenderWindow &window) {
+    mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
+    {
+        // Do something with the clicked cell
+        std::cout << "Clicked on case x:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX();
+        std::cout << " y:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosY() << std::endl;
+        map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+        // ...
+    }
+}
+
+void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell, std::vector<std::vector<TDUnit *>> &enemyList) {
+    int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    // SETTING UP MOUSE POINTER
+    window.setMouseCursorVisible(false);
+    sf::Texture mousePointerTexture;
+    mousePointerTexture.loadFromFile("Sprites/sand_tile.png");
+    sf::Sprite mousePointer(mousePointerTexture);
+    sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
+    mousePointer.setTextureRect(textureRect);
+    // INITIALISE LOOP VARIABLES
+    std::thread unitThread;
+    bool isWaveClean = true;
+    bool isBuilding = false;
+    unsigned int wave = 0;
+    while (window.isOpen()) {
+        sf::Event event;
+        window.clear(sf::Color::Black);
+        // CHOOS
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+                break;
+            }
+            if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+                if (isBuilding == false)
+                    isBuilding = true;
+                else
+                    isBuilding = false;
+            }
+            if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                if (isBuilding == true) {
+                    setObstacleTest(std::ref(map), std::ref(window));
+                }
+            }
+        }
+        int s = 0;
+        // DISPLAY MAP
+        while (s != map.getTileMaxSprite()) {
+            window.draw(map.getTileSprite(s));
+            s++;
+        }
+        // RUN WAVE
+        if (isWaveClean == true) {
+            isWaveClean = false;
+            unsigned int basePosX = baseCell->getPosX();
+            unsigned int basePosY = baseCell->getPosY();
+            unitThread = std::thread(runUnits, std::ref(enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY), std::ref(wave));
+        }
+        //DISPLAY BUILDING AREA (before enemies)
+        if (isBuilding == true)
+            std::cout << "doit";
+        // DISPLAY ENEMIES
+        s = 0;
+        while (s != enemyList.at(wave).size()) {
+            window.draw(enemyList.at(wave).at(s)->getSprite());
+            s++;
+        }
+        // DISPLAY MOUSE
+        mousePointer.setColor(sf::Color::Blue);
+        sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
+        mousePointer.setPosition(mousePositionScreen.x, mousePositionScreen.y);
+        window.draw(mousePointer);
+        window.display();
+    }
+    displayDebugMap2(map.getMapVector());
+    window.setActive(false);
+}
+
 int main() {
    // RETRIEVE ENEMY LIST
    std::vector<std::vector<TDUnit*>> enemyList;
@@ -175,43 +284,11 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     window.setActive(true);
     SFMLLoader sfmlLoader;
+    // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
-    // WINDOW LOOP IN THREAD
-    std::thread unitThread;
-    bool isWaveClean = true;
-    unsigned int wave = 0;
-    while (window.isOpen()) {
-        sf::Event event;
-        window.clear(sf::Color::Black);
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case sf::Event::Closed:
-                    window.close();
-                    break;
-                    // Handle other events here
-            }
-        }
-        int s = 0;
-        while (s != map.getTileMaxSprite()) {
-            window.draw(map.getTileSprite(s));
-            s++;
-        }
-        if (isWaveClean == true) {
-            isWaveClean = false;
-            unsigned int basePosX = baseCell->getPosX();
-            unsigned int basePosY = baseCell->getPosY();
-            unitThread = std::thread(runUnits, std::ref(enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY), std::ref(wave));
-        }
-        s = 0;
-        while (s != enemyList.at(wave).size()) {
-            //window.draw(enemyList.at(wave).at(s)->getTypeName());
-            s++;
-        }
-        // Update the game state
-        // Draw the game
-        // etc.
-        window.display();
-    }
-    window.setActive(false);
+    // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
+    setUnitsTextures(sfmlLoader, enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    // WINDOW LOOP AND MOUSE SETUP
+    runWindowLevelLoop(window, map, baseCell, enemyList);
     return (0);
 }

@@ -29,6 +29,7 @@ public:
     std::vector<std::vector<MapCell>>   *getMapVector() { return(&this->_map); };
     int                                 getSizeY() { return(this->_map.size()); };
     int                                 getSizeX() { return(this->_map[0].size()); };
+    MapCell                             *getElem(int x, int y) { return (&this->_map[y][x]); }
 
     // INITIALISE
     void setAllPositions();

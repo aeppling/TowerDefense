@@ -3,6 +3,7 @@
 //
 #include "mapParser.hpp"
 #include "TDMap.hpp"
+#include "SizeRatioCalculator.hpp"
 
 TDMap::TDMap(std::string filename, SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
     this->_constructIterator = 0;
@@ -18,22 +19,13 @@ TDMap::~TDMap() {
 #define CELL_SIZE 20
 #define TILE_SIZE 20
 void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
-    int smallerWinSize = std::min(winSizeX, winSizeY);
-    int largerMapSize = std::max(this->_map.size(), this->_map[0].size());
-    int cellSize = std::min(smallerWinSize / largerMapSize, smallerWinSize / largerMapSize);
-
-    if ((this->_map.size() > 30) || (this->_map[0].size() > 30))
-        cellSize = cellSize / 1.1;
-    if ((this->_map.size() > 40) || (this->_map[0].size() > 40))
-        cellSize = cellSize / 1.2;
-    if ((this->_map.size() > 60) || (this->_map[0].size() > 60))
-        cellSize = cellSize / 1.3;
+    int cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
     int y = 0;
     while (y != this->_map.size()) {
         int x = 0;
+//        std::vector<sf::Sprite> newSpriteLine;
         while (x != this->_map.at(y).size()) {
             sf::Sprite newSprite;
-            std::cout << this->_map.at(y).at(x).getType();
             if (this->_map.at(y).at(x).getType() == 'S') {
                 newSprite.setTexture(sfmlLoader.getPathCell());
                 newSprite.setColor(sf::Color::Yellow);
@@ -56,7 +48,6 @@ void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
             this->_tilesSprites.push_back(newSprite);
             x++;
         }
-        std::cout << std::endl;
         y++;
     }
 }
