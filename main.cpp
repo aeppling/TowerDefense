@@ -110,24 +110,30 @@ bool    testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spaw
     file.close();
 }
 
-int runUnits(TDMap &map, MapCell baseCell) {
+void runUnits(TDMap &map, unsigned int basePosX, unsigned int basePosY) {
     Bats myUnit(1,1);
     Cowards myUnit2(20, 20);
     Golem myUnit3(1,1);
     Dragon myUnit4(1,1);
     //COPY MAP VECTOR FOR PATH FINDING
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
-    myUnit.searchPath(nmap, baseCell->getPosX(), baseCell->getPosY()); // set base coord while retrieving the map
+    myUnit.searchPath(nmap, basePosX, basePosY); // set base coord while retrieving the map
     myUnit.run();
-    myUnit2.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit2.searchPath(nmap, basePosX, basePosY);
     myUnit2.run();
-    myUnit3.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit3.searchPath(nmap, basePosX, basePosY);
     myUnit3.run();
-    myUnit4.searchPath(nmap, baseCell->getPosY(), baseCell->getPosY());
+    myUnit4.searchPath(nmap, basePosX, basePosY);
     myUnit4.run();
 }
 
-int runWindow(sf::RenderWindow &window, TDMap &map) {
+void runWindow(/*TDMap &map, sf::RenderWindow window*/) {
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window");
+    window.setActive(true); // ACTIVE OPENGL CONTEXT
+    SFMLLoader sfmlLoader;
+    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
+    // LAUNCHING SFML WINDOW
+    std::cout << "Total sprites : " << map.getMaxSprite() << " a Total cell : " << 21 * 30 << std::endl;
     while (window.isOpen()) {
         sf::Event event;
         window.clear(sf::Color::Black);
@@ -149,6 +155,7 @@ int runWindow(sf::RenderWindow &window, TDMap &map) {
         // Draw the game
         // etc.
     }
+    window.setActive(false); // UNACTIVE OPENGL CONTEXT
 }
 
 int main() {
@@ -190,16 +197,15 @@ int main() {
     }
     std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
     // SETTING WINDOW AND MAP
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window");
-    window.setActive(true); // ACTIVE OPENGL CONTEXT
-    SFMLLoader sfmlLoader;
-    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
-    // LAUNCHING SFML WINDOW
-    std::cout << "Total sprites : " << map.getMaxSprite() << " a Total cell : " << 21 * 30 << std::endl;
+
     // WINDOW LOOP WAS HERE BELOW
-    std::thread windowDisplay(&runWindow, window, map);
+    std::thread windowDisplay(runWindow);
+    windowDisplay.join();
     // TESTING UNITS WAS HERE BELOW
-    std::thread unitRun(&runUnits, map, baseCell);
+/*    unsigned int basePosX = baseCell->getPosX();
+    unsigned int basePosY = baseCell->getPosY();
+    runUnits(map, basePosX, basePosY);*/
+
 /*    sf::ContextSettings settings;   <---- USELESS ?
     settings.depthBits = 24;
     settings.stencilBits = 8;
@@ -207,6 +213,5 @@ int main() {
     settings.majorVersion = 3;
     settings.minorVersion = 3;
     settings.attributeFlags = sf::ContextSettings::Core;*/
-    window.setActive(false); // UNACTIVE OPENGL CONTEXT
     return (0);
 }
