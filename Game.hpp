@@ -23,7 +23,15 @@ class Game{
         RetrieveLevel        *levelRetriever;
     public :
         Game(int difficulty, int level);
-        void loop();
+        bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
+        void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
+                              int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
+        int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<MapCell*> spawnCells,
+                 MapCell *baseCell, TDMap &map);
+        int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window);
+        void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
+                            std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
+        void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader);
         bool gameEnd();
         void gameWon();
         void gameLost();
