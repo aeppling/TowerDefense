@@ -39,6 +39,7 @@ void Tower::live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNum
 }
 void Tower::run(std::vector<TDUnit *> &enemiesList){
     //* run the tower threadst
+    std::cout << "Tower running..." << std::endl;
     this->gameInstance->getCurrentWaveNumber();
   //  this->_towerThread = std::thread(live, enemiesList, this->gameInstance->ge);
 }

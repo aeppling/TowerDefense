@@ -12,8 +12,8 @@ void    TDUnit::live() {
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
         if (res >= this->_speed) {
             if (!(this->isAtBase())) {
-           //       std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
-             //              << std::endl;
+               std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
+                           << std::endl;
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
             }

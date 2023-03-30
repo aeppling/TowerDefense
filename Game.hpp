@@ -35,7 +35,7 @@ class Game{
         bool gameEnd();
         void gameWon();
         void gameLost();
-        void startWave();
+        void startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> spawnCells);
         int  getCurrentWaveNumber() { return (this->currentWaveNumber); };
         void activateTowers();
         void deactivateTowers();
