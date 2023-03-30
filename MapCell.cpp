@@ -27,8 +27,7 @@ int MapCell::getHeuristicFromGoal(MapCell* goal) {
 
 bool MapCell::isWalkable() {
     // ADD CONDITIONS HERE FOR TRANSPARENT OR NOT UNITS
-    if ((this->_type == 'X') || (this->_type == 'U') || (this->_type == 'B')
-    || (this->_type == 'S') || (this->_type == 'O'))
+    if ((this->_type == 'X') || (this->_type == 'B') || (this->_type == 'S'))
         return (true);
     else
         return (false);

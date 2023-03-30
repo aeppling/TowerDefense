@@ -12,11 +12,10 @@
 
 class Game;
 
-class Tower : Buildable {
+class Tower : public Buildable {
     //* Basic parent tower Class
     protected:
         //Game gameInstance;
-        Point size;
         Point coord;
         std::vector<Tower *> towersList;
         std::vector<TDUnit *> enemiesInRange;
@@ -35,26 +34,25 @@ class Tower : Buildable {
     public:
         Tower(Game *gameInstance, int size);
         Tower(Game *gameInstance, int xPos, int yPos, int size);
-        ~Tower() { this->_towerThread.join(); };
-        void removeFromEnemiesInRangeList(TDUnit *enemy);
-        void addToEnemiesInRangeList(TDUnit *enemy);
-        void activate(std::vector<TDUnit *> &enemiesList);
-        void deactivate();
-        void fire(TDUnit *target);
-        void isInRange(std::vector<TDUnit *> &enemiesList);
-        void upgrade();
-        void setTimeBetweenAttack(float time);
-        float getTimeBetweenAttack();
-        int getCost(int level);
-        int getLevel();
-        bool isSpeedBoosted();
-        void setSpeedBoosted(bool newSpeedBoosted);
-        void setPosition(int posX, int posY);
-        Point getPosition();
-        Point getSize();
-        void run(std::vector<TDUnit *> &enemiesList);
-        void live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber);
-        bool isMaxed();
+        ~Tower() override { this->_towerThread.join(); };
+        void removeFromEnemiesInRangeList(TDUnit *enemy) override;
+        void addToEnemiesInRangeList(TDUnit *enemy) override;
+        void activate(std::vector<TDUnit *> &enemiesList) override;
+        void deactivate() override;
+        void fire(TDUnit *target) override;
+        void isInRange(std::vector<TDUnit *> &enemiesList) override;
+        void upgrade() override;
+        void setTimeBetweenAttack(float time) override;
+        float getTimeBetweenAttack() override;
+        int getCost(int level) override;
+        int getLevel() override;
+        bool isSpeedBoosted() override;
+        void setSpeedBoosted(bool newSpeedBoosted) override;
+        void setPosition(int posX, int posY) override;
+        Point getPosition() override;
+        void run(std::vector<TDUnit *> &enemiesList) override;
+        void live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber) override;
+        bool isMaxed() override;
 };
 
 #endif

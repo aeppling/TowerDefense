@@ -75,6 +75,10 @@ void TDMap::refreshTextures(SFMLLoader &sfmlLoader) {
                     this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
                     this->_tilesSprites.at(y).at(x).setColor(sf::Color::Blue);
                     break;
+                case 'A':
+                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
+                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Blue);
+                    break;
             }
             x++;
         }

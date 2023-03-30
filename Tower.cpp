@@ -1,10 +1,9 @@
 #include <unistd.h>
 #include "Tower.hpp"
 
-Tower::Tower(Game *gameInstance, int size) : Buildable(size) {
+Tower::Tower(Game *gameInstance, int size) : Buildable(size, "Tower")  {
     this->gameInstance = gameInstance;
     this->level = 0;
-    this->size = {1,1};
     this->coord = {0, 0};
     this->damage = {20, 40, 60 };
     this->cost = {100, 200, 400};
@@ -17,13 +16,12 @@ Tower::Tower(Game *gameInstance, int size) : Buildable(size) {
     this->speedBoosted = false;
 }
 
-Tower::Tower(Game *gameInstance, int xPos, int yPos, int size) : Buildable(size) {
+Tower::Tower(Game *gameInstance, int xPos, int yPos, int size) : Buildable(size, "Tower") {
     this->gameInstance = gameInstance;
     this->damage = {20, 40, 60 };
     this->cost = {100, 200, 400};
     this->level = 0;
    // this->enemiesInRange =  new std::vector<TDUnit *>();
-    this->size = {1,1};
     this->coord = {xPos, yPos};
     this->range = 5;
     this->timeBetweenAttack = 1.5;
@@ -34,7 +32,7 @@ Tower::Tower(Game *gameInstance, int xPos, int yPos, int size) : Buildable(size)
 }
 
 
-void Tower::live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber){
+void Tower::live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber) {
    // this->activate(levelEnemyList.at(waveNumber));
 }
 void Tower::run(std::vector<TDUnit *> &enemiesList){
@@ -56,17 +54,15 @@ void Tower::addToEnemiesInRangeList(TDUnit *enemy){
 
 void Tower::isInRange(std::vector<TDUnit *> &enemiesList){
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-    for(TDUnit *enemy : enemiesList){
-        if(enemy->getPosX() <= this->coord.x + this->range + this->size.x && enemy->getPosX() >= this->coord.x - this->range && enemy->getPosY() <= this->coord.y + this->range + this->size.y && enemy->getPosY() >= this->coord.y - this->range){
+    //for(TDUnit *enemy : enemiesList){
+/*        if(enemy->getPosX() <= this->coord.x + this->range + this->size.x && enemy->getPosX() >= this->coord.x - this->range && enemy->getPosY() <= this->coord.y + this->range + this->size.y && enemy->getPosY() >= this->coord.y - this->range){
             if(std::find(this->enemiesInRange.begin(),this->enemiesInRange.end(), enemy ) != this->enemiesInRange.end()){
                 addToEnemiesInRangeList(enemy);
             }
         }else{
             if(std::find(this->enemiesInRange.begin(),this->enemiesInRange.end(), enemy ) != this->enemiesInRange.end()){
                 removeFromEnemiesInRangeList(enemy);
-            }
-        }
-    }
+            }*/
 }
 
 void Tower::activate(std::vector<TDUnit *> &enemiesList){
@@ -145,10 +141,6 @@ void Tower::setPosition(int newXPos, int newYPos){
 
 Point Tower::getPosition(){
     return this->coord;
-}
-
-Point Tower::getSize(){
-    return this->size;
 }
 
 bool Tower::isMaxed(){

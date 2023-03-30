@@ -16,6 +16,7 @@ Game::Game(int difficulty, int level){
     this->coinNumber = 500-(difficulty*100);
     this->unitCount = 0;
     this->spawnCount = 0;
+    this->towerSelectorIndex = 0;
 }
 
 
@@ -129,6 +130,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map){
             startLevel();
             bool isBuilding = false;
+            int timeBetweenSpawn = 1000;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);
@@ -141,13 +143,20 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             while((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 std::cout << "Running units & towers..." << std::endl;
+                bool isWaveRunning = false;
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
                 this->spawnCount = 0;
+                Buildable *toBuild = nullptr;
+                Tower *buildTowerTest = new Tower(this, 2);
+                Tower *buildTowerTest2 = new Tower(this, 4);
+                this->towerStoreList.push_back(buildTowerTest);
+                this->towerStoreList.push_back(buildTowerTest2);
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
+                    isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
-                    if ((waveChronoElapsed >= 1000) && (this->unitCount != this->enemyList.at(this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
+                    if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
                         unsigned int basePosX = baseCell->getPosX();
                         unsigned int basePosY = baseCell->getPosY();
                         runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
@@ -168,16 +177,46 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             break;
                         }
                         if (event.type == sf::Event::MouseButtonPressed &&
-                            sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-                            if (isBuilding == false)
+                            sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
+                            if (isBuilding == false) {
                                 isBuilding = true;
-                            else
+                            }
+                            else {
+                                toBuild = nullptr;
                                 isBuilding = false;
+                            }
                         }
-                        if (event.type == sf::Event::MouseButtonPressed &&
-                            sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                            if (isBuilding == true)
+                        if (isBuilding == true) {
+                            if (event.type == sf::Event::MouseButtonPressed &&
+                                sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 setObstacleTest(std::ref(map), std::ref(window), sfmlLoader);
+                            }
+                            if (event.type == sf::Event::KeyPressed) {
+                                if (event.key.code == sf::Keyboard::Right) {
+                                    if (this->towerStoreList.size() <= 1)
+                                        break;
+                                    if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
+                                        this->towerSelectorIndex = 0;
+                                    else
+                                        this->towerSelectorIndex++;
+                                }
+                                else if (event.key.code == sf::Keyboard::Left) {
+                                    if (this->towerStoreList.size() <= 1)
+                                        break;
+                                    if (this->towerSelectorIndex == 0) {
+                                        this->towerSelectorIndex = this->towerStoreList.size() - 1;
+                                    }
+                                    else
+                                        this->towerSelectorIndex--;
+                                }
+                            }
+                            if (event.type == sf::Event::KeyPressed &&
+                                event.key.code == sf::Keyboard::T) { // TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
+                                toBuild = this->towerStoreList.at(this->towerSelectorIndex);
+                                setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning);
+                                if (toBuild == nullptr)
+                                    isBuilding = false;
+                            }
                         }
                     }
                     if (closing == true)
@@ -254,11 +293,36 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
     // NO THREAD HERE BUT COUNTER IN MAIN LOOP AND CALL EVERY x SECONDS
 }
 
+void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning) {
+    mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX()) {
+        // SET TOWER
+        if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
+            // CHECK IF ENOUGH SPACE TO BUILD
+            // i should already have a function to do this because of hoverring mouse area
+            // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
+            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
+            // BUILD->Add tower with its coordinate to vector of actives towers
+            Tower* toAdd = dynamic_cast<Tower*>(toBuild);
+            if (toAdd == nullptr) {
+                std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
+                return;
+            }
+            this->towerList.push_back(toAdd);
+            this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY);
+            toBuild = nullptr;
+            if (isWaveRunning == true)
+                this->towerList[this->towerList.size() - 1]->run(this->enemyList[this->currentWaveNumber]);
+        }
+        map.refreshTextures(sfmlLoader);
+    }
+}
+
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
-        // Do something with the clicked cell
+        // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
         }
@@ -268,6 +332,16 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfml
         map.refreshTextures(sfmlLoader);
         // ...
     }
+}
+
+bool Game::canPlace(Tower &tower, int xPos, int yPos){
+    //* detect if the tower can be placed at theses coords
+    /*  for(int i = 0; i<= this->towerList.size(); i++){
+          if(xPos >= towerList[i]->getPosition().x && xPos >= towerList[i]->getPosition().y && xPos < towerList[i]->getPosition().x + tower.getSize().x && yPos < towerList[i]->getPosition().y + tower.getSize().y){
+              return false;
+          }
+      }*/
+    return true;
 }
 
 bool Game::waveEnd(){
@@ -319,7 +393,7 @@ void Game::activateTowers(){
     //* Activate all towers
     if (this->towerList.empty())
         return;
-    std::cout << "Tower activation" << std::endl;
+    std::cout << "Towers activation" << std::endl;
     for(int i = 0; i<= this->towerList.size(); i++ ){
         this->towerList[i]->run(this->enemyList[this->currentWaveNumber]);
     }
@@ -327,7 +401,7 @@ void Game::activateTowers(){
 
 void Game::deactivateTowers(){
     //* deactivate all towers
-    std::cout << "Tower deactivation" << std::endl;
+    std::cout << "Towers deactivation" << std::endl;
     for(int i = 0; i<= this->towerList.size(); i++ ){
         this->towerList[i]->deactivate();
     }
@@ -416,16 +490,6 @@ bool Game::canBuy(Tower &tower, int level){
         std::cout << "You don't have enough coins !" << std::endl;
         return false;
     }
-}
-
-bool Game::canPlace(Tower &tower, int xPos, int yPos){
-    //* detect if the tower can be placed at theses coords
-    for(int i = 0; i<= this->towerList.size(); i++){
-        if(xPos >= towerList[i]->getPosition().x && xPos >= towerList[i]->getPosition().y && xPos < towerList[i]->getPosition().x + tower.getSize().x && yPos < towerList[i]->getPosition().y + tower.getSize().y){
-            return false;
-        }
-    }
-    return true;
 }
 
 void Game::addCoins(int number){

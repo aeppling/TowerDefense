@@ -5,6 +5,7 @@
 #include "TDUnit.hpp"
 #include "RetrieveLevel.hpp"
 #include "usefullStruct.hpp"
+#include "Buildable.hpp"
 
 #include <iostream>
 
@@ -17,11 +18,13 @@ class Game{
         int currentWaveNumber;
         int unitCount;
         int spawnCount;
+        int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
         int coinNumber;
         std::vector<std::vector<TDUnit *>> enemyList;
         std::vector<Tower *> towerList;
+        std::vector<Tower *> towerStoreList;
         RetrieveLevel        *levelRetriever;
     public :
         Game(int difficulty, int level);
@@ -33,6 +36,7 @@ class Game{
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
         void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader);
+        void setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
         void gameWon();
         void gameLost();
