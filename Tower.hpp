@@ -4,6 +4,7 @@
 #include "TDUnit.hpp"
 #include "Game.hpp"
 #include "usefullStruct.hpp"
+#include "Buildable.hpp"
 
 #include <vector>
 #include <thread>
@@ -11,7 +12,7 @@
 
 class Game;
 
-class Tower{
+class Tower : Buildable {
     //* Basic parent tower Class
     protected:
         //Game gameInstance;
@@ -32,8 +33,8 @@ class Tower{
         Game        *gameInstance;
 
     public:
-        Tower(Game *gameInstance);
-        Tower(Game *gameInstance, int xPos, int yPos);
+        Tower(Game *gameInstance, int size);
+        Tower(Game *gameInstance, int xPos, int yPos, int size);
         ~Tower() { this->_towerThread.join(); };
         void removeFromEnemiesInRangeList(TDUnit *enemy);
         void addToEnemiesInRangeList(TDUnit *enemy);

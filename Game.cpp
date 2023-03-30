@@ -126,35 +126,6 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
-int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
-    // GAME INITIALISATON
-    // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
-    if (this->enemyList.size() == 0) {
-        std::cout << "Couldn't retrieve level informations, leaving..." << std::endl;
-        return (-1);
-    }
-    // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
-    MapCell *baseCell = new MapCell('B', -1, -1);
-    std::vector<MapCell*> spawnCells;
-    if (testMap("mapfilePathFinding.txt", baseCell, spawnCells) == false) {
-        std::cout << "Cannot load level : Map is not valid." << std::endl;
-        return (-1);
-    }
-    //UNCOMMENT TO DEBUG SPAWNS
-   /* int i = 0;
-    while (i < spawnCells.size()) {
-        std::cout << "Spawn : x:" << spawnCells[i]->getPosX() << " y:" << spawnCells[i]->getPosY() << std::endl;
-        i++;
-    }*/
-    this->spawnCells = spawnCells;
-    std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
-    // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
-    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
-    // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
-    setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
-    this->loop(sfmlLoader, window, baseCell, map);
-}
-
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map){
             startLevel();
             bool isBuilding = false;
@@ -241,6 +212,35 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     window.display();
                 }
         }
+}
+
+int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
+    // GAME INITIALISATON
+    // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
+    if (this->enemyList.size() == 0) {
+        std::cout << "Couldn't retrieve level informations, leaving..." << std::endl;
+        return (-1);
+    }
+    // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
+    MapCell *baseCell = new MapCell('B', -1, -1);
+    std::vector<MapCell*> spawnCells;
+    if (testMap("mapfilePathFinding.txt", baseCell, spawnCells) == false) {
+        std::cout << "Cannot load level : Map is not valid." << std::endl;
+        return (-1);
+    }
+    //UNCOMMENT TO DEBUG SPAWNS
+    /* int i = 0;
+     while (i < spawnCells.size()) {
+         std::cout << "Spawn : x:" << spawnCells[i]->getPosX() << " y:" << spawnCells[i]->getPosY() << std::endl;
+         i++;
+     }*/
+    this->spawnCells = spawnCells;
+    std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
+    // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
+    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
+    // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
+    setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    this->loop(sfmlLoader, window, baseCell, map);
 }
 
 void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawnCells){
@@ -363,7 +363,7 @@ void Game::createTower(){
     Tower *newTower;
     switch(stoi(towerType)){
         case 1:
-            newTower = new Tower(this);
+            newTower = new Tower(this, 2);
             break;
         case 2:
           //  SniperTower newTower = new SniperTower(this);

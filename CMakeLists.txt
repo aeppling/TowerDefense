@@ -12,6 +12,6 @@ set(SFML_DIR "lib/cmake/SFML")
 #set(GLEW_LIBRARIES "lib/")
 include_directories(include)
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
-add_executable(untitled1 main.cpp mapParser.hpp TDMap.hpp mapParser.cpp TDMap.cpp MapCell.hpp MapCell.cpp AStarPathFinding.hpp AStarPathFinding.cpp TDUnit.cpp TDUnit.hpp RetrieveLevel.cpp RetrieveLevel.hpp SFMLLoader.hpp SFMLLoader.cpp SizeRatioCalculator.cpp SizeRatioCalculator.hpp Tower.cpp Tower.hpp Game.cpp Game.hpp usefullStruct.hpp)
+add_executable(untitled1 main.cpp mapParser.hpp TDMap.hpp mapParser.cpp TDMap.cpp MapCell.hpp MapCell.cpp AStarPathFinding.hpp AStarPathFinding.cpp TDUnit.cpp TDUnit.hpp RetrieveLevel.cpp RetrieveLevel.hpp SFMLLoader.hpp SFMLLoader.cpp SizeRatioCalculator.cpp SizeRatioCalculator.hpp Tower.cpp Tower.hpp Game.cpp Game.hpp usefullStruct.hpp Buildable.hpp Buildable.cpp)
 #AntiAirTower.cpp AntiAirTower.hpp AttackSpeedTower.cpp AttackSpeedTower.hpp SlowTower.cpp SlowTower.hpp SplashTower.cpp SplashTower.hpp SniperTower.cpp SniperTower.hpp
 target_link_libraries(untitled1 sfml-system sfml-window sfml-graphics sfml-network sfml-audio)

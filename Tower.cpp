@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "Tower.hpp"
 
-Tower::Tower(Game *gameInstance){
+Tower::Tower(Game *gameInstance, int size) : Buildable(size) {
     this->gameInstance = gameInstance;
     this->level = 0;
     this->size = {1,1};
@@ -17,7 +17,7 @@ Tower::Tower(Game *gameInstance){
     this->speedBoosted = false;
 }
 
-Tower::Tower(Game *gameInstance, int xPos, int yPos){
+Tower::Tower(Game *gameInstance, int xPos, int yPos, int size) : Buildable(size) {
     this->gameInstance = gameInstance;
     this->damage = {20, 40, 60 };
     this->cost = {100, 200, 400};
