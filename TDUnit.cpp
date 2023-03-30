@@ -24,12 +24,6 @@ void    TDUnit::live() {
 
 void    TDUnit::run(TDMap *map) {
     //UNCOMMENT TO DEBUG PATH
- /*   int i = 0;
-    std::cout << "Path of " << this->getTypeName() << std::endl;
-    while (i < this->_path.size()) {
-        std::cout << "x:" << this->_path[i]->getPosX() << " y:" << this->_path[i]->getPosY() << std::endl;
-        i++;
-    }*/
     this->_mapCopy = map;
     this->_thread = std::thread(&TDUnit::live, this);
 }
