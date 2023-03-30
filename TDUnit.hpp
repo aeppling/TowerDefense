@@ -21,6 +21,8 @@ public:
     int _posX;
     int _posY;
     int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN SECONDS
+    bool _isFlying;
+    int  _value;
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
@@ -32,12 +34,14 @@ public:
     int         _unitSize;
 
     // CONSTRUCTOR & OVERLOADS
-    TDUnit(int hp, int speed, int resistance, int posX, int posY) {
+    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value) {
         this->_health_points = hp;
         this->_speed = speed;
         this->_resistance = resistance;
         this->_posX = posX;
         this->_posY = posY;
+        this->_isFlying = isFlying;
+        this->_value = value;
         this->_timeOfLastMove = std::chrono::steady_clock::now();
     }
     ~TDUnit() {
@@ -53,6 +57,10 @@ public:
     void setPosX(int posX);
     void setPosY(int posY);
     void setPath(std::vector<MapCell*> path);
+    bool isFlying() { return (this->_isFlying); };
+    int  getHealth() { return (this->_health_points); };
+    void setHealth(int health) { this->_health_points = health; };
+    int  getValue() { return (this->_value); };
 
     // FUNCTIONS
     void live();
@@ -72,7 +80,7 @@ public:
 
 class Goblin : public TDUnit {
 public:
-    Goblin(int posX, int posY) : TDUnit(50, 1500, 1, posX, posY) {}
+    Goblin(int posX, int posY) : TDUnit(50, 1500, 1, posX, posY, false, 10) {}
 
     virtual std::string getTypeName() {
         return "Goblin";
@@ -81,7 +89,7 @@ public:
 
 class Molosse : public TDUnit {
 public:
-    Molosse(int posX, int posY) : TDUnit(500, 1000, 10, posX, posY) {}
+    Molosse(int posX, int posY) : TDUnit(500, 1000, 10, posX, posY, false, 20) {}
 
     virtual std::string getTypeName() {
         return "Molosse";
@@ -90,7 +98,7 @@ public:
 
 class Golem : public TDUnit {
 public:
-    Golem(int posX, int posY) : TDUnit(300, 3500, 5, posX, posY) {}
+    Golem(int posX, int posY) : TDUnit(300, 3500, 5, posX, posY, false, 40) {}
 
     virtual std::string getTypeName() {
         return "Golem";
@@ -99,7 +107,7 @@ public:
 
 class Dragon : public TDUnit {
 public:
-    Dragon(int posX, int posY) : TDUnit(1000, 2000, 10, posX, posY) {}
+    Dragon(int posX, int posY) : TDUnit(1000, 2000, 10, posX, posY, false, 70) {}
 
     virtual std::string getTypeName() {
         return "Dragon";
@@ -108,7 +116,7 @@ public:
 
 class Bats : public TDUnit {
 public:
-    Bats(int posX, int posY) : TDUnit(20, 400, 1, posX, posY) {}
+    Bats(int posX, int posY) : TDUnit(20, 400, 1, posX, posY, false, 7) {}
 
     virtual std::string getTypeName() {
         return "Bats";
@@ -117,7 +125,7 @@ public:
 
 class Minions : public TDUnit {
 public:
-    Minions(int posX, int posY) : TDUnit(100, 1000, 2, posX, posY) {}
+    Minions(int posX, int posY) : TDUnit(100, 1000, 2, posX, posY, false, 15) {}
 
     virtual std::string getTypeName() {
         return "Minions";
@@ -126,7 +134,7 @@ public:
 
 class Cowards : public TDUnit {
 public:
-    Cowards(int posX, int posY) : TDUnit(10, 700, 0, posX, posY) {}
+    Cowards(int posX, int posY) : TDUnit(10, 700, 0, posX, posY, false, 12) {}
 
     virtual std::string getTypeName() {
         return "Cowards";

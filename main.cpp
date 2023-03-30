@@ -9,6 +9,8 @@
 #include "TDUnit.hpp"
 #include "RetrieveLevel.hpp"
 #include "SizeRatioCalculator.hpp"
+#include "Game.hpp"
+
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
@@ -264,6 +266,17 @@ void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
 }
 
 int main() {
+    // SETTING WINDOW AND MAP
+    sf::ContextSettings settings;
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 4;
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
+    window.setActive(true);
+    SFMLLoader sfmlLoader;
+    // CREATE GAME OBJET
+    Game currentGame(1, 1);
+   // currentGame.loop();
    // RETRIEVE ENEMY LIST
    std::vector<std::vector<TDUnit*>> enemyList;
    RetrieveLevel retrieveLevel(1);
@@ -285,14 +298,6 @@ int main() {
         i++;
     }
     std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
-    // SETTING WINDOW AND MAP
-    sf::ContextSettings settings;
-    settings.depthBits = 24;
-    settings.stencilBits = 8;
-    settings.antialiasingLevel = 4;
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    window.setActive(true);
-    SFMLLoader sfmlLoader;
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
