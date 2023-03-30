@@ -45,6 +45,7 @@ class Game{
         void activateTowers();
         void deactivateTowers();
         void createTower();
+        bool isBuildableAtPosition(TDMap &map, int x, int y, int size);
         bool canBuy(Tower &tower, int level);
         bool canPlace(Tower &tower, int xPos, int yPos);
         void addCoins(int number);

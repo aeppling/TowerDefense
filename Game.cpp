@@ -300,6 +300,7 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
             // CHECK IF ENOUGH SPACE TO BUILD
             // i should already have a function to do this because of hoverring mouse area
+            if (isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize()) == true)
             // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
             // BUILD->Add tower with its coordinate to vector of actives towers
@@ -332,6 +333,34 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfml
         map.refreshTextures(sfmlLoader);
         // ...
     }
+}
+
+bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
+    int maxY = map.getSizeY() - 1;
+    int maxX = map.getSizeX() - 1;
+
+    for (int i = -size; i <= size; i++) {
+        for (int j = -size; j <= size; j++) {
+            if (i == 0 && j == 0) { // CENTER ALREADY CHECKED
+                continue;
+            }
+            int newY = y + i;
+            int newX = x + j;
+            // IS CHECKING NOT OUTSIDE MAP
+            if (newY < 0 || newY > maxY || newX < 0 || newX > maxX) {
+                continue;
+            }
+            if (map.getElem(newX, newY)->getType() != 'T') {
+                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
+                    continue;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
 
 bool Game::canPlace(Tower &tower, int xPos, int yPos){
