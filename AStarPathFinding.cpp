@@ -55,8 +55,7 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
         MapCell *cell = openSet.top();
         openSet.pop();
         if (((cell->getPosX() == this->_goalCell.getPosX()) && (cell->getPosY() == this->_goalCell.getPosY()))
-        || (cell->getType() == 'B')) {
-            std::cout << "Found goal" << std::endl;
+        || (cell->getType() == 'B')) { // FOUND GOAL
             MapCell *pCell = cell; // HERE --> SHOULD COPY AND NOT TAKE ADDRESSE ?
             while (pCell->getParentCell() != nullptr) {
                 std::shared_ptr<MapCell> tmp = std::make_shared<MapCell>(*pCell);
@@ -66,7 +65,6 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
             std::shared_ptr<MapCell> tmp = std::make_shared<MapCell>(this->_startCell);
             pathToFill.push_back(tmp);
             std::reverse(pathToFill.begin(), pathToFill.end());
-            std::cout << "Return path here" << std::endl;
             return (true);
         }
         this->_closeSet.push_back(cell);

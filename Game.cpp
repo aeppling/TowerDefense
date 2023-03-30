@@ -120,7 +120,7 @@ void runUnits(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned
     int unitCount = 0;
     while (unitCount != enemyList.at(wave).size()) {
         enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
-        enemyList.at(wave).at(unitCount)->run();
+        enemyList.at(wave).at(unitCount)->run(&map);
         unitCount++;
     }
 }
@@ -164,15 +164,18 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<Map
             sf::Sprite mousePointer(mousePointerTexture);
             sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
             mousePointer.setTextureRect(textureRect);
+            bool closing = false;
             while((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 // RUN UNITS
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
+                // THREAD STARTWAVE FUNCTION
                 while(!this->waveEnd()) {
                     sf::Event event;
                     window.clear(sf::Color::Black);
                     while (window.pollEvent(event)) {
                         if (event.type == sf::Event::Closed) {
                             window.close();
+                            closing = true;
                             break;
                         }
                         if (event.type == sf::Event::MouseButtonPressed &&
@@ -188,8 +191,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<Map
                                 setObstacleTest(std::ref(map), std::ref(window), sfmlLoader);
                         }
                     }
-                    //* While all ennemies of the current wave arent dead
-                    //* if an enemy is at the base decrease life number
+                    if (closing == true)
+                        break;
+                    //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
+                    if (isBuilding == true) {
+                    }
                     int s = 0;
                     // DISPLAY MAP
                     while (s != map.getTileMaxSpriteY()) {
@@ -225,83 +231,12 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> spawnC
     std::cout << "The wave contains " <<  this->enemyList[this->currentWaveNumber].size() << " enemies" << std::endl;
     std::cout << "Life number : " << this->lifeNumber << std::endl;
     std::cout << "Coin number : " << this->coinNumber << std::endl;
-    std::thread unitThread;
     //* activate towers
     this->activateTowers();
     unsigned int basePosX = baseCell->getPosX();
     unsigned int basePosY = baseCell->getPosY();
+    std::cout << "Running units..." << std::endl;
     runUnits(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY), std::ref(this->currentWaveNumber));
-}
-
-void Game::runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
-                              std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader) {
-    int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
-    // SETTING UP MOUSE POINTER
-    window.setMouseCursorVisible(false);
-    sf::Texture mousePointerTexture;
-    mousePointerTexture.loadFromFile("Sprites/sand_tile.png");
-    sf::Sprite mousePointer(mousePointerTexture);
-    sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
-    mousePointer.setTextureRect(textureRect);
-    // INITIALISE LOOP VARIABLES
-    bool isWaveClean = true;
-    bool isBuilding = false;
-    unsigned int wave = 0;
-    while (window.isOpen()) {
-        sf::Event event;
-        window.clear(sf::Color::Black);
-        // CHOOS
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-                break;
-            }
-            if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-                if (isBuilding == false)
-                    isBuilding = true;
-                else
-                    isBuilding = false;
-            }
-            if (event.type == sf::Event::MouseButtonPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (isBuilding == true)
-                    setObstacleTest(std::ref(map), std::ref(window), sfmlLoader);
-            }
-        }
-        int s = 0;
-        //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
-        if (isBuilding == true) {
-        }
-        // DISPLAY MAP
-        while (s != map.getTileMaxSpriteY()) {
-            int s2 = 0;
-            while (s2 != map.getTileMaxSpriteX(s)) {
-                window.draw(map.getTileSprite(s, s2));
-                s2++;
-            }
-            s++;
-        }
-        // RUN WAVE IF NOT ALREADY RUNNING
-        if (isWaveClean == true) {
-            isWaveClean = false;
-        }
-        // DISPLAY ENEMIES
-        s = 0;
-        while (s != enemyList.at(wave).size()) {
-            window.draw(enemyList.at(wave).at(s)->getSprite());
-            s++;
-        }
-        // SET AND DISPLAY MOUSE
-        if (isBuilding == true)
-            mousePointer.setColor(sf::Color::Blue);
-        else
-            mousePointer.setColor(sf::Color::Cyan);
-        sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
-        mousePointer.setPosition(mousePositionScreen.x, mousePositionScreen.y);
-        window.draw(mousePointer);
-        window.display();
-    }
-    displayDebugMap2(map.getMapVector());
-    window.setActive(false);
 }
 
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader) {
@@ -309,35 +244,27 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfml
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
         // Do something with the clicked cell
-        std::cout << "Clicked on case x:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX();
-        std::cout << " y:" << map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosY() << std::endl;
-        map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+        if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
+            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+        }
+        else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
+            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+        }
         map.refreshTextures(sfmlLoader);
         // ...
     }
 }
 
-void Game::display(){
-    //* Display/Actualize map   
-/*    while (SFWindow.isOpen()) {
-        SFWindow.clear();
-        for (int i = 0; i<= spriteList.size(); i++) {
-            SFWindow.draw(spriteList[i]);
-        }
-    SFWindow.display();
-    }*/
-}
-
 bool Game::waveEnd(){
     //* return true if the current wave is ended , ifnot return else
-    if(this->enemyList[this->currentWaveNumber].size() == 0){
+    if (this->enemyList[this->currentWaveNumber].size() == 0) {
         //* if all the ennemies from the current wave are dead == wave ended
         std::cout << "wave ended" << std::endl;
         //* deactivate towers, increase wave number
         this->deactivateTowers();
         this->currentWaveNumber++;
         return true;
-    }else{
+    } else {
         //* if all the ennemies from the current wave aren't dead == wave not ended
         return false;
     }

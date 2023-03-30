@@ -1,4 +1,4 @@
-Cowards:5/Bats:1/Golem:1/Minions:3
+Cowards:1/Bats:1/Golem:1
 Cowards:8/Minions:5
 Cowards:10/Minions:5/Bats:3
 Cowards:10/Minions:5/Bats:5/Golem:1

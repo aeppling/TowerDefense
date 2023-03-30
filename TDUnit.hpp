@@ -24,11 +24,15 @@ public:
     bool _isFlying;
     int  _value;
 
+    //COORD
+    int  _baseCoordX;
+    int  _baseCoordY;
+
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
-    std::thread _thread;
-
+    std::thread                           _thread;
+    TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite  _sprite;
     int         _unitSize;
@@ -64,7 +68,7 @@ public:
 
     // FUNCTIONS
     void live();
-    void run();
+    void run(TDMap *map);
     void searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY);
     void move();
     bool isAtBase();
@@ -72,7 +76,7 @@ public:
         std::string description = getTypeName() + " (HP: " + std::to_string(this->_health_points) + ", Resistance: " + std::to_string(this->_resistance);
         return description;
     }
-
+    bool isBlocked(int nextPosX, int nextPosY);
     // SFML
     void setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
     sf::Sprite getSprite() {return (this->_sprite); };

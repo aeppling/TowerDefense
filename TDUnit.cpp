@@ -12,8 +12,8 @@ void    TDUnit::live() {
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
         if (res >= this->_speed) {
             if (!(this->isAtBase())) {
-               std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
-                           << std::endl;
+               //std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
+                 //          << std::endl;
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
             }
@@ -22,7 +22,7 @@ void    TDUnit::live() {
     std::cout << this->getTypeName() << " has arrived" << std::endl;
 }
 
-void    TDUnit::run() {
+void    TDUnit::run(TDMap *map) {
     //UNCOMMENT TO DEBUG PATH
  /*   int i = 0;
     std::cout << "Path of " << this->getTypeName() << std::endl;
@@ -30,14 +30,17 @@ void    TDUnit::run() {
         std::cout << "x:" << this->_path[i]->getPosX() << " y:" << this->_path[i]->getPosY() << std::endl;
         i++;
     }*/
+    this->_mapCopy = map;
     this->_thread = std::thread(&TDUnit::live, this);
 }
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-    if (nextTo->getType() == 'W') {
-        std::cout << "BLOOOOOOOOOOOOOOOOOOOOOOOOOOCKED" << std::endl;
-        //RERUN PATH FINDING
+    if (isBlocked(nextTo->getPosX(), nextTo->getPosY())) {
+        this->_path.clear();
+        this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY);
+        this->move();
+       //nextTo = this->_path[0];
     }
     this->_posX = nextTo->getPosX();
     this->_posY = nextTo->getPosY();
@@ -46,28 +49,13 @@ void    TDUnit::move() {
     this->_path.erase(this->_path.begin());
 }
 
+//benjamin.labastille@
+
 void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY) {
-/*  std::vector<std::vector<MapCell>> uniqueMap;
-    int x = 0;
-    while (x != (*nmap).size()) {
-        int y = 0;
-        std::vector<MapCell> newLine;
-        while (y != (*nmap)[x].size()) {
-            MapCell copyCell((*nmap)[x][y]);
-            newLine.push_back(copyCell);
-            y++;
-        }
-        uniqueMap.push_back(newLine);
-        x++;
-    }*/
+    this->_baseCoordX = baseCoordX;
+    this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
- //   std::cout << "DEBUUUG1" << std::endl;
-    //AStarPathFinding pathFinder(uniqueMap, uniqueMap[this->_posY][this->_posX], uniqueMap[baseCoordY][baseCoordX]);
-  //  std::cout << "DEBUUUG2" << std::endl;
-    // HERE I NEED TO REPLACE DEST COORD BY NEAREST BASE
     pathFinder.runPathFinding(this->_path);
-    //this->_path = pathFinder.runPathFinding();
-    // PATH NO LONGER EXIST AFTER THIS???!!!
 }
 
 void    TDUnit::setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY) {
@@ -88,4 +76,11 @@ bool    TDUnit::isAtBase() {
     }
     else
         return (true);
+}
+
+bool    TDUnit::isBlocked(int nextPosX, int nextPosY) {
+    if (this->_mapCopy->getElem(nextPosX, nextPosY)->isWalkable() == false)
+        return (true);
+    else
+        return (false);
 }
