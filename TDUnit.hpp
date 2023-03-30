@@ -58,8 +58,8 @@ public:
     // GETTER & SETTER
     int getPosX() { return(this->_posX); }
     int getPosY() { return(this->_posY); }
-    void setPosX(int posX);
-    void setPosY(int posY);
+    void setPosX(int posX) { this->_posX = posX; };
+    void setPosY(int posY) { this->_posY = posY; };
     void setPath(std::vector<MapCell*> path);
     bool isFlying() { return (this->_isFlying); };
     int  getHealth() { return (this->_health_points); };

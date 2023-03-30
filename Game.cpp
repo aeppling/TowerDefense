@@ -14,6 +14,8 @@ Game::Game(int difficulty, int level){
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
     this->coinNumber = 500-(difficulty*100);
+    this->unitCount = 0;
+    this->spawnCount = 0;
 }
 
 
@@ -115,13 +117,13 @@ void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUn
 }
 
 void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX,
-              unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount) {
+              unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount, int spawnCount) {
     // RUN EVERY UNIT THREADS
-    // RUN THIS AS A THREAD ? SO I CAN DELAY EVERY SPAWNING
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
+    enemyList.at(wave).at(unitCount)->setPosX(spawnCells.at(spawnCount)->getPosX());
+    enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
     enemyList.at(wave).at(unitCount)->run(&map);
-    unitCount++;
 }
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
@@ -138,21 +140,22 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
         std::cout << "Cannot load level : Map is not valid." << std::endl;
         return (-1);
     }
-    int i = 0;
+    //UNCOMMENT TO DEBUG SPAWNS
+   /* int i = 0;
     while (i < spawnCells.size()) {
         std::cout << "Spawn : x:" << spawnCells[i]->getPosX() << " y:" << spawnCells[i]->getPosY() << std::endl;
         i++;
-    }
+    }*/
+    this->spawnCells = spawnCells;
     std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
-    this->loop(sfmlLoader, window, spawnCells, baseCell, map);
+    this->loop(sfmlLoader, window, baseCell, map);
 }
 
-int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<MapCell*> spawnCells,
-               MapCell *baseCell, TDMap &map){
+int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map){
             startLevel();
             bool isBuilding = false;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
@@ -168,17 +171,20 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<Map
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 std::cout << "Running units & towers..." << std::endl;
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
-                int unitCount = 0; // UNIT PER WAVE COUNTER
+                this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
+                this->spawnCount = 0;
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
-                    if ((waveChronoElapsed >= 1000) && (unitCount != this->enemyList.at(this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
+                    if ((waveChronoElapsed >= 1000) && (this->unitCount != this->enemyList.at(this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
                         unsigned int basePosX = baseCell->getPosX();
                         unsigned int basePosY = baseCell->getPosY();
-                        std::cout << "Run unit" << std::endl;
                         runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
-                                 std::ref(this->currentWaveNumber), spawnCells, unitCount);
-                        unitCount++;
+                                 std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount, this->spawnCount);
+                        this->spawnCount++;
+                        this->unitCount++;
+                        if (this->spawnCount >= this->spawnCells.size())
+                            this->spawnCount = 0;
                         waveChronoStart = std::chrono::steady_clock::now();
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS

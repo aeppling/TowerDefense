@@ -15,8 +15,10 @@ class Game{
         int difficulty;
         int lifeNumber;
         int currentWaveNumber;
+        int unitCount;
+        int spawnCount;
         Point baseCoord;
-        std::vector<MapCell> spawnCells;
+        std::vector<MapCell*> spawnCells;
         int coinNumber;
         std::vector<std::vector<TDUnit *>> enemyList;
         std::vector<Tower *> towerList;
@@ -26,8 +28,7 @@ class Game{
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
-        int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, std::vector<MapCell*> spawnCells,
-                 MapCell *baseCell, TDMap &map);
+        int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map);
         int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window);
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
