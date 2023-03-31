@@ -148,10 +148,14 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
                 this->spawnCount = 0;
                 Buildable *toBuild = nullptr;
-                Tower *buildTowerTest = new Tower(this, 2);
-                Tower *buildTowerTest2 = new Tower(this, 4);
+                Tower *buildTowerTest = new Tower(this, 1);
+                Tower *buildTowerTest2 = new Tower(this, 2);
+                Tower *buildTowerTest3 = new Tower(this, 3);
+                Tower *buildTowerTest4 = new Tower(this, 4);
                 this->towerStoreList.push_back(buildTowerTest);
                 this->towerStoreList.push_back(buildTowerTest2);
+                this->towerStoreList.push_back(buildTowerTest3);
+                this->towerStoreList.push_back(buildTowerTest4);
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -221,9 +225,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     if (closing == true)
                         break;
-                    //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
-                    if (isBuilding == true) {
-                    }
                     int s = 0;
                     // DISPLAY MAP
                     while (s != map.getTileMaxSpriteY()) {
@@ -233,6 +234,15 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             s2++;
                         }
                         s++;
+                    }
+                    //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
+                    if (isBuilding == true) {
+                        mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+                        int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
+                        if (radius <= 1)
+                            setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius, isBuildableAtPositionForSmaller(map, mouseCoord.posX, mouseCoord.posY, radius));
+                        else
+                            setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius, isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, radius));
                     }
                     // DISPLAY ENNEMIES
                     s = 0;
@@ -279,6 +289,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->loop(sfmlLoader, window, baseCell, map);
 }
 
@@ -300,22 +311,25 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
             // CHECK IF ENOUGH SPACE TO BUILD
             // i should already have a function to do this because of hoverring mouse area
-            if (isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize()) == true)
-            // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
-            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
-            // BUILD->Add tower with its coordinate to vector of actives towers
-            Tower* toAdd = dynamic_cast<Tower*>(toBuild);
-            if (toAdd == nullptr) {
-                std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
-                return;
+            if ((isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize() - 1) == true)
+                || (toBuild->getSize() <= 1)) {
+                // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
+                std::cout << "Building" << std::endl;
+                map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
+                // BUILD->Add tower with its coordinate to vector of actives towers
+                Tower *toAdd = dynamic_cast<Tower *>(toBuild);
+                if (toAdd == nullptr) {
+                    std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
+                    return;
+                }
+                this->towerList.push_back(toAdd);
+                this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY);
+                toBuild = nullptr;
+                if (isWaveRunning == true)
+                    this->towerList[this->towerList.size() - 1]->run(this->enemyList[this->currentWaveNumber]);
+                map.refreshTextures(sfmlLoader);
             }
-            this->towerList.push_back(toAdd);
-            this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY);
-            toBuild = nullptr;
-            if (isWaveRunning == true)
-                this->towerList[this->towerList.size() - 1]->run(this->enemyList[this->currentWaveNumber]);
         }
-        map.refreshTextures(sfmlLoader);
     }
 }
 
@@ -351,7 +365,7 @@ bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
                 continue;
             }
             if (map.getElem(newX, newY)->getType() != 'T') {
-                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
+               if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
                     continue;
                 }
                 else {
@@ -361,6 +375,25 @@ bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
         }
     }
     return true;
+}
+
+bool Game::isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size) {
+    bool isBuildable = false;
+    if (((x + size) > map.getSizeX()) || ((x - size) < 0) || ((y + size) > map.getSizeY()) || ((y - size) < 0))
+        return (isBuildable);
+    if (map.getElem(x, y)->getType() == 'T')
+        isBuildable = true;
+    if (size == 0) {
+        return (isBuildable);
+    }
+    else if (size == 1) {
+        if ((map.getElem(x-1, y)->getType() == 'T') && (map.getElem(x+1, y)->getType() == 'T')
+        && (map.getElem(x, y-1)->getType() == 'T') && (map.getElem(x, y+1)->getType() == 'T'))
+            isBuildable = true;
+    }
+    else if (size < 0)
+        isBuildable = false;
+    return (isBuildable);
 }
 
 bool Game::canPlace(Tower &tower, int xPos, int yPos){
@@ -539,4 +572,20 @@ void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
     //* start level
     //*this->enemyList = retrieveLevel.getNextLevel();
+}
+
+void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable) {
+    for (int i = -radius; i <= radius; i++) {
+        for (int j = -radius; j <= radius; j++) {
+            if (i*i + j*j <= radius*radius) {
+                sf::RectangleShape hoveringSprite(sf::Vector2f(this->cellSize - 3, this->cellSize - 3));
+                if (isBuildable == false)
+                    hoveringSprite.setFillColor(sf::Color::Red);
+                else
+                    hoveringSprite.setFillColor(sf::Color::Blue);
+                hoveringSprite.setPosition((posX + i) * this->cellSize, (posY + j) * this->cellSize);
+                window.draw(hoveringSprite);
+            }
+        }
+    }
 }

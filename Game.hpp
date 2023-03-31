@@ -18,6 +18,7 @@ class Game{
         int currentWaveNumber;
         int unitCount;
         int spawnCount;
+        int cellSize;
         int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
@@ -46,11 +47,13 @@ class Game{
         void deactivateTowers();
         void createTower();
         bool isBuildableAtPosition(TDMap &map, int x, int y, int size);
+        bool isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size);
         bool canBuy(Tower &tower, int level);
         bool canPlace(Tower &tower, int xPos, int yPos);
         void addCoins(int number);
         void startLevel();
         bool waveEnd();
+        void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
         void display();
         bool enemyAtBase();
         void upgradeTower(Tower &tower);
