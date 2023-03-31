@@ -390,6 +390,8 @@ bool Game::isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size) {
         if ((map.getElem(x-1, y)->getType() == 'T') && (map.getElem(x+1, y)->getType() == 'T')
         && (map.getElem(x, y-1)->getType() == 'T') && (map.getElem(x, y+1)->getType() == 'T'))
             isBuildable = true;
+        else
+            isBuildable = false;
     }
     else if (size < 0)
         isBuildable = false;
