@@ -35,7 +35,7 @@ public:
     virtual void setPosition(int posX, int posY) = 0;
     virtual Point getPosition() = 0;
     virtual void run(std::vector<TDUnit *> &enemiesList) = 0;
-    virtual void live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber) = 0;
+    virtual void live(std::vector<TDUnit*> &levelEnemyList) = 0;
     virtual bool isMaxed() = 0;
 };
 

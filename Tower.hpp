@@ -51,7 +51,7 @@ class Tower : public Buildable {
         void setPosition(int posX, int posY) override;
         Point getPosition() override;
         void run(std::vector<TDUnit *> &enemiesList) override;
-        void live(std::vector<std::vector<TDUnit*>> &levelEnemyList, int *waveNumber) override;
+        void live(std::vector<TDUnit*> &levelEnemyList) override;
         bool isMaxed() override;
 };
 

@@ -7,7 +7,7 @@
 #include "SizeRatioCalculator.hpp"
 
 void    TDUnit::live() {
-    while (!(this->isAtBase())) {
+    while (!(this->isAtBase()) || this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
         if (res >= this->_speed) {
@@ -19,7 +19,8 @@ void    TDUnit::live() {
             }
         }
     }
-    std::cout << this->getTypeName() << " has arrived" << std::endl;
+    if (this->isAtBase() == true)
+        std::cout << this->getTypeName() << " has arrived" << std::endl;
 }
 
 void    TDUnit::run(TDMap *map) {
@@ -77,4 +78,11 @@ bool    TDUnit::isBlocked(int nextPosX, int nextPosY) {
         return (true);
     else
         return (false);
+}
+
+bool    TDUnit::isAlive() {
+    if (this->_health_points <= 0)
+        return (false);
+    else
+        return (true);
 }

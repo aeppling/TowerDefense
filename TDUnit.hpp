@@ -49,6 +49,7 @@ public:
         this->_timeOfLastMove = std::chrono::steady_clock::now();
     }
     ~TDUnit() {
+        std::cout << "Dead unit here." << std::endl;
         this->_thread.join();
     }
     virtual std::string getTypeName() {
@@ -77,7 +78,8 @@ public:
         return description;
     }
     bool isBlocked(int nextPosX, int nextPosY);
-    // SFML
+    bool isAlive();
+        // SFML
     void setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
     sf::Sprite getSprite() {return (this->_sprite); };
 };
