@@ -7,19 +7,23 @@
 #include "SizeRatioCalculator.hpp"
 
 void    TDUnit::live() {
-    while (!(this->isAtBase()) || this->isAlive() == true) {
+    while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
         if (res >= this->_speed) {
             if (!(this->isAtBase())) {
-               //std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
-                 //          << std::endl;
+                //std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
+                //          << std::endl;
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
             }
         }
     }
-    if (this->isAtBase() == true)
+    if (this->isAlive() == false) {
+        std::cout << this->getTypeName() << " is dying" << std::endl;
+       // delete this;
+    }
+    else if (this->isAtBase() == true)
         std::cout << this->getTypeName() << " has arrived" << std::endl;
 }
 
@@ -85,4 +89,27 @@ bool    TDUnit::isAlive() {
         return (false);
     else
         return (true);
+}
+
+void    TDUnit::getShot(int damage) {
+    this->_sprite.setColor(sf::Color::Red);
+    std::this_thread::sleep_for(std::chrono::milliseconds(400));
+    this->_sprite.setColor(sf::Color::White);
+    this->_health_points = this->_health_points - damage;
+}
+
+void    TDUnit::getKill() {
+    this->_sprite.setColor(sf::Color::Red);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    this->_sprite.setColor(sf::Color::White);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    this->_sprite.setColor(sf::Color::Red);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    this->_sprite.setColor(sf::Color::White);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    this->_sprite.setColor(sf::Color::Red);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    this->_sprite.setColor(sf::Color::Transparent);
+    this->_thread.join();
+//    delete this;
 }

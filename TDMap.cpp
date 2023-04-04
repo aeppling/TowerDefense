@@ -36,11 +36,13 @@ void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
             }
             else if (this->_map.at(y).at(x).isWalkable()) {
                 newSprite.setTexture(sfmlLoader.getPathCell());
-                newSprite.setColor(sf::Color::Green);
+                sf::Color newcolor(0,128,0);
+                newSprite.setColor(newcolor);
             }
             else {
                 newSprite.setTexture(sfmlLoader.getNotWalkableCell());
-                newSprite.setColor(sf::Color::Red);
+                sf::Color newcolor(192,192,192);
+                newSprite.setColor(newcolor);
             }
             sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
             newSprite.setTextureRect(textureRect);
@@ -57,15 +59,18 @@ void TDMap::refreshTextures(SFMLLoader &sfmlLoader) {
     int y = 0;
     while (y != this->_map.size()) {
         int x = 0;
+        sf::Color greenColor(0,128,0);
+        sf::Color greyColor(192,192,192);
+        sf::Color maroonColor(128,0,0);
         while (x != this->_map.at(y).size()) {
             switch (this->_map.at(y).at(x).getType()) {
                 case 'X':
                     this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
-                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Green);
+                    this->_tilesSprites.at(y).at(x).setColor(greenColor);
                     break;
                 case 'W':
                     this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getWallCell());
-                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Red);
+                    this->_tilesSprites.at(y).at(x).setColor(maroonColor);
                     break;
                 case 'S':
                     this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());

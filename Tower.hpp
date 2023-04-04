@@ -30,10 +30,11 @@ class Tower : public Buildable {
         bool aerial;
         std::thread _towerThread;
         Game        *gameInstance;
+        std::chrono::steady_clock::time_point _timeOfLastShot; // SET WITH time(NULL) and reset at every move
 
-    public:
-        Tower(Game *gameInstance, int size);
-        Tower(Game *gameInstance, int xPos, int yPos, int size);
+public:
+        Tower(Game *gameInstance, int size, std::vector<TDUnit *> &enemiesList);
+        Tower(Game *gameInstance, int xPos, int yPos, int size, std::vector<TDUnit *> &enemiesList);
         ~Tower() override { this->_towerThread.join(); };
         void removeFromEnemiesInRangeList(TDUnit *enemy) override;
         void addToEnemiesInRangeList(TDUnit *enemy) override;

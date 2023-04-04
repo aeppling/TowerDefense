@@ -50,7 +50,7 @@ public:
     }
     ~TDUnit() {
         std::cout << "Dead unit here." << std::endl;
-        this->_thread.join();
+
     }
     virtual std::string getTypeName() {
         return "Enemy";
@@ -81,6 +81,8 @@ public:
     bool isAlive();
         // SFML
     void setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
+    void getShot(int damage);
+    void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
 };
 

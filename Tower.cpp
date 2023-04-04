@@ -1,22 +1,27 @@
 #include <unistd.h>
+#include <mutex>
 #include "Tower.hpp"
 
-Tower::Tower(Game *gameInstance, int size) : Buildable(size, "Tower")  {
+std::mutex mtx;
+
+Tower::Tower(Game *gameInstance, int size, std::vector<TDUnit *> &enemiesList) : enemiesList(enemiesList), Buildable(size, "Tower")  {
+    this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;
     this->coord = {0, 0};
-    this->damage = {20, 40, 60};
+    this->damage = {20, 2, 4};
     this->cost = {100, 200, 400};
   //  this->enemiesInRange =  new std::vector<TDUnit *>();
     this->range = 5;
-    this->timeBetweenAttack = 1.5;
+    this->timeBetweenAttack = 2.5;
     this->activated = true;
     this->aerial = false;
    // this->enemiesList = new std::vector<TDUnit *>();
     this->speedBoosted = false;
 }
 
-Tower::Tower(Game *gameInstance, int xPos, int yPos, int size) : Buildable(size, "Tower") {
+Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::vector<TDUnit *> &enemiesList) : Buildable(size, "Tower") {
+    this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->damage = {20, 40, 60 };
     this->cost = {100, 200, 400};
@@ -52,19 +57,32 @@ void Tower::addToEnemiesInRangeList(TDUnit *enemy){
     this->enemiesInRange.push_back(enemy);
 }
 
-void Tower::isInRange(std::vector<TDUnit *> &enemiesList){
-    std::cout << "Number of ennemies : " << enemiesList.size() << std::endl;
-    this->enemiesInRange.push_back(enemiesList[0]);
+/*bool Tower::isAlreadyInList() {
+
+}*/
+
+void Tower::isInRange(std::vector<TDUnit *> &enemiesList) {
+    //   this->enemiesInRange.push_back(enemiesList[0]);
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-    //for(TDUnit *enemy : enemiesList){
-/*        if(enemy->getPosX() <= this->coord.x + this->range + this->size.x && enemy->getPosX() >= this->coord.x - this->range && enemy->getPosY() <= this->coord.y + this->range + this->size.y && enemy->getPosY() >= this->coord.y - this->range){
-            if(std::find(this->enemiesInRange.begin(),this->enemiesInRange.end(), enemy ) != this->enemiesInRange.end()){
+    for (TDUnit *enemy: enemiesList) {
+        if (enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
+            enemy->getPosX() >= this->coord.x - this->range &&
+            enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
+            enemy->getPosY() >= this->coord.y - this->range) {
+            if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
+                this->enemiesInRange.end()) {
+                std::cout << "Adding ennemy" << std::endl;
                 addToEnemiesInRangeList(enemy);
             }
-        }else{
-            if(std::find(this->enemiesInRange.begin(),this->enemiesInRange.end(), enemy ) != this->enemiesInRange.end()){
+        } else {
+            if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) !=
+                this->enemiesInRange.end()) {
+                std::cout << "Removing enemy" << std::endl;
                 removeFromEnemiesInRangeList(enemy);
-            }*/
+            }
+
+        }
+    }
 }
 
 void Tower::activate(std::vector<TDUnit *> &enemiesList){
@@ -73,16 +91,17 @@ void Tower::activate(std::vector<TDUnit *> &enemiesList){
     std::cout << "Tower activated" << std::endl;
     this->activated = true;
     while(this->activated) { // EXITING TO QUICKLY ?
-        std::cout << "Check range" << std::endl;
         isInRange(this->enemiesList);
         if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
             //* Fire on ennemies in tower range
-            std::cout << "Enemy shot by tower." << std::endl;
-            this->fire(this->enemiesInRange.at(0));
+            std::cout << "Enemy to be shot." << std::endl;
+            std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
+            int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastShot).count();
+            if (res >= this->timeBetweenAttack * 1000)
+                this->fire(this->enemiesInRange.at(0));
             //* wait time between fire
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
-//            usleep(this->timeBetweenAttack * 1000);
-//            sleep(this->timeBetweenAttack*1000);
+            // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
+           // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
         }
     }
     std::cout << "Leaving tower loop" << std::endl;
@@ -100,16 +119,16 @@ void Tower::deactivate(){
 
 void Tower::fire(TDUnit *target){
     //* remove target health
-    target->setHealth(target->getHealth()-this->damage[this->level]);
-    if(target->getHealth() <= 0){
-        std::cout << "enemy killed" << std::endl;
-      //  this->gameInstance.addCoins(target->getValue());
+   // target->setHealth(target->getHealth()-this->damage[this->level]);
+    target->getShot(this->damage[this->level]);
+    if (target->getHealth() <= 0) {
+        mtx.lock(); // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
+        //  this->gameInstance.addCoins(target->getValue());
         removeFromEnemiesInRangeList(target);
-        std::cout << "Here 1" << std::endl;
-        delete target;
-        std::cout << "Here 2" << std::endl;
         this->enemiesList.erase(std::remove(this->enemiesList.begin(), this->enemiesList.end(), target), this->enemiesList.end());
-        std::cout << "Here 3" << std::endl;
+        target->getKill();
+        std::cout << "Enemy left : " << this->enemiesList.size() << std::endl;
+        mtx.unlock();
     }
     std::cout << "Here 3" << std::endl;
 }

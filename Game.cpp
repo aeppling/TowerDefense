@@ -148,10 +148,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
                 this->spawnCount = 0;
                 Buildable *toBuild = nullptr;
-                Tower *buildTowerTest = new Tower(this, 1);
-                Tower *buildTowerTest2 = new Tower(this, 2);
-                Tower *buildTowerTest3 = new Tower(this, 3);
-                Tower *buildTowerTest4 = new Tower(this, 4);
+                Tower *buildTowerTest = new Tower(this, 1, this->enemyList[this->currentWaveNumber]);
+                Tower *buildTowerTest2 = new Tower(this, 2, this->enemyList[this->currentWaveNumber]);
+                Tower *buildTowerTest3 = new Tower(this, 3, this->enemyList[this->currentWaveNumber]);
+                Tower *buildTowerTest4 = new Tower(this, 4, this->enemyList[this->currentWaveNumber]);
                 this->towerStoreList.push_back(buildTowerTest);
                 this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
@@ -260,6 +260,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     window.draw(mousePointer);
                     window.display();
                 }
+                std::cout << "Wave ended" << std::endl;
         }
 }
 
@@ -501,7 +502,7 @@ void Game::createTower(){
     Tower *newTower;
     switch(stoi(towerType)){
         case 1:
-            newTower = new Tower(this, 2);
+            newTower = new Tower(this, 2, this->enemyList[this->currentWaveNumber]);
             break;
         case 2:
           //  SniperTower newTower = new SniperTower(this);

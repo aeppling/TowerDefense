@@ -1,4 +1,8 @@
-Goblin:50
+Bats:10
 Cowards:8/Minions:5
 Cowards:10/Minions:5/Bats:3
 Cowards:10/Minions:5/Bats:5/Golem:1
+Cowards:20/Goblin:20
+Bats:40
+Dragon:1/Golem:3/Minions:10
+Goblin:50
