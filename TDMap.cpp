@@ -5,7 +5,9 @@
 #include "TDMap.hpp"
 #include "SizeRatioCalculator.hpp"
 
-TDMap::TDMap(std::string filename, SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
+sf::Texture text;
+
+TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
     this->_constructIterator = 0;
     new mapParser(filename, this);
     this->setAllPositions();
@@ -18,33 +20,40 @@ TDMap::~TDMap() {
 
 #define CELL_SIZE 20
 #define TILE_SIZE 20
-void TDMap::setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY) {
+void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
     int cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
     int y = 0;
+
     while (y != this->_map.size()) {
         int x = 0;
         std::vector<sf::Sprite> newSpriteLine;
         while (x != this->_map.at(y).size()) {
-            sf::Sprite newSprite;
+            sf::Sprite newSprite; // LOCAL SPRITE DO NOT WORK ?
             if (this->_map.at(y).at(x).getType() == 'S') {
                 newSprite.setTexture(sfmlLoader.getPathCell());
-                newSprite.setColor(sf::Color::Yellow);
+           newSprite.setColor(sf::Color::Yellow);
             }
             else if (this->_map.at(y).at(x).getType() == 'B') {
                 newSprite.setTexture(sfmlLoader.getPathCell());
-                newSprite.setColor(sf::Color::Blue);
+             newSprite.setColor(sf::Color::Blue);
             }
             else if (this->_map.at(y).at(x).isWalkable()) {
-                newSprite.setTexture(sfmlLoader.getPathCell());
-                sf::Color newcolor(0,128,0);
+                //newSprite.setTexture(sfmlLoader.getPathCell());
+                newSprite.setTexture(sfmlLoader.getPathCell(), true);
+              sf::Color newcolor(0,128,0);
                 newSprite.setColor(newcolor);
             }
             else {
-                newSprite.setTexture(sfmlLoader.getNotWalkableCell());
-                sf::Color newcolor(192,192,192);
+                newSprite.setTexture(sfmlLoader.getNotWalkableCell(), true);
+               sf::Color newcolor(192,192,192);
                 newSprite.setColor(newcolor);
             }
-            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
+         //   sf::IntRect textureRect(0, 0, 400, 400);// -3 to see border and debug
+           // newSprite.setTextureRect(textureRect);
+       //     float scaleX = (float)(cellSize - 3) / 400;
+         //   float scaleY = (float)(cellSize - 3) / 400;
+           // newSprite.setScale(scaleX, scaleY);
+            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3);
             newSprite.setTextureRect(textureRect);
             newSprite.setPosition(this->_map.at(y).at(x).getPosX() * cellSize, this->_map.at(y).at(x).getPosY() * cellSize);
             newSpriteLine.push_back(newSprite);

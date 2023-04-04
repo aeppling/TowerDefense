@@ -9,7 +9,7 @@ Game::Game(int difficulty, int level){
     this->levelRetriever = new RetrieveLevel(level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
-    this->lifeNumber = 15/(difficulty);
+    this->lifeNumber = 8/(difficulty);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -165,6 +165,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 std::cout << "Tower initiate OK" << std::endl;
                 // PROBLEM IS I RE-ASSIGN NEW TOURS ? BUT THE WORKING TOURS IS ON TOO
                 std::cout << "Wave contain " << this->currentWave->size() << " ennemies" << std::endl;
+                this->enemiesLeft = this->currentWave->size();
+                this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
+                this->totalEnemies = this->currentWave->size();
+                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
                 usleep(3000);
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
@@ -177,7 +181,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                  std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount, this->spawnCount);
                         this->spawnCount++;
                         this->unitCount++;
-                        std::cout << "Mob Spawned" << std::endl;
                         if (this->spawnCount >= this->spawnCells.size())
                             this->spawnCount = 0;
                         waveChronoStart = std::chrono::steady_clock::now();
@@ -255,12 +258,37 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         else
                             setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius, isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, radius));
                     }
-                    // DISPLAY ENNEMIES
+                    // DISPLAY ENNEMIES AND CHECK FOR ARRIVING == NOT TOO SOON !!!
                     s = 0;
-                    while (s != enemyList.at(this->currentWaveNumber).size()) {
-                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                    while (s < enemyList.at(this->currentWaveNumber).size()) {
+                        if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
+                            window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                        }
+                        if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
+                        && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
+                            this->enemiesLeft--;
+                            this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
+                            this->totalKill++;
+                            this->killCounterDisplay.setString("Total kills : " + std::to_string(this->totalKill));
+                            this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
+                        }
+                        else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
+                            if ((map.getElem(this->enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
+                                                  this->enemyList.at(this->currentWaveNumber).at(
+                                                          s)->getPosY())->getType() == 'B')
+                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
+                                this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
+                                this->lifeNumber--;
+                                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
+                                this->enemiesLeft--;
+                                if (this->lifeNumber <= 0)
+                                    break;
+                            }
+                        }
                         s++;
                     }
+                    if (this->lifeNumber <= 0)
+                        break;
                     // SET AND DISPLAY MOUSE
                     if (isBuilding == true)
                         mousePointer.setColor(sf::Color::Blue);
@@ -269,13 +297,43 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
                     mousePointer.setPosition(mousePositionScreen.x, mousePositionScreen.y);
                     window.draw(mousePointer);
+                    window.draw(this->waveCounterDisplay);
+                    window.draw(this->enemiesLeftDisplay);
+                    window.draw(this->lifeCounterDisplay);
+                    window.draw(this->killCounterDisplay);
+                    //window.draw(this->hearthDisplay);
                     window.display();
+                }
+                if (this->lifeNumber <= 0) {
+                    gameLost();
+                    break;
                 }
                 std::cout << "WAVE ENDED" << std::endl;
         }
 }
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
+    sf::Texture hearthTexture;
+    this->totalKill = 0;
+    //hearthText.loadFromFile("Sprites/heart_48x48.png");
+    //this->hearthDisplay.setTexture(hearthText, true);
+    this->hearthDisplay.setPosition(window.getSize().x / 2, window.getSize().y/2);
+//    this->hearthDisplay.setScale(1,1);
+    sf::Font mainFont;
+    mainFont.loadFromFile("Fonts/vinquerg.otf");
+    this->killCounterDisplay.setFont(mainFont);
+    this->killCounterDisplay.setPosition(window.getSize().x/2, window.getSize().y/1.3);
+    this->killCounterDisplay.setCharacterSize(17);
+    this->killCounterDisplay.setString("Total kills : " + std::to_string(this->totalKill));
+    this->lifeCounterDisplay.setFont(mainFont);
+    this->lifeCounterDisplay.setPosition(window.getSize().x/2, window.getSize().y/3.2);
+    this->lifeCounterDisplay.setCharacterSize(32);
+    this->waveCounterDisplay.setFont(mainFont);
+    this->waveCounterDisplay.setPosition(window.getSize().x/2, window.getSize().y/5);
+    this->waveCounterDisplay.setCharacterSize(28);
+    this->enemiesLeftDisplay.setFont(mainFont);
+    this->enemiesLeftDisplay.setPosition(window.getSize().x/2, window.getSize().y/4);
+    this->enemiesLeftDisplay.setCharacterSize(22);
     // GAME INITIALISATON
     // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
     if (this->enemyList.size() == 0) {
@@ -296,7 +354,6 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
          i++;
      }*/
     this->spawnCells = spawnCells;
-    std::cout << "Base : x:" << baseCell->getPosX() << " y:" << baseCell->getPosY() << std::endl;
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
@@ -307,8 +364,8 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
 
 void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawnCells){
     //* start the wave
+    this->waveCounterDisplay.setString("Wave : " + std::to_string(this->currentWaveNumber) + "/" + std::to_string(this->enemyList.size()));
     std::cout << "Starting wave" << currentWaveNumber << "/" << this->enemyList.size() << std::endl;
-    std::cout << "The wave contains " <<  this->currentWave->size() << " enemies" << std::endl;
     std::cout << "Life number : " << this->lifeNumber << std::endl;
     std::cout << "Coin number : " << this->coinNumber << std::endl;
     //* activate towers
@@ -326,7 +383,6 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
             if ((isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize() - 1) == true)
                 || (toBuild->getSize() <= 1)) {
                 // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
-                std::cout << "Building" << std::endl;
                 map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
                 // BUILD->Add tower with its coordinate to vector of actives towers
                 Tower *toAdd = dynamic_cast<Tower *>(toBuild);
@@ -423,7 +479,7 @@ bool Game::canPlace(Tower &tower, int xPos, int yPos){
 
 bool Game::waveEnd(){
     //* return true if the current wave is ended , ifnot return else
-    if (this->currentWave->size() == 0) {
+    if (this->enemiesLeft <= 0) {
         //* if all the ennemies from the current wave are dead == wave ended
         //* deactivate towers, increase wave number
         this->deactivateTowers();

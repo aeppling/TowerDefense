@@ -13,7 +13,7 @@ Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>>
     this->cost = {100, 200, 400};
   //  this->enemiesInRange =  new std::vector<TDUnit *>();
     this->range = 5;
-    this->timeBetweenAttack = 2.5;
+    this->timeBetweenAttack = 1;
     this->activated = true;
     this->aerial = false;
    // this->enemiesList = new std::vector<TDUnit *>();
@@ -71,13 +71,11 @@ void Tower::isInRange() {
             enemy->getPosY() >= this->coord.y - this->range) {
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
-                std::cout << "Adding ennemy" << std::endl;
                 addToEnemiesInRangeList(enemy);
             }
         } else {
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) !=
                 this->enemiesInRange.end()) {
-                std::cout << "Removing enemy" << std::endl;
                 removeFromEnemiesInRangeList(enemy);
             }
 
@@ -98,11 +96,12 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
         mtx.unlock();
         if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
             //* Fire on ennemies in tower range
-            std::cout << "Enemy to be shot." << std::endl;
             std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
             int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastShot).count();
-            if (res >= this->timeBetweenAttack * 1000)
+            if (res >= this->timeBetweenAttack * 1000) {
                 this->fire(this->enemiesInRange.at(0));
+                this->_timeOfLastShot = std::chrono::steady_clock::now();
+            }
             //* wait time between fire
             // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
            // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
@@ -144,7 +143,6 @@ void Tower::fire(TDUnit *target){
         removeFromEnemiesInRangeList(target);
         this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
         target->getKill();
-        std::cout << "Enemy left : " << this->enemiesList->size() << std::endl;
     }
     mtx.unlock();
 }

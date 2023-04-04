@@ -16,7 +16,7 @@ private:
     std::vector<std::vector<sf::Sprite>>             _tilesSprites;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
-    TDMap(std::string filename, SFMLLoader sfmlLoader, int winSizeX, int winSizeY);
+    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY);
     ~TDMap();
 
     // MAP CONSTRUCTION
@@ -34,7 +34,7 @@ public:
 
     // INITIALISE
     void setAllPositions();
-    void setAllTextures(SFMLLoader sfmlLoader, int winSizeX, int winSizeY);
+    void setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY);
 
     // OTHERS FUNCTION
     void refreshTextures(SFMLLoader &sfmlLoader);

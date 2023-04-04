@@ -24,6 +24,9 @@ public:
     bool _isFlying;
     int  _value;
 
+    bool _alreadyCount;
+    bool _alreadyArrived;
+
     //COORD
     int  _baseCoordX;
     int  _baseCoordY;
@@ -47,6 +50,8 @@ public:
         this->_isFlying = isFlying;
         this->_value = value;
         this->_timeOfLastMove = std::chrono::steady_clock::now();
+        this->_alreadyCount = false;
+        this->_alreadyArrived = false;
     }
     ~TDUnit() {
         std::cout << "Dead unit here." << std::endl;
@@ -66,6 +71,10 @@ public:
     int  getHealth() { return (this->_health_points); };
     void setHealth(int health) { this->_health_points = health; };
     int  getValue() { return (this->_value); };
+    bool alreadyCounted() { return (this->_alreadyCount); };
+    void setCounted() { this->_alreadyCount = true;};
+    bool alreadyArrived() { return (this->_alreadyArrived); };
+    void setAlreadyArrived() { this->_alreadyArrived = true;};
 
     // FUNCTIONS
     void live();

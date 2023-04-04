@@ -19,12 +19,6 @@ void    TDUnit::live() {
             }
         }
     }
-    if (this->isAlive() == false) {
-        std::cout << this->getTypeName() << " is dying" << std::endl;
-       // delete this;
-    }
-    else if (this->isAtBase() == true)
-        std::cout << this->getTypeName() << " has arrived" << std::endl;
 }
 
 void    TDUnit::run(TDMap *map) {

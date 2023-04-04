@@ -19,15 +19,23 @@ class Game{
         int unitCount;
         int spawnCount;
         int cellSize;
+        int totalKill;
         int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
         int coinNumber;
+        int enemiesLeft;
+        int totalEnemies;
         std::vector<std::vector<TDUnit *>> enemyList;
         std::shared_ptr<std::vector<TDUnit*>> currentWave;
         std::vector<Tower *> towerList;
         std::vector<Tower *> towerStoreList;
         RetrieveLevel        *levelRetriever;
+        sf::Text             waveCounterDisplay;
+        sf::Text             enemiesLeftDisplay;
+        sf::Text             lifeCounterDisplay;
+        sf::Text             killCounterDisplay;
+        sf::Sprite hearthDisplay;
     public :
         Game(int difficulty, int level);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
