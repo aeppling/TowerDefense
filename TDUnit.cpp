@@ -16,7 +16,6 @@ void    TDUnit::live() {
                 //          << std::endl;
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
-                std::cout << "moved." << std::endl;
             }
         }
     }

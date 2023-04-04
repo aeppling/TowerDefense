@@ -165,6 +165,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 std::cout << "Tower initiate OK" << std::endl;
                 // PROBLEM IS I RE-ASSIGN NEW TOURS ? BUT THE WORKING TOURS IS ON TOO
                 std::cout << "Wave contain " << this->currentWave->size() << " ennemies" << std::endl;
+                usleep(3000);
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -339,6 +340,7 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 map.refreshTextures(sfmlLoader);
+                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
             }
         }
     }

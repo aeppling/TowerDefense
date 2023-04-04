@@ -64,10 +64,7 @@ void Tower::addToEnemiesInRangeList(TDUnit *enemy){
 void Tower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-    std::cout << "Tower here2" << std::endl;
-    std::cout << "nb ennemies : " << this->enemiesList->size() << std::endl;
     for (TDUnit *enemy: *(this->enemiesList)) {
-        std::cout << "Tower here2.5" << std::endl;
         if (enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
             enemy->getPosX() >= this->coord.x - this->range &&
             enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
@@ -92,14 +89,13 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     //* run while tower is activated 
     this->enemiesList = enemiesList;
     std::cout << "Tower activated" << std::endl;
-    std::cout << "Nb Enemies : " << this->enemiesList->size() << std::endl;
     this->activated = true;
     while(this->activated) { // EXITING TO QUICKLY ?
         if (this->activated == false)
             break;
-        std::cout << "Tower here1" << std::endl;
+        mtx.lock();
         isInRange();
-        std::cout << "Tower here3" << std::endl;
+        mtx.unlock();
         if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
             //* Fire on ennemies in tower range
             std::cout << "Enemy to be shot." << std::endl;
@@ -140,16 +136,17 @@ void Tower::join() {
 void Tower::fire(TDUnit *target){
     //* remove target health
    // target->setHealth(target->getHealth()-this->damage[this->level]);
+    mtx.lock();
     target->getShot(this->damage[this->level]);
     if (target->getHealth() <= 0) {
-        mtx.lock(); // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
+         // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
         //  this->gameInstance.addCoins(target->getValue());
         removeFromEnemiesInRangeList(target);
         this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
         target->getKill();
         std::cout << "Enemy left : " << this->enemiesList->size() << std::endl;
-        mtx.unlock();
     }
+    mtx.unlock();
 }
 
 void Tower::upgrade(){
