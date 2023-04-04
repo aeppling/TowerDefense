@@ -4,7 +4,7 @@
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, std::vector<TDUnit *> &enemiesList) : enemiesList(enemiesList), Buildable(size, "Tower")  {
+Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList) : enemiesList(enemiesList), Buildable(size, "Tower")  {
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;
@@ -20,7 +20,7 @@ Tower::Tower(Game *gameInstance, int size, std::vector<TDUnit *> &enemiesList) :
     this->speedBoosted = false;
 }
 
-Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::vector<TDUnit *> &enemiesList) : Buildable(size, "Tower") {
+Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList) : Buildable(size, "Tower") {
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->damage = {20, 40, 60 };
@@ -37,14 +37,14 @@ Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::vector<TDUni
 }
 
 
-void Tower::live(std::vector<TDUnit*> &levelEnemyList) {
+void Tower::live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) {
     this->activate(levelEnemyList);
 }
-void Tower::run(std::vector<TDUnit *> &enemiesList){
+void Tower::run(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     //* run the tower threadst
     std::cout << "Tower running..." << std::endl;
     this->gameInstance->getCurrentWaveNumber();
-    this->_towerThread = std::thread(&Tower::live, this, std::ref(enemiesList));
+    this->_towerThread = std::thread(&Tower::live, this, enemiesList);
 }
 
 void Tower::removeFromEnemiesInRangeList(TDUnit *enemy){
@@ -61,10 +61,13 @@ void Tower::addToEnemiesInRangeList(TDUnit *enemy){
 
 }*/
 
-void Tower::isInRange(std::vector<TDUnit *> &enemiesList) {
+void Tower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-    for (TDUnit *enemy: enemiesList) {
+    std::cout << "Tower here2" << std::endl;
+    std::cout << "nb ennemies : " << this->enemiesList->size() << std::endl;
+    for (TDUnit *enemy: *(this->enemiesList)) {
+        std::cout << "Tower here2.5" << std::endl;
         if (enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
             enemy->getPosX() >= this->coord.x - this->range &&
             enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
@@ -85,13 +88,18 @@ void Tower::isInRange(std::vector<TDUnit *> &enemiesList) {
     }
 }
 
-void Tower::activate(std::vector<TDUnit *> &enemiesList){
+void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     //* run while tower is activated 
     this->enemiesList = enemiesList;
     std::cout << "Tower activated" << std::endl;
+    std::cout << "Nb Enemies : " << this->enemiesList->size() << std::endl;
     this->activated = true;
     while(this->activated) { // EXITING TO QUICKLY ?
-        isInRange(this->enemiesList);
+        if (this->activated == false)
+            break;
+        std::cout << "Tower here1" << std::endl;
+        isInRange();
+        std::cout << "Tower here3" << std::endl;
         if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
             //* Fire on ennemies in tower range
             std::cout << "Enemy to be shot." << std::endl;
@@ -108,13 +116,25 @@ void Tower::activate(std::vector<TDUnit *> &enemiesList){
 }
 void Tower::deactivate(){
     //* Deactivate the tower
+  //  if (this->_towerThread.joinable())
+    //    this->_towerThread.join();
     std::cout << "Tower Deactivated" << std::endl;
     this->activated = false;
-    this->enemiesList.clear();
+    this->enemiesList->clear();
     this->enemiesInRange.clear();
-
-  // this->enemiesList = new std::vector<TDUnit *>();
+    std::cout << "Tower Cleared" << std::endl;
+    // this->enemiesList = new std::vector<TDUnit *>();
   // this->enemiesInRange =  new std::vector<TDUnit *>();
+}
+
+bool Tower::isActivated() {
+    return (this->activated);
+}
+void Tower::join() {
+    this->_towerThread.join();
+    std::cout << "Tower Joined" << std::endl;
+   // this->enemiesList.reset();
+   // this->enemiesList = nullptr;
 }
 
 void Tower::fire(TDUnit *target){
@@ -125,12 +145,11 @@ void Tower::fire(TDUnit *target){
         mtx.lock(); // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
         //  this->gameInstance.addCoins(target->getValue());
         removeFromEnemiesInRangeList(target);
-        this->enemiesList.erase(std::remove(this->enemiesList.begin(), this->enemiesList.end(), target), this->enemiesList.end());
+        this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
         target->getKill();
-        std::cout << "Enemy left : " << this->enemiesList.size() << std::endl;
+        std::cout << "Enemy left : " << this->enemiesList->size() << std::endl;
         mtx.unlock();
     }
-    std::cout << "Here 3" << std::endl;
 }
 
 void Tower::upgrade(){

@@ -24,6 +24,7 @@ class Game{
         std::vector<MapCell*> spawnCells;
         int coinNumber;
         std::vector<std::vector<TDUnit *>> enemyList;
+        std::shared_ptr<std::vector<TDUnit*>> currentWave;
         std::vector<Tower *> towerList;
         std::vector<Tower *> towerStoreList;
         RetrieveLevel        *levelRetriever;

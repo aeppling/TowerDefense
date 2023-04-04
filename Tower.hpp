@@ -19,7 +19,7 @@ class Tower : public Buildable {
         Point coord;
         std::vector<Tower *> towersList;
         std::vector<TDUnit *> enemiesInRange;
-        std::vector<TDUnit *> enemiesList;
+    std::shared_ptr<std::vector<TDUnit*>> enemiesList;
         std::vector<int> damage;
         std::vector<int> cost;
         int level;
@@ -33,15 +33,15 @@ class Tower : public Buildable {
         std::chrono::steady_clock::time_point _timeOfLastShot; // SET WITH time(NULL) and reset at every move
 
 public:
-        Tower(Game *gameInstance, int size, std::vector<TDUnit *> &enemiesList);
-        Tower(Game *gameInstance, int xPos, int yPos, int size, std::vector<TDUnit *> &enemiesList);
+        Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList);
+        Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList);
         ~Tower() override { this->_towerThread.join(); };
         void removeFromEnemiesInRangeList(TDUnit *enemy) override;
         void addToEnemiesInRangeList(TDUnit *enemy) override;
-        void activate(std::vector<TDUnit *> &enemiesList) override;
+        void activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void deactivate() override;
         void fire(TDUnit *target) override;
-        void isInRange(std::vector<TDUnit *> &enemiesList) override;
+        void isInRange() override;
         void upgrade() override;
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
@@ -51,8 +51,10 @@ public:
         void setSpeedBoosted(bool newSpeedBoosted) override;
         void setPosition(int posX, int posY) override;
         Point getPosition() override;
-        void run(std::vector<TDUnit *> &enemiesList) override;
-        void live(std::vector<TDUnit*> &levelEnemyList) override;
+        bool isActivated();
+        void join();
+        void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
+        void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) override;
         bool isMaxed() override;
 };
 

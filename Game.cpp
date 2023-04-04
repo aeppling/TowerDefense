@@ -130,7 +130,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map){
             startLevel();
             bool isBuilding = false;
-            int timeBetweenSpawn = 1000;
+            int timeBetweenSpawn = 200;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);
@@ -144,18 +144,27 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 std::cout << "Running units & towers..." << std::endl;
                 bool isWaveRunning = false;
+                // CREATE SHARED PTR OF WAVE HERE
+                this->towerStoreList.clear();
+                this->currentWave.reset();
+                this->currentWave = nullptr;
+                this->currentWave = std::make_shared<std::vector<TDUnit*>>(this->enemyList[this->currentWaveNumber]);
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
+                std::cout << "Wave Started" << std::endl;
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
                 this->spawnCount = 0;
                 Buildable *toBuild = nullptr;
-                Tower *buildTowerTest = new Tower(this, 1, this->enemyList[this->currentWaveNumber]);
-                Tower *buildTowerTest2 = new Tower(this, 2, this->enemyList[this->currentWaveNumber]);
-                Tower *buildTowerTest3 = new Tower(this, 3, this->enemyList[this->currentWaveNumber]);
-                Tower *buildTowerTest4 = new Tower(this, 4, this->enemyList[this->currentWaveNumber]);
+                Tower *buildTowerTest = new Tower(this, 1, this->currentWave);
+                Tower *buildTowerTest2 = new Tower(this, 2, this->currentWave);
+                Tower *buildTowerTest3 = new Tower(this, 3, this->currentWave);
+                Tower *buildTowerTest4 = new Tower(this, 4, this->currentWave);
                 this->towerStoreList.push_back(buildTowerTest);
                 this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
+                std::cout << "Tower initiate OK" << std::endl;
+                // PROBLEM IS I RE-ASSIGN NEW TOURS ? BUT THE WORKING TOURS IS ON TOO
+                std::cout << "Wave contain " << this->currentWave->size() << " ennemies" << std::endl;
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -167,6 +176,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                  std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount, this->spawnCount);
                         this->spawnCount++;
                         this->unitCount++;
+                        std::cout << "Mob Spawned" << std::endl;
                         if (this->spawnCount >= this->spawnCells.size())
                             this->spawnCount = 0;
                         waveChronoStart = std::chrono::steady_clock::now();
@@ -260,7 +270,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     window.draw(mousePointer);
                     window.display();
                 }
-                std::cout << "Wave ended" << std::endl;
+                std::cout << "WAVE ENDED" << std::endl;
         }
 }
 
@@ -297,7 +307,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
 void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawnCells){
     //* start the wave
     std::cout << "Starting wave" << currentWaveNumber << "/" << this->enemyList.size() << std::endl;
-    std::cout << "The wave contains " <<  this->enemyList[this->currentWaveNumber].size() << " enemies" << std::endl;
+    std::cout << "The wave contains " <<  this->currentWave->size() << " enemies" << std::endl;
     std::cout << "Life number : " << this->lifeNumber << std::endl;
     std::cout << "Coin number : " << this->coinNumber << std::endl;
     //* activate towers
@@ -327,7 +337,7 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY);
                 toBuild = nullptr;
                 if (isWaveRunning == true)
-                    this->towerList[this->towerList.size() - 1]->run(this->enemyList[this->currentWaveNumber]);
+                    this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 map.refreshTextures(sfmlLoader);
             }
         }
@@ -411,9 +421,8 @@ bool Game::canPlace(Tower &tower, int xPos, int yPos){
 
 bool Game::waveEnd(){
     //* return true if the current wave is ended , ifnot return else
-    if (this->enemyList[this->currentWaveNumber].size() == 0) {
+    if (this->currentWave->size() == 0) {
         //* if all the ennemies from the current wave are dead == wave ended
-        std::cout << "wave ended" << std::endl;
         //* deactivate towers, increase wave number
         this->deactivateTowers();
         this->currentWaveNumber++;
@@ -459,16 +468,19 @@ void Game::activateTowers(){
     if (this->towerList.empty())
         return;
     std::cout << "Towers activation" << std::endl;
-    for(int i = 0; i<= this->towerList.size(); i++ ){
-        this->towerList[i]->run(this->enemyList[this->currentWaveNumber]);
+    for(int i = 0; i < this->towerList.size(); i++ ){
+        this->towerList[i]->run(this->currentWave);
     }
 }
 
 void Game::deactivateTowers(){
     //* deactivate all towers
     std::cout << "Towers deactivation" << std::endl;
-    for(int i = 0; i<= this->towerList.size(); i++ ){
-        this->towerList[i]->deactivate();
+    for(int i = 0; i< this->towerList.size(); i++){
+        if (this->towerList[i]->isActivated()) {
+            this->towerList[i]->deactivate();
+            this->towerList[i]->join();
+        }
     }
 }
 
@@ -502,7 +514,7 @@ void Game::createTower(){
     Tower *newTower;
     switch(stoi(towerType)){
         case 1:
-            newTower = new Tower(this, 2, this->enemyList[this->currentWaveNumber]);
+            newTower = new Tower(this, 2, this->currentWave);
             break;
         case 2:
           //  SniperTower newTower = new SniperTower(this);
@@ -535,7 +547,7 @@ void Game::createTower(){
             newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY));
             this->addCoins(0-newTower->getCost(0));
             this->towerList.push_back(newTower);
-            newTower->run(this->enemyList[this->currentWaveNumber]);
+            newTower->run(this->currentWave);
             std::cout << "Tower succesfully created " << std::endl;
             std::cout << "coin number : " << this->coinNumber << std::endl;
         }else{

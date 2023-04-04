@@ -21,10 +21,10 @@ public:
     // VIRTUAL TOWER FUNCTIONS
     virtual void removeFromEnemiesInRangeList(TDUnit *enemy) = 0;
     virtual void addToEnemiesInRangeList(TDUnit *enemy) = 0;
-    virtual void activate(std::vector<TDUnit *> &enemiesList) = 0;
+    virtual void activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList) = 0;
     virtual void deactivate() = 0;
     virtual void fire(TDUnit *target) = 0;
-    virtual void isInRange(std::vector<TDUnit *> &enemiesList) = 0;
+    virtual void isInRange() = 0;
     virtual void upgrade() = 0;
     virtual void setTimeBetweenAttack(float time) = 0;
     virtual float getTimeBetweenAttack() = 0;
@@ -34,8 +34,8 @@ public:
     virtual void setSpeedBoosted(bool newSpeedBoosted) = 0;
     virtual void setPosition(int posX, int posY) = 0;
     virtual Point getPosition() = 0;
-    virtual void run(std::vector<TDUnit *> &enemiesList) = 0;
-    virtual void live(std::vector<TDUnit*> &levelEnemyList) = 0;
+    virtual void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) = 0;
+    virtual void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) = 0;
     virtual bool isMaxed() = 0;
 };
 

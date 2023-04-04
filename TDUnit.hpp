@@ -57,7 +57,7 @@ public:
     }
 
     // GETTER & SETTER
-    int getPosX() { return(this->_posX); }
+    int getPosX() { return(this->_posX);}
     int getPosY() { return(this->_posY); }
     void setPosX(int posX) { this->_posX = posX; };
     void setPosY(int posY) { this->_posY = posY; };
