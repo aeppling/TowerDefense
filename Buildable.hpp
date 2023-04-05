@@ -32,7 +32,7 @@ public:
     virtual int getLevel() = 0;
     virtual bool isSpeedBoosted() = 0;
     virtual void setSpeedBoosted(bool newSpeedBoosted) = 0;
-    virtual void setPosition(int posX, int posY) = 0;
+    virtual void setPosition(int posX, int posY, int cellSize) = 0;
     virtual Point getPosition() = 0;
     virtual void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) = 0;
     virtual void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) = 0;

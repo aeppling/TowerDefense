@@ -13,14 +13,19 @@ class SFMLSprite {
 private:
     int                              _posX;
     int                              _posY;
-    std::shared_ptr<sf::Sprite>      _sprite;
+    sf::Sprite                       _sprite;
+    char                             _type;
 public:
-    SFMLSprite();
-    ~SFMLSprite();
+    SFMLSprite() {};
+    ~SFMLSprite() {};
     int                              getPosX() { return (this->_posX);};
     int                              getPosY() { return (this->_posY);};
-    std::shared_ptr<sf::Sprite>      getSprite() { return (this->_sprite);};
-    void                             setSprite(sf::Texture texture) { this->_sprite->setTexture(texture); };
+    sf::Sprite                       getSprite() { return (this->_sprite);};
+    void                             setSprite(sf::Texture *texture, int cellSize, int posX, int posY, char type);
+    void                             setPosition(int cellSize);
+    char                             getType() { return (this->_type); };
+    void                             setType(char type) { this->_type = type; };
+
 };
 
 #endif //UNTITLED1_SFMLSPRITE_HPP

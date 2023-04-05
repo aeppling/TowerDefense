@@ -8,11 +8,14 @@
 sf::Texture text;
 sf::Sprite spr;
 
-TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
+TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder) {
     this->_constructIterator = 0;
     new mapParser(filename, this);
     this->setAllPositions();
-    this->setAllTextures(sfmlLoader, winSizeX, winSizeY);
+    this->setAllTextures(sfmlLoader, winSizeX, winSizeY, spriteHolder);
+    //SET SPRITE HOLDER AFTER SETALLPOSITION
+    // ASSIGN EACH POSITION AND SPRITE ON SPRITE HOLDER AND THEN LOAD TEXTURE
+    // EAACH REFRESH RELOAD TEXTURE IF NECESSARY
 }
 
 TDMap::~TDMap() {
@@ -21,85 +24,49 @@ TDMap::~TDMap() {
 
 #define CELL_SIZE 20
 #define TILE_SIZE 20
-void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
+void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder) {
     int cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
     int y = 0;
 
-    text.loadFromFile("Sprites/sand_tile.png");
     while (y != this->_map.size()) {
         int x = 0;
-        std::vector<sf::Sprite> newSpriteLine;
         while (x != this->_map.at(y).size()) {
-            sf::Sprite newSprite; // LOCAL SPRITE DO NOT WORK ?
-            if (this->_map.at(y).at(x).getType() == 'S') {
-                newSprite.setTexture(sfmlLoader.getPathCell());
-           newSprite.setColor(sf::Color::Yellow);
-            }
-            else if (this->_map.at(y).at(x).getType() == 'B') {
-                newSprite.setTexture(sfmlLoader.getPathCell());
-             newSprite.setColor(sf::Color::Blue);
-            }
-            else if (this->_map.at(y).at(x).isWalkable()) {
-                //newSprite.setTexture(sfmlLoader.getPathCell());
-              //  spr.setTexture(text);
-                newSprite.setTexture(sfmlLoader.getPathCell(), true);
-              sf::Color newcolor(0,128,0);
-                newSprite.setColor(newcolor);
-            }
-            else {
-                newSprite.setTexture(sfmlLoader.getNotWalkableCell(), true);
-               sf::Color newcolor(192,192,192);
-                newSprite.setColor(newcolor);
-            }
-         //   sf::IntRect textureRect(0, 0, 400, 400);// -3 to see border and debug
-           // newSprite.setTextureRect(textureRect);
-       //     float scaleX = (float)(cellSize - 3) / 400;
-         //   float scaleY = (float)(cellSize - 3) / 400;
-           // newSprite.setScale(scaleX, scaleY);
-            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3);
-            newSprite.setTextureRect(textureRect);
-            newSprite.setPosition(this->_map.at(y).at(x).getPosX() * cellSize, this->_map.at(y).at(x).getPosY() * cellSize);
-            newSpriteLine.push_back(newSprite);
+            spriteHolder->setSpriteFromTypeAndPosition(this->_map.at(y).at(x).getType(), this->_map.at(y).at(x).getPosX(),
+                                                      this->_map.at(y).at(x).getPosY(), sfmlLoader, cellSize);
             x++;
         }
-        this->_tilesSprites.push_back(newSpriteLine);
         y++;
     }
 }
 
-void TDMap::refreshTextures(SFMLLoader &sfmlLoader) {
-    int y = 0;
-    while (y != this->_map.size()) {
-        int x = 0;
-        sf::Color greenColor(0,128,0);
-        sf::Color greyColor(192,192,192);
-        sf::Color maroonColor(128,0,0);
-        while (x != this->_map.at(y).size()) {
-            switch (this->_map.at(y).at(x).getType()) {
-                case 'X':
-                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
-                    this->_tilesSprites.at(y).at(x).setColor(greenColor);
-                    break;
-                case 'W':
-                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getWallCell());
-                    this->_tilesSprites.at(y).at(x).setColor(maroonColor);
-                    break;
-                case 'S':
-                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
-                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Yellow);
-                    break;
-                case 'B':
-                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
-                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Blue);
-                    break;
-                case 'A':
-                    this->_tilesSprites.at(y).at(x).setTexture(sfmlLoader.getPathCell());
-                    this->_tilesSprites.at(y).at(x).setColor(sf::Color::Blue);
-                    break;
-            }
-            x++;
+void TDMap::refreshTextures(SFMLLoader &sfmlLoader, std::shared_ptr<SpritesHolder> spritesHolderPtr, int cellSize, int posX, int posY) {
+    std::cout << "Refresh." << std::endl;
+    if (spritesHolderPtr->getSpriteFromPosition(posX, posY) == nullptr) {
+        std::cout << "Not FOund."<< std::endl;
+        return ;
+    }
+    else if (this->_map.at(posY).at(posX).getType() != spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()) {
+        if (this->_map.at(posY).at(posX).getType() == 'W') {
+            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
+            spritesHolderPtr->updateSpriteFromTypeAndPosition(
+                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
+                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
+        } else if (this->_map.at(posY).at(posX).getType() == 'A') {
+            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
+            spritesHolderPtr->updateSpriteFromTypeAndPosition(
+                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
+                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
+        } else if (this->_map.at(posY).at(posX).getType() == 'T') {
+            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
+            spritesHolderPtr->updateSpriteFromTypeAndPosition(
+                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
+                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
+        } else if (this->_map.at(posY).at(posX).getType() == 'X') {
+            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
+            spritesHolderPtr->updateSpriteFromTypeAndPosition(
+                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
+                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
         }
-        y++;
     }
 }
 

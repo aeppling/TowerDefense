@@ -4,7 +4,15 @@
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList) : enemiesList(enemiesList), Buildable(size, "Tower")  {
+Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList, int cellSize, SFMLLoader &sfmlLoaderTower) : enemiesList(enemiesList), Buildable(size, "Tower")  {
+    this->towerName = "BasicTower";
+    if (this->towerName == "BasicTower") {
+        this->towerSprite.setTexture(*sfmlLoaderTower.getTowerBasic());
+        float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
+        sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
+        this->towerSprite.setScale(scaleFactor * 2, scaleFactor * 2);
+        this->towerSprite.setTextureRect(textureRect);
+    }
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;
@@ -23,6 +31,7 @@ Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>>
 Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList) : Buildable(size, "Tower") {
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
+    this->towerName = "BasicTower";
     this->damage = {20, 40, 60 };
     this->cost = {100, 200, 400};
     this->level = 0;
@@ -180,8 +189,10 @@ int Tower::getLevel(){
     return (this->level);
 }
 
-void Tower::setPosition(int newXPos, int newYPos){
+void Tower::setPosition(int newXPos, int newYPos, int cellSize){
     this->coord = {newXPos,newYPos};
+    this->towerSprite.setOrigin(cellSize / 2, cellSize / 2);
+    this->towerSprite.setPosition((newXPos * cellSize), (newYPos * cellSize));
 }
 
 Point Tower::getPosition(){

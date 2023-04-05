@@ -69,8 +69,9 @@ bool    TDUnit::isAtBase() {
     if (this->_path.size() > 0) {
         return (false);
     }
-    else
+    else {
         return (true);
+    }
 }
 
 bool    TDUnit::isBlocked(int nextPosX, int nextPosY) {
