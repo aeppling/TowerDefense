@@ -308,6 +308,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     gameLost();
                     break;
                 }
+                if (this->currentWaveNumber == this->enemyList.size()) {
+                    gameWon();
+                    break;
+                }
                 std::cout << "WAVE ENDED" << std::endl;
         }
 }
