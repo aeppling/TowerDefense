@@ -6,6 +6,7 @@
 #include "SizeRatioCalculator.hpp"
 
 sf::Texture text;
+sf::Sprite spr;
 
 TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
     this->_constructIterator = 0;
@@ -24,6 +25,7 @@ void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
     int cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
     int y = 0;
 
+    text.loadFromFile("Sprites/sand_tile.png");
     while (y != this->_map.size()) {
         int x = 0;
         std::vector<sf::Sprite> newSpriteLine;
@@ -39,6 +41,7 @@ void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY) {
             }
             else if (this->_map.at(y).at(x).isWalkable()) {
                 //newSprite.setTexture(sfmlLoader.getPathCell());
+              //  spr.setTexture(text);
                 newSprite.setTexture(sfmlLoader.getPathCell(), true);
               sf::Color newcolor(0,128,0);
                 newSprite.setColor(newcolor);

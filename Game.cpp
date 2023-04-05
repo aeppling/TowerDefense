@@ -135,9 +135,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);
             sf::Texture mousePointerTexture;
-            mousePointerTexture.loadFromFile("Sprites/sand_tile.png");
+            mousePointerTexture.loadFromFile("Sprites/Cursors/crosshair043.png");
             sf::Sprite mousePointer(mousePointerTexture);
-            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
+//            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
+            float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(144);
+            sf::IntRect textureRect(0, 0, 144, 144);
+            mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
             mousePointer.setTextureRect(textureRect);
             bool closing = false;
             while((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
@@ -295,7 +298,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     else
                         mousePointer.setColor(sf::Color::Cyan);
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
-                    mousePointer.setPosition(mousePositionScreen.x, mousePositionScreen.y);
+                    mousePointer.setPosition(mousePositionScreen.x -(cellSize - 3), mousePositionScreen.y -(cellSize - 3));
                     window.draw(mousePointer);
                     window.draw(this->waveCounterDisplay);
                     window.draw(this->enemiesLeftDisplay);
@@ -308,7 +311,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     gameLost();
                     break;
                 }
-                if (this->currentWaveNumber == this->enemyList.size()) {
+                else if (this->currentWaveNumber == this->enemyList.size()) {
                     gameWon();
                     break;
                 }
@@ -517,7 +520,8 @@ bool Game::gameEnd(){
 
 void Game::gameWon(){
     //* game won
-    std::cout << "Game Won !!!" << std::endl;    
+    std::cout << "Game Won !!!" << std::endl;
+    std::cout << "Total kills : " << this->totalKill << std::endl;
 }
 
 void Game::gameLost(){

@@ -35,11 +35,13 @@ void    TDUnit::move() {
         this->move();
        //nextTo = this->_path[0];
     }
-    this->_posX = nextTo->getPosX();
-    this->_posY = nextTo->getPosY();
-    this->_sprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);
-  //  this->_sprite.move(;)
-    this->_path.erase(this->_path.begin());
+    else {
+        this->_posX = nextTo->getPosX();
+        this->_posY = nextTo->getPosY();
+        this->_sprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);
+        //  this->_sprite.move(;)
+        this->_path.erase(this->_path.begin());
+    }
 }
 
 //benjamin.labastille@
