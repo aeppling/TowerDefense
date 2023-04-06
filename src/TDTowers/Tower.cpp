@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <mutex>
+#include <math.h>
 #include "Tower.hpp"
 
 std::mutex mtx;
@@ -12,6 +13,8 @@ Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>>
         sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
         this->towerSprite.setScale(scaleFactor * 2, scaleFactor * 2);
         this->towerSprite.setTextureRect(textureRect);
+        sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
+        this->towerSprite.setOrigin(newOrigin);
     }
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
@@ -145,6 +148,18 @@ void Tower::fire(TDUnit *target){
     //* remove target health
    // target->setHealth(target->getHealth()-this->damage[this->level]);
     mtx.lock();
+    // Get the position of the tower and the target
+    sf::Vector2f towerPos = this->towerSprite.getPosition();
+    sf::Vector2f targetPos = target->getSprite().getPosition();
+
+    // Calculate the direction vector
+    sf::Vector2f direction = targetPos - towerPos;
+
+    // Calculate the angle between the direction vector and the x-axis
+    float angle = atan2(direction.y, direction.x) * 180 / 3.14159f;
+
+    // Set the rotation of the tower sprite
+    this->towerSprite.setRotation(angle + 90);
     target->getShot(this->damage[this->level]);
     if (target->getHealth() <= 0) {
          // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
@@ -191,8 +206,7 @@ int Tower::getLevel(){
 
 void Tower::setPosition(int newXPos, int newYPos, int cellSize){
     this->coord = {newXPos,newYPos};
-    this->towerSprite.setOrigin(cellSize / 2, cellSize / 2);
-    this->towerSprite.setPosition((newXPos * cellSize), (newYPos * cellSize));
+    this->towerSprite.setPosition((newXPos * cellSize) + cellSize/2, ((newYPos * cellSize) + cellSize/2) - 5);
 }
 
 Point Tower::getPosition(){

@@ -72,6 +72,7 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if (i == 0 && j == 0) continue;
+                if (i != 0 && j != 0) continue;// SKIP DIAGONAL
                 int x = cell->getPosX() + i;
                 int y = cell->getPosY() + j;
                 if (x < 0 || y >= this->_map.size() || y < 0 || x >= this->_map[y].size()) {

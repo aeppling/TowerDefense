@@ -37,7 +37,8 @@ class Game{
         sf::Text             enemiesLeftDisplay;
         sf::Text             lifeCounterDisplay;
         sf::Text             killCounterDisplay;
-        sf::Sprite hearthDisplay;
+    SFMLEnemiesLoader sfmlEnemiesLoader;
+    sf::Sprite hearthDisplay;
     public :
         Game(int difficulty, int level);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);

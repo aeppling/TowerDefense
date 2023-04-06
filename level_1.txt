@@ -1,5 +1,4 @@
-Cowards:5
-Cowards:3/Bats:5
-Bats:10
-Cowards:10/Minions:5/Bats:5/Golem:1
-Cowards:20/Goblin:20
+Drone:4
+Missile:3
+Alien:2
+Spaceship:1

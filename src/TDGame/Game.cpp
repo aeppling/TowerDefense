@@ -5,8 +5,11 @@
 #include "Game.hpp"
 #include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
+#include "../TDGraphics/SFMLEnemiesLoader.hpp"
 
 Game::Game(int difficulty, int level){
+    SFMLEnemiesLoader sfmlEnemiesLoader;
+    this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->levelRetriever = new RetrieveLevel(level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
@@ -108,11 +111,10 @@ void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUn
                       int winSizeX, int winSizeY, int mapSizeX, int mapSizeY) {
     int wave_count = 0;
     int unit_count = 0;
-    SFMLLoader sfmlLoaderUnit;
     while (wave_count != enemyList.size()) {
         unit_count = 0;
         while (unit_count != enemyList.at(wave_count).size()) {
-            enemyList.at(wave_count).at(unit_count)->setSprite(sfmlLoaderUnit, winSizeX, winSizeY, mapSizeX, mapSizeY, this->cellSize);
+            enemyList.at(wave_count).at(unit_count)->setSprite(this->sfmlEnemiesLoader, winSizeX, winSizeY, mapSizeX, mapSizeY, this->cellSize);
             unit_count++;
         }
         wave_count++;
@@ -132,7 +134,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder){
             startLevel();
             bool isBuilding = false;
-            int timeBetweenSpawn = 200;
+            int timeBetweenSpawn = 1700;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);

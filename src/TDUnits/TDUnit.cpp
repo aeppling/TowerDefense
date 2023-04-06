@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <math.h>
 #include "TDUnit.hpp"
 #include "../TDGame/SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
@@ -51,9 +52,29 @@ void    TDUnit::move() {
        //nextTo = this->_path[0];
     }
     else {
+        this->rotate(this->_posX, this->_posY, nextTo->getPosX(), nextTo->getPosY());
+        if ((this->_posX != nextTo->getPosX()) && (this->_posY != nextTo->getPosY()))
+            std::cout << "Took diagonal" << std::endl;
+
+        std::chrono::steady_clock::time_point totalTime = std::chrono::steady_clock::now();
+        std::chrono::steady_clock::time_point elapsedAll = std::chrono::steady_clock::now();
+
+        int res = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedAll - totalTime).count();
+        std::chrono::steady_clock::time_point markerTime = std::chrono::steady_clock::now();
+        while (res < this->_speed) {
+            std::chrono::steady_clock::time_point elapsed = std::chrono::steady_clock::now();
+            int resInter = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed - markerTime).count();
+            if (resInter > this->_spriteSpeed) {
+                //NEED FOR EACH DIRECTION
+                markerTime = std::chrono::steady_clock::now();
+                this->rotate(this->_posX, this->_posY, nextTo->getPosX(), nextTo->getPosY());
+            }
+            elapsedAll = std::chrono::steady_clock::now();
+            res = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedAll - totalTime).count();
+        }
+
         this->_posX = nextTo->getPosX();
         this->_posY = nextTo->getPosY();
-        this->_sprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);
         //  this->_sprite.move(;)
         this->_path.erase(this->_path.begin());
     }
@@ -68,25 +89,37 @@ void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     pathFinder.runPathFinding(this->_path);
 }
 
-void    TDUnit::setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
+void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
     // GET SIZE RATIO OF UNITS SPRITE FROM WINDOW AND MAP
     //SFML RELOAD & SFMLLOADUNIT CLASS FOR RESSOURCES
-/*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
+
+    this->_spriteSpeed = (cellSize / this->_speed);
+    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     this->_cellSize = cellSize;
-    this->_sprite.setTexture(*sfmlLoader.getCowards());
+    if (this->getTypeName() == "Missile")
+        this->_sprite.setTexture(*sfmlLoader.getMissile());
+    else if (this->getTypeName() == "Drone")
+        this->_sprite.setTexture(*sfmlLoader.getDrone());
+    else if (this->getTypeName() == "Alien")
+        this->_sprite.setTexture(*sfmlLoader.getAlien());
+    else if (this->getTypeName() == "Spaceship")
+        this->_sprite.setTexture(*sfmlLoader.getSpaceship());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor, scaleFactor);
+   // this->_sprite.setColor(sf::Color::Blue);
     this->_sprite.setTextureRect(textureRect);
-    this->_sprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);*/
-    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
+    sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
+    this->_sprite.setOrigin(newOrigin);
+    this->_sprite.setPosition((this->_posX * this->_unitSize) + cellSize/2, (this->_posY * this->_unitSize) + cellSize / 2);
+/*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     sf::Sprite newSprite;
     newSprite.setTexture(*sfmlLoader.getCowards());
     newSprite.setColor(sf::Color::White);
     sf::IntRect textureRect(0, 0, this->_unitSize - 3, this->_unitSize - 3); // -3 to see border and debug
     newSprite.setTextureRect(textureRect);
     newSprite.setPosition(this->_posX * this->_unitSize, this->_posY * this->_unitSize);
-    this->_sprite = newSprite;
+    this->_sprite = newSprite;*/
 }
 
 bool    TDUnit::isAtBase() {
@@ -133,4 +166,19 @@ void    TDUnit::getKill() {
     this->_sprite.setColor(sf::Color::Transparent);
     this->_thread.join();
 //    delete this;
+}
+
+void    TDUnit::rotate(float posX, float posY, float destX, float destY) {
+    float dx = destX - posX;
+    float dy = destY - posY;
+
+    float rotationAngle = atan2(dy, dx) * 180 / 3.14159f;
+    this->_sprite.setRotation(rotationAngle + 90);
+
+    if (dx > 0) {
+        this->_sprite.setTextureRect(sf::IntRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y));
+    } else {
+        this->_sprite.setTextureRect(sf::IntRect(this->_sprite.getTexture()->getSize().x, 0, -this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y));
+    }
+    this->_sprite.setPosition((this->_posX * this->_unitSize) + this->_cellSize/2, (this->_posY * this->_unitSize) + this->_cellSize / 2);
 }

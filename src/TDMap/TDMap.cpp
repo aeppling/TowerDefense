@@ -47,22 +47,18 @@ void TDMap::refreshTextures(SFMLLoader &sfmlLoader, std::shared_ptr<SpritesHolde
     }
     else if (this->_map.at(posY).at(posX).getType() != spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()) {
         if (this->_map.at(posY).at(posX).getType() == 'W') {
-            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
             spritesHolderPtr->updateSpriteFromTypeAndPosition(
                     spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
                     posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
         } else if (this->_map.at(posY).at(posX).getType() == 'A') {
-            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
             spritesHolderPtr->updateSpriteFromTypeAndPosition(
                     spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
                     posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
         } else if (this->_map.at(posY).at(posX).getType() == 'T') {
-            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
             spritesHolderPtr->updateSpriteFromTypeAndPosition(
                     spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
                     posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
         } else if (this->_map.at(posY).at(posX).getType() == 'X') {
-            std::cout << "MAJ FROM " << spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()<< " TO " << this->_map.at(posY).at(posX).getType() << std::endl;
             spritesHolderPtr->updateSpriteFromTypeAndPosition(
                     spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
                     posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());

@@ -9,6 +9,7 @@
 #include <thread>
 #include "../TDMap/AStarPathFinding.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
+#include "../TDGraphics/SFMLEnemiesLoader.hpp"
 
 #include <iostream>
 #include <string>
@@ -31,6 +32,7 @@ public:
     int  _baseCoordX;
     int  _baseCoordY;
     int  _cellSize;
+    int  _spriteSpeed; //SPRITE SPEED IN MILLISECOND PER PIXEL
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
@@ -79,19 +81,11 @@ public:
     bool isBlocked(int nextPosX, int nextPosY);
     bool isAlive();
         // SFML
-    void setSprite(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
+    void setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
     void getShot(int damage);
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
-};
-
-class Goblin : public TDUnit {
-public:
-    Goblin(int posX, int posY, SFMLLoader &sfmlLoader) : TDUnit(50, 1500, 1, posX, posY, false, 10, sfmlLoader) {}
-
-    virtual std::string getTypeName() {
-        return "Goblin";
-    }
+    void rotate(float posX, float posY, float destX, float destY);
 };
 
 class Molosse : public TDUnit {
@@ -112,39 +106,12 @@ public:
     }
 };
 
-class Dragon : public TDUnit {
-public:
-    Dragon(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(1000, 2000, 10, posX, posY, false, 70, sfmlLoaderUnit) {}
-
-    virtual std::string getTypeName() {
-        return "Dragon";
-    }
-};
-
-class Bats : public TDUnit {
-public:
-    Bats(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(20, 400, 1, posX, posY, false, 7, sfmlLoaderUnit) {}
-
-    virtual std::string getTypeName() {
-        return "Bats";
-    }
-};
-
 class Minions : public TDUnit {
 public:
     Minions(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(100, 1000, 2, posX, posY, false, 15, sfmlLoaderUnit) {}
 
     virtual std::string getTypeName() {
         return "Minions";
-    }
-};
-
-class Cowards : public TDUnit {
-public:
-    Cowards(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(10, 700, 0, posX, posY, false, 12, sfmlLoaderUnit) {}
-
-    virtual std::string getTypeName() {
-        return "Cowards";
     }
 };
 

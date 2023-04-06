@@ -4,6 +4,10 @@
 
 #include <fstream>
 #include "RetrieveLevel.hpp"
+#include "../TDUnits/Drone.hpp"
+#include "../TDUnits/Missile.hpp"
+#include "../TDUnits/Alien.hpp"
+#include "../TDUnits/Spaceship.hpp"
 
 RetrieveLevel::RetrieveLevel(int starting_level) : _actual_level(starting_level) {
 }
@@ -11,20 +15,14 @@ RetrieveLevel::RetrieveLevel(int starting_level) : _actual_level(starting_level)
 TDUnit *getUnitFromString(std::string enemyType) {
     TDUnit *newUnit;
     SFMLLoader sfmlLoaderUnit;
-    if (enemyType == "Cowards")
-        newUnit = new Cowards(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Minions")
-        newUnit = new Minions(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Bats")
-        newUnit = new Bats(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Dragon")
-        newUnit = new Dragon(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Molosse")
-        newUnit = new Molosse(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Golem")
-        newUnit = new Golem(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "Goblin")
-        newUnit = new Goblin(0, 0, sfmlLoaderUnit);
+    if (enemyType == "Drone")
+        newUnit = new Drone(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "Missile")
+        newUnit = new Missile(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "Spaceship")
+        newUnit = new Spaceship(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "Alien")
+        newUnit = new Alien(0, 0, sfmlLoaderUnit);
     else {
         std::cout << "Unknown unit named '" << enemyType << "'" << std::endl;
         return (nullptr);
