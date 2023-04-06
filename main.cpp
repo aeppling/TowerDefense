@@ -3,13 +3,13 @@
 #include <unistd.h>
 #include <mutex>
 
-#include "SFMLLoader.hpp"
-#include "mapParser.hpp"
-#include "AStarPathFinding.hpp"
-#include "TDUnit.hpp"
-#include "RetrieveLevel.hpp"
-#include "SizeRatioCalculator.hpp"
-#include "Game.hpp"
+#include "src/TDGraphics/SFMLLoader.hpp"
+#include "src/TDMap/mapParser.hpp"
+#include "src/TDMap/AStarPathFinding.hpp"
+#include "src/TDUnits/TDUnit.hpp"
+#include "src/TDGame/RetrieveLevel.hpp"
+#include "src/TDGame/SizeRatioCalculator.hpp"
+#include "src/TDGame/Game.hpp"
 
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
