@@ -5,10 +5,10 @@
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList, int cellSize, SFMLLoader &sfmlLoaderTower) : enemiesList(enemiesList), Buildable(size, "Tower")  {
+Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower) : Buildable(size, "Tower")  {
     this->towerName = "BasicTower";
     if (this->towerName == "BasicTower") {
-        this->towerSprite.setTexture(*sfmlLoaderTower.getTowerBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
         float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
         sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
         this->towerSprite.setScale(scaleFactor * 2, scaleFactor * 2);
@@ -69,6 +69,9 @@ void Tower::addToEnemiesInRangeList(TDUnit *enemy){
     this->enemiesInRange.push_back(enemy);
 }
 
+void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
+    this->enemiesList = enemiesList;
+}
 /*bool Tower::isAlreadyInList() {
 
 }*/

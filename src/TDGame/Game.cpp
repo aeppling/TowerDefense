@@ -5,11 +5,12 @@
 #include "Game.hpp"
 #include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
-#include "../TDGraphics/SFMLEnemiesLoader.hpp"
 
 Game::Game(int difficulty, int level){
     SFMLEnemiesLoader sfmlEnemiesLoader;
+    SFMLTowerLoader sfmlTowerLoader;
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
+    this->sfmlTowerLoader = sfmlTowerLoader;
     this->levelRetriever = new RetrieveLevel(level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
@@ -107,6 +108,25 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
     file.close();
 }
 
+void Game::initializeTowerStore() {
+/*    Tower *buildTowerTest = new Tower(this, 1, this->cellSize, this->sfmlTowerLoader);
+    Tower *buildTowerTest2 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader);
+    Tower *buildTowerTest3 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader);
+    Tower *buildTowerTest4 = new Tower(this, 4, this->cellSize, this->sfmlTowerLoader);
+    this->towerStoreList.push_back(buildTowerTest);
+    this->towerStoreList.push_back(buildTowerTest2);
+    this->towerStoreList.push_back(buildTowerTest3);
+    this->towerStoreList.push_back(buildTowerTest4);*/
+}
+
+void Game::initializeTowerStoreCurrentWave() {
+    int i = 0;
+    while (i < this->towerStoreList.size()) {
+        this->towerStoreList.at(i)->setCurrentWave(this->currentWave);
+        i++;
+    }
+}
+
 void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                       int winSizeX, int winSizeY, int mapSizeX, int mapSizeY) {
     int wave_count = 0;
@@ -146,6 +166,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             sf::IntRect textureRect(0, 0, 144, 144);
             mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
             mousePointer.setTextureRect(textureRect);
+
+    std::cout << "Tower initiate OK" << std::endl;
             bool closing = false;
             while((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
@@ -161,21 +183,22 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
                 this->spawnCount = 0;
                 Buildable *toBuild = nullptr;
-                Tower *buildTowerTest = new Tower(this, 1, this->currentWave, this->cellSize, sfmlLoader);
-                Tower *buildTowerTest2 = new Tower(this, 2, this->currentWave, this->cellSize, sfmlLoader);
-                Tower *buildTowerTest3 = new Tower(this, 3, this->currentWave, this->cellSize, sfmlLoader);
-                Tower *buildTowerTest4 = new Tower(this, 4, this->currentWave,this->cellSize, sfmlLoader);
-                this->towerStoreList.push_back(buildTowerTest);
-                this->towerStoreList.push_back(buildTowerTest2);
-                this->towerStoreList.push_back(buildTowerTest3);
-                this->towerStoreList.push_back(buildTowerTest4);
-                std::cout << "Tower initiate OK" << std::endl;
                 // PROBLEM IS I RE-ASSIGN NEW TOURS ? BUT THE WORKING TOURS IS ON TOO
                 std::cout << "Wave contain " << this->currentWave->size() << " ennemies" << std::endl;
                 this->enemiesLeft = this->currentWave->size();
                 this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                 this->totalEnemies = this->currentWave->size();
                 this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
+                //SET TOWER CURRENT WAVE HERE
+                Tower *buildTowerTest = new Tower(this, 1, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest2 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest3 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest4 = new Tower(this, 4, this->cellSize, this->sfmlTowerLoader);
+                this->towerStoreList.push_back(buildTowerTest);
+                this->towerStoreList.push_back(buildTowerTest2);
+                this->towerStoreList.push_back(buildTowerTest3);
+                this->towerStoreList.push_back(buildTowerTest4);
+                initializeTowerStoreCurrentWave();
                 usleep(3000);
                 while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
@@ -207,7 +230,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 isBuilding = true;
                             }
                             else {
-                                toBuild = nullptr;
+                                //toBuild = nullptr;
                                 isBuilding = false;
                             }
                         }
@@ -217,30 +240,32 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 setObstacleTest(std::ref(map), std::ref(window), sfmlLoader);
                             }
                             if (event.type == sf::Event::KeyPressed) {
-                                if (event.key.code == sf::Keyboard::Right) {
-                                    if (this->towerStoreList.size() <= 1)
-                                        break;
-                                    if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
-                                        this->towerSelectorIndex = 0;
-                                    else
-                                        this->towerSelectorIndex++;
-                                }
-                                else if (event.key.code == sf::Keyboard::Left) {
-                                    if (this->towerStoreList.size() <= 1)
-                                        break;
-                                    if (this->towerSelectorIndex == 0) {
-                                        this->towerSelectorIndex = this->towerStoreList.size() - 1;
+                                if (!this->towerStoreList.empty()) {
+                                    if (event.key.code == sf::Keyboard::Right) {
+                                        if (this->towerStoreList.size() <= 1)
+                                            break;
+                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
+                                            this->towerSelectorIndex = 0;
+                                        else
+                                            this->towerSelectorIndex++;
+                                    } else if (event.key.code == sf::Keyboard::Left) {
+                                        if (this->towerStoreList.size() <= 1)
+                                            break;
+                                        if (this->towerSelectorIndex == 0) {
+                                            this->towerSelectorIndex = this->towerStoreList.size() - 1;
+                                        } else
+                                            this->towerSelectorIndex--;
                                     }
-                                    else
-                                        this->towerSelectorIndex--;
                                 }
                             }
                             if (event.type == sf::Event::KeyPressed &&
-                                event.key.code == sf::Keyboard::T) { // TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
-                                toBuild = this->towerStoreList.at(this->towerSelectorIndex);
-                                setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning);
-                                if (toBuild == nullptr)
-                                    isBuilding = false;
+                                event.key.code == sf::Keyboard::T) {// TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
+                                if (!this->towerStoreList.empty()) {
+                                    toBuild = this->towerStoreList.at(this->towerSelectorIndex);
+                                    setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning);
+                                    if (toBuild == nullptr)
+                                        isBuilding = false;
+                                }
                             }
                         }
                     }
@@ -261,11 +286,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
                     if (isBuilding == true) {
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
-                        int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
-                        if (radius <= 1)
-                            setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius, isBuildableAtPositionForSmaller(map, mouseCoord.posX, mouseCoord.posY, radius));
-                        else
-                            setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius, isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, radius));
+                        if (!this->towerStoreList.empty()) {
+                            int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
+                            if (radius <= 1)
+                                setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
+                                                   isBuildableAtPositionForSmaller(map, mouseCoord.posX,
+                                                                                   mouseCoord.posY, radius));
+                            else
+                                setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
+                                                   isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
+                                                                         radius));
+                        }
                     }
                     // DISPLAY ENNEMIES AND CHECK FOR ARRIVING == NOT TOO SOON !!!
                     s = 0;
@@ -373,6 +404,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+   // this->initializeTowerStore();
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->loop(sfmlLoader, window, baseCell, map, spritesHolder);
 }

@@ -6,6 +6,9 @@
 #include "RetrieveLevel.hpp"
 #include "usefullStruct.hpp"
 #include "Buildable.hpp"
+#include "../TDGraphics/SFMLTowerLoader.hpp"
+#include "../TDGraphics/SFMLEnemiesLoader.hpp"
+
 
 #include <iostream>
 
@@ -37,11 +40,14 @@ class Game{
         sf::Text             enemiesLeftDisplay;
         sf::Text             lifeCounterDisplay;
         sf::Text             killCounterDisplay;
-    SFMLEnemiesLoader sfmlEnemiesLoader;
-    sf::Sprite hearthDisplay;
+        SFMLEnemiesLoader   sfmlEnemiesLoader;
+        SFMLTowerLoader     sfmlTowerLoader;
+        sf::Sprite hearthDisplay;
     public :
         Game(int difficulty, int level);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
+    void initializeTowerStore();
+    void initializeTowerStoreCurrentWave();
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
         int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder);

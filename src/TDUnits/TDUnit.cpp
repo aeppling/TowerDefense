@@ -9,7 +9,6 @@
 #include "../TDGraphics/SFMLLoader.hpp"
 
 TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit) {
-    this->_sprite.setTexture(*sfmlLoaderUnit.getCowards());
     this->_health_points = hp;
     this->_speed = speed;
     this->_resistance = resistance;
@@ -45,7 +44,7 @@ void    TDUnit::run(TDMap *map) {
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-    if (isBlocked(nextTo->getPosX(), nextTo->getPosY())) {
+    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false)) {
         this->_path.clear();
         this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY);
         this->move();
@@ -86,7 +85,7 @@ void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     this->_baseCoordX = baseCoordX;
     this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
-    pathFinder.runPathFinding(this->_path);
+    pathFinder.runPathFinding(this->_path, this->_isFlying);
 }
 
 void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
@@ -107,7 +106,11 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor, scaleFactor);
-   // this->_sprite.setColor(sf::Color::Blue);
+    if (this->getTypeName() == "Spaceship")
+        this->_sprite.setScale(scaleFactor*2.5, scaleFactor*2.5);
+    if (this->getTypeName() == "Alien")
+        this->_sprite.setScale(scaleFactor*1.5, scaleFactor*1.5);
+    // this->_sprite.setColor(sf::Color::Blue);
     this->_sprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);

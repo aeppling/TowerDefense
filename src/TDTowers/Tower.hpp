@@ -5,6 +5,7 @@
 #include "../TDGame/Game.hpp"
 #include "../TDGame/usefullStruct.hpp"
 #include "../TDGame/Buildable.hpp"
+#include "../TDGraphics/SFMLTowerLoader.hpp"
 
 #include <vector>
 #include <thread>
@@ -35,11 +36,12 @@ class Tower : public Buildable {
         sf::Sprite towerSprite;
 
 public:
-        Tower(Game *gameInstance, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList, int cellSize, SFMLLoader &SFMLLoader);
+        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &SFMLLoader);
         Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName() { return (this->towerName); };
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
+        void setCurrentWave(std::shared_ptr<std::vector<TDUnit*>> enemiesList);
         void removeFromEnemiesInRangeList(TDUnit *enemy) override;
         void addToEnemiesInRangeList(TDUnit *enemy) override;
         void activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;

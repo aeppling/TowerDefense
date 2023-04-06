@@ -37,7 +37,7 @@ bool AStarPathFinding::isInClosedList(MapCell &toFind) {
     return (check);
 }
 
-bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill) {
+bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill, bool isFlying) {
     std::priority_queue<MapCell*, std::vector<MapCell*>, compareCellPriority> openSet;
     std::vector<MapCell*> path;
     this->_startCell.setGlobalCost(0);
@@ -72,7 +72,8 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if (i == 0 && j == 0) continue;
-                if (i != 0 && j != 0) continue;// SKIP DIAGONAL
+                if ((isFlying == false) && ((i != 0) && (j != 0)))
+                    continue;// SKIP DIAGONAL
                 int x = cell->getPosX() + i;
                 int y = cell->getPosY() + j;
                 if (x < 0 || y >= this->_map.size() || y < 0 || x >= this->_map[y].size()) {
@@ -80,7 +81,7 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
                     continue;
                 }
                 MapCell *neighbor = &this->_map[y][x];
-                if (neighbor->isWalkable() == false) {
+                if ((neighbor->isWalkable() == false) && (isFlying == false)) {
                     // SKIPPED : NOT WALKABLE
                     continue;
                 }
