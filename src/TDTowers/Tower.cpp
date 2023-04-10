@@ -5,9 +5,9 @@
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower) : Buildable(size, "Tower")  {
-    this->towerName = "BasicTower";
-    if (this->towerName == "BasicTower") {
+Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName) : Buildable(size, "Tower")  {
+    this->towerName = towerName;
+   // if (this->towerName == "BasicTower") {
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
         float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
         sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
@@ -15,36 +15,17 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         this->towerSprite.setTextureRect(textureRect);
         sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
         this->towerSprite.setOrigin(newOrigin);
-    }
+   // }
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;
     this->coord = {0, 0};
-    this->damage = {20, 2, 4};
+   this->damage = {20, 2, 4};
     this->cost = {100, 200, 400};
-  //  this->enemiesInRange =  new std::vector<TDUnit *>();
     this->range = 5;
     this->timeBetweenAttack = 1;
     this->activated = true;
     this->aerial = false;
-   // this->enemiesList = new std::vector<TDUnit *>();
-    this->speedBoosted = false;
-}
-
-Tower::Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList) : Buildable(size, "Tower") {
-    this->_timeOfLastShot = std::chrono::steady_clock::now();
-    this->gameInstance = gameInstance;
-    this->towerName = "BasicTower";
-    this->damage = {20, 40, 60 };
-    this->cost = {100, 200, 400};
-    this->level = 0;
-   // this->enemiesInRange =  new std::vector<TDUnit *>();
-    this->coord = {xPos, yPos};
-    this->range = 5;
-    this->timeBetweenAttack = 1.5;
-    this->activated = true;
-    this->aerial = false;
-    //this->enemiesList = new std::vector<TDUnit *>();
     this->speedBoosted = false;
 }
 
@@ -79,7 +60,9 @@ void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
 void Tower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
+
     for (TDUnit *enemy: *(this->enemiesList)) {
+        mtx.lock();
         if (enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
             enemy->getPosX() >= this->coord.x - this->range &&
             enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
@@ -95,6 +78,7 @@ void Tower::isInRange() {
             }
 
         }
+        mtx.unlock();
     }
 }
 
@@ -106,9 +90,7 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     while(this->activated) { // EXITING TO QUICKLY ?
         if (this->activated == false)
             break;
-        mtx.lock();
         isInRange();
-        mtx.unlock();
         if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
             //* Fire on ennemies in tower range
             std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
@@ -150,7 +132,6 @@ void Tower::join() {
 void Tower::fire(TDUnit *target){
     //* remove target health
    // target->setHealth(target->getHealth()-this->damage[this->level]);
-    mtx.lock();
     // Get the position of the tower and the target
     sf::Vector2f towerPos = this->towerSprite.getPosition();
     sf::Vector2f targetPos = target->getSprite().getPosition();
@@ -163,6 +144,7 @@ void Tower::fire(TDUnit *target){
 
     // Set the rotation of the tower sprite
     this->towerSprite.setRotation(angle + 90);
+    mtx.lock();
     target->getShot(this->damage[this->level]);
     if (target->getHealth() <= 0) {
          // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??

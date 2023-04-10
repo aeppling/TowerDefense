@@ -33,6 +33,7 @@ public:
     int  _baseCoordY;
     int  _cellSize;
     int  _spriteSpeed; //SPRITE SPEED IN MILLISECOND PER PIXEL
+    float _scale;
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
@@ -44,7 +45,7 @@ public:
     int         _unitSize;
 
     // CONSTRUCTOR & OVERLOADS
-    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit);
+    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale);
     ~TDUnit() {
         std::cout << "Dead unit here." << std::endl;
 
@@ -90,7 +91,7 @@ public:
 
 class Molosse : public TDUnit {
 public:
-    Molosse(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(500, 1000, 10, posX, posY, false, 20, sfmlLoaderUnit) {}
+    Molosse(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(500, 1000, 10, posX, posY, false, 20, sfmlLoaderUnit, 1) {}
 
     virtual std::string getTypeName() {
         return "Molosse";
@@ -99,7 +100,7 @@ public:
 
 class Golem : public TDUnit {
 public:
-    Golem(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(300, 3500, 5, posX, posY, false, 40, sfmlLoaderUnit) {}
+    Golem(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(300, 3500, 5, posX, posY, false, 40, sfmlLoaderUnit, 1) {}
 
     virtual std::string getTypeName() {
         return "Golem";
@@ -108,7 +109,7 @@ public:
 
 class Minions : public TDUnit {
 public:
-    Minions(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(100, 1000, 2, posX, posY, false, 15, sfmlLoaderUnit) {}
+    Minions(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(100, 1000, 2, posX, posY, false, 15, sfmlLoaderUnit, 1) {}
 
     virtual std::string getTypeName() {
         return "Minions";

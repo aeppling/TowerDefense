@@ -9,7 +9,7 @@
 
 class Missile : public TDUnit {
 public:
-    Missile(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(5, 25, 1, posX, posY, false, 7, sfmlLoaderUnit) {}
+    Missile(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(5, 25, 1, posX, posY, false, 7, sfmlLoaderUnit, 1) {}
 
     virtual std::string getTypeName() {
         return "Missile";

@@ -1,31 +1,12 @@
 #include "AttackSpeedTower.hpp"
 
-AttackSpeedTower::AttackSpeedTower(Game gameInstance, std::vector<Tower *> towersList):Tower(gameInstance){
-    this->damage = {0,0,0};
-    this->size = {2,2};
-    this->cost = {600, 1000, 1500};
-    this->range = 4;
-    this->timeBetweenAttack = 0;
-    this->attackSpeedBoost = {1.5,2,3};
-    this->towersList = towersList;
-}
-AttackSpeedTower::AttackSpeedTower(Game gameInstance, int xPos, int yPos, std::vector<Tower *> towersInRange):Tower(gameInstance, xPos, yPos){
-    this->damage = {0,0,0};
-    this->size = {2,2};
-    this->cost = {600, 1000, 1500};
-    this->range = 4;
-    this->timeBetweenAttack = 0;
-    this->attackSpeedBoost = {1.5};
-    this->towersInRange = towersInRange;
-}
+AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 4, cellSize, sfmlTowerLoader, "AntiAirTower"){
 
-bool AttackSpeedTower::isInRange(Tower tower){
-    //* return true if tower is in the range of the tower
-    if (tower.getPosition().x <= this->coord.x + this->range + this->size.x && tower.getPosition().x >= this->coord.x - this->range && tower.getPosition().y <= this->coord.y + this->range + this->size.y && tower.getPosition().y >= this->coord.y - this->range){
-        return true;
-    } else{
-        return false;
-    }
+    this->damage = {150, 250, 400};
+    this->cost = {350, 500, 700};
+
+    this->range = 10;
+    this->timeBetweenAttack = 5;
 }
 
 void AttackSpeedTower::boostTower(Tower &tower){
@@ -40,7 +21,7 @@ void AttackSpeedTower::resetBoostTower(Tower &tower){
 }
 
 
-void AttackSpeedTower::activate(std::vector<TDUnit *> enemiesList){
+/*void AttackSpeedTower::activate(std::vector<TDUnit *> enemiesList){
     //* run while tower is activated
     std::cout << "Tower activated" << std::endl;
     this->activated = true;
@@ -54,7 +35,7 @@ void AttackSpeedTower::activate(std::vector<TDUnit *> enemiesList){
             }
         }
     }
-}
+}*/
 
 void AttackSpeedTower::upgrade(){
     if(this->level += 1 < this->cost.size() ){

@@ -4,13 +4,17 @@
 
 #include <iostream>
 #include <math.h>
+#include <mutex>
 #include "TDUnit.hpp"
 #include "../TDGame/SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
 
-TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit) {
+std::mutex mtx2;
+
+TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale) {
     this->_health_points = hp;
     this->_speed = speed;
+    this->_scale = scale;
     this->_resistance = resistance;
     this->_posX = posX;
     this->_posY = posY;
@@ -105,12 +109,7 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getSpaceship());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
-    this->_sprite.setScale(scaleFactor, scaleFactor);
-    if (this->getTypeName() == "Spaceship")
-        this->_sprite.setScale(scaleFactor*2.5, scaleFactor*2.5);
-    if (this->getTypeName() == "Alien")
-        this->_sprite.setScale(scaleFactor*1.5, scaleFactor*1.5);
-    // this->_sprite.setColor(sf::Color::Blue);
+    this->_sprite.setScale(scaleFactor * this->_scale, scaleFactor * this->_scale);
     this->_sprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);

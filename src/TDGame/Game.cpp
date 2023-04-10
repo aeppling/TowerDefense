@@ -5,6 +5,9 @@
 #include "Game.hpp"
 #include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
+#include "../TDTowers/AntiAirTower.hpp"
+#include "../TDTowers/AttackSpeedTower.hpp"
+
 
 Game::Game(int difficulty, int level){
     SFMLEnemiesLoader sfmlEnemiesLoader;
@@ -190,12 +193,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->totalEnemies = this->currentWave->size();
                 this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
                 //SET TOWER CURRENT WAVE HERE
-                Tower *buildTowerTest = new Tower(this, 1, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest2 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest3 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest4 = new Tower(this, 4, this->cellSize, this->sfmlTowerLoader);
-                this->towerStoreList.push_back(buildTowerTest);
-                this->towerStoreList.push_back(buildTowerTest2);
+             //   Tower *buildTowerTest = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader);
+                // ATTACK SPEED TOWER CRASH
+              //  Tower *buildTowerTest2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest3 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader, "BasicTower");
+                Tower *buildTowerTest4 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader, "BasicTower");
+          //      this->towerStoreList.push_back(buildTowerTest);
+                //this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
                 initializeTowerStoreCurrentWave();

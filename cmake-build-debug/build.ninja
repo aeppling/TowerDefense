@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: untitled1
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,141 +49,157 @@ cmake_ninja_workdir = C$:/untitled1/cmake-build-debug/
 
 build cmake_object_order_depends_target_untitled1: phony || CMakeFiles/untitled1.dir
 
-build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/main.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/main.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\main.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
 
-build CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDMap/mapParser.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDMap/mapParser.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDMap\mapParser.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
 
-build CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDMap/TDMap.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDMap/TDMap.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDMap\TDMap.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
 
-build CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDMap/MapCell.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDMap/MapCell.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDMap\MapCell.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
 
-build CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDMap/AStarPathFinding.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDMap/AStarPathFinding.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDMap\AStarPathFinding.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
 
-build CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDUnits/TDUnit.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDUnits/TDUnit.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDUnits\TDUnit.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDUnits
 
-build CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGame/RetrieveLevel.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGame/RetrieveLevel.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGame\RetrieveLevel.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SFMLLoader.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SFMLLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SFMLLoader.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
 
-build CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGame/SizeRatioCalculator.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGame/SizeRatioCalculator.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGame\SizeRatioCalculator.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
 
-build CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDTowers/Tower.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDTowers/Tower.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDTowers\Tower.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
 
-build CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGame/Game.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGame/Game.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGame\Game.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
 
-build CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGame/Buildable.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGame/Buildable.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGame\Buildable.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SpritesHolder.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SpritesHolder.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SpritesHolder.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SFMLSprite.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SFMLSprite.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SFMLSprite.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SFMLMapReloader.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SFMLMapReloader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SFMLMapReloader.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SFMLEnemiesLoader.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SFMLEnemiesLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SFMLEnemiesLoader.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
 
-build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj: CXX_COMPILER__untitled1_Debug C$:/untitled1/src/TDGraphics/SFMLTowerLoader.cpp || cmake_object_order_depends_target_untitled1
+build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGraphics/SFMLTowerLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\untitled1.dir\src\TDGraphics\SFMLTowerLoader.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -O3 -DNDEBUG
   INCLUDES = -isystem C:/untitled1/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
+
+build CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDTowers/AntiAirTower.cpp || cmake_object_order_depends_target_untitled1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\untitled1.dir\src\TDTowers\AntiAirTower.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG
+  INCLUDES = -isystem C:/untitled1/include
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
+
+build CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDTowers/AttackSpeedTower.cpp || cmake_object_order_depends_target_untitled1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\untitled1.dir\src\TDTowers\AttackSpeedTower.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG
+  INCLUDES = -isystem C:/untitled1/include
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
 
 
 # =============================================================================
@@ -193,9 +209,9 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj: CXX_COMPI
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj | ../lib/libsfml-system-s-d.a ../lib/libsfml-window-s-d.a ../lib/libsfml-graphics-s-d.a ../lib/libsfml-network-s-d.a ../lib/libsfml-audio-s-d.a ../lib/libsfml-window-s-d.a ../lib/libfreetype.a ../lib/libsfml-system-s-d.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
-  FLAGS = -g
-  LINK_LIBRARIES = ../lib/libsfml-system-s-d.a  ../lib/libsfml-window-s-d.a  ../lib/libsfml-graphics-s-d.a  ../lib/libsfml-network-s-d.a  ../lib/libsfml-audio-s-d.a  ../lib/libsfml-window-s-d.a  -lgdi32  -lOpenGL32  ../lib/libfreetype.a  -lws2_32  ../lib/libsfml-system-s-d.a  -lwinmm  ../lib/libopenal32.a  ../lib/libvorbisfile.a  ../lib/libvorbisenc.a  ../lib/libvorbis.a  ../lib/libogg.a  ../lib/libFLAC.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Release CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj | ../lib/libsfml-system-s.a ../lib/libsfml-window-s.a ../lib/libsfml-graphics-s.a ../lib/libsfml-network-s.a ../lib/libsfml-audio-s.a ../lib/libsfml-window-s.a ../lib/libfreetype.a ../lib/libsfml-system-s.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
+  FLAGS = -O3 -DNDEBUG
+  LINK_LIBRARIES = ../lib/libsfml-system-s.a  ../lib/libsfml-window-s.a  ../lib/libsfml-graphics-s.a  ../lib/libsfml-network-s.a  ../lib/libsfml-audio-s.a  ../lib/libsfml-window-s.a  -lgdi32  -lOpenGL32  ../lib/libfreetype.a  -lws2_32  ../lib/libsfml-system-s.a  -lwinmm  ../lib/libopenal32.a  ../lib/libvorbisfile.a  ../lib/libvorbisenc.a  ../lib/libvorbis.a  ../lib/libogg.a  ../lib/libFLAC.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

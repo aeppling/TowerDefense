@@ -1,26 +1,17 @@
 #include <algorithm>
 #include "AntiAirTower.hpp"
 
-AntiAirTower::AntiAirTower(Game gameInstance):Tower(gameInstance){
-    
-    this->damage = {150, 250, 400};
-    this->cost = {350, 500, 700};
-    
-    this->size = {2,2};
-    this->range = 10;
-    this->timeBetweenAttack = 5;
-}
 
-AntiAirTower::AntiAirTower(Game gameInstance, int xPos, int yPos):Tower( gameInstance, xPos, yPos){
+AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AntiAirTower"){
+
     this->damage = {150, 250, 400};
     this->cost = {350, 500, 700};
-    this->size = {2,2};
     
     this->range = 10;
     this->timeBetweenAttack = 5;
 }
 
-void AntiAirTower::isInRange(std::vector<TDUnit *> enemiesList){
+/*void AntiAirTower::isInRange(std::vector<TDUnit *> enemiesList){
 
     //* if enemy is in the tower's range and aerian add him to the vector, if he isnt, remove him
     for(TDUnit *enemy : enemiesList){
@@ -36,4 +27,4 @@ void AntiAirTower::isInRange(std::vector<TDUnit *> enemiesList){
             }
         }
     }
-}
+}*/

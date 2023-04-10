@@ -36,8 +36,7 @@ class Tower : public Buildable {
         sf::Sprite towerSprite;
 
 public:
-        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &SFMLLoader);
-        Tower(Game *gameInstance, int xPos, int yPos, int size, std::shared_ptr<std::vector<TDUnit*>> enemiesList);
+        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName() { return (this->towerName); };
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
