@@ -5,34 +5,49 @@
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName) : Buildable(size, "Tower")  {
+Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName,
+             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack) : Buildable(size, "Tower")  {
     this->towerName = towerName;
-   // if (this->towerName == "BasicTower") {
+    if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
-        float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
-        sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
-        this->towerSprite.setScale(scaleFactor * 2, scaleFactor * 2);
-        this->towerSprite.setTextureRect(textureRect);
-        sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
-        this->towerSprite.setOrigin(newOrigin);
-   // }
+    else if (this->towerName == "AntiAirTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+    else if (this->towerName == "AttackSpeedTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getSpeed());
+    else if (this->towerName == "SlowTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+    else if (this->towerName == "SniperTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+    else if (this->towerName == "SplashTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+    else {
+        std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
+        return ;
+    }
+    std::cout << this->towerName << " added to shoplist." << std::endl;
+    float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
+    sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
+    this->towerSprite.setScale(scaleFactor * 2, scaleFactor * 2);
+    this->towerSprite.setTextureRect(textureRect);
+    sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
+    this->towerSprite.setOrigin(newOrigin);
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;
     this->coord = {0, 0};
-   this->damage = {20, 2, 4};
-    this->cost = {100, 200, 400};
-    this->range = 5;
-    this->timeBetweenAttack = 1;
+    this->damage = damage;
+    this->cost = cost;
+    this->range = range;
+    this->timeBetweenAttack = timeBetweenAttack;
     this->activated = true;
     this->aerial = false;
     this->speedBoosted = false;
 }
 
-
 void Tower::live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) {
     this->activate(levelEnemyList);
 }
+
 void Tower::run(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     //* run the tower threadst
     std::cout << "Tower running..." << std::endl;
@@ -87,23 +102,26 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     this->enemiesList = enemiesList;
     std::cout << "Tower activated" << std::endl;
     this->activated = true;
-    while(this->activated) { // EXITING TO QUICKLY ?
-        if (this->activated == false)
-            break;
-        isInRange();
-        if(enemiesInRange.size() > 0 && this->damage[this->level] > 0){
-            //* Fire on ennemies in tower range
-            std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
-            int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastShot).count();
-            if (res >= this->timeBetweenAttack * 1000) {
-                this->fire(this->enemiesInRange.at(0));
-                this->_timeOfLastShot = std::chrono::steady_clock::now();
+        while (this->activated) { // EXITING TO QUICKLY ?
+            if (this->activated == false)
+                break;
+            isInRange();
+            if (enemiesInRange.size() > 0 && this->damage[this->level] > 0) {
+                //* Fire on ennemies in tower range
+                std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
+                int res = std::chrono::duration_cast<std::chrono::milliseconds>(
+                        testTime - this->_timeOfLastShot).count();
+                if (res >= this->timeBetweenAttack * 1000) {
+                    std::cout << "Crash here2 ? " << this->getTowerName() << std::endl;
+                    this->fire(this->enemiesInRange.at(0));
+                    std::cout << "NO 2 ? " << this->getTowerName() << std::endl;
+                    this->_timeOfLastShot = std::chrono::steady_clock::now();
+                }
+                //* wait time between fire
+                // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
+                // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
             }
-            //* wait time between fire
-            // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
-           // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
         }
-    }
     std::cout << "Leaving tower loop" << std::endl;
 }
 void Tower::deactivate(){
@@ -133,6 +151,10 @@ void Tower::fire(TDUnit *target){
     //* remove target health
    // target->setHealth(target->getHealth()-this->damage[this->level]);
     // Get the position of the tower and the target
+    if (target->_isKilled == true) {
+        removeFromEnemiesInRangeList(target);
+        return ;
+    }
     sf::Vector2f towerPos = this->towerSprite.getPosition();
     sf::Vector2f targetPos = target->getSprite().getPosition();
 
@@ -144,14 +166,19 @@ void Tower::fire(TDUnit *target){
 
     // Set the rotation of the tower sprite
     this->towerSprite.setRotation(angle + 90);
-    mtx.lock();
-    target->getShot(this->damage[this->level]);
-    if (target->getHealth() <= 0) {
-         // PROBLEM BECAUSE ALREADY DELETE BY HIMSELF ??
-        //  this->gameInstance.addCoins(target->getValue());
-        removeFromEnemiesInRangeList(target);
-        this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
-        target->getKill();
+    try  {
+        mtx.lock();
+        target->getShot(this->damage[this->level]);
+        if (target->getHealth() <= 0) {
+            //  this->gameInstance.addCoins(target->getValue());
+            removeFromEnemiesInRangeList(target);
+            this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
+            std::cout << "Crash here3 ? " << this->getTowerName() << std::endl;
+            target->getKill();
+        }
+    } catch (const std::system_error& ex) {
+        std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
+        // Additional error handling or recovery logic
     }
     mtx.unlock();
 }
@@ -197,6 +224,8 @@ void Tower::setPosition(int newXPos, int newYPos, int cellSize){
 Point Tower::getPosition(){
     return (this->coord);
 }
+
+std::string Tower::getTowerName() { return (this->towerName); };
 
 bool Tower::isMaxed(){
     if (this->level += 1 < this->cost.size()) {

@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled1-Release-e7cf7a62fc483ff9b76e.json",
+					"jsonFile" : "target-untitled1-Release-a6654b33bd726fb046f7.json",
 					"name" : "untitled1",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/untitled1/cmake-build-debug",
+		"build" : "C:/untitled1/cmake-build-release",
 		"source" : "C:/untitled1"
 	},
 	"version" : 

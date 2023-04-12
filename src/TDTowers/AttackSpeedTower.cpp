@@ -1,24 +1,19 @@
 #include "AttackSpeedTower.hpp"
 
-AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 4, cellSize, sfmlTowerLoader, "AntiAirTower"){
-
-    this->damage = {150, 250, 400};
-    this->cost = {350, 500, 700};
-
-    this->range = 10;
-    this->timeBetweenAttack = 5;
+AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AttackSpeedTower",
+                                                                                                              {10, 8, 13}, {350, 500, 700}, 5, 0.1){
 }
 
-void AttackSpeedTower::boostTower(Tower &tower){
+/*void AttackSpeedTower::boostTower(Tower &tower){
     //* Boost the tower speed  attack boost
     tower.setTimeBetweenAttack(tower.getTimeBetweenAttack()/this->attackSpeedBoost[this->level]);
     tower.setSpeedBoosted(true);
-}
-void AttackSpeedTower::resetBoostTower(Tower &tower){
-    //* reset the tower speed attack boost
+}*/
+/*void AttackSpeedTower::resetBoostTower(Tower &tower){
+     reset the tower speed attack boost
     tower.setTimeBetweenAttack(tower.getTimeBetweenAttack()*this->attackSpeedBoost[this->level]);
     tower.setSpeedBoosted(false);
-}
+}*/
 
 
 /*void AttackSpeedTower::activate(std::vector<TDUnit *> enemiesList){
@@ -37,13 +32,13 @@ void AttackSpeedTower::resetBoostTower(Tower &tower){
     }
 }*/
 
-void AttackSpeedTower::upgrade(){
+/*void AttackSpeedTower::upgrade(){
     if(this->level += 1 < this->cost.size() ){
         this->level++;
         std::cout << " Tower upgraded from level " << this->level-1 << " to " << this->level << std::endl;
     }else{
         std::cout << "The tower level is already maxed" << std::endl;
     }
-}
+}*/
 
 

@@ -2,13 +2,8 @@
 #include "AntiAirTower.hpp"
 
 
-AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AntiAirTower"){
-
-    this->damage = {150, 250, 400};
-    this->cost = {350, 500, 700};
-    
-    this->range = 10;
-    this->timeBetweenAttack = 5;
+AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AntiAirTower",
+                                                                                                      {150, 250, 400}, {350, 500, 700}, 10, 5){
 }
 
 /*void AntiAirTower::isInRange(std::vector<TDUnit *> enemiesList){

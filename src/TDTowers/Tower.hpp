@@ -36,9 +36,10 @@ class Tower : public Buildable {
         sf::Sprite towerSprite;
 
 public:
-        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName);
+        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName,
+              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack);
         ~Tower() override { this->_towerThread.join(); };
-        std::string getTowerName() { return (this->towerName); };
+        std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
         void setCurrentWave(std::shared_ptr<std::vector<TDUnit*>> enemiesList);
         void removeFromEnemiesInRangeList(TDUnit *enemy) override;

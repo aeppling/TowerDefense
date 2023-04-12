@@ -55,7 +55,7 @@ class Game{
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
         void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader);
-        void setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning);
+        bool setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
         void gameWon();
         void gameLost();

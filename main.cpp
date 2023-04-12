@@ -71,9 +71,13 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     Game currentGame(1, 1);
-    if (currentGame.launch(sfmlLoader, window) == -1) {
-        std::cout << "Error on map initialisation" << std::endl;
-        return (-1);
+    try {
+        if (currentGame.launch(sfmlLoader, window) == -1) {
+            std::cout << "Error on map initialisation" << std::endl;
+            return (-1);
+        }
+    } catch (const std::out_of_range& ex) {
+        std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
     // WINDOW LOOP AND MOUSE SETUP
    // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);

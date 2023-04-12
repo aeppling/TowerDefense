@@ -245,7 +245,8 @@
 				32,
 				34,
 				37,
-				39
+				39,
+				40
 			]
 		}
 	],
@@ -390,7 +391,8 @@
 				32,
 				34,
 				37,
-				39
+				39,
+				40
 			]
 		},
 		{
@@ -417,7 +419,8 @@
 				33,
 				35,
 				36,
-				38
+				38,
+				41
 			]
 		}
 	],
@@ -641,6 +644,17 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/TDTowers/AttackSpeedTower.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDTowers/BasicTower.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDTowers/BasicTower.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

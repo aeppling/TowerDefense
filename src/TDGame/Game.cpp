@@ -6,6 +6,7 @@
 #include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
 #include "../TDTowers/AntiAirTower.hpp"
+#include "../TDTowers/BasicTower.hpp"
 #include "../TDTowers/AttackSpeedTower.hpp"
 
 
@@ -196,8 +197,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
              //   Tower *buildTowerTest = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader);
                 // ATTACK SPEED TOWER CRASH
               //  Tower *buildTowerTest2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest3 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader, "BasicTower");
-                Tower *buildTowerTest4 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader, "BasicTower");
+                Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
           //      this->towerStoreList.push_back(buildTowerTest);
                 //this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
@@ -266,9 +267,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 event.key.code == sf::Keyboard::T) {// TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
                                 if (!this->towerStoreList.empty()) {
                                     toBuild = this->towerStoreList.at(this->towerSelectorIndex);
-                                    setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning);
-                                    if (toBuild == nullptr)
+                                    if (setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning))
                                         isBuilding = false;
+                                   /* if (toBuild == nullptr) {
+                                        isBuilding = false;
+                                    }*/
                                 }
                             }
                         }
@@ -291,15 +294,21 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     if (isBuilding == true) {
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
-                            int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
-                            if (radius <= 1)
-                                setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                   isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                   mouseCoord.posY, radius));
-                            else
-                                setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                   isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
-                                                                         radius));
+                            try {
+                                int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
+                                if (radius <= 1)
+                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
+                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
+                                                                                       mouseCoord.posY, radius));
+                                else
+                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
+                                                       isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
+                                                                             radius));
+                            }
+                            catch (const std::out_of_range& ex){
+                                std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
+
+                            }
                         }
                     }
                     // DISPLAY ENNEMIES AND CHECK FOR ARRIVING == NOT TOO SOON !!!
@@ -434,7 +443,7 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
     // NO THREAD HERE BUT COUNTER IN MAIN LOOP AND CALL EVERY x SECONDS
 }
 
-void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning) {
+bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX()) {
         // SET TOWER
@@ -449,7 +458,7 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                 Tower *toAdd = dynamic_cast<Tower *>(toBuild);
                 if (toAdd == nullptr) {
                     std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
-                    return;
+                    return (false);
                 }
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
@@ -458,8 +467,20 @@ void Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 map.refreshTextures(sfmlLoader, this->spritesHolderPtr, this->cellSize, mouseCoord.posX, mouseCoord.posY);
                 this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
+                if (this->towerSelectorIndex > this->towerStoreList.size() - 1)
+                    this->towerSelectorIndex--;
+                return (true);
+            }
+            else {
+                return (false);
             }
         }
+        else {
+            return (false);
+        }
+    }
+    else {
+        return (false);
     }
 }
 

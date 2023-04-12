@@ -1,7 +1,8 @@
 #include "SlowTower.hpp"
 
 
-SlowTower::SlowTower(Game gameInstance):Tower(gameInstance){
+SlowTower::SlowTower(Game gameInstance) : Tower(gameInstance, 4, cellSize, sfmlTowerLoader, "AntiAirTower",
+{150, 250, 400}, {350, 500, 700}, 10, 5) {
     this->slowValue = {10,20,30};
     this->damage = {0,0,0};
     this->size = {2,2};

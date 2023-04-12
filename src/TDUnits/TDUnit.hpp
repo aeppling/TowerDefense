@@ -27,6 +27,7 @@ public:
 
     bool _alreadyCount;
     bool _alreadyArrived;
+    bool _isKilled;
 
     //COORD
     int  _baseCoordX;
@@ -47,8 +48,7 @@ public:
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale);
     ~TDUnit() {
-        std::cout << "Dead unit here." << std::endl;
-
+        std::cout << "Unit destructed here : " << this->getTypeName() << std::endl;
     }
     virtual std::string getTypeName() {
         return "Enemy";

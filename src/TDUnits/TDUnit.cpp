@@ -43,6 +43,7 @@ void    TDUnit::live() {
 void    TDUnit::run(TDMap *map) {
     //UNCOMMENT TO DEBUG PATH
     this->_mapCopy = map;
+    this->_isKilled = false;
     this->_thread = std::thread(&TDUnit::live, this);
 }
 
@@ -167,7 +168,8 @@ void    TDUnit::getKill() {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     this->_sprite.setColor(sf::Color::Transparent);
     this->_thread.join();
-//    delete this;
+    this->_isKilled = true;
+    std::cout <<"KILLED" << std::endl;
 }
 
 void    TDUnit::rotate(float posX, float posY, float destX, float destY) {
