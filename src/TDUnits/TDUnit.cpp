@@ -8,6 +8,7 @@
 #include "TDUnit.hpp"
 #include "../TDGame/SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
+#include "../TDGame/AnimationsMaths.hpp"
 
 std::mutex mtx2;
 
@@ -29,14 +30,12 @@ void    TDUnit::live() {
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
-        if (res >= this->_speed) {
+     //   if (res >= this->_speed) {
             if (!(this->isAtBase())) {
-               // std::cout << "Move now " << '[' + this->getTypeName() + "] :" << " Current pos x:" << this->_posX << " y:" << this->_posY
-                //          << std::endl;
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
             }
-        }
+       // }
     }
 }
 
@@ -56,30 +55,32 @@ void    TDUnit::move() {
        //nextTo = this->_path[0];
     }
     else {
-        this->rotate(this->_posX, this->_posY, nextTo->getPosX(), nextTo->getPosY());
-        if ((this->_posX != nextTo->getPosX()) && (this->_posY != nextTo->getPosY()))
-            std::cout << "Took diagonal" << std::endl;
-
-        std::chrono::steady_clock::time_point totalTime = std::chrono::steady_clock::now();
-        std::chrono::steady_clock::time_point elapsedAll = std::chrono::steady_clock::now();
-
-        int res = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedAll - totalTime).count();
-        std::chrono::steady_clock::time_point markerTime = std::chrono::steady_clock::now();
-        while (res < this->_speed) {
-            std::chrono::steady_clock::time_point elapsed = std::chrono::steady_clock::now();
-            int resInter = std::chrono::duration_cast<std::chrono::milliseconds>(elapsed - markerTime).count();
-            if (resInter > this->_spriteSpeed) {
-                //NEED FOR EACH DIRECTION
-                markerTime = std::chrono::steady_clock::now();
-                this->rotate(this->_posX, this->_posY, nextTo->getPosX(), nextTo->getPosY());
+        sf::Vector2f targetPosition = sf::Vector2f((nextTo->getPosX() * this->_unitSize) + this->_cellSize / 2,
+                                                   (nextTo->getPosY() * this->_unitSize) + this->_cellSize / 2);
+        sf::Vector2f currentPosition = this->_sprite.getPosition();
+        // Calculate distance to move
+        float distanceX = targetPosition.x - currentPosition.x;
+        float distanceY = targetPosition.y - currentPosition.y;
+        // Set desired speed and time per frame
+        float totalTime = static_cast<float>(this->_speed);
+        sf::Clock clock;
+        while (clock.getElapsedTime().asMilliseconds() < totalTime) {
+            float t = clock.getElapsedTime().asMilliseconds() / totalTime; // Interpolation parameter (0 to 1)
+            float lerpX = currentPosition.x + t * distanceX;
+            float lerpY = currentPosition.y + t * distanceY;
+            this->_sprite.setPosition(lerpX, lerpY);
+            float rotation = atan2(distanceY, distanceX) * 180 / 3.14159265f; // Convert radians to degrees
+            this->_sprite.setRotation(rotation + 90.0f);
+            // Check if target position is reached
+            if (t >= 1.0f) {
+                break;
             }
-            elapsedAll = std::chrono::steady_clock::now();
-            res = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedAll - totalTime).count();
+            sf::sleep(sf::milliseconds(20));
         }
 
+     //   this->_sprite.setPosition((this->_posX * this->_unitSize) + this->_cellSize/2, (this->_posY * this->_unitSize) + this->_cellSize / 2);
         this->_posX = nextTo->getPosX();
         this->_posY = nextTo->getPosY();
-        //  this->_sprite.move(;)
         this->_path.erase(this->_path.begin());
     }
 }

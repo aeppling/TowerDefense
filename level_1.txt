@@ -1,4 +1,8 @@
+Drone:1
 Drone:7
 Missile:3
 Alien:2
 Spaceship:1
+Drone:4/Alien:5/Missile:1
+Spaceship:1/Alien:1/Missile:1/Alien:1
+Spaceship:5

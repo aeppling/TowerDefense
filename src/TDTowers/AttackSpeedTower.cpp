@@ -1,7 +1,7 @@
 #include "AttackSpeedTower.hpp"
 
 AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AttackSpeedTower",
-                                                                                                              {10, 8, 13}, {350, 500, 700}, 5, 0.1){
+                                                                                                              {4, 8, 13}, {350, 500, 700}, 5, 0.2){
 }
 
 /*void AttackSpeedTower::boostTower(Tower &tower){

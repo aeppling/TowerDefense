@@ -21,20 +21,20 @@ public:
     int _resistance;
     int _posX;
     int _posY;
-    int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN SECONDS
+    int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN mSECONDS
     bool _isFlying;
     int  _value;
 
     bool _alreadyCount;
     bool _alreadyArrived;
-    bool _isKilled;
+    bool _isKilled; // TO AVOID SEGFAULT ON OTHER MULTIPLE TOWER
 
     //COORD
     int  _baseCoordX;
     int  _baseCoordY;
     int  _cellSize;
     int  _spriteSpeed; //SPRITE SPEED IN MILLISECOND PER PIXEL
-    float _scale;
+    float _scale; // THE SCALE FACTOR OF THE SPRITE (for bigger or smaller units)
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
@@ -43,7 +43,7 @@ public:
     TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite  _sprite;
-    int         _unitSize;
+    int         _unitSize; // SIZE OF UNIT IN MAP CELL
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale);
@@ -88,34 +88,6 @@ public:
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);
 };
-
-class Molosse : public TDUnit {
-public:
-    Molosse(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(500, 1000, 10, posX, posY, false, 20, sfmlLoaderUnit, 1) {}
-
-    virtual std::string getTypeName() {
-        return "Molosse";
-    }
-};
-
-class Golem : public TDUnit {
-public:
-    Golem(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(300, 3500, 5, posX, posY, false, 40, sfmlLoaderUnit, 1) {}
-
-    virtual std::string getTypeName() {
-        return "Golem";
-    }
-};
-
-class Minions : public TDUnit {
-public:
-    Minions(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(100, 1000, 2, posX, posY, false, 15, sfmlLoaderUnit, 1) {}
-
-    virtual std::string getTypeName() {
-        return "Minions";
-    }
-};
-
 /*
 class TestUnit {
 private:

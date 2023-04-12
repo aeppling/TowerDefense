@@ -100,7 +100,6 @@ void Tower::isInRange() {
 void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
     //* run while tower is activated 
     this->enemiesList = enemiesList;
-    std::cout << "Tower activated" << std::endl;
     this->activated = true;
         while (this->activated) { // EXITING TO QUICKLY ?
             if (this->activated == false)
@@ -112,27 +111,23 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                 int res = std::chrono::duration_cast<std::chrono::milliseconds>(
                         testTime - this->_timeOfLastShot).count();
                 if (res >= this->timeBetweenAttack * 1000) {
-                    std::cout << "Crash here2 ? " << this->getTowerName() << std::endl;
                     this->fire(this->enemiesInRange.at(0));
-                    std::cout << "NO 2 ? " << this->getTowerName() << std::endl;
                     this->_timeOfLastShot = std::chrono::steady_clock::now();
                 }
                 //* wait time between fire
                 // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
                 // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
             }
+            sf::sleep(sf::milliseconds(15));
         }
-    std::cout << "Leaving tower loop" << std::endl;
 }
 void Tower::deactivate(){
     //* Deactivate the tower
   //  if (this->_towerThread.joinable())
     //    this->_towerThread.join();
-    std::cout << "Tower Deactivated" << std::endl;
     this->activated = false;
     this->enemiesList->clear();
     this->enemiesInRange.clear();
-    std::cout << "Tower Cleared" << std::endl;
     // this->enemiesList = new std::vector<TDUnit *>();
   // this->enemiesInRange =  new std::vector<TDUnit *>();
 }
@@ -173,7 +168,6 @@ void Tower::fire(TDUnit *target){
             //  this->gameInstance.addCoins(target->getValue());
             removeFromEnemiesInRangeList(target);
             this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
-            std::cout << "Crash here3 ? " << this->getTowerName() << std::endl;
             target->getKill();
         }
     } catch (const std::system_error& ex) {

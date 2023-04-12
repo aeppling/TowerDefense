@@ -209,6 +209,14 @@ build CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj: CXX_COMPILER__un
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
 
+build CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj: CXX_COMPILER__untitled1_Release C$:/untitled1/src/TDGame/AnimationsMaths.cpp || cmake_object_order_depends_target_untitled1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\untitled1.dir\src\TDGame\AnimationsMaths.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG
+  INCLUDES = -isystem C:/untitled1/include
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled1
@@ -217,7 +225,7 @@ build CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj: CXX_COMPILER__un
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Release CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj | ../lib/libsfml-system-s.a ../lib/libsfml-window-s.a ../lib/libsfml-graphics-s.a ../lib/libsfml-network-s.a ../lib/libsfml-audio-s.a ../lib/libsfml-window-s.a ../lib/libfreetype.a ../lib/libsfml-system-s.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
+build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Release CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj | ../lib/libsfml-system-s.a ../lib/libsfml-window-s.a ../lib/libsfml-graphics-s.a ../lib/libsfml-network-s.a ../lib/libsfml-audio-s.a ../lib/libsfml-window-s.a ../lib/libfreetype.a ../lib/libsfml-system-s.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = ../lib/libsfml-system-s.a  ../lib/libsfml-window-s.a  ../lib/libsfml-graphics-s.a  ../lib/libsfml-network-s.a  ../lib/libsfml-audio-s.a  ../lib/libsfml-window-s.a  -lgdi32  -lOpenGL32  ../lib/libfreetype.a  -lws2_32  ../lib/libsfml-system-s.a  -lwinmm  ../lib/libopenal32.a  ../lib/libvorbisfile.a  ../lib/libvorbisenc.a  ../lib/libvorbis.a  ../lib/libogg.a  ../lib/libFLAC.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir
