@@ -6,7 +6,7 @@ class AttackSpeedTower : public Tower{
         std::vector<Tower *> towersList;
         std::vector<Tower *> towersInRange;*/
 public :
-        AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower);
+        AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
        // ~AttackSpeedTower() {};
        void isInRange(std::vector<TDUnit *> enemiesList);
   //  void boostTower(Tower &tower);

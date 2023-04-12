@@ -2,7 +2,7 @@
 #include "AntiAirTower.hpp"
 
 
-AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AntiAirTower",
+AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "AntiAirTower",
                                                                                                       {150, 250, 400}, {350, 500, 700}, 10, 5){
 }
 

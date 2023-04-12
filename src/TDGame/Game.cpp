@@ -13,6 +13,8 @@
 Game::Game(int difficulty, int level){
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
+    SFMLMissileLoader sfmlMissileLoader;
+    this->sfmlMissileLoader = sfmlMissileLoader;
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;
     this->levelRetriever = new RetrieveLevel(level);
@@ -158,7 +160,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder){
             startLevel();
             bool isBuilding = false;
-            int timeBetweenSpawn = 1700;
+            int timeBetweenSpawn = 700;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);
@@ -197,8 +199,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
              //   Tower *buildTowerTest = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader);
                 // ATTACK SPEED TOWER CRASH
               //  Tower *buildTowerTest2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
+                Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
+                Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
           //      this->towerStoreList.push_back(buildTowerTest);
                 //this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
@@ -312,6 +314,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // DISPLAY ENNEMIES AND CHECK FOR ARRIVING == NOT TOO SOON !!!
+
                     s = 0;
                     while (s < enemyList.at(this->currentWaveNumber).size()) {
                         if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {

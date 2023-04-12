@@ -2,11 +2,12 @@
 #include <mutex>
 #include <math.h>
 #include "Tower.hpp"
+#include "../TDGraphics/SFMLMissileLoader.hpp"
 
 std::mutex mtx;
 
-Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName,
-             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack) : Buildable(size, "Tower")  {
+Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
+             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
@@ -24,6 +25,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
     }
+    this->missileLauncher = new MissileLauncher(sfmlMissileLoader, window, cellSize, towerName);
     std::cout << this->towerName << " added to shoplist." << std::endl;
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().x, this->towerSprite.getTexture()->getSize().y);
@@ -121,6 +123,7 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
             sf::sleep(sf::milliseconds(15));
         }
 }
+
 void Tower::deactivate(){
     //* Deactivate the tower
   //  if (this->_towerThread.joinable())
@@ -142,6 +145,14 @@ void Tower::join() {
    // this->enemiesList = nullptr;
 }
 
+void Tower::rotate(TDUnit *target) {
+    sf::Vector2f towerPos = this->towerSprite.getPosition();
+    sf::Vector2f targetPos = target->getSprite().getPosition();
+    sf::Vector2f direction = targetPos - towerPos;
+    float angle = atan2(direction.y, direction.x) * 180 / 3.14159f;
+    this->towerSprite.setRotation(angle + 90);
+}
+
 void Tower::fire(TDUnit *target){
     //* remove target health
    // target->setHealth(target->getHealth()-this->damage[this->level]);
@@ -150,17 +161,7 @@ void Tower::fire(TDUnit *target){
         removeFromEnemiesInRangeList(target);
         return ;
     }
-    sf::Vector2f towerPos = this->towerSprite.getPosition();
-    sf::Vector2f targetPos = target->getSprite().getPosition();
-
-    // Calculate the direction vector
-    sf::Vector2f direction = targetPos - towerPos;
-
-    // Calculate the angle between the direction vector and the x-axis
-    float angle = atan2(direction.y, direction.x) * 180 / 3.14159f;
-
-    // Set the rotation of the tower sprite
-    this->towerSprite.setRotation(angle + 90);
+    this->rotate(target);
     try  {
         mtx.lock();
         target->getShot(this->damage[this->level]);
@@ -170,6 +171,7 @@ void Tower::fire(TDUnit *target){
             this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
             target->getKill();
         }
+        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target);
     } catch (const std::system_error& ex) {
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
         // Additional error handling or recovery logic

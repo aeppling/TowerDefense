@@ -1,6 +1,6 @@
 #include "AttackSpeedTower.hpp"
 
-AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, "AttackSpeedTower",
+AttackSpeedTower::AttackSpeedTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window): Tower(gameInstance, 2, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "AttackSpeedTower",
                                                                                                               {4, 8, 13}, {350, 500, 700}, 5, 0.2){
 }
 

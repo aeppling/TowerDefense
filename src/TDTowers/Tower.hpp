@@ -6,6 +6,8 @@
 #include "../TDGame/usefullStruct.hpp"
 #include "../TDGame/Buildable.hpp"
 #include "../TDGraphics/SFMLTowerLoader.hpp"
+#include "../TDGraphics/SFMLMissileLoader.hpp"
+#include "../TDTowers/MissileLauncher.hpp"
 
 #include <vector>
 #include <thread>
@@ -34,9 +36,11 @@ class Tower : public Buildable {
         Game        *gameInstance;
         std::chrono::steady_clock::time_point _timeOfLastShot; // SET WITH time(NULL) and reset at every move
         sf::Sprite towerSprite;
+        MissileLauncher *missileLauncher;
+        sf::RenderWindow &window;
 
 public:
-        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, std::string towerName,
+        Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
               std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName();
@@ -46,6 +50,7 @@ public:
         void addToEnemiesInRangeList(TDUnit *enemy) override;
         void activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void deactivate() override;
+        void rotate(TDUnit *target);
         void fire(TDUnit *target) override;
         void isInRange() override;
         void upgrade() override;

@@ -11,10 +11,6 @@ SFMLTowerLoader::SFMLTowerLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_speed.loadFromFile("Sprites/MyTiles/turret_02_mk1.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    //this->_pathCell.setSmooth(false);
-    //this->_notWalkableCell.setSmooth(false);
-    //   this->_wallCell.loadFromFile();
-    // this->_mapBorder.loadFromFile();
 }
 
 SFMLTowerLoader::~SFMLTowerLoader() {

@@ -8,6 +8,7 @@
 #include "Buildable.hpp"
 #include "../TDGraphics/SFMLTowerLoader.hpp"
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
+#include "../TDGraphics/SFMLMissileLoader.hpp"
 
 
 #include <iostream>
@@ -42,6 +43,7 @@ class Game{
         sf::Text             killCounterDisplay;
         SFMLEnemiesLoader   sfmlEnemiesLoader;
         SFMLTowerLoader     sfmlTowerLoader;
+        SFMLMissileLoader   sfmlMissileLoader;
         sf::Sprite hearthDisplay;
     public :
         Game(int difficulty, int level);
