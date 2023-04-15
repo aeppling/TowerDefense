@@ -15,7 +15,13 @@ MissileThread::MissileThread() : _isArrived(false) {
 void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f &startPosition,
                                  const sf::Vector2f &endPosition, int &cellSize, float &speed) {
     speed = speed / 1000;
-    this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
+    std::cout << "Style :"<< this->_style << std::endl;
+    if (this->_style == "BasicTower")
+        this->_sprite.setTexture(*sfmlMissileLoader.getBasic());
+    else if (this->_style == "AttackSpeedTower")
+        this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
+    else
+        this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor * 2, scaleFactor * 2);
@@ -47,8 +53,10 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
     this->_isArrived = true;
 }
 
-void MissileThread::startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int cellSize, float speed)
+void MissileThread::startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition,
+                                const sf::Vector2f& endPosition, int cellSize, float speed, std::string style)
 {
+    this->_style = style;
     this->_thread = std::thread(&MissileThread::shootMissile, this, std::ref(sfmlMissileLoader), startPosition, endPosition, std::ref(cellSize), std::ref(speed));
     this->_thread.detach();
 }

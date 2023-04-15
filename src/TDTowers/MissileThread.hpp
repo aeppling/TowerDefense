@@ -15,10 +15,12 @@ private:
     bool        _isArrived;
     sf::Sprite  _sprite;
     std::thread _thread;
+    std::string _style;
 public:
     MissileThread();
     ~MissileThread() {};
-    void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int cellSize, float speed);
+    void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition,
+                     int cellSize, float speed, std::string style);
     void shootMissile(SFMLMissileLoader &sfmlMissileLoader,
                       const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int &cellSize, float &speed);
     sf::Sprite getSprite();

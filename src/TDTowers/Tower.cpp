@@ -26,7 +26,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
     }
-    this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, towerName);
+    this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
     this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
