@@ -428,6 +428,11 @@ void Game::displayMapAndTowers(sf::RenderWindow &window) {
     int i = 0;
     while (i != this->towerList.size()) {
             window.draw(this->towerList.at(i)->getTowerSprite());
+            int y = 0;
+            while (y < this->towerList.at(i)->getTotalMissiles()) {
+                window.draw(this->towerList.at(i)->getMissileSprite(y));
+                y++;
+            }
             i++;
         }
 }

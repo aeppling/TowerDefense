@@ -68,6 +68,8 @@ public:
         void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) override;
         bool isMaxed() override;
+        sf::Sprite getMissileSprite(int index);
+        int getTotalMissiles();
 };
 
 #endif

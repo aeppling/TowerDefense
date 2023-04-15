@@ -6,7 +6,7 @@
 #define UNTITLED1_USEFULLSTRUCT_HPP
 
 #define _GAME_POSITION_X 480
-#define _GAME_POSITION_Y 0
+#define _GAME_POSITION_Y 25
 
 struct Point{
     int x, y;

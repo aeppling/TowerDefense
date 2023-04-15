@@ -80,7 +80,7 @@ void TDMap::constructAddLine(std::string lineToAdd) {
 }
 
 void TDMap::setAllPositions() {
-    int x = 0;
+    int x;
     int y = 0;
 
     while (y != this->_map.size()) {

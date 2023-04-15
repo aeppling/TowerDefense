@@ -187,6 +187,7 @@ void Tower::fire(TDUnit *target){
         mtx.lock();
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
+        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target);
         target->getShot(this->damage[this->level]);
         if (target->getHealth() <= 0) {
             //  this->gameInstance.addCoins(target->getValue());
@@ -195,11 +196,11 @@ void Tower::fire(TDUnit *target){
             target->getKill();
 
         }
-        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target);
     } catch (const std::system_error& ex) {
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
         // Additional error handling or recovery logic
     }
+    this->missileLauncher->endFinishedThreads();
     mtx.unlock();
 }
 
@@ -246,6 +247,14 @@ Point Tower::getPosition(){
 }
 
 std::string Tower::getTowerName() { return (this->towerName); };
+
+sf::Sprite Tower::getMissileSprite(int index) {
+    return (this->missileLauncher->getSpriteByIndex(index));
+}
+
+int Tower::getTotalMissiles() {
+    return (this->missileLauncher->getTotalMissiles());
+}
 
 bool Tower::isMaxed(){
     if (this->level += 1 < this->cost.size()) {

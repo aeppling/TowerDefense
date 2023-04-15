@@ -12,23 +12,28 @@
 
 class MissileThread {
 private:
-    bool _isArrived;
+    bool        _isArrived;
+    sf::Sprite  _sprite;
+    std::thread _thread;
 public:
     MissileThread();
     ~MissileThread() {};
+    void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int cellSize, float speed);
     void shootMissile(SFMLMissileLoader &sfmlMissileLoader,
-                      const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int cellSize, float speed);
+                      const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int &cellSize, float &speed);
+    sf::Sprite getSprite();
 
-    void join() {
-        // Join the thread
- /*       if (t && t->joinable()) {
-            t->join();
-        }*/
+    bool joinThread() {
+        if (this->_thread.joinable()) {
+            this->_thread.join();
+            std::cout << "JOINED" << std::endl;
+            return (true);
+        }
+        return (false);
     }
 
-    bool isFinished() const {
-        // Check if the thread has finished
-    //    return finished;
+    bool isArrived() const {
+        return (this->_isArrived);
     }
 };
 

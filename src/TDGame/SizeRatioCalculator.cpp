@@ -7,16 +7,23 @@
 
 int getCellSize(int winSizeX, int winSizeY, int mapSizeX, int mapSizeY) {
     int smallerWinSize = std::min(winSizeX, winSizeY);
-    int largerMapSize = std::max(mapSizeY, mapSizeX);
+    int largerMapSize = std::max(mapSizeX, mapSizeY);
     int cellSize = std::min(smallerWinSize / largerMapSize, smallerWinSize / largerMapSize);
 
-    if ((mapSizeY > 30) || (mapSizeX > 30))
+  /*  if ((mapSizeY > 20))
+        cellSize = cellSize / 1.1;
+    if ((mapSizeY > 45))
+        cellSize = cellSize / 1.2;
+    if ((mapSizeY > 60))
+        cellSize = cellSize / 1.3;*/
+
+  /*  if ((mapSizeY > 30) || (mapSizeX > 30))
         cellSize = cellSize / 1.1;
     if ((mapSizeY > 40) || (mapSizeX > 40))
         cellSize = cellSize / 1.2;
     if ((mapSizeY > 60) || (mapSizeX > 60))
-        cellSize = cellSize / 1.3;
-    return (cellSize);
+        cellSize = cellSize / 1.3;*/
+  return (cellSize / 1.1);
 }
 
 mouseCoordinates getMouseCellCoordinate(TDMap &map, sf::RenderWindow &window) {
