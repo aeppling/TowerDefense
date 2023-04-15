@@ -1,0 +1,21 @@
+# ninja log v5
+28	617	7028462320633773	CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj	2d9795fdc2e55267
+2	1217	7028462326644587	CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj	e75a8b95966a3018
+19	1526	7028462329701087	CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj	dbaa3d1a98f5ab1b
+1414	2411	7028462338558697	CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj	8aa4cc9a21cb3c8f
+4	1652	7029138818470170	CMakeFiles/untitled1.dir/main.cpp.obj	d324f9c9e06e4f8
+1219	2317	7028462337566190	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj	e69870b464629c6c
+35	1712	7028462331569485	CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj	5eb6420fef9d5420
+45	1837	7028462332750070	CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj	436da59b79171613
+1712	1822	7028462332678079	CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj	15c7f9f7d85c7cf
+620	2282	7028462337276334	CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj	ccc136fb00b56a56
+2282	3149	7028462345973408	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj	ea071a393854935a
+2318	3211	7028462346568778	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj	dbde803bbda171d9
+2411	3294	7028462347394647	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj	4a08df4b03e105b1
+1822	3304	7028462347445361	CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj	b50f371f363af631
+10	1656	7029138818495661	CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj	da6b3bf6e4340d3e
+15	1924	7029138821225064	CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj	3bdf0417d37c4885
+3294	4079	7028462355236910	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj	503f5603dd52538
+21	1653	7029138818470170	CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj	d10545709db79034
+27	1649	7029138818470170	CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj	e1ebf8ffc72ba68
+1925	2655	7029138828480728	untitled1.exe	ed9c29655d220628
