@@ -1,5 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.4/bin/ninja/win/ninja.exe" -G Ninja -S C:\untitled1 -B C:\untitled1\cmake-build-release
--- Found SFML 2.5.1 in C:/untitled1/lib/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: C:/untitled1/cmake-build-release
