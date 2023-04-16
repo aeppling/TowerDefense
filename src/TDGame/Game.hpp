@@ -45,6 +45,9 @@ class Game{
         SFMLTowerLoader     sfmlTowerLoader;
         SFMLMissileLoader   sfmlMissileLoader;
         sf::Sprite hearthDisplay;
+        sf::RectangleShape hitMarker;
+        unsigned int       hitMarkerOpacity;
+    std::chrono::steady_clock::time_point hitMarkerStartTimer;
     public :
         Game(int difficulty, int level);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);

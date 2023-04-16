@@ -29,6 +29,10 @@ Game::Game(int difficulty, int level){
     this->spawnCount = 0;
     this->towerSelectorIndex = 0;
     this->spritesHolderPtr = std::make_shared<SpritesHolder>(this->spritesHolder);
+    this->hitMarker.setSize(sf::Vector2f(1920, 1280));
+    sf::Color hitMarkerColor(255, 0, 0, 0);
+    this->hitMarker.setFillColor(hitMarkerColor);
+    this->hitMarkerOpacity = 0;
 }
 
 
@@ -167,7 +171,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             sf::Texture mousePointerTexture;
             mousePointerTexture.loadFromFile("Sprites/Cursors/crosshair043.png");
             sf::Sprite mousePointer(mousePointerTexture);
-//            sf::IntRect textureRect(0, 0, cellSize - 3, cellSize - 3); // -3 to see border and debug
             float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(144);
             sf::IntRect textureRect(0, 0, 144, 144);
             mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
@@ -268,9 +271,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     toBuild = this->towerStoreList.at(this->towerSelectorIndex);
                                     if (setTowerTest(std::ref(map), std::ref(window), sfmlLoader, toBuild, isWaveRunning))
                                         isBuilding = false;
-                                   /* if (toBuild == nullptr) {
-                                        isBuilding = false;
-                                    }*/
                                 }
                             }
                         }
@@ -279,16 +279,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         break;
                     int s = 0;
                     // DISPLAY MAP
-                   // this->spritesHolderPtr->displayDebug();
                     this->displayMapAndTowers(window);
-                   /* while (s != map.getTileMaxSpriteY()) {
-                        int s2 = 0;
-                        while (s2 != map.getTileMaxSpriteX(s)) {
-                            window.draw(map.getTileSprite(s, s2));
-                            s2++;
-                        }
-                        s++;
-                    }*/
                     //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
                     if (isBuilding == true) {
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
@@ -316,12 +307,18 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     while (s < enemyList.at(this->currentWaveNumber).size()) {
                         if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
                             window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                            if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
+                                window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
+                            }
                         }
                         if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
                         && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
                             this->enemiesLeft--;
                             this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
                             this->totalKill++;
+                            std::cout << "Dead at position x:" << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
+                            std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
                             this->killCounterDisplay.setString("Total kills : " + std::to_string(this->totalKill));
                             this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                         }
@@ -332,6 +329,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                      && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                 this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
                                 this->lifeNumber--;
+                                // RESET HIT MARKER OPACITY
+                                this->hitMarkerOpacity = 155;
+                                // DISPLAY HUD LIFE
                                 this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
                                 this->enemiesLeft--;
                                 if (this->lifeNumber <= 0)
@@ -340,6 +340,23 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         s++;
                     }
+                    // DISPLAY HIT MARKER
+                    if (this->hitMarkerOpacity == 155) {
+                        this->hitMarkerStartTimer = std::chrono::steady_clock::now();
+                        this->hitMarkerOpacity--;
+                    }
+                    if (this->hitMarkerOpacity > 0) {
+                        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+                        if (std::chrono::duration_cast<std::chrono::milliseconds>(end - this->hitMarkerStartTimer).count() > 3) {
+                            this->hitMarkerOpacity--;
+                            std::cout << "Here"<< std::endl;
+                            this->hitMarkerStartTimer = std::chrono::steady_clock::now();
+                        }
+                        sf::Color hitMarkerColor(255, 0, 0, this->hitMarkerOpacity);
+                        this->hitMarker.setFillColor(hitMarkerColor);
+                        window.draw(this->hitMarker);
+                    }
+                    // BREAK IF DEAD
                     if (this->lifeNumber <= 0)
                         break;
                     // SET AND DISPLAY MOUSE

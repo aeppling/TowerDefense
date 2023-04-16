@@ -17,6 +17,7 @@
 class TDUnit {
 public:
     // BASICS STATS
+    int _max_health;
     int _health_points;
     int _resistance;
     int _posX;
@@ -42,8 +43,11 @@ public:
     std::thread                           _thread;
     TDMap                                 *_mapCopy;
     // SFML
-    sf::Sprite  _sprite;
-    int         _unitSize; // SIZE OF UNIT IN MAP CELL
+    sf::Sprite          _sprite;
+    int                 _unitSize; // SIZE OF UNIT IN MAP CELL
+    sf::RectangleShape  _healthBar;
+    sf::RectangleShape  _healthMaxBar;
+
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale);
@@ -87,6 +91,8 @@ public:
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);
+    sf::RectangleShape getHealthBarSprite();
+    sf::RectangleShape getMaxHealthBarSprite();
 };
 /*
 class TestUnit {

@@ -15,6 +15,7 @@ std::mutex mtx2;
 
 TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale) {
     this->_health_points = hp;
+    this->_max_health = hp;
     this->_speed = speed;
     this->_scale = scale;
     this->_resistance = resistance;
@@ -25,6 +26,14 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
     this->_timeOfLastMove = std::chrono::steady_clock::now();
     this->_alreadyCount = false;
     this->_alreadyArrived = false;
+    float maxHealth = (float)this->_max_health / (float)this->_max_health * 100;
+    this->_healthMaxBar.setPosition(this->_sprite.getPosition().x, this->_sprite.getPosition().y - 25);
+    this->_healthMaxBar.setSize(sf::Vector2f(maxHealth / 2, 5));
+    this->_healthMaxBar.setFillColor(sf::Color::Red);
+    this->_healthBar.setPosition(this->_sprite.getPosition().x, this->_sprite.getPosition().y - 25);
+    float percentHealth = (float)this->_health_points / (float)this->_max_health * 100;
+    this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
+    this->_healthBar.setFillColor(sf::Color::Green);
 }
 
 void    TDUnit::live() {
@@ -155,6 +164,9 @@ void    TDUnit::getShot(int damage) {
     std::this_thread::sleep_for(std::chrono::milliseconds(400));
     this->_sprite.setColor(sf::Color::White);
     this->_health_points = this->_health_points - damage;
+    float percentHealth = (float)this->_health_points / (float)this->_max_health * 100;
+    this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
+
 }
 
 void    TDUnit::getKill() {
@@ -186,4 +198,14 @@ void    TDUnit::rotate(float posX, float posY, float destX, float destY) {
         this->_sprite.setTextureRect(sf::IntRect(this->_sprite.getTexture()->getSize().x, 0, -this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y));
     }
     this->_sprite.setPosition((this->_posX * this->_unitSize) + this->_cellSize/2 + _GAME_POSITION_X, (this->_posY * this->_unitSize) + this->_cellSize / 2 + _GAME_POSITION_Y);
+}
+
+sf::RectangleShape    TDUnit::getHealthBarSprite() {
+    this->_healthBar.setPosition(this->_sprite.getPosition().x - this->_cellSize, this->_sprite.getPosition().y - 25);
+    return (this->_healthBar);
+}
+
+sf::RectangleShape    TDUnit::getMaxHealthBarSprite() {
+    this->_healthMaxBar.setPosition(this->_sprite.getPosition().x - this->_cellSize, this->_sprite.getPosition().y - 25);
+    return (this->_healthMaxBar);
 }

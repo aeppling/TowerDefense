@@ -15,7 +15,6 @@ MissileThread::MissileThread() : _isArrived(false) {
 void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f &startPosition,
                                  const sf::Vector2f &endPosition, int &cellSize, float &speed) {
     speed = speed / 1000;
-    std::cout << "Style :"<< this->_style << std::endl;
     if (this->_style == "BasicTower")
         this->_sprite.setTexture(*sfmlMissileLoader.getBasic());
     else if (this->_style == "AttackSpeedTower")
