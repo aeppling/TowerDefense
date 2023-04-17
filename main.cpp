@@ -10,6 +10,7 @@
 #include "src/TDGame/RetrieveLevel.hpp"
 #include "src/TDGame/SizeRatioCalculator.hpp"
 #include "src/TDGame/Game.hpp"
+#include "src/TDPlayer/TDPlayer.hpp"
 
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
@@ -70,7 +71,8 @@ int main() {
     window.setActive(true);
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
-    Game currentGame(1, 1);
+    TDPlayer *playerOne = new TDPlayer("Joueur1");
+    Game currentGame(1, 1, playerOne);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;

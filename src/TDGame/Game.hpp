@@ -9,7 +9,7 @@
 #include "../TDGraphics/SFMLTowerLoader.hpp"
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
 #include "../TDGraphics/SFMLMissileLoader.hpp"
-
+#include "../TDPlayer/TDPlayer.hpp"
 
 #include <iostream>
 
@@ -18,18 +18,16 @@ class Tower;
 class Game{
     private : 
         int difficulty;
-        int lifeNumber;
         int currentWaveNumber;
         int unitCount;
         int spawnCount;
         int cellSize;
-        int totalKill;
         int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
-        int coinNumber;
         int enemiesLeft;
         int totalEnemies;
+        TDPlayer *player;
         SpritesHolder spritesHolder;
         std::shared_ptr<SpritesHolder> spritesHolderPtr;
         std::vector<std::vector<TDUnit *>> enemyList;
@@ -49,7 +47,7 @@ class Game{
         unsigned int       hitMarkerOpacity;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
     public :
-        Game(int difficulty, int level);
+        Game(int difficulty, int level, TDPlayer *player1);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
     void initializeTowerStore();
     void initializeTowerStoreCurrentWave();

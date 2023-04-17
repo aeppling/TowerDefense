@@ -10,7 +10,7 @@
 #include "../TDTowers/AttackSpeedTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
-Game::Game(int difficulty, int level){
+Game::Game(int difficulty, int level, TDPlayer *player1){
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
@@ -20,11 +20,12 @@ Game::Game(int difficulty, int level){
     this->levelRetriever = new RetrieveLevel(level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
-    this->lifeNumber = 8/(difficulty);
+    this->player = player1;
+    this->player->setLifeNumber(8/difficulty);
+    this->player->setCoinNumber(500-(difficulty*100));
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
-    this->coinNumber = 500-(difficulty*100);
     this->unitCount = 0;
     this->spawnCount = 0;
     this->towerSelectorIndex = 0;
@@ -194,7 +195,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->enemiesLeft = this->currentWave->size();
                 this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                 this->totalEnemies = this->currentWave->size();
-                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
+                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->player->getLifeNumber()));
                 //SET TOWER CURRENT WAVE HERE
              //   Tower *buildTowerTest = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader);
                 // ATTACK SPEED TOWER CRASH
@@ -316,10 +317,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
                             this->enemiesLeft--;
                             this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
-                            this->totalKill++;
+                            this->player->addKill();
                             std::cout << "Dead at position x:" << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
                             std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
-                            this->killCounterDisplay.setString("Total kills : " + std::to_string(this->totalKill));
+                            this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
                             this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                         }
                         else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
@@ -328,13 +329,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                           s)->getPosY())->getType() == 'B')
                                      && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                 this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
-                                this->lifeNumber--;
+                                this->player->looseLife();
                                 // RESET HIT MARKER OPACITY
                                 this->hitMarkerOpacity = 155;
                                 // DISPLAY HUD LIFE
-                                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->lifeNumber));
+                                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->player->getLifeNumber()));
                                 this->enemiesLeft--;
-                                if (this->lifeNumber <= 0)
+                                if (this->player->getLifeNumber() <= 0)
                                     break;
                             }
                         }
@@ -349,7 +350,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
                         if (std::chrono::duration_cast<std::chrono::milliseconds>(end - this->hitMarkerStartTimer).count() > 3) {
                             this->hitMarkerOpacity--;
-                            std::cout << "Here"<< std::endl;
                             this->hitMarkerStartTimer = std::chrono::steady_clock::now();
                         }
                         sf::Color hitMarkerColor(255, 0, 0, this->hitMarkerOpacity);
@@ -357,7 +357,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         window.draw(this->hitMarker);
                     }
                     // BREAK IF DEAD
-                    if (this->lifeNumber <= 0)
+                    if (this->player->getLifeNumber() <= 0)
                         break;
                     // SET AND DISPLAY MOUSE
                     if (isBuilding == true)
@@ -374,7 +374,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     //window.draw(this->hearthDisplay);
                     window.display();
                 }
-                if (this->lifeNumber <= 0) {
+                if (this->player->getLifeNumber() <= 0) {
                     gameLost();
                     break;
                 }
@@ -388,7 +388,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     sf::Texture hearthTexture;
-    this->totalKill = 0;
+    this->player->resetTotalKill();
     //hearthText.loadFromFile("Sprites/heart_48x48.png");
     //this->hearthDisplay.setTexture(hearthText, true);
     this->hearthDisplay.setPosition(window.getSize().x / 2 + _GAME_POSITION_X, window.getSize().y/2 + _GAME_POSITION_Y);
@@ -398,7 +398,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     this->killCounterDisplay.setFont(mainFont);
     this->killCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/1.3 + _GAME_POSITION_Y);
     this->killCounterDisplay.setCharacterSize(17);
-    this->killCounterDisplay.setString("Total kills : " + std::to_string(this->totalKill));
+    this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
     this->lifeCounterDisplay.setFont(mainFont);
     this->lifeCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/3.2 + _GAME_POSITION_Y);
     this->lifeCounterDisplay.setCharacterSize(32);
@@ -458,8 +458,8 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
     //* start the wave
     this->waveCounterDisplay.setString("Wave : " + std::to_string(this->currentWaveNumber + 1) + "/" + std::to_string(this->enemyList.size()));
     std::cout << "Starting wave" << currentWaveNumber << "/" << this->enemyList.size() << std::endl;
-    std::cout << "Life number : " << this->lifeNumber << std::endl;
-    std::cout << "Coin number : " << this->coinNumber << std::endl;
+    std::cout << "Life number : " << this->player->getLifeNumber() << std::endl;
+    std::cout << "Coin number : " << this->player->getLifeNumber() << std::endl;
     //* activate towers
     this->activateTowers();
     // NO THREAD HERE BUT COUNTER IN MAIN LOOP AND CALL EVERY x SECONDS
@@ -605,7 +605,7 @@ bool Game::waveEnd(){
 bool Game::gameEnd(){
     //* return true if game is ended, ifnot false
     
-    if(this->lifeNumber == 0){
+    if(this->player->getLifeNumber() == 0){
         std::cout << "ending game" << std::endl;
         //* if player lost all his lifes = game lost
      //   this->deactivateTowers();
@@ -625,7 +625,7 @@ bool Game::gameEnd(){
 void Game::gameWon(){
     //* game won
     std::cout << "Game Won !!!" << std::endl;
-    std::cout << "Total kills : " << this->totalKill << std::endl;
+    std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
 }
 
 void Game::gameLost(){
@@ -660,8 +660,7 @@ bool Game::enemyAtBase(){
         //* if an enemy is at the base -> decrease life number and erase the enemy
         std::cout << "An enemy is a the base" << std::endl;
         if(this->enemyList[this->currentWaveNumber][i]->getPosX() == this->baseCoord.x && this->enemyList[this->currentWaveNumber][i]->getPosY() == this->baseCoord.y){
-            this->lifeNumber--;
-            std::cout << "life number :" << this->lifeNumber << std::endl;
+            this->player->looseLife();
             this->enemyList[this->currentWaveNumber].erase(std::remove(enemyList[this->currentWaveNumber].begin(), enemyList[this->currentWaveNumber].end(), enemyList[this->currentWaveNumber][i]), enemyList[this->currentWaveNumber].end());
             return true;
         }else{
@@ -719,7 +718,7 @@ void Game::createTower(){
             this->towerList.push_back(newTower);
             newTower->run(this->currentWave);
             std::cout << "Tower succesfully created " << std::endl;
-            std::cout << "coin number : " << this->coinNumber << std::endl;
+            std::cout << "coin number : " << this->player->getCoinNumber() << std::endl;
         }else{
             std::cout << "Coords not valid " << std::endl;
         }
@@ -730,7 +729,7 @@ void Game::createTower(){
 
 bool Game::canBuy(Tower &tower, int level){
     //* test if the player has enough coin to buy the tower
-    if(this->coinNumber >= tower.getCost(level)){
+    if(this->player->getCoinNumber() >= tower.getCost(level)){
         std::cout << "You have enough coins !" << std::endl;
         return true;
     }else{
@@ -740,8 +739,8 @@ bool Game::canBuy(Tower &tower, int level){
 }
 
 void Game::addCoins(int number){
-    this->coinNumber+= number;
-    std::cout << "You know have " << this->coinNumber << " coins" << std::endl;
+    this->player->addCoin(number);
+    std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
 }
 
 void Game::upgradeTower(Tower &tower){
