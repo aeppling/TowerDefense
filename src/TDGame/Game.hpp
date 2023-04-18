@@ -10,6 +10,7 @@
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
 #include "../TDGraphics/SFMLMissileLoader.hpp"
 #include "../TDPlayer/TDPlayer.hpp"
+#include "../TDGraphics/SFMLCoinAnimation.hpp"
 
 #include <iostream>
 
@@ -39,9 +40,11 @@ class Game{
         sf::Text             enemiesLeftDisplay;
         sf::Text             lifeCounterDisplay;
         sf::Text             killCounterDisplay;
+        sf::Text             infoBoxDisplay;
         SFMLEnemiesLoader   sfmlEnemiesLoader;
         SFMLTowerLoader     sfmlTowerLoader;
         SFMLMissileLoader   sfmlMissileLoader;
+        SFMLCoinAnimation   sfmlCoinAnimation;
         sf::Sprite hearthDisplay;
         sf::RectangleShape hitMarker;
         unsigned int       hitMarkerOpacity;
@@ -74,9 +77,11 @@ class Game{
         void addCoins(int number);
         void looseCoins(int number);
         void startLevel();
-        bool waveEnd();
+        void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString);
+        bool waveEnd(sf::RenderWindow& window);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
         void display();
+        void displayCoins(sf::RenderWindow &window);
         void displayMapAndTowers(sf::RenderWindow &window);
         bool enemyAtBase();
         void upgradeTower(Tower &tower);

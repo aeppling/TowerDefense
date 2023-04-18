@@ -14,9 +14,11 @@ Game::Game(int difficulty, int level, TDPlayer *player1){
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
+    SFMLCoinAnimation sfmlCoinAnimation;
     this->sfmlMissileLoader = sfmlMissileLoader;
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;
+    this->sfmlCoinAnimation = sfmlCoinAnimation;
     this->levelRetriever = new RetrieveLevel(level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
@@ -208,7 +210,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->towerStoreList.push_back(buildTowerTest4);
                 initializeTowerStoreCurrentWave();
                 usleep(3000);
-                while(!this->waveEnd()) { // RUN WHILE WAVE IS NOT FINISHED
+                while(!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
                     isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
@@ -320,6 +322,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             this->player->addKill();
                             std::cout << "Dead at position x:" << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
                             std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
+                            this->sfmlCoinAnimation.launchCoinsWon(cellSize, enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
+                                                                   enemyList.at(this->currentWaveNumber).at(s)->getPosY(),
+                                                                   enemyList.at(this->currentWaveNumber).at(s)->getValue());
                             this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
                             this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                             this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
@@ -342,6 +347,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         s++;
                     }
+                    // DISPLAY COINS
+                    this->displayCoins(window);
                     // DISPLAY HIT MARKER
                     if (this->hitMarkerOpacity == 155) {
                         this->hitMarkerStartTimer = std::chrono::steady_clock::now();
@@ -396,6 +403,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
 //    this->hearthDisplay.setScale(1,1);
     sf::Font mainFont;
     mainFont.loadFromFile("Fonts/neuropol.otf");
+    this->infoBoxDisplay.setFont(mainFont);
     this->killCounterDisplay.setFont(mainFont);
     this->killCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/1.3 + _GAME_POSITION_Y);
     this->killCounterDisplay.setCharacterSize(17);
@@ -453,6 +461,20 @@ void Game::displayMapAndTowers(sf::RenderWindow &window) {
             }
             i++;
         }
+}
+
+void Game::displayCoins(sf::RenderWindow &window) {
+    int i = 0;
+
+    while (i < this->sfmlCoinAnimation.getTotalCoins()) {
+        window.draw(this->sfmlCoinAnimation.getCoinFromIndex(i));
+        i++;
+    }
+    i = 0;
+    while (i < this->sfmlCoinAnimation.getTotalText()) {
+        window.draw(this->sfmlCoinAnimation.getTextFromIndex(i));
+        i++;
+    }
 }
 
 void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawnCells){
@@ -590,12 +612,35 @@ bool Game::canPlace(Tower &tower, int xPos, int yPos){
     return true;
 }
 
-bool Game::waveEnd(){
+void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString) {
+        sf::RectangleShape rectangle(rectSize);
+        sf::Color colorRect(255, 255, 255, 150);
+        rectangle.setFillColor(colorRect);
+        rectangle.setPosition((window.getSize().x - rectSize.x) / 2.05f, (window.getSize().y - rectSize.y) / 2.4f);
+
+        this->infoBoxDisplay.setString(textString);
+        this->infoBoxDisplay.setCharacterSize(32);
+        sf::Color colorText(0, 0, 0, 150);
+        this->infoBoxDisplay.setFillColor(colorText);
+       // this->infoBoxDisplay.setStyle(sf::Text::Bold);
+        this->infoBoxDisplay.setOrigin(this->infoBoxDisplay.getLocalBounds().width / 2.f, this->infoBoxDisplay.getLocalBounds().height / 2.f);
+        this->infoBoxDisplay.setPosition(rectangle.getPosition() + 0.5f * rectSize);
+
+        window.draw(rectangle);
+        window.draw(this->infoBoxDisplay);
+        window.display();
+}
+
+bool Game::waveEnd(sf::RenderWindow& window){
     //* return true if the current wave is ended , ifnot return else
     if (this->enemiesLeft <= 0) {
         //* if all the ennemies from the current wave are dead == wave ended
         //* deactivate towers, increase wave number
         this->deactivateTowers();
+        this->drawInfoBox(window, {400, 150}, "Wave cleared !");
+        sf::sleep(sf::seconds(3.0f));
+        this->enemyList.at(currentWaveNumber).clear();
+    //    this->sfmlCoinAnimation.clear();
         this->currentWaveNumber++;
         return true;
     } else {
@@ -607,19 +652,19 @@ bool Game::waveEnd(){
 bool Game::gameEnd(){
     //* return true if game is ended, ifnot false
     
-    if(this->player->getLifeNumber() == 0){
+    if (this->player->getLifeNumber() == 0){
         std::cout << "ending game" << std::endl;
         //* if player lost all his lifes = game lost
      //   this->deactivateTowers();
        // this->gameLost();
         return true;
-    }else if(this->enemyList[this->enemyList.size()-1].size() == 0){
+    } else if (this->enemyList[this->enemyList.size()-1].size() == 0){
         std::cout << "ending level" << std::endl;
         //* if all enemies form the last wave are dead  = game won
        // this->deactivateTowers();
         //this->gameWon();
         return true;
-    }else{
+    } else {
         return false;
     }
 }
