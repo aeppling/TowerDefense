@@ -7,15 +7,23 @@
 #include "SFMLLoader.hpp"
 
 SFMLLoader::SFMLLoader() {
-    if (!(this->_pathCell.loadFromFile("Sprites/sand_tile.png")))
+    if (!(this->_pathCell.loadFromFile("Sprites/MyTiles/tileSand_slope.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_notWalkableCell.loadFromFile("Sprites/grass_tile_1.png")))
+    if (!(this->_pathCellHeight.loadFromFile("Sprites/MyTiles/tileSand.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_notWalkableCell.loadFromFile("Sprites/MyTiles/tileGrass_slope.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_notWalkableCellHeight.loadFromFile("Sprites/MyTiles/tileGrass.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_wallCell.loadFromFile("Sprites/MyTiles/IndustrialTileSet1.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_spawnCell.loadFromFile("Sprites/grass_tile_3.png")))
+    if (!(this->_spawnCell.loadFromFile("Sprites/MyTiles/tileGoo_slope.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_baseCell.loadFromFile("Sprites/grass_tile_2.png")))
+    if (!(this->_spawnBuilding.loadFromFile("Sprites/MyTiles/tileGoo_slope.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_baseCell.loadFromFile("Sprites/MyTiles/tileStone_slope.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_baseBuilding.loadFromFile("Sprites/MyTiles/BaseBuilding.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_towerBasic.loadFromFile("Sprites/MyTiles/turret_1_1.png")))
         std::cout << "Error on loading texture..." << std::endl;

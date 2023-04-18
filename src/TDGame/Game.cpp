@@ -771,11 +771,15 @@ void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int 
         for (int j = -radius; j <= radius; j++) {
             if (i*i + j*j <= radius*radius) {
                 sf::RectangleShape hoveringSprite(sf::Vector2f(this->cellSize - 3, this->cellSize - 3));
-                if (isBuildable == false)
-                    hoveringSprite.setFillColor(sf::Color::Red);
-                else
-                    hoveringSprite.setFillColor(sf::Color::Blue);
-                hoveringSprite.setPosition((posX + i) * this->cellSize + _GAME_POSITION_X, (posY + j) * this->cellSize + _GAME_POSITION_Y);
+                if (isBuildable == false) {
+                    sf::Color color(255, 0, 0, 128);
+                    hoveringSprite.setFillColor(color);
+                }
+                else {
+                    sf::Color color(0, 0, 255, 128);
+                    hoveringSprite.setFillColor(color);
+                }
+                hoveringSprite.setPosition((posX + i) * this->cellSize + _GAME_POSITION_X +1.5, (posY + j) * this->cellSize + _GAME_POSITION_Y + 1.5);
                 window.draw(hoveringSprite);
             }
         }

@@ -21,10 +21,11 @@ public:
     int                              getPosX() { return (this->_posX);};
     int                              getPosY() { return (this->_posY);};
     sf::Sprite                       getSprite() { return (this->_sprite);};
-    void                             setSprite(sf::Texture *texture, int cellSize, int posX, int posY, char type);
+    void                             setSprite(sf::Texture *texture, int cellSize, int posX, int posY, char type, float scale);
     void                             setPosition(int cellSize);
     char                             getType() { return (this->_type); };
     void                             setType(char type) { this->_type = type; };
+    void                             setSpriteCutted(sf::Texture *texture, int cellSize, int posX, int posY, char type, float scale);
 
 };
 

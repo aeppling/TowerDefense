@@ -10,6 +10,8 @@
 #include "MapCell.hpp"
 #include "../TDGraphics/SpritesHolder.hpp"
 
+class SpritesHolder;
+
 class TDMap {
 private:
     std::vector<std::vector<MapCell>>                _map;

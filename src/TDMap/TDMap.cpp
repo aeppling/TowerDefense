@@ -31,8 +31,7 @@ void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, s
     while (y != this->_map.size()) {
         int x = 0;
         while (x != this->_map.at(y).size()) {
-            spriteHolder->setSpriteFromTypeAndPosition(this->_map.at(y).at(x).getType(), this->_map.at(y).at(x).getPosX(),
-                                                      this->_map.at(y).at(x).getPosY(), sfmlLoader, cellSize);
+            spriteHolder->setSpriteFromTypeAndPosition(&this->_map.at(y).at(x), this, sfmlLoader, cellSize);
             x++;
         }
         y++;

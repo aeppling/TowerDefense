@@ -9,7 +9,9 @@
 #include <vector>
 #include "SFMLSprite.hpp"
 #include "SFMLLoader.hpp"
+#include "../TDMap/TDMap.hpp"
 
+class TDMap;
 
 class SpritesHolder {
 private:
@@ -26,8 +28,7 @@ public:
     std::shared_ptr<SFMLSprite>               getSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getNotWalkableSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getWallSpriteFromPosition(int posX, int posY);
-    void                                      setSpriteFromTypeAndPosition(char type, int posX, int posY,
-                                                                           SFMLLoader &sfmlLoader, int cellSize);
+    void                                      setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map, SFMLLoader &sfmlLoader, int cellSize);
     void                                      displayDebug();
     void                                      displayMap(sf::RenderWindow &window, int cellSize, SFMLLoader &sfmlLoaderMap);
 };
