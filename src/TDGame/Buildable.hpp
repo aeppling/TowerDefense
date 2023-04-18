@@ -28,7 +28,7 @@ public:
     virtual void upgrade() = 0;
     virtual void setTimeBetweenAttack(float time) = 0;
     virtual float getTimeBetweenAttack() = 0;
-    virtual int getCost(int level) = 0;
+    virtual int getCost() = 0;
     virtual int getLevel() = 0;
     virtual bool isSpeedBoosted() = 0;
     virtual void setSpeedBoosted(bool newSpeedBoosted) = 0;

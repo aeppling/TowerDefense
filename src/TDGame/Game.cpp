@@ -322,6 +322,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
                             this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
                             this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
+                            this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
                         }
                         else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
                             if ((map.getElem(this->enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
@@ -484,6 +485,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                 }
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
+                this->looseCoins(toBuild->getCost());
                 toBuild = nullptr;
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
@@ -714,7 +716,7 @@ void Game::createTower(){
         std::getline(std::cin, newTowerPosY);  
         if(canPlace(*newTower, stoi(newTowerPosX), stoi(newTowerPosY))){
             newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY), this->cellSize);
-            this->addCoins(0-newTower->getCost(0));
+            this->addCoins(newTower->getCost());
             this->towerList.push_back(newTower);
             newTower->run(this->currentWave);
             std::cout << "Tower succesfully created " << std::endl;
@@ -729,7 +731,7 @@ void Game::createTower(){
 
 bool Game::canBuy(Tower &tower, int level){
     //* test if the player has enough coin to buy the tower
-    if(this->player->getCoinNumber() >= tower.getCost(level)){
+    if(this->player->getCoinNumber() >= tower.getCost()){
         std::cout << "You have enough coins !" << std::endl;
         return true;
     }else{
@@ -738,15 +740,21 @@ bool Game::canBuy(Tower &tower, int level){
     }
 }
 
-void Game::addCoins(int number){
+void Game::addCoins(int number) {
     this->player->addCoin(number);
     std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
 }
 
+void Game::looseCoins(int number) {
+    this->player->looseCoin(number);
+    std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
+}
+
+
 void Game::upgradeTower(Tower &tower){
     if(!tower.isMaxed()){
         if(canBuy(tower, tower.getLevel() + 1)){
-            this->addCoins(0-tower.getCost(tower.getLevel() + 1));
+            this->addCoins(tower.getCost());
             tower.upgrade();      
         }
     }

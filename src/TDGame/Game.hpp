@@ -72,6 +72,7 @@ class Game{
         bool canBuy(Tower &tower, int level);
         bool canPlace(Tower &tower, int xPos, int yPos);
         void addCoins(int number);
+        void looseCoins(int number);
         void startLevel();
         bool waveEnd();
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);

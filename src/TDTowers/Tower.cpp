@@ -230,8 +230,8 @@ void Tower::setSpeedBoosted(bool newSpeedBoosted){
     this->speedBoosted = speedBoosted;
 }
 
-int Tower::getCost(int level){
-    return (this->cost[level]);
+int Tower::getCost(){
+    return (this->cost[this->level]);
 }
 int Tower::getLevel(){
     return (this->level);

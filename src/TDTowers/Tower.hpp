@@ -57,7 +57,7 @@ public:
         void upgrade() override;
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
-        int getCost(int level) override;
+        int getCost() override;
         int getLevel() override;
         bool isSpeedBoosted() override;
         void setSpeedBoosted(bool newSpeedBoosted) override;
