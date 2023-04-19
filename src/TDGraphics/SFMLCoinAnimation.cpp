@@ -70,7 +70,7 @@ void        SFMLCoinAnimation::animateCoin(const int index) {
         this->_activeList.at(index).setPosition(-50, -50);
 }
 
-void        SFMLCoinAnimation::launchCoinsWon(int cellSize, int posX, int posY, int amount) {
+void        SFMLCoinAnimation::launchCoinsAnimation(int cellSize, int posX, int posY, int amount, bool isWon) {
     // CREATE NEW COIN SPRITE
     sf::Sprite newSprite;
     newSprite.setTexture(this->_basicCoin);
@@ -86,14 +86,20 @@ void        SFMLCoinAnimation::launchCoinsWon(int cellSize, int posX, int posY, 
     // CREATE NEW TEXT SPRITE
     sf::Text amountText;
     amountText.setFont(this->_textFont);
-    amountText.setString("+ " + std::to_string(amount) + " po");
+    if (isWon == true) {
+        amountText.setString("+ " + std::to_string(amount) + " po");
+        amountText.setFillColor(sf::Color::Green);
+    }
+    else {
+        amountText.setString("- " + std::to_string(amount) + " po");
+        amountText.setFillColor(sf::Color::Red);
+    }
     sf::Vector2f newOriginText(amountText.getLocalBounds().width / 2.f, amountText.getLocalBounds().height / 2.f);
     newSprite.setOrigin(newOriginText);
     amountText.setPosition((posX * cellSize) + cellSize + 8+ _GAME_POSITION_X, (posY * cellSize) - cellSize + _GAME_POSITION_Y);
     amountText.setCharacterSize(17);
     amountText.setOutlineThickness(1);
     amountText.setOutlineColor(sf::Color::Black);
-    amountText.setFillColor(sf::Color::Green);
     this->_activeText.push_back(amountText);
     const int indexText = this->_activeText.size() - 1;
     // LAUNCH THREADS
@@ -101,8 +107,4 @@ void        SFMLCoinAnimation::launchCoinsWon(int cellSize, int posX, int posY, 
     newThreadSprite.detach();
     std::thread newThreadText(&SFMLCoinAnimation::animateAmount, this, indexText);
     newThreadText.detach();
-}
-
-void        SFMLCoinAnimation::eraseCoin(int index) {
-    this->_activeList.erase(this->_activeList.begin() + index);
 }

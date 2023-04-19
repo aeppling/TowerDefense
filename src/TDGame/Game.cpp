@@ -322,9 +322,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             this->player->addKill();
                             std::cout << "Dead at position x:" << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
                             std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
-                            this->sfmlCoinAnimation.launchCoinsWon(cellSize, enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
+                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
                                                                    enemyList.at(this->currentWaveNumber).at(s)->getPosY(),
-                                                                   enemyList.at(this->currentWaveNumber).at(s)->getValue());
+                                                                   enemyList.at(this->currentWaveNumber).at(s)->getValue(), true);
                             this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
                             this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
                             this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
@@ -508,6 +508,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoa
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->looseCoins(toBuild->getCost());
+                this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);

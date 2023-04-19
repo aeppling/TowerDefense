@@ -19,7 +19,7 @@ public:
 
     // BASIC FUNCTION
     sf::Texture *getBasicCoin() { return (&this->_basicCoin); }
-    void        launchCoinsWon(int cellSize, int posX, int posY, int amount);
+    void        launchCoinsAnimation(int cellSize, int posX, int posY, int amount, bool isWon);
     void        animateCoin(int index);
     void        animateAmount(const int index);
 
@@ -27,7 +27,6 @@ public:
     int         getTotalCoins() { return (this->_activeList.size()); };
     int         getTotalText() { return (this->_activeText.size()); };
     sf::Sprite  getCoinFromIndex(int index) { return (this->_activeList.at(index)); };
-    void        eraseCoin(int index);
     void        clear() { this->_activeList.clear(); this->_activeText.clear(); };
     sf::Text    getTextFromIndex(int index) { return (this->_activeText.at(index)); };
 };

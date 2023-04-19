@@ -89,3 +89,15 @@
 916	1109	7035558394811862	untitled1.exe	703acb90484ee658
 4	856	7035558637403509	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj	5f3e372bad1f6dbf
 856	1041	7035558639204166	untitled1.exe	703acb90484ee658
+10	2297	7035560849973883	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj	5f3e372bad1f6dbf
+2297	2847	7035560855331202	untitled1.exe	703acb90484ee658
+34	4351	7035563880083457	CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj	d10545709db79034
+59	4478	7035563881003579	CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj	e1ebf8ffc72ba68
+42	4490	7035563881730466	CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj	1b3176db37355c6
+9	4532	7035563882235741	CMakeFiles/untitled1.dir/main.cpp.obj	d324f9c9e06e4f8
+25	5322	7035563889666614	CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj	da6b3bf6e4340d3e
+4352	6783	7035563905247640	CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj	5f3e372bad1f6dbf
+19	7130	7035563908705065	CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj	3bdf0417d37c4885
+7130	7414	7035563911490607	untitled1.exe	703acb90484ee658
+5	4414	7035566076750767	CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj	3bdf0417d37c4885
+4415	4865	7035566081025010	untitled1.exe	703acb90484ee658
