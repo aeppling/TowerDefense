@@ -47,6 +47,7 @@ class Game{
         SFMLCoinAnimation   sfmlCoinAnimation;
         SFMLLoader          sfmlLoaderMap;
         sf::Sprite          hearthDisplay;
+        sf::Sprite          baseCell;
         sf::RectangleShape  hitMarker;
         unsigned int       hitMarkerOpacity;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
@@ -83,7 +84,7 @@ class Game{
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
         void display();
         void displayCoins(sf::RenderWindow &window);
-        void displayMapAndTowers(sf::RenderWindow &window);
+        void displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell);
         bool enemyAtBase();
         void upgradeTower(Tower &tower);
     };

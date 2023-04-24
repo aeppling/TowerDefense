@@ -284,7 +284,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         break;
                     int s = 0;
                     // DISPLAY MAP
-                    this->displayMapAndTowers(window);
+                    this->displayMapAndTowers(window, baseCell);
                     //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
                     if (isBuilding == true) {
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
@@ -447,10 +447,13 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
    // this->initializeTowerStore();
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
+    this->baseCell.setPosition(baseCell->getPosX() * cellSize + _GAME_POSITION_X + 3, baseCell->getPosY() * cellSize + _GAME_POSITION_Y + 5);
+    this->baseCell.setScale(1, 1);
     this->loop(sfmlLoader, window, baseCell, map, spritesHolder);
 }
 
-void Game::displayMapAndTowers(sf::RenderWindow &window) {
+void Game::displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell) {
     this->spritesHolderPtr->displayMap(window, this->cellSize, this->sfmlLoaderMap);
     int i = 0;
     while (i != this->towerList.size()) {
@@ -469,6 +472,7 @@ void Game::displayMapAndTowers(sf::RenderWindow &window) {
             }
             i++;
         }
+    window.draw(this->baseCell);
 }
 
 void Game::displayCoins(sf::RenderWindow &window) {

@@ -36,7 +36,7 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
                 (map->getElem(mapCell->getPosX(), mapCell->getPosY() - 1)->getType() == 'B')
                 && (map->getElem(mapCell->getPosX() + 1, mapCell->getPosY())->getType() == 'B') &&
                 (map->getElem(mapCell->getPosX() - 1, mapCell->getPosY())->getType() == 'B'))
-                newSprite->setSpriteCutted(sfmlLoader.getBaseBuilding(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
+                newSprite->setSpriteCutted(sfmlLoader.getBaseCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
                                      mapCell->getType(), 1);
             else
                 newSprite->setSpriteCutted(sfmlLoader.getBaseCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
