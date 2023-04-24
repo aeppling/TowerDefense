@@ -138,3 +138,9 @@
 1844	2035	7040689334348984	untitled1.exe	703acb90484ee658
 4	3802	7040691418768603	CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj	3bdf0417d37c4885
 3803	4224	7040691422262618	untitled1.exe	703acb90484ee658
+9	893	7040692616796516	CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj	5eb6420fef9d5420
+893	1115	7040692618933918	untitled1.exe	703acb90484ee658
+6	3352	7040696280969822	CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj	3bdf0417d37c4885
+3352	3930	7040696285841781	untitled1.exe	703acb90484ee658
+8	876	7040698840266419	CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj	b50f371f363af631
+876	1124	7040698842690516	untitled1.exe	703acb90484ee658

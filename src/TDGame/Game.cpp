@@ -584,11 +584,14 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 }
                 count_spawn++;
             }
-            //AStarPathFinding *testPathPossible = new AStarPathFinding(map, map.getElem(mouseCoord.posX, mouseCoord.posY), this->baseCellObject);
+            this->looseCoins(5);
+            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 5, false);
             check = true;
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+            this->addCoins(1);
+            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 1, true);
             check = true;
         }
         if (check == false)
