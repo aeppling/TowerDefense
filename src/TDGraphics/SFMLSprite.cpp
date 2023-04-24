@@ -29,6 +29,10 @@ void        SFMLSprite::setSpriteCutted(sf::Texture *texture, int cellSize, int 
     this->_sprite.setScale(scaleFactor * scale, scaleFactor * scale);
     this->_sprite.setTextureRect(textureRect);
     this->_sprite.setPosition(this->_posX * cellSize + _GAME_POSITION_X, this->_posY * cellSize + _GAME_POSITION_Y);
+    if (type == 'B') {
+        sf::Color newcolor(77, 250, 255, 155);
+        this->_sprite.setColor(newcolor);
+    }
 }
 
 void        SFMLSprite::setPosition(int cellSize) {

@@ -79,7 +79,7 @@ class Game{
         void addCoins(int number);
         void looseCoins(int number);
         void startLevel();
-        void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString);
+        void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString, bool display);
         bool waveEnd(sf::RenderWindow& window);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
         void display();

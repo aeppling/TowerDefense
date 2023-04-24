@@ -213,19 +213,22 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 initializeTowerStoreCurrentWave();
                 usleep(3000);
                 while(!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
-                    isWaveRunning = true;
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
-                    if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
-                        unsigned int basePosX = baseCell->getPosX();
-                        unsigned int basePosY = baseCell->getPosY();
-                        runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
-                                 std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount, this->spawnCount);
-                        this->spawnCount++;
-                        this->unitCount++;
-                        if (this->spawnCount >= this->spawnCells.size())
-                            this->spawnCount = 0;
-                        waveChronoStart = std::chrono::steady_clock::now();
+                    if (isWaveRunning) {
+                        if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
+                                this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
+                            unsigned int basePosX = baseCell->getPosX();
+                            unsigned int basePosY = baseCell->getPosY();
+                            runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
+                                    std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
+                                    this->spawnCount);
+                            this->spawnCount++;
+                            this->unitCount++;
+                            if (this->spawnCount >= this->spawnCells.size())
+                                this->spawnCount = 0;
+                            waveChronoStart = std::chrono::steady_clock::now();
+                        }
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
                     sf::Event event;
@@ -235,6 +238,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             window.close();
                             closing = true;
                             break;
+                        }
+                        if ((event.type == sf::Event::KeyPressed &&
+                            event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)) {
+                            this->activateTowers();
+                            isWaveRunning = true;
                         }
                         if (event.type == sf::Event::MouseButtonPressed &&
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
@@ -307,47 +315,59 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // DISPLAY ENNEMIES AND CHECK FOR ARRIVING == NOT TOO SOON !!!
-
-                    s = 0;
-                    while (s < enemyList.at(this->currentWaveNumber).size()) {
-                        if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
-                            window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
-                            if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
-                                window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
-                                window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
+                    if (isWaveRunning) {
+                        s = 0;
+                        while (s < enemyList.at(this->currentWaveNumber).size()) {
+                            if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
+                                window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                                if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                    window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
+                                    window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
+                                }
                             }
-                        }
-                        if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
-                        && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
-                            this->enemiesLeft--;
-                            this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
-                            this->player->addKill();
-                            std::cout << "Dead at position x:" << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
-                            std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY() << std::endl;
-                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
-                                                                   enemyList.at(this->currentWaveNumber).at(s)->getPosY(),
-                                                                   enemyList.at(this->currentWaveNumber).at(s)->getValue(), true);
-                            this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
-                            this->enemiesLeftDisplay.setString("Enemies left : " + std::to_string(this->enemiesLeft));
-                            this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
-                        }
-                        else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
-                            if ((map.getElem(this->enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
-                                                  this->enemyList.at(this->currentWaveNumber).at(
-                                                          s)->getPosY())->getType() == 'B')
-                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
-                                this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
-                                this->player->looseLife();
-                                // RESET HIT MARKER OPACITY
-                                this->hitMarkerOpacity = 155;
-                                // DISPLAY HUD LIFE
-                                this->lifeCounterDisplay.setString("Your life : " + std::to_string(this->player->getLifeNumber()));
+                            if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
+                                && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
                                 this->enemiesLeft--;
-                                if (this->player->getLifeNumber() <= 0)
-                                    break;
+                                this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
+                                this->player->addKill();
+                                std::cout << "Dead at position x:"
+                                          << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
+                                std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY()
+                                          << std::endl;
+                                this->sfmlCoinAnimation.launchCoinsAnimation(cellSize,
+                                                                             enemyList.at(this->currentWaveNumber).at(
+                                                                                     s)->getPosX(),
+                                                                             enemyList.at(this->currentWaveNumber).at(
+                                                                                     s)->getPosY(),
+                                                                             enemyList.at(this->currentWaveNumber).at(
+                                                                                     s)->getValue(), true);
+                                this->killCounterDisplay.setString(
+                                        "Total kills : " + std::to_string(this->player->getTotalKill()));
+                                this->enemiesLeftDisplay.setString(
+                                        "Enemies left : " + std::to_string(this->enemiesLeft));
+                                this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
+                            } else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
+                                if ((map.getElem(this->enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
+                                                 this->enemyList.at(this->currentWaveNumber).at(
+                                                         s)->getPosY())->getType() == 'B')
+                                    && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
+                                    this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
+                                    this->player->looseLife();
+                                    // RESET HIT MARKER OPACITY
+                                    this->hitMarkerOpacity = 155;
+                                    // DISPLAY HUD LIFE
+                                    this->lifeCounterDisplay.setString(
+                                            "Your life : " + std::to_string(this->player->getLifeNumber()));
+                                    this->enemiesLeft--;
+                                    if (this->player->getLifeNumber() <= 0)
+                                        break;
+                                }
                             }
+                            s++;
                         }
-                        s++;
+                    }
+                    else {
+                        this->drawInfoBox(window, {700, 150}, "Press enter for next wave.", false);
                     }
                     // DISPLAY COINS
                     this->displayCoins(window);
@@ -496,7 +516,7 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
     std::cout << "Life number : " << this->player->getLifeNumber() << std::endl;
     std::cout << "Coin number : " << this->player->getLifeNumber() << std::endl;
     //* activate towers
-    this->activateTowers();
+//    this->activateTowers();
     // NO THREAD HERE BUT COUNTER IN MAIN LOOP AND CALL EVERY x SECONDS
 }
 
@@ -625,7 +645,7 @@ bool Game::canPlace(Tower &tower, int xPos, int yPos){
     return true;
 }
 
-void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString) {
+void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString, bool display) {
         sf::RectangleShape rectangle(rectSize);
         sf::Color colorRect(255, 255, 255, 150);
         rectangle.setFillColor(colorRect);
@@ -641,7 +661,8 @@ void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, c
 
         window.draw(rectangle);
         window.draw(this->infoBoxDisplay);
-        window.display();
+        if (display == true)
+            window.display();
 }
 
 bool Game::waveEnd(sf::RenderWindow& window){
@@ -650,7 +671,7 @@ bool Game::waveEnd(sf::RenderWindow& window){
         //* if all the ennemies from the current wave are dead == wave ended
         //* deactivate towers, increase wave number
         this->deactivateTowers();
-        this->drawInfoBox(window, {400, 150}, "Wave cleared !");
+        this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
         sf::sleep(sf::seconds(1.5f));
         this->enemyList.at(currentWaveNumber).clear();
     //    this->sfmlCoinAnimation.clear();
