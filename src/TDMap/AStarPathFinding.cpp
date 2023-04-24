@@ -8,13 +8,10 @@
 #include <vector>
 #include <algorithm>
 
-AStarPathFinding::AStarPathFinding(std::vector<std::vector<MapCell>> &map, MapCell &startCell, MapCell &goalCell)
-: _startCell(startCell), _goalCell(goalCell) {
+AStarPathFinding::AStarPathFinding(std::vector<std::vector<MapCell>> &map, MapCell &startCell, MapCell &goalCell) : _startCell(startCell), _goalCell(goalCell) {
     // THERE SHOULD BE AN ERROR WITH MULTIPLE PATH FIND (EVERY STEP) BECAUSE OF SAME MAP USE
     // I SHOULD BE SETTING AUTOMATICALLY THE GOAL TO THE NEAREST BASE (heuristic distance)
     // --> MAYBE STORE THE BASE COORDINATE INTO MAP OR SMTH
-    this->_startCell = startCell;
-    this->_goalCell = goalCell;
     std::vector<std::vector<MapCell>> map2(map);
     this->_map = map2;
 }

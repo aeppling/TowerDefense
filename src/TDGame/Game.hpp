@@ -29,6 +29,7 @@ class Game{
         int enemiesLeft;
         int totalEnemies;
         TDPlayer *player;
+        MapCell *baseCellObject;
         SpritesHolder spritesHolder;
         std::shared_ptr<SpritesHolder> spritesHolderPtr;
         std::vector<std::vector<TDUnit *>> enemyList;

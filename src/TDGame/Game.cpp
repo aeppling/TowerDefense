@@ -467,6 +467,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
    // this->initializeTowerStore();
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    this->baseCellObject = baseCell;
     this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
     this->baseCell.setPosition(baseCell->getPosX() * cellSize + _GAME_POSITION_X + 3, baseCell->getPosY() * cellSize + _GAME_POSITION_Y + 5);
     this->baseCell.setScale(1, 1);
@@ -570,7 +571,20 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         bool check = false;
         // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
-            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+            int count_spawn = 0;
+            while (count_spawn < this->spawnCells.size()) {
+                map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+                std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
+                AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
+                                            (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
+                std::vector<std::shared_ptr<MapCell>> pathtofill;
+                if (pathFinder.runPathFinding(pathtofill, false) == false) {
+                    map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+                    return;
+                }
+                count_spawn++;
+            }
+            //AStarPathFinding *testPathPossible = new AStarPathFinding(map, map.getElem(mouseCoord.posX, mouseCoord.posY), this->baseCellObject);
             check = true;
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
