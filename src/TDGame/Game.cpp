@@ -448,7 +448,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
     MapCell *baseCell = new MapCell('B', -1, -1);
     std::vector<MapCell*> spawnCells;
-    if (testMap("mapfilePathFinding.txt", baseCell, spawnCells) == false) {
+    if (testMap("level_1_map.txt", baseCell, spawnCells) == false) {
         std::cout << "Cannot load level : Map is not valid." << std::endl;
         return (-1);
     }
@@ -462,7 +462,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map("mapfilePathFinding.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr);
+    TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
    // this->initializeTowerStore();
@@ -528,8 +528,14 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
             // CHECK IF ENOUGH SPACE TO BUILD
             // i should already have a function to do this because of hoverring mouse area
-            if ((isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize() - 1) == true)
-                || (toBuild->getSize() <= 1)) {
+            bool isBuildable = false;
+            if (toBuild->getSize() - 1 <= 1) {
+                isBuildable = isBuildableAtPositionForSmaller(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize() - 1);
+
+            } else {
+                isBuildable = isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY, toBuild->getSize() - 1);
+            }
+            if ((isBuildable == true) || (toBuild->getSize() <= 1)) {
                 // SET CURRENT CELL TO 'A' WITH OTHER CELL (FULL SIZE) (test if unit go through)
                 map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('A');
                 // BUILD->Add tower with its coordinate to vector of actives towers
