@@ -319,6 +319,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         s = 0;
                         while (s < enemyList.at(this->currentWaveNumber).size()) {
                             if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
+                                if (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "Spaceship" && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                    sf::Sprite shipShadow(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                                    shipShadow.setPosition(enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().x - 15, enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().y + 30);
+                                    shipShadow.setScale(shipShadow.getScale().x * 0.7, shipShadow.getScale().y * 0.7);
+                                    shipShadow.setColor(sf::Color(0, 0, 0, 128));
+                                    window.draw(shipShadow);
+                                }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
