@@ -92,6 +92,16 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
             i++;
         }
     }
+    else if (type == 'A') {
+        int i = 0;
+        while (i != this->_notWalkableSprite.size()) {
+            if ((this->_notWalkableSprite.at(i)->getPosX()) == posX && (this->_notWalkableSprite.at(i)->getPosY() == posY)) {
+                this->_notWalkableSprite.at(i)->setSprite(sfmlLoader.getTowerSupport(), cellSize, posX, posY, newType, 8);
+                return;
+            }
+            i++;
+        }
+    }
     else if (type == 'W') {
         int i = 0;
         while (i != this->_wallSprite.size()) {

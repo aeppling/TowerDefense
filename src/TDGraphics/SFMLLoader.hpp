@@ -20,6 +20,7 @@ private:
     sf::Texture _baseCell;
     sf::Texture _baseBuilding;
     sf::Texture _towerBasic;
+    sf::Texture _towerSupport;
     sf::Texture _mapBorder;
     sf::Texture _cowards;
     sf::Texture _bats;
@@ -38,6 +39,7 @@ public:
     sf::Texture *getBaseCell() { return (&this->_baseCell); }
     sf::Texture *getBaseBuilding() { return (&this->_baseBuilding); }
     sf::Texture *getTowerBasic() { return (&this->_towerBasic); }
+    sf::Texture *getTowerSupport() { return (&this->_towerSupport); }
     sf::Texture getMapBorder() { return (this->_mapBorder); }
     sf::Texture *getCowards() { return (&this->_cowards); }
     sf::Texture getBats() { return (this->_bats); }

@@ -7,6 +7,8 @@
 #include "SFMLTowerLoader.hpp"
 
 SFMLTowerLoader::SFMLTowerLoader() {
+    if (!(this->_support.loadFromFile("Sprites/MyTiles/TowerSupport.png")))
+        std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_basic.loadFromFile("Sprites/MyTiles/basic_tower.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_speed.loadFromFile("Sprites/MyTiles/speed_tower.png")))

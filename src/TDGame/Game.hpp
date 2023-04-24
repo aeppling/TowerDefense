@@ -45,8 +45,9 @@ class Game{
         SFMLTowerLoader     sfmlTowerLoader;
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
-        sf::Sprite hearthDisplay;
-        sf::RectangleShape hitMarker;
+        SFMLLoader          sfmlLoaderMap;
+        sf::Sprite          hearthDisplay;
+        sf::RectangleShape  hitMarker;
         unsigned int       hitMarkerOpacity;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
     public :
@@ -60,8 +61,8 @@ class Game{
         int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window);
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
-        void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader);
-        bool setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning);
+        void setObstacleTest(TDMap &map, sf::RenderWindow &window);
+        bool setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
         void gameWon();
         void gameLost();

@@ -27,6 +27,8 @@ SFMLLoader::SFMLLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_towerBasic.loadFromFile("Sprites/MyTiles/turret_1_1.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_towerSupport.loadFromFile("Sprites/MyTiles/body_tracks.png")))
+        std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_cowards.loadFromFile("Sprites/Units/CharRed1.png")))
         std::cout << "Error on loading texture..." << std::endl;
     //this->_pathCell.setSmooth(false);
