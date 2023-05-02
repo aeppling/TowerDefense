@@ -30,6 +30,7 @@ class Game{
         int enemiesLeft;
         int totalEnemies;
         TDPlayer *player;
+        MapCell *baseCellObject;
         SpritesHolder spritesHolder;
         std::shared_ptr<SpritesHolder> spritesHolderPtr;
         std::vector<std::vector<TDUnit *>> enemyList;
@@ -46,9 +47,10 @@ class Game{
         SFMLTowerLoader     sfmlTowerLoader;
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
-        SFMLHud*            sfmlHud;
-        sf::Sprite hearthDisplay;
-        sf::RectangleShape hitMarker;
+        SFMLLoader          sfmlLoaderMap;
+        sf::Sprite          hearthDisplay;
+        sf::Sprite          baseCell;
+        sf::RectangleShape  hitMarker;
         unsigned int       hitMarkerOpacity;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
     public :
@@ -62,8 +64,8 @@ class Game{
         int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window);
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
-        void setObstacleTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader);
-        bool setTowerTest(TDMap &map, sf::RenderWindow &window, SFMLLoader sfmlLoader, Buildable *toBuild, bool isWaveRunning);
+        void setObstacleTest(TDMap &map, sf::RenderWindow &window);
+        bool setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
         void gameWon();
         void gameLost();
@@ -79,12 +81,12 @@ class Game{
         void addCoins(int number);
         void looseCoins(int number);
         void startLevel();
-        void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString);
+        void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString, bool display);
         bool waveEnd(sf::RenderWindow& window);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
         void display();
         void displayCoins(sf::RenderWindow &window);
-        void displayMapAndTowers(sf::RenderWindow &window);
+        void displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell);
         bool enemyAtBase();
         void upgradeTower(Tower &tower);
     };

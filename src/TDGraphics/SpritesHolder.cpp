@@ -36,7 +36,7 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
                 (map->getElem(mapCell->getPosX(), mapCell->getPosY() - 1)->getType() == 'B')
                 && (map->getElem(mapCell->getPosX() + 1, mapCell->getPosY())->getType() == 'B') &&
                 (map->getElem(mapCell->getPosX() - 1, mapCell->getPosY())->getType() == 'B'))
-                newSprite->setSpriteCutted(sfmlLoader.getBaseBuilding(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
+                newSprite->setSpriteCutted(sfmlLoader.getBaseCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
                                      mapCell->getType(), 1);
             else
                 newSprite->setSpriteCutted(sfmlLoader.getBaseCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
@@ -92,11 +92,21 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
             i++;
         }
     }
+    else if (type == 'A') {
+        int i = 0;
+        while (i != this->_notWalkableSprite.size()) {
+            if ((this->_notWalkableSprite.at(i)->getPosX()) == posX && (this->_notWalkableSprite.at(i)->getPosY() == posY)) {
+                this->_notWalkableSprite.at(i)->setSprite(sfmlLoader.getTowerSupport(), cellSize, posX, posY, newType, 8);
+                return;
+            }
+            i++;
+        }
+    }
     else if (type == 'W') {
         int i = 0;
         while (i != this->_wallSprite.size()) {
             if ((this->_wallSprite.at(i)->getPosX()) == posX && (this->_wallSprite.at(i)->getPosY() == posY)) {
-                this->_wallSprite.at(i)->setSprite(sfmlLoader.getPathCell(), cellSize, posX, posY, newType, 1);
+                this->_wallSprite.at(i)->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, posX, posY, newType, 1);
                 auto it = this->_wallSprite.begin() + i;
                 std::shared_ptr<SFMLSprite> removed_element = *it;
                 this->_wallSprite.erase(it);
