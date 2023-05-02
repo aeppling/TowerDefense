@@ -56,8 +56,6 @@ build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_Release C$:
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/mapParser.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -66,8 +64,6 @@ build CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj: CXX_COMPILER__untitl
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/TDMap.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -76,8 +72,6 @@ build CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj: CXX_COMPILER__untitled1_
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/MapCell.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -86,8 +80,6 @@ build CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj: CXX_COMPILER__untitled
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/AStarPathFinding.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -96,8 +88,6 @@ build CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj: CXX_COMPILER_
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDMap
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/TDUnit.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -106,8 +96,6 @@ build CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj: CXX_COMPILER__untitle
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDUnits
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/RetrieveLevel.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -116,8 +104,6 @@ build CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: CXX_COMPILER__u
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -126,8 +112,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj: CXX_COMPILER__
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/SizeRatioCalculator.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -136,8 +120,6 @@ build CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: CXX_COMPI
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -146,8 +128,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj: CXX_COMPILER__untitle
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Game.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -156,8 +136,6 @@ build CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: CXX_COMPILER__untitled1_
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Buildable.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -166,8 +144,6 @@ build CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj: CXX_COMPILER__untit
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SpritesHolder.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -176,8 +152,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj: CXX_COMPILE
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLSprite.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -186,8 +160,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj: CXX_COMPILER__
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -196,8 +168,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj: CXX_COMPI
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -206,8 +176,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj: CXX_COM
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLTowerLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -216,8 +184,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj: CXX_COMPI
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -226,8 +192,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj: CXX_COMPILER__
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AttackSpeedTower.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -236,8 +200,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj: CXX_COMPIL
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -246,8 +208,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj: CXX_COMPILER__un
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/AnimationsMaths.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -256,8 +216,6 @@ build CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj: CXX_COMPILER_
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGame
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMissileLoader.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -266,8 +224,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj: CXX_COM
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileLauncher.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -276,8 +232,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj: CXX_COMPILE
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileThread.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -286,8 +240,6 @@ build CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj: CXX_COMPILER_
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDTowers
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -296,8 +248,6 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj: CXX_COM
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
 
 build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLHud.cpp || cmake_object_order_depends_target_untitled1
   DEFINES = -DSFML_STATIC
@@ -306,8 +256,14 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj: CXX_COMPILER__unt
   INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDGraphics
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
+
+build CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj: CXX_COMPILER__untitled1_Release C$:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundLoader.cpp || cmake_object_order_depends_target_untitled1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundLoader.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG
+  INCLUDES = -isystem C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\src\TDSounds
 
 
 # =============================================================================
@@ -317,16 +273,15 @@ build CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj: CXX_COMPILER__unt
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Release CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj | ../lib/libsfml-system-s.a ../lib/libsfml-window-s.a ../lib/libsfml-graphics-s.a ../lib/libsfml-network-s.a ../lib/libsfml-audio-s.a ../lib/libsfml-window-s.a ../lib/libfreetype.a ../lib/libsfml-system-s.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
+build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Release CMakeFiles/untitled1.dir/main.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj | ../lib/libsfml-system-s.a ../lib/libsfml-window-s.a ../lib/libsfml-graphics-s.a ../lib/libsfml-network-s.a ../lib/libsfml-audio-s.a ../lib/libsfml-window-s.a ../lib/libfreetype.a ../lib/libsfml-system-s.a ../lib/libopenal32.a ../lib/libvorbisfile.a ../lib/libvorbisenc.a ../lib/libvorbis.a ../lib/libogg.a ../lib/libFLAC.a
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = ../lib/libsfml-system-s.a  ../lib/libsfml-window-s.a  ../lib/libsfml-graphics-s.a  ../lib/libsfml-network-s.a  ../lib/libsfml-audio-s.a  ../lib/libsfml-window-s.a  -lgdi32  -lOpenGL32  ../lib/libfreetype.a  -lws2_32  ../lib/libsfml-system-s.a  -lwinmm  ../lib/libopenal32.a  ../lib/libvorbisfile.a  ../lib/libvorbisenc.a  ../lib/libvorbis.a  ../lib/libogg.a  ../lib/libFLAC.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
   TARGET_FILE = untitled1.exe
   TARGET_IMPLIB = libuntitled1.dll.a
-  TARGET_PDB = untitled1.pdb
+  TARGET_PDB = untitled1.exe.dbg
 
 
 #############################################
@@ -373,14 +328,14 @@ build all: phony untitled1.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/cmake/SFML/SFMLConfig.cmake ../lib/cmake/SFML/SFMLConfigDependencies.cmake ../lib/cmake/SFML/SFMLConfigVersion.cmake ../lib/cmake/SFML/SFMLStaticTargets-debug.cmake ../lib/cmake/SFML/SFMLStaticTargets-release.cmake ../lib/cmake/SFML/SFMLStaticTargets.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeRCCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/cmake/SFML/SFMLConfig.cmake ../lib/cmake/SFML/SFMLConfigDependencies.cmake ../lib/cmake/SFML/SFMLConfigVersion.cmake ../lib/cmake/SFML/SFMLStaticTargets-debug.cmake ../lib/cmake/SFML/SFMLStaticTargets-release.cmake ../lib/cmake/SFML/SFMLStaticTargets.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeRCCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../lib/cmake/SFML/SFMLConfig.cmake ../lib/cmake/SFML/SFMLConfigDependencies.cmake ../lib/cmake/SFML/SFMLConfigVersion.cmake ../lib/cmake/SFML/SFMLStaticTargets-debug.cmake ../lib/cmake/SFML/SFMLStaticTargets-release.cmake ../lib/cmake/SFML/SFMLStaticTargets.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeRCCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../lib/cmake/SFML/SFMLConfig.cmake ../lib/cmake/SFML/SFMLConfigDependencies.cmake ../lib/cmake/SFML/SFMLConfigVersion.cmake ../lib/cmake/SFML/SFMLStaticTargets-debug.cmake ../lib/cmake/SFML/SFMLStaticTargets-release.cmake ../lib/cmake/SFML/SFMLStaticTargets.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/cmake/win/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeRCCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
 
 
 #############################################
