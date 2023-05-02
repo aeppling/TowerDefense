@@ -11,6 +11,7 @@
 #include "../TDGame/usefullStruct.hpp"
 
 Game::Game(int difficulty, int level, TDPlayer *player1){
+    this->level = level;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
@@ -21,7 +22,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1){
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;
     this->sfmlCoinAnimation = sfmlCoinAnimation;
-    this->levelRetriever = new RetrieveLevel(level);
+    this->levelRetriever = new RetrieveLevel(this->level);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
     this->player = player1;
@@ -210,6 +211,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
                 initializeTowerStoreCurrentWave();
+                this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 usleep(3000);
                 while(!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -438,7 +440,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     std::cout << "Launch HUD" << std::endl;
-    this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), &this->towerStoreList);
+    this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
     
     sf::Texture hearthTexture;
     this->player->resetTotalKill();

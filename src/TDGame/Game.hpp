@@ -24,6 +24,7 @@ class Game{
         int unitCount;
         int spawnCount;
         int cellSize;
+        int level;
         int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
