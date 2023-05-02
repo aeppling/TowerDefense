@@ -584,6 +584,54 @@ src/TDMap/mapParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.s
 .PHONY : src/TDMap/mapParser.cpp.s
 
+src/TDSounds/SFMainSoundLoader.obj: src/TDSounds/SFMainSoundLoader.cpp.obj
+.PHONY : src/TDSounds/SFMainSoundLoader.obj
+
+# target to build an object file
+src/TDSounds/SFMainSoundLoader.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
+.PHONY : src/TDSounds/SFMainSoundLoader.cpp.obj
+
+src/TDSounds/SFMainSoundLoader.i: src/TDSounds/SFMainSoundLoader.cpp.i
+.PHONY : src/TDSounds/SFMainSoundLoader.i
+
+# target to preprocess a source file
+src/TDSounds/SFMainSoundLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.i
+.PHONY : src/TDSounds/SFMainSoundLoader.cpp.i
+
+src/TDSounds/SFMainSoundLoader.s: src/TDSounds/SFMainSoundLoader.cpp.s
+.PHONY : src/TDSounds/SFMainSoundLoader.s
+
+# target to generate assembly for a file
+src/TDSounds/SFMainSoundLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.s
+.PHONY : src/TDSounds/SFMainSoundLoader.cpp.s
+
+src/TDSounds/SFMainSoundPlayer.obj: src/TDSounds/SFMainSoundPlayer.cpp.obj
+.PHONY : src/TDSounds/SFMainSoundPlayer.obj
+
+# target to build an object file
+src/TDSounds/SFMainSoundPlayer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
+.PHONY : src/TDSounds/SFMainSoundPlayer.cpp.obj
+
+src/TDSounds/SFMainSoundPlayer.i: src/TDSounds/SFMainSoundPlayer.cpp.i
+.PHONY : src/TDSounds/SFMainSoundPlayer.i
+
+# target to preprocess a source file
+src/TDSounds/SFMainSoundPlayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.i
+.PHONY : src/TDSounds/SFMainSoundPlayer.cpp.i
+
+src/TDSounds/SFMainSoundPlayer.s: src/TDSounds/SFMainSoundPlayer.cpp.s
+.PHONY : src/TDSounds/SFMainSoundPlayer.s
+
+# target to generate assembly for a file
+src/TDSounds/SFMainSoundPlayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.s
+.PHONY : src/TDSounds/SFMainSoundPlayer.cpp.s
+
 src/TDTowers/AntiAirTower.obj: src/TDTowers/AntiAirTower.cpp.obj
 .PHONY : src/TDTowers/AntiAirTower.obj
 
@@ -818,6 +866,12 @@ help:
 	@echo ... src/TDMap/mapParser.obj
 	@echo ... src/TDMap/mapParser.i
 	@echo ... src/TDMap/mapParser.s
+	@echo ... src/TDSounds/SFMainSoundLoader.obj
+	@echo ... src/TDSounds/SFMainSoundLoader.i
+	@echo ... src/TDSounds/SFMainSoundLoader.s
+	@echo ... src/TDSounds/SFMainSoundPlayer.obj
+	@echo ... src/TDSounds/SFMainSoundPlayer.i
+	@echo ... src/TDSounds/SFMainSoundPlayer.s
 	@echo ... src/TDTowers/AntiAirTower.obj
 	@echo ... src/TDTowers/AntiAirTower.i
 	@echo ... src/TDTowers/AntiAirTower.s

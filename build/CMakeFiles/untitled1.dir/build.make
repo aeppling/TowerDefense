@@ -458,6 +458,36 @@ CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.s"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDGraphics\SFMLHud.cpp -o CMakeFiles\untitled1.dir\src\TDGraphics\SFMLHud.cpp.s
 
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj: CMakeFiles/untitled1.dir/flags.make
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj: CMakeFiles/untitled1.dir/includes_CXX.rsp
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundLoader.cpp
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj: CMakeFiles/untitled1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj -MF CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundLoader.cpp.obj.d -o CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundLoader.cpp.obj -c C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundLoader.cpp
+
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundLoader.cpp > CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundLoader.cpp.i
+
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundLoader.cpp -o CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundLoader.cpp.s
+
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj: CMakeFiles/untitled1.dir/flags.make
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj: CMakeFiles/untitled1.dir/includes_CXX.rsp
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundPlayer.cpp
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj: CMakeFiles/untitled1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj -MF CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundPlayer.cpp.obj.d -o CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundPlayer.cpp.obj -c C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundPlayer.cpp
+
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundPlayer.cpp > CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundPlayer.cpp.i
+
+CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src\TDSounds\SFMainSoundPlayer.cpp -o CMakeFiles\untitled1.dir\src\TDSounds\SFMainSoundPlayer.cpp.s
+
 # Object files for target untitled1
 untitled1_OBJECTS = \
 "CMakeFiles/untitled1.dir/main.cpp.obj" \
@@ -485,7 +515,9 @@ untitled1_OBJECTS = \
 "CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj" \
 "CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj" \
 "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj" \
-"CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj"
+"CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj" \
+"CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj" \
+"CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj"
 
 # External object files for target untitled1
 untitled1_EXTERNAL_OBJECTS =
@@ -516,6 +548,8 @@ untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj
+untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
+untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/build.make
 untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-system-s.a
 untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-window-s.a
@@ -534,7 +568,7 @@ untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/Tower
 untitled1.exe: CMakeFiles/untitled1.dir/linkLibs.rsp
 untitled1.exe: CMakeFiles/untitled1.dir/objects1.rsp
 untitled1.exe: CMakeFiles/untitled1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable untitled1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable untitled1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\untitled1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

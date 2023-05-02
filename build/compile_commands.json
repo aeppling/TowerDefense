@@ -154,5 +154,17 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLHud.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLHud.cpp",
   "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLHud.cpp",
   "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDSounds\\SFMainSoundLoader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDSounds\\SFMainSoundLoader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundLoader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDSounds\\SFMainSoundPlayer.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDSounds\\SFMainSoundPlayer.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundPlayer.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj"
 }
 ]

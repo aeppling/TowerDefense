@@ -94,6 +94,18 @@ void SFMLHud::draw() {
         sf::Sprite sprite4(m_backgroundTexture);
         sprite4.setPosition(m_backgroundTexture.getSize().x *3, y);
         _window->draw(sprite4);
+        sf::Sprite sprite5(m_backgroundTexture);
+        sprite5.setPosition(1450, y);
+        _window->draw(sprite5);
+        sf::Sprite sprite6(m_backgroundTexture);
+        sprite6.setPosition(m_backgroundTexture.getSize().x + 1450, y);
+        _window->draw(sprite6);
+        sf::Sprite sprite7(m_backgroundTexture);
+        sprite7.setPosition(m_backgroundTexture.getSize().x *2 + 1450, y);
+        _window->draw(sprite7);
+        sf::Sprite sprite8(m_backgroundTexture);
+        sprite8.setPosition(m_backgroundTexture.getSize().x *3 + 1450, y);
+        _window->draw(sprite8);
     }
     _window->draw(m_levelText);
     int heartSize = 32;
