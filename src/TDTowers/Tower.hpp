@@ -64,6 +64,7 @@ public:
         void setPosition(int posX, int posY, int cellSize) override;
         Point getPosition() override;
         bool isActivated();
+        int getRange();
         void join();
         void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) override;

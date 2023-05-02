@@ -237,6 +237,10 @@ int Tower::getLevel(){
     return (this->level);
 }
 
+int Tower::getRange() {
+    return (this->range);
+}
+
 void Tower::setPosition(int newXPos, int newYPos, int cellSize){
     this->coord = {newXPos,newYPos};
     this->towerSprite.setPosition((newXPos * cellSize) + cellSize/2 + _GAME_POSITION_X, ((newYPos * cellSize) + cellSize/2) + _GAME_POSITION_Y);

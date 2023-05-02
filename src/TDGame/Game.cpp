@@ -207,8 +207,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
               //  Tower *buildTowerTest2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
                 Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-          //      this->towerStoreList.push_back(buildTowerTest);
-                //this->towerStoreList.push_back(buildTowerTest2);
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
                 initializeTowerStoreCurrentWave();
@@ -300,14 +298,23 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (!this->towerStoreList.empty()) {
                             try {
                                 int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
-                                if (radius <= 1)
+                                int range = this->towerStoreList.at(this->towerSelectorIndex)->getRange();
+                                if (radius <= 1) {
+                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
+                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
+                                                                                       mouseCoord.posY, radius), 48);
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
                                                        isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                       mouseCoord.posY, radius));
-                                else
+                                                                                       mouseCoord.posY, radius), 128);
+                                }
+                                else {
+                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
+                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
+                                                                                       mouseCoord.posY, radius), 48 );
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
                                                        isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
-                                                                             radius));
+                                                                             radius), 128);
+                                }
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -865,17 +872,17 @@ void Game::startLevel(){
     //*this->enemyList = retrieveLevel.getNextLevel();
 }
 
-void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable) {
+void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {
             if (i*i + j*j <= radius*radius) {
                 sf::RectangleShape hoveringSprite(sf::Vector2f(this->cellSize - 3, this->cellSize - 3));
                 if (isBuildable == false) {
-                    sf::Color color(255, 0, 0, 128);
+                    sf::Color color(255, 0, 0, fade);
                     hoveringSprite.setFillColor(color);
                 }
                 else {
-                    sf::Color color(0, 0, 255, 128);
+                    sf::Color color(0, 0, 255, fade);
                     hoveringSprite.setFillColor(color);
                 }
                 hoveringSprite.setPosition((posX + i) * this->cellSize + _GAME_POSITION_X +1.5, (posY + j) * this->cellSize + _GAME_POSITION_Y + 1.5);

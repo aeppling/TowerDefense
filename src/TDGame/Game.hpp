@@ -84,7 +84,7 @@ class Game{
         void startLevel();
         void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString, bool display);
         bool waveEnd(sf::RenderWindow& window);
-        void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable);
+        void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade);
         void display();
         void displayCoins(sf::RenderWindow &window);
         void displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell);

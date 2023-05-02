@@ -251,7 +251,8 @@
 				44,
 				46,
 				48,
-				51
+				51,
+				52
 			]
 		}
 	],
@@ -402,7 +403,8 @@
 				44,
 				46,
 				48,
-				51
+				51,
+				52
 			]
 		},
 		{
@@ -724,6 +726,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/TDGraphics/SFMLCoinAnimation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDGraphics/SFMLHud.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
