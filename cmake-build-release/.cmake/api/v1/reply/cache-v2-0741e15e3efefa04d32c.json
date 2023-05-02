@@ -43,7 +43,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "Debug"
+			"value" : "Release"
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/untitled1/cmake-build-debug"
+			"value" : "c:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-release"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -623,7 +623,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/untitled1"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1243,7 +1243,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libFLAC.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libFLAC.a"
 		},
 		{
 			"name" : "FreeType_LIB",
@@ -1259,7 +1259,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libfreetype.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libfreetype.a"
 		},
 		{
 			"name" : "Ogg_LIB",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libogg.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libogg.a"
 		},
 		{
 			"name" : "OpenAL_LIB",
@@ -1291,7 +1291,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libopenal32.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libopenal32.a"
 		},
 		{
 			"name" : "SFML_DOC_DIR",
@@ -1319,7 +1319,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libvorbisenc.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libvorbisenc.a"
 		},
 		{
 			"name" : "VorbisFile_LIB",
@@ -1335,7 +1335,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libvorbisfile.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libvorbisfile.a"
 		},
 		{
 			"name" : "Vorbis_LIB",
@@ -1351,7 +1351,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/untitled1/lib/libvorbis.a"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libvorbis.a"
 		},
 		{
 			"name" : "untitled1_BINARY_DIR",
@@ -1363,7 +1363,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/untitled1/cmake-build-debug"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-release"
 		},
 		{
 			"name" : "untitled1_IS_TOP_LEVEL",
@@ -1387,7 +1387,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/untitled1"
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense"
 		}
 	],
 	"kind" : "cache",

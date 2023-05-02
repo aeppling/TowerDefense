@@ -462,6 +462,9 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
          std::cout << "Spawn : x:" << spawnCells[i]->getPosX() << " y:" << spawnCells[i]->getPosY() << std::endl;
          i++;
      }*/
+    sf::Font mainFont;
+    mainFont.loadFromFile("Fonts/neuropol.otf");
+    this->infoBoxDisplay.setFont(mainFont);
     this->spawnCells = spawnCells;
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
