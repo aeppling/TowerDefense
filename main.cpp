@@ -11,6 +11,7 @@
 #include "src/TDGame/SizeRatioCalculator.hpp"
 #include "src/TDGame/Game.hpp"
 #include "src/TDPlayer/TDPlayer.hpp"
+#include "src/TDSounds/SFMainSoundLoader.hpp"
 
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
@@ -62,6 +63,8 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 */
 
 int main() {
+    // SETTING SOUNDS
+    SFMainSoundLoader mainSoundLoader;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
     settings.depthBits = 24;

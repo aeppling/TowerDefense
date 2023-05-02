@@ -252,7 +252,8 @@
 				46,
 				48,
 				51,
-				52
+				52,
+				54
 			]
 		}
 	],
@@ -404,7 +405,8 @@
 				46,
 				48,
 				51,
-				52
+				52,
+				54
 			]
 		},
 		{
@@ -437,7 +439,8 @@
 				45,
 				47,
 				49,
-				50
+				50,
+				53
 			]
 		}
 	],
@@ -732,6 +735,17 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/TDGraphics/SFMLHud.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDSounds/SFMainSoundLoader.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDSounds/SFMainSoundLoader.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
