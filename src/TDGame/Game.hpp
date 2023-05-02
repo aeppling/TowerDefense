@@ -48,6 +48,7 @@ class Game{
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
         SFMLLoader          sfmlLoaderMap;
+        SFMLHud*            sfmlHud;
         sf::Sprite          hearthDisplay;
         sf::Sprite          baseCell;
         sf::RectangleShape  hitMarker;
