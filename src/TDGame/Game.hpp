@@ -11,10 +11,11 @@
 #include "../TDGraphics/SFMLMissileLoader.hpp"
 #include "../TDPlayer/TDPlayer.hpp"
 #include "../TDGraphics/SFMLCoinAnimation.hpp"
-
+#include "../TDGraphics/SFMLHud.hpp"
 #include <iostream>
 
 class Tower;
+class SFMLHud;
 
 class Game{
     private : 
@@ -45,6 +46,7 @@ class Game{
         SFMLTowerLoader     sfmlTowerLoader;
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
+        SFMLHud*            sfmlHud;
         sf::Sprite hearthDisplay;
         sf::RectangleShape hitMarker;
         unsigned int       hitMarkerOpacity;

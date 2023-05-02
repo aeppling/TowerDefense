@@ -36,6 +36,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1){
     sf::Color hitMarkerColor(255, 0, 0, 0);
     this->hitMarker.setFillColor(hitMarkerColor);
     this->hitMarkerOpacity = 0;
+    
 }
 
 
@@ -336,6 +337,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                      && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                 this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
                                 this->player->looseLife();
+                                this->sfmlHud->setLives(this->player->getLifeNumber());
                                 // RESET HIT MARKER OPACITY
                                 this->hitMarkerOpacity = 155;
                                 // DISPLAY HUD LIFE
@@ -375,10 +377,15 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
                     mousePointer.setPosition(mousePositionScreen.x -(cellSize - 3) + _GAME_POSITION_X, mousePositionScreen.y -(cellSize - 3) + _GAME_POSITION_Y);
                     window.draw(mousePointer);
-                    window.draw(this->waveCounterDisplay);
-                    window.draw(this->enemiesLeftDisplay);
-                    window.draw(this->lifeCounterDisplay);
-                    window.draw(this->killCounterDisplay);
+                    // DISPLAY HUD
+                    this->sfmlHud->setWave(this->currentWaveNumber);
+                    this->sfmlHud->setMoney(this->player->getCoinNumber());
+                    this->sfmlHud->setLives(this->player->getLifeNumber());
+                    this->sfmlHud->update();
+                    this->sfmlHud->draw();
+
+                    // DISPLAY WAVE NUMBER
+                    
                     //window.draw(this->hearthDisplay);
                     window.display();
                 }
@@ -395,28 +402,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
 }
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
+    std::cout << "Launch HUD" << std::endl;
+    this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), &this->towerStoreList);
+    
     sf::Texture hearthTexture;
     this->player->resetTotalKill();
-    //hearthText.loadFromFile("Sprites/heart_48x48.png");
-    //this->hearthDisplay.setTexture(hearthText, true);
-    this->hearthDisplay.setPosition(window.getSize().x / 2 + _GAME_POSITION_X, window.getSize().y/2 + _GAME_POSITION_Y);
-//    this->hearthDisplay.setScale(1,1);
-    sf::Font mainFont;
-    mainFont.loadFromFile("Fonts/neuropol.otf");
-    this->infoBoxDisplay.setFont(mainFont);
-    this->killCounterDisplay.setFont(mainFont);
-    this->killCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/1.3 + _GAME_POSITION_Y);
-    this->killCounterDisplay.setCharacterSize(17);
-    this->killCounterDisplay.setString("Total kills : " + std::to_string(this->player->getTotalKill()));
-    this->lifeCounterDisplay.setFont(mainFont);
-    this->lifeCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/3.2 + _GAME_POSITION_Y);
-    this->lifeCounterDisplay.setCharacterSize(32);
-    this->waveCounterDisplay.setFont(mainFont);
-    this->waveCounterDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/5 + _GAME_POSITION_Y);
-    this->waveCounterDisplay.setCharacterSize(28);
-    this->enemiesLeftDisplay.setFont(mainFont);
-    this->enemiesLeftDisplay.setPosition(window.getSize().x/2 + _GAME_POSITION_X, window.getSize().y/4 + _GAME_POSITION_Y);
-    this->enemiesLeftDisplay.setCharacterSize(22);
+    
     // GAME INITIALISATON
     // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
     if (this->enemyList.size() == 0) {

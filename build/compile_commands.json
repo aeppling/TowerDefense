@@ -1,0 +1,158 @@
+[
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\main.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\main.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/main.cpp",
+  "output": "CMakeFiles/untitled1.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDMap\\mapParser.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDMap\\mapParser.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/mapParser.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDMap\\TDMap.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDMap\\TDMap.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/TDMap.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDMap\\MapCell.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDMap\\MapCell.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/MapCell.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDMap\\AStarPathFinding.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDMap\\AStarPathFinding.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDUnits\\TDUnit.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDUnits\\TDUnit.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/TDUnit.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\RetrieveLevel.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\RetrieveLevel.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/RetrieveLevel.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLLoader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLLoader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\SizeRatioCalculator.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\SizeRatioCalculator.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\Tower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\Tower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/Tower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\Game.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\Game.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Game.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\Buildable.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\Buildable.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Buildable.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SpritesHolder.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SpritesHolder.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SpritesHolder.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLSprite.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLSprite.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLSprite.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLMapReloader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLMapReloader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMapReloader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLEnemiesLoader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLEnemiesLoader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLTowerLoader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLTowerLoader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLTowerLoader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\AntiAirTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\AntiAirTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AntiAirTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\AttackSpeedTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\AttackSpeedTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AttackSpeedTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\BasicTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\BasicTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/BasicTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\AnimationsMaths.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\AnimationsMaths.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLMissileLoader.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLMissileLoader.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMissileLoader.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\MissileLauncher.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\MissileLauncher.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileLauncher.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\MissileThread.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\MissileThread.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileThread.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLCoinAnimation.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLCoinAnimation.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGraphics\\SFMLHud.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGraphics\\SFMLHud.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLHud.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj"
+}
+]
