@@ -16,15 +16,19 @@ private:
     sf::Sprite  _sprite;
     std::thread _thread;
     std::string _style;
+    sf::Sprite  _explosionSprite;
 public:
     MissileThread();
     ~MissileThread() {};
+    void animateExplosion();
+    void initStyle(SFMLMissileLoader &sfmlMissileLoader);
     void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition,
                      int cellSize, float speed, std::string style);
+
     void shootMissile(SFMLMissileLoader &sfmlMissileLoader,
                       const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int &cellSize, float &speed);
     sf::Sprite getSprite();
-
+    sf::Sprite getExplosionSprite();
     bool joinThread() {
         if (this->_thread.joinable()) {
             this->_thread.join();

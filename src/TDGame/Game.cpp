@@ -159,13 +159,20 @@ void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUn
         wave_count++;
     }
 }
+
 void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord) {
     int i = 0;
     while (i < this->towerList.size()) {
-        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
+        int posX = this->towerList.at(i)->getPosition().x;
+        int posY = this->towerList.at(i)->getPosition().y;
+        if ((mouseCoord.posX == posX || mouseCoord.posX == posX + 1 || mouseCoord.posX == posX - 1)
+            && (mouseCoord.posY == posY || mouseCoord.posY == posY + 1 || mouseCoord.posY == posY - 1)) {
             this->selectedActiveTower = this->towerList.at(i);
             this->sfmlHud->setSelectedTower(this->selectedActiveTower);
             break;
+        }
+        else {
+            this->selectedActiveTower = nullptr;
         }
         i++;
     }
@@ -175,8 +182,11 @@ void Game::towerMouseHovering(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     int i = 0;
     while (i < this->towerList.size()) {
-        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
-            this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, false, this->towerList.at(i));
+        int posX = this->towerList.at(i)->getPosition().x;
+        int posY = this->towerList.at(i)->getPosition().y;
+        if ((mouseCoord.posX == posX || mouseCoord.posX == posX + 1 || mouseCoord.posX == posX - 1)
+            && (mouseCoord.posY == posY || mouseCoord.posY == posY + 1 || mouseCoord.posY == posY - 1)) {
+            this->setAllHoveringSprites(map, window, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, false, this->towerList.at(i));
             break;
         }
         i++;
@@ -435,6 +445,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             }
                             s++;
                         }
+                        this->displayExplosions(window);
                     }
                     else {
                         this->drawInfoBox(window, {700, 150}, "Press enter for next wave.", false);
@@ -550,11 +561,25 @@ void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
             int y = 0;
             while (y < this->towerList.at(i)->getTotalMissiles()) {
                 window.draw(this->towerList.at(i)->getMissileSprite(y));
+                window.draw(this->towerList.at(i)->getExplosionSprite(y));
                 y++;
             }
             i++;
         }
     window.draw(this->baseCell);
+}
+
+void Game::displayExplosions(sf::RenderWindow &window) {
+        int i = 0;
+        while (i != this->towerList.size()) {
+            int y = 0;
+            while (y < this->towerList.at(i)->getTotalMissiles()) {
+                if (this->towerList.at(i)->getExplosionSprite(y).getPosition().x != -1000)
+                    window.draw(this->towerList.at(i)->getExplosionSprite(y));
+                y++;
+            }
+            i++;
+        }
 }
 
 void Game::displayCoins(sf::RenderWindow &window) {
@@ -612,7 +637,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 toBuild = nullptr;
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
-                map.refreshTextures(this->sfmlLoaderMap, this->spritesHolderPtr, this->cellSize, mouseCoord.posX, mouseCoord.posY);
+                map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
                 this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 if (this->towerSelectorIndex > this->towerStoreList.size() - 1)
                     this->towerSelectorIndex--;
@@ -645,7 +670,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
                                             (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
                 std::vector<std::shared_ptr<MapCell>> pathtofill;
-                if (pathFinder.runPathFinding(pathtofill, false) == false) {
+                if (pathFinder.runPathFinding(pathtofill, false, false) == false) {
                     map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
                     return;
                 }
@@ -663,8 +688,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         if (check == false)
             return;
-        map.refreshTextures(this->sfmlLoaderMap, this->spritesHolderPtr, this->cellSize,
-                            map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX(),
+        map.refreshTextures(map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX(),
                             map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosY());
         // ...
     }

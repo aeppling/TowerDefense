@@ -93,6 +93,7 @@ class Game{
         void display();
         void displayCoins(sf::RenderWindow &window);
         void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
+        void displayExplosions(sf::RenderWindow &window);
         bool enemyAtBase();
         void upgradeTower(Tower &tower);
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);

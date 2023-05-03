@@ -15,6 +15,7 @@ std::mutex mtx2;
 
 TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale) {
     this->_health_points = hp;
+    this->_isForcing = false;
     this->_max_health = hp;
     this->_speed = speed;
     this->_normalSpeedValue = speed;
@@ -42,14 +43,12 @@ void    TDUnit::live() {
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
-     //   if (res >= this->_speed) {
             if (!(this->isAtBase())) {
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
                 if (this->_isSlowed)
                     this->isSlowFinished();
             }
-       // }
     }
 }
 
@@ -63,6 +62,12 @@ void    TDUnit::run(TDMap *map) {
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
     if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false)) {
+        if (this->_isForcing == true) {
+            this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
+            this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
+            this->setHealth(0);
+            this->_sprite.setPosition(-1000, -1000);
+        }
         this->_path.clear();
         this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY);
         this->move();
@@ -102,10 +107,12 @@ void    TDUnit::move() {
 //benjamin.labastille@
 
 void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY) {
+    if (this->getTypeName() == "Missile")
+        this->_isForcing = true;
     this->_baseCoordX = baseCoordX;
     this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
-    pathFinder.runPathFinding(this->_path, this->_isFlying);
+    pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isForcing);
 }
 
 void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
@@ -164,8 +171,8 @@ bool    TDUnit::isAlive() {
 }
 void                   TDUnit::getSlow(int slowValue) {
     std::cout << "HERE" << std::endl;
-    this->setSpeed(this->getSpeed() + slowValue);
     this->_spriteSpeed = (this->_cellSize / this->_speed);
+    this->setSpeed(this->getSpeed() + slowValue);
     this->_slowChrono = std::chrono::steady_clock::now();
     this->_isSlowed = true;
 }

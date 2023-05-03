@@ -25,6 +25,7 @@ public:
     int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN mSECONDS
     int _normalSpeedValue;
     bool _isFlying;
+    bool _isForcing;
     int  _value;
 
     bool _alreadyCount;

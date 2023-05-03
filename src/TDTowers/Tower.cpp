@@ -276,6 +276,10 @@ sf::Sprite Tower::getMissileSprite(int index) {
     return (this->missileLauncher->getSpriteByIndex(index));
 }
 
+sf::Sprite Tower::getExplosionSprite(int index) {
+    return (this->missileLauncher->getExplosionSpriteByIndex(index));
+}
+
 int Tower::getTotalMissiles() {
     return (this->missileLauncher->getTotalMissiles());
 }

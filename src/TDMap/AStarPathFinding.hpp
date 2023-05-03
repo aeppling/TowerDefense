@@ -28,7 +28,7 @@ public:
 
     ~AStarPathFinding();
 
-    bool runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill, bool isFlying);
+    bool runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill, bool isFlying, bool isForcing);
 
     bool isInClosedList(MapCell &toFind);
     bool openSetContains(std::priority_queue<MapCell *, std::vector<MapCell *>, compareCellPriority> &openSet, MapCell *cell);

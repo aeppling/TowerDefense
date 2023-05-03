@@ -17,9 +17,12 @@ private:
     std::vector<std::vector<MapCell>>                _map;
     int                                              _constructIterator;
     std::vector<std::vector<sf::Sprite>>             _tilesSprites;
+    SFMLLoader                                       &_sfmlLoader;
+    std::shared_ptr<SpritesHolder>                   &_spritesHolderPtr;
+    int                                              _cellSize;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
-    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder);
+    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder);
     ~TDMap();
 
     // MAP CONSTRUCTION
@@ -40,7 +43,7 @@ public:
     void setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder);
 
     // OTHERS FUNCTION
-    void refreshTextures(SFMLLoader &sfmlLoader, std::shared_ptr<SpritesHolder> spritesHolderPtr, int cellSize, int posX, int posY);
+    void refreshTextures(int posX, int posY);
 };
 
 #endif //UNTITLED1_TDMAP_HPP

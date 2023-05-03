@@ -50,6 +50,7 @@ public:
     //
     //OTHERS
     bool         isWalkable();
+    bool         isWall();
     int          getHeuristicFromGoal(MapCell* goal);
     //
 };

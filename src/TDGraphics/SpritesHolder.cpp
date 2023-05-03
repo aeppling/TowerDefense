@@ -112,6 +112,7 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
                 this->_wallSprite.erase(it);
                 this->_walkableSprite.insert(this->_walkableSprite.begin(), removed_element);
                 this->_walkableSprite.at(0)->getSprite().setColor(sf::Color::Green);
+                std::cout << "CHANGED TO PATH" << std::endl;
                 return;
             }
             i++;

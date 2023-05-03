@@ -34,7 +34,7 @@ bool AStarPathFinding::isInClosedList(MapCell &toFind) {
     return (check);
 }
 
-bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill, bool isFlying) {
+bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pathToFill, bool isFlying, bool isForcing) {
     std::priority_queue<MapCell*, std::vector<MapCell*>, compareCellPriority> openSet;
     std::vector<MapCell*> path;
     this->_startCell.setGlobalCost(0);
@@ -78,8 +78,11 @@ bool AStarPathFinding::runPathFinding(std::vector<std::shared_ptr<MapCell>> &pat
                     continue;
                 }
                 MapCell *neighbor = &this->_map[y][x];
-                if ((neighbor->isWalkable() == false) && (isFlying == false)) {
+                if ((neighbor->isWalkable() == false) && (isFlying == false) && (isForcing == false)) {
                     // SKIPPED : NOT WALKABLE
+                    continue;
+                }
+                if ((neighbor->isWall() == false) && (neighbor->isWalkable() == false) && (isForcing == true)) {
                     continue;
                 }
                 if (isInClosedList(*neighbor) == true) {

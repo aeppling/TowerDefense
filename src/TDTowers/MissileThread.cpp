@@ -12,6 +12,24 @@ MissileThread::MissileThread() : _isArrived(false) {
     
 }
 
+void MissileThread::animateExplosion() {
+    sf::Vector2f newOrigin(this->_explosionSprite.getLocalBounds().height / 2.f, this->_explosionSprite.getLocalBounds().height / 2.f);
+    this->_explosionSprite.setOrigin(newOrigin);
+    int numSprites = this->_explosionSprite.getTexture()->getSize().x / this->_explosionSprite.getTexture()->getSize().y;
+    int spriteWidth = this->_explosionSprite.getTexture()->getSize().y;
+    sf::IntRect textureRect(0, 0, 80, 80);
+    this->_explosionSprite.setTextureRect(textureRect);
+    int displayedSprite = 0;
+    // Check if animation time exceeds the time for one sprite
+    while (displayedSprite != numSprites) {
+        textureRect.left += spriteWidth;
+        this->_explosionSprite.setTextureRect(textureRect);
+        displayedSprite++;
+        if (displayedSprite != numSprites)
+            sf::sleep(sf::milliseconds(10));
+    }
+}
+
 void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f &startPosition,
                                  const sf::Vector2f &endPosition, int &cellSize, float &speed) {
     speed = speed / 1000;
@@ -60,17 +78,52 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
     this->_sprite.setPosition(endPosition);
     // PLAY BOOM
     this->_sprite.setPosition(5000, 5000);
+    this->_explosionSprite.setPosition(endPosition);
+    this->animateExplosion();
     this->_isArrived = true;
+}
+
+void MissileThread::initStyle(SFMLMissileLoader &sfmlMissileLoader)
+{
+    this->_explosionSprite.setTexture(*sfmlMissileLoader.getExplosion1());
+    if (this->_style == "AntiAirTower") {
+        this->_explosionSprite.setScale(1.2, 1.2);
+        this->_explosionSprite.setColor(sf::Color::Yellow);
+    }
+    else if (this->_style == "BasicTower") {
+        this->_explosionSprite.setScale(0.7, 0.7);
+    }
+    else if (this->_style == "AttackSpeedTower") {
+        this->_explosionSprite.setScale(0.3, 0.3);
+        this->_explosionSprite.setColor(sf::Color::Yellow);
+    }
+    else if (this->_style == "SlowTower") {
+        this->_explosionSprite.setScale(0.5, 0.5);
+        this->_explosionSprite.setColor(sf::Color::Blue);
+    }
+    else if (this->_style == "SniperTower") {
+        this->_explosionSprite.setScale(1, 1);
+        this->_explosionSprite.setColor(sf::Color::Magenta);
+    }
+    else {
+        this->_explosionSprite.setScale(0.5, 0.5);
+    }
 }
 
 void MissileThread::startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition,
                                 const sf::Vector2f& endPosition, int cellSize, float speed, std::string style)
 {
     this->_style = style;
+    this->initStyle(sfmlMissileLoader);
+    this->_explosionSprite.setPosition(-500, -500);
     this->_thread = std::thread(&MissileThread::shootMissile, this, std::ref(sfmlMissileLoader), startPosition, endPosition, std::ref(cellSize), std::ref(speed));
     this->_thread.detach();
 }
 
 sf::Sprite MissileThread::getSprite() {
    return (this->_sprite);
+}
+
+sf::Sprite MissileThread::getExplosionSprite() {
+    return (this->_explosionSprite);
 }

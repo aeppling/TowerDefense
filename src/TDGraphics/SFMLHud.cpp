@@ -140,8 +140,6 @@ void SFMLHud::draw() {
         heartSprite.setPosition(50 + (heartSize + heartSpacing) * i, 50);
         _window->draw(heartSprite);
     }
-
-    
     
     _window->draw(coinSprite);
     m_moneyText.setPosition(150, 175);
