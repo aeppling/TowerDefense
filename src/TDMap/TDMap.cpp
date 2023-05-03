@@ -8,11 +8,11 @@
 sf::Texture text;
 sf::Sprite spr;
 
-TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder) {
+TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder) : _sfmlLoader(sfmlLoader), _spritesHolderPtr(spriteHolder) {
     this->_constructIterator = 0;
     new mapParser(filename, this);
     this->setAllPositions();
-    this->setAllTextures(sfmlLoader, winSizeX, winSizeY, spriteHolder);
+    this->setAllTextures(sfmlLoader, winSizeX, winSizeY, this->_spritesHolderPtr);
     //SET SPRITE HOLDER AFTER SETALLPOSITION
     // ASSIGN EACH POSITION AND SPRITE ON SPRITE HOLDER AND THEN LOAD TEXTURE
     // EAACH REFRESH RELOAD TEXTURE IF NECESSARY
@@ -25,43 +25,29 @@ TDMap::~TDMap() {
 #define CELL_SIZE 20
 #define TILE_SIZE 20
 void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder) {
-    int cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
+    this->_cellSize = getCellSize(winSizeX, winSizeY, this->_map.at(0).size(), this->_map.size());
     int y = 0;
 
     while (y != this->_map.size()) {
         int x = 0;
         while (x != this->_map.at(y).size()) {
-            spriteHolder->setSpriteFromTypeAndPosition(&this->_map.at(y).at(x), this, sfmlLoader, cellSize);
+            spriteHolder->setSpriteFromTypeAndPosition(&this->_map.at(y).at(x), this, sfmlLoader, this->_cellSize);
             x++;
         }
         y++;
     }
 }
 
-void TDMap::refreshTextures(SFMLLoader &sfmlLoader, std::shared_ptr<SpritesHolder> spritesHolderPtr, int cellSize, int posX, int posY) {
+void TDMap::refreshTextures(int posX, int posY) {
     std::cout << "Refresh." << std::endl;
-    if (spritesHolderPtr->getSpriteFromPosition(posX, posY) == nullptr) {
+    if (this->_spritesHolderPtr->getSpriteFromPosition(posX, posY) == nullptr) {
         std::cout << "Not FOund."<< std::endl;
         return ;
     }
-    else if (this->_map.at(posY).at(posX).getType() != spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()) {
-        if (this->_map.at(posY).at(posX).getType() == 'W') {
-            spritesHolderPtr->updateSpriteFromTypeAndPosition(
-                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
-                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
-        } else if (this->_map.at(posY).at(posX).getType() == 'A') {
-            spritesHolderPtr->updateSpriteFromTypeAndPosition(
-                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
-                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
-        } else if (this->_map.at(posY).at(posX).getType() == 'T') {
-            spritesHolderPtr->updateSpriteFromTypeAndPosition(
-                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
-                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
-        } else if (this->_map.at(posY).at(posX).getType() == 'X') {
-            spritesHolderPtr->updateSpriteFromTypeAndPosition(
-                    spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
-                    posX, posY, sfmlLoader, cellSize, this->_map.at(posY).at(posX).getType());
-        }
+    else if (this->_map.at(posY).at(posX).getType() != this->_spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()) {
+            this->_spritesHolderPtr->updateSpriteFromTypeAndPosition(
+                    this->_spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
+                    posX, posY, this->_sfmlLoader, this->_cellSize, this->_map.at(posY).at(posX).getType());
     }
 }
 

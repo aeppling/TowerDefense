@@ -64,8 +64,9 @@ void    TDUnit::move() {
     if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false)) {
         if (this->_isForcing == true) {
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
+            this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
             this->setHealth(0);
-            this->_sprite.setPosition(-500, -500);
+            this->_sprite.setPosition(-1000, -1000);
         }
         this->_path.clear();
         this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY);

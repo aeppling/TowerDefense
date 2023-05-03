@@ -551,7 +551,8 @@ void Game::displayExplosions(sf::RenderWindow &window) {
         while (i != this->towerList.size()) {
             int y = 0;
             while (y < this->towerList.at(i)->getTotalMissiles()) {
-                window.draw(this->towerList.at(i)->getExplosionSprite(y));
+                if (this->towerList.at(i)->getExplosionSprite(y).getPosition().x != -1000)
+                    window.draw(this->towerList.at(i)->getExplosionSprite(y));
                 y++;
             }
             i++;
@@ -613,7 +614,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 toBuild = nullptr;
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
-                map.refreshTextures(this->sfmlLoaderMap, this->spritesHolderPtr, this->cellSize, mouseCoord.posX, mouseCoord.posY);
+                map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
                 this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 if (this->towerSelectorIndex > this->towerStoreList.size() - 1)
                     this->towerSelectorIndex--;
@@ -664,8 +665,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         if (check == false)
             return;
-        map.refreshTextures(this->sfmlLoaderMap, this->spritesHolderPtr, this->cellSize,
-                            map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX(),
+        map.refreshTextures(map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosX(),
                             map.getElem(mouseCoord.posX, mouseCoord.posY)->getPosY());
         // ...
     }
