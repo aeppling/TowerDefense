@@ -8,12 +8,12 @@
 std::mutex mtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack) : window(window), Buildable(size, "Tower") {
+             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
     else if (this->towerName == "AntiAirTower")
-        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getAntiAir());
     else if (this->towerName == "AttackSpeedTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSpeed());
     else if (this->towerName == "SlowTower")
@@ -26,6 +26,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
     }
+    this->missileSpeed = missileSpeed;
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
@@ -42,7 +43,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->range = range;
     this->timeBetweenAttack = timeBetweenAttack;
     this->activated = true;
-    this->aerial = false;
+    this->aerial = isAerial;
     this->speedBoosted = false;
 }
 
@@ -79,10 +80,10 @@ void Tower::isInRange() {
 
     for (TDUnit *enemy: *(this->enemiesList)) {
         mtx.lock();
-        if (enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
+        if ((enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
             enemy->getPosX() >= this->coord.x - this->range &&
             enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
-            enemy->getPosY() >= this->coord.y - this->range) {
+            enemy->getPosY() >= this->coord.y - this->range) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
                 addToEnemiesInRangeList(enemy);
@@ -187,7 +188,7 @@ void Tower::fire(TDUnit *target){
         mtx.lock();
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
-        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target);
+        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
         target->getShot(this->damage[this->level]);
         if (target->getHealth() <= 0) {
             //  this->gameInstance.addCoins(target->getValue());

@@ -6,6 +6,5 @@ class AntiAirTower : public Tower{
         AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
         AntiAirTower(Game gameInstance, int xPos, int yPos);
         //! override
-        void isInRange(std::vector<TDUnit *> enemiesList);
 
 };

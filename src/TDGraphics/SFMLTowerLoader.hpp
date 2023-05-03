@@ -13,6 +13,7 @@ private:
     sf::Texture _support;
     sf::Texture _basic;
     sf::Texture _speed;
+    sf::Texture _antiAir;
 public:
     SFMLTowerLoader();
     ~SFMLTowerLoader();
@@ -20,6 +21,7 @@ public:
     sf::Texture *getSupport() { return (&this->_support); };
     sf::Texture *getBasic() { return (&this->_basic); };
     sf::Texture *getSpeed() { return (&this->_speed); };
+    sf::Texture *getAntiAir() { return (&this->_antiAir); };
 };
 
 #endif //UNTITLED1_SFMLTOWERLOADER_HPP
