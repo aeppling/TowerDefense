@@ -13,6 +13,8 @@ SFMLTowerLoader::SFMLTowerLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_speed.loadFromFile("Sprites/MyTiles/speed_tower.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_antiAir.loadFromFile("Sprites/MyTiles/antiAir_lvl1.png")))
+        std::cout << "Error on loading texture..." << std::endl;
 }
 
 SFMLTowerLoader::~SFMLTowerLoader() {

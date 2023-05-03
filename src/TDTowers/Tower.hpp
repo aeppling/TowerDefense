@@ -32,6 +32,7 @@ class Tower : public Buildable {
         float range;
         float timeBetweenAttack;
         bool aerial;
+        float missileSpeed;
         std::thread _towerThread;
         Game        *gameInstance;
         std::chrono::steady_clock::time_point _timeOfLastShot; // SET WITH time(NULL) and reset at every move
@@ -41,7 +42,7 @@ class Tower : public Buildable {
 
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack);
+              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };

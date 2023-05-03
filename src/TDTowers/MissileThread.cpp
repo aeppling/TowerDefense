@@ -19,11 +19,16 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
         this->_sprite.setTexture(*sfmlMissileLoader.getBasic());
     else if (this->_style == "AttackSpeedTower")
         this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
+    else if (this->_style == "AntiAirTower")
+        this->_sprite.setTexture(*sfmlMissileLoader.getAntiAir());
     else
         this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
-    this->_sprite.setScale(scaleFactor * 2, scaleFactor * 2);
+    if (this->_style == "AntiAirTower")
+        this->_sprite.setScale(scaleFactor * 4, scaleFactor * 4);
+    else
+        this->_sprite.setScale(scaleFactor * 2, scaleFactor * 2);
     this->_sprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);

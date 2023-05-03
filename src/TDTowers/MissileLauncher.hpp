@@ -20,7 +20,7 @@ public:
     MissileLauncher(SFMLMissileLoader &sfmlMissileLoader, int cellSize, std::string typeName);
     ~MissileLauncher();
     void endFinishedThreads();
-    void shoot(int towerPosX, int towerPosY, TDUnit *target);
+    void shoot(int towerPosX, int towerPosY, TDUnit *target, float missileSpeed);
     int getTotalMissiles();
     sf::Sprite getSpriteByIndex(int index);
 };
