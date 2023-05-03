@@ -32,6 +32,24 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     if (!wallTexture.loadFromFile("Sprites/wall.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
+    if(!pauseButtonTexture.loadFromFile("Sprites/Buttons/pause.png")){
+        std::cout << "Error on loading texture..." << std::endl;
+    }
+    if(!volumeButtonTexture.loadFromFile("Sprites/Buttons/volume.png")){
+        std::cout << "Error on loading texture..." << std::endl;
+    }
+    if(!homeButtonTexture.loadFromFile("Sprites/Buttons/home.png")){
+        std::cout << "Error on loading texture..." << std::endl;
+    }
+    
+    volumeButtonSprite.setTexture(volumeButtonTexture);
+    volumeButtonSprite.setPosition(1600, 100);
+    pauseButtonSprite.setTexture(pauseButtonTexture);
+    pauseButtonSprite.setPosition(1600, 400);
+    homeButtonSprite.setTexture(homeButtonTexture);
+    homeButtonSprite.setPosition(1600, 700);
+
+
     coinSprite.setTexture(coinTexture);
     coinSprite.setPosition(50, 150);
     m_levelText.setFont(mainFont);
@@ -168,4 +186,8 @@ void SFMLHud::draw() {
     _window->draw(wallRect);
     _window->draw(wallPriceText);
     //_window->draw(wallPriceImage);
+    _window->draw(homeButtonSprite);
+    _window->draw(volumeButtonSprite);
+    _window->draw(pauseButtonSprite);
+
 }

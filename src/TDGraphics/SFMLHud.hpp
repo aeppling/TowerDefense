@@ -24,6 +24,9 @@ private:
     sf::Texture coinTexture;
     sf::Texture removeTexture;
     sf::Texture wallTexture;
+    sf::Texture pauseButtonTexture;
+    sf::Texture volumeButtonTexture;
+    sf::Texture homeButtonTexture;
     sf::Text m_moneyText;
     sf::Text wallPriceText;
     sf::Texture m_backgroundTexture;
@@ -32,6 +35,9 @@ private:
     //sf::Sprite wallPriceImage;
     sf::Sprite removeSprite;
     sf::Sprite wallSprite;
+    sf::Sprite pauseButtonSprite;
+    sf::Sprite volumeButtonSprite;
+    sf::Sprite homeButtonSprite;
     sf::RectangleShape removeRect;
     sf::RectangleShape wallRect;
 public:
