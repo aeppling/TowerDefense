@@ -65,6 +65,7 @@ public:
         bool isSpeedBoosted() override;
         void setSpeedBoosted(bool newSpeedBoosted) override;
         void setPosition(int posX, int posY, int cellSize) override;
+        int getDamage();
         Point getPosition() override;
         bool isActivated();
         int getRange();

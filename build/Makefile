@@ -752,6 +752,78 @@ src/TDTowers/MissileThread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.s
 .PHONY : src/TDTowers/MissileThread.cpp.s
 
+src/TDTowers/SlowTower.obj: src/TDTowers/SlowTower.cpp.obj
+.PHONY : src/TDTowers/SlowTower.obj
+
+# target to build an object file
+src/TDTowers/SlowTower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj
+.PHONY : src/TDTowers/SlowTower.cpp.obj
+
+src/TDTowers/SlowTower.i: src/TDTowers/SlowTower.cpp.i
+.PHONY : src/TDTowers/SlowTower.i
+
+# target to preprocess a source file
+src/TDTowers/SlowTower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.i
+.PHONY : src/TDTowers/SlowTower.cpp.i
+
+src/TDTowers/SlowTower.s: src/TDTowers/SlowTower.cpp.s
+.PHONY : src/TDTowers/SlowTower.s
+
+# target to generate assembly for a file
+src/TDTowers/SlowTower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.s
+.PHONY : src/TDTowers/SlowTower.cpp.s
+
+src/TDTowers/SniperTower.obj: src/TDTowers/SniperTower.cpp.obj
+.PHONY : src/TDTowers/SniperTower.obj
+
+# target to build an object file
+src/TDTowers/SniperTower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj
+.PHONY : src/TDTowers/SniperTower.cpp.obj
+
+src/TDTowers/SniperTower.i: src/TDTowers/SniperTower.cpp.i
+.PHONY : src/TDTowers/SniperTower.i
+
+# target to preprocess a source file
+src/TDTowers/SniperTower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.i
+.PHONY : src/TDTowers/SniperTower.cpp.i
+
+src/TDTowers/SniperTower.s: src/TDTowers/SniperTower.cpp.s
+.PHONY : src/TDTowers/SniperTower.s
+
+# target to generate assembly for a file
+src/TDTowers/SniperTower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.s
+.PHONY : src/TDTowers/SniperTower.cpp.s
+
+src/TDTowers/SplashTower.obj: src/TDTowers/SplashTower.cpp.obj
+.PHONY : src/TDTowers/SplashTower.obj
+
+# target to build an object file
+src/TDTowers/SplashTower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj
+.PHONY : src/TDTowers/SplashTower.cpp.obj
+
+src/TDTowers/SplashTower.i: src/TDTowers/SplashTower.cpp.i
+.PHONY : src/TDTowers/SplashTower.i
+
+# target to preprocess a source file
+src/TDTowers/SplashTower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.i
+.PHONY : src/TDTowers/SplashTower.cpp.i
+
+src/TDTowers/SplashTower.s: src/TDTowers/SplashTower.cpp.s
+.PHONY : src/TDTowers/SplashTower.s
+
+# target to generate assembly for a file
+src/TDTowers/SplashTower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.s
+.PHONY : src/TDTowers/SplashTower.cpp.s
+
 src/TDTowers/Tower.obj: src/TDTowers/Tower.cpp.obj
 .PHONY : src/TDTowers/Tower.obj
 
@@ -887,6 +959,15 @@ help:
 	@echo ... src/TDTowers/MissileThread.obj
 	@echo ... src/TDTowers/MissileThread.i
 	@echo ... src/TDTowers/MissileThread.s
+	@echo ... src/TDTowers/SlowTower.obj
+	@echo ... src/TDTowers/SlowTower.i
+	@echo ... src/TDTowers/SlowTower.s
+	@echo ... src/TDTowers/SniperTower.obj
+	@echo ... src/TDTowers/SniperTower.i
+	@echo ... src/TDTowers/SniperTower.s
+	@echo ... src/TDTowers/SplashTower.obj
+	@echo ... src/TDTowers/SplashTower.i
+	@echo ... src/TDTowers/SplashTower.s
 	@echo ... src/TDTowers/Tower.obj
 	@echo ... src/TDTowers/Tower.i
 	@echo ... src/TDTowers/Tower.s

@@ -10,6 +10,8 @@
 class Tower;
 class SFMLHud{
 private:
+    Tower *selectedTower;
+    bool isPaused;
     int _lifeNumber;
     int _maxWaveNumber;
     int _waveNumber;
@@ -43,12 +45,17 @@ private:
 public:
     SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePoxY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level);
     ~SFMLHud();
+    
     void update();
     void draw();
+    void setSelectedTower(Tower *tower){ selectedTower = tower;}
     void setWave(int wave){ _waveNumber = wave;}
     void setLives(int life){ _lifeNumber = life;}
     void setMoney(int money){ _money = money;}
     void setMaxWave(int maxWave){ _maxWaveNumber = maxWave;}
     void setTowerStoreList(std::vector<Tower*> towerStoreList){ this->towerStoreList = towerStoreList;}
+    void setPaused(bool paused){ isPaused = paused;}
+    bool getPaused(){  return isPaused;}
+    
 };
 #endif // UNTITLED1_SFMLHUD_HPP_

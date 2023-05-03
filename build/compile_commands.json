@@ -166,5 +166,23 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDSounds\\SFMainSoundPlayer.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDSounds\\SFMainSoundPlayer.cpp",
   "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundPlayer.cpp",
   "output": "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\SlowTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\SlowTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SlowTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\SniperTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\SniperTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SniperTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\SplashTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\SplashTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj"
 }
 ]

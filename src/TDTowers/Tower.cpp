@@ -231,6 +231,10 @@ void Tower::upgrade(){
 }
 
 //* getters | setters
+
+int Tower::getDamage(){
+    return (this->damage[this->level]);
+}
 float Tower::getTimeBetweenAttack(){
     return (this->timeBetweenAttack);
 }
