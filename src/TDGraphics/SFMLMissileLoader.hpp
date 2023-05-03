@@ -14,6 +14,7 @@ private:
     sf::Texture _speed;
     sf::Texture _antiAir;
     sf::Texture _slow;
+    sf::Texture _sniper;
 public:
     SFMLMissileLoader();
     ~SFMLMissileLoader();
@@ -22,6 +23,7 @@ public:
     sf::Texture *getSpeed() { return (&this->_speed); };
     sf::Texture *getAntiAir() { return (&this->_antiAir); };
     sf::Texture *getSlow() { return (&this->_slow); };
+    sf::Texture *getSniper() { return (&this->_sniper); };
 };
 
 #endif //UNTITLED1_SFMLMISSILELOADER_HPP

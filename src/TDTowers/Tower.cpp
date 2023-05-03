@@ -19,7 +19,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     else if (this->towerName == "SlowTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSlow());
     else if (this->towerName == "SniperTower")
-        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getSniper());
     else if (this->towerName == "SplashTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
     else {
@@ -32,11 +32,21 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
     if (this->towerName == "SlowTower")
         this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
+    else if (this->towerName == "SniperTower")
+        this->towerSprite.setScale(scaleFactor * 3, scaleFactor * 3);
     else
         this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
     this->towerSprite.setTextureRect(textureRect);
-    sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
-    this->towerSprite.setOrigin(newOrigin);
+    if (this->towerName == "SniperTower") {
+        sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 4.f,
+                               this->towerSprite.getLocalBounds().height / 2.f);
+        this->towerSprite.setOrigin(newOrigin);
+    }
+    else {
+        sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f,
+                               this->towerSprite.getLocalBounds().height / 2.f);
+        this->towerSprite.setOrigin(newOrigin);
+    }
     this->_timeOfLastShot = std::chrono::steady_clock::now();
     this->gameInstance = gameInstance;
     this->level = 0;

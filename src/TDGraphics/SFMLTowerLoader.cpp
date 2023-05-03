@@ -17,6 +17,8 @@ SFMLTowerLoader::SFMLTowerLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_slow.loadFromFile("Sprites/MyTiles/SlowTower_lvl1.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_sniper.loadFromFile("Sprites/MyTiles/SniperTower_lvl1.png")))
+        std::cout << "Error on loading texture..." << std::endl;
 }
 
 SFMLTowerLoader::~SFMLTowerLoader() {

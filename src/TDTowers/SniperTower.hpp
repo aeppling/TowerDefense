@@ -1,13 +1,11 @@
 #include "Tower.hpp"
 
-class SniperTower : Tower{
+class SniperTower : public Tower {
 
     private:
         
         
     public :
-        SniperTower(Game gameInstance);
-        SniperTower(Game gameInstance, int xPos, int yPos);
-        
-
-}
+        SniperTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
+        ~SniperTower() {};
+};

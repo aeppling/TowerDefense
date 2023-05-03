@@ -9,6 +9,7 @@
 #include "../TDTowers/BasicTower.hpp"
 #include "../TDTowers/AttackSpeedTower.hpp"
 #include "../TDTowers/SlowTower.hpp"
+#include "../TDTowers/SniperTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
 Game::Game(int difficulty, int level, TDPlayer *player1){
@@ -211,10 +212,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 Tower *buildTowerTest5 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 Tower *buildTowerTest6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
+                Tower *buildTowerTest7 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
                 this->towerStoreList.push_back(buildTowerTest5);
                 this->towerStoreList.push_back(buildTowerTest6);
+                this->towerStoreList.push_back(buildTowerTest7);
                 initializeTowerStoreCurrentWave();
                 this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 usleep(3000);

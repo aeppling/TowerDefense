@@ -23,12 +23,16 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
         this->_sprite.setTexture(*sfmlMissileLoader.getAntiAir());
     else if (this->_style == "SlowTower")
         this->_sprite.setTexture(*sfmlMissileLoader.getSlow());
+    else if (this->_style == "SniperTower")
+        this->_sprite.setTexture(*sfmlMissileLoader.getSniper());
     else
         this->_sprite.setTexture(*sfmlMissileLoader.getSpeed());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
-    if (this->_style == "AntiAirTower")
+    if ((this->_style == "AntiAirTower") || (this->_style == "SniperTower"))
         this->_sprite.setScale(scaleFactor * 4, scaleFactor * 4);
+    else if (this->_style == "SlowTower")
+        this->_sprite.setScale(scaleFactor * 3, scaleFactor * 3);
     else
         this->_sprite.setScale(scaleFactor * 2, scaleFactor * 2);
     this->_sprite.setTextureRect(textureRect);
