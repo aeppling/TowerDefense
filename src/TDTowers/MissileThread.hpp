@@ -21,6 +21,7 @@ public:
     MissileThread();
     ~MissileThread() {};
     void animateExplosion();
+    void initStyle(SFMLMissileLoader &sfmlMissileLoader);
     void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition,
                      int cellSize, float speed, std::string style);
 
