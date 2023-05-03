@@ -73,6 +73,7 @@ public:
         void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) override;
         bool isMaxed() override;
         sf::Sprite getMissileSprite(int index);
+        sf::Sprite getExplosionSprite(int index);
         int getTotalMissiles();
         void slowTarget(TDUnit *target);
         void resetSlowTarget(TDUnit *target);

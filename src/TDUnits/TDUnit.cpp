@@ -164,8 +164,8 @@ bool    TDUnit::isAlive() {
 }
 void                   TDUnit::getSlow(int slowValue) {
     std::cout << "HERE" << std::endl;
-    this->setSpeed(this->getSpeed() + slowValue);
     this->_spriteSpeed = (this->_cellSize / this->_speed);
+    this->setSpeed(this->getSpeed() + slowValue);
     this->_slowChrono = std::chrono::steady_clock::now();
     this->_isSlowed = true;
 }

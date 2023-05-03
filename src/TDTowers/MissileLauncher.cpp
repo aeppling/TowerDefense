@@ -31,3 +31,7 @@ int MissileLauncher::getTotalMissiles() {
 sf::Sprite MissileLauncher::getSpriteByIndex(int index) {
     return (this->_missiles.at(index)->getSprite());
 }
+
+sf::Sprite MissileLauncher::getExplosionSpriteByIndex(int index) {
+    return (this->_missiles.at(index)->getExplosionSprite());
+}

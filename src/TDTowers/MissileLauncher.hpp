@@ -23,6 +23,7 @@ public:
     void shoot(int towerPosX, int towerPosY, TDUnit *target, float missileSpeed);
     int getTotalMissiles();
     sf::Sprite getSpriteByIndex(int index);
+    sf::Sprite getExplosionSpriteByIndex(int index);
 };
 
 #endif //UNTITLED1_MISSILELAUNCHER_HPP

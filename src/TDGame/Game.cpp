@@ -412,6 +412,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             }
                             s++;
                         }
+                        this->displayExplosions(window);
                     }
                     else {
                         this->drawInfoBox(window, {700, 150}, "Press enter for next wave.", false);
@@ -527,11 +528,24 @@ void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
             int y = 0;
             while (y < this->towerList.at(i)->getTotalMissiles()) {
                 window.draw(this->towerList.at(i)->getMissileSprite(y));
+                window.draw(this->towerList.at(i)->getExplosionSprite(y));
                 y++;
             }
             i++;
         }
     window.draw(this->baseCell);
+}
+
+void Game::displayExplosions(sf::RenderWindow &window) {
+        int i = 0;
+        while (i != this->towerList.size()) {
+            int y = 0;
+            while (y < this->towerList.at(i)->getTotalMissiles()) {
+                window.draw(this->towerList.at(i)->getExplosionSprite(y));
+                y++;
+            }
+            i++;
+        }
 }
 
 void Game::displayCoins(sf::RenderWindow &window) {

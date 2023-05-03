@@ -16,6 +16,7 @@ private:
     sf::Texture _slow;
     sf::Texture _sniper;
     sf::Texture _splash;
+    sf::Texture _explosion1;
 public:
     SFMLMissileLoader();
     ~SFMLMissileLoader();
@@ -26,6 +27,7 @@ public:
     sf::Texture *getSlow() { return (&this->_slow); };
     sf::Texture *getSniper() { return (&this->_sniper); };
     sf::Texture *getSplash() { return (&this->_splash); };
+    sf::Texture *getExplosion1() { return (&this->_explosion1); };
 };
 
 #endif //UNTITLED1_SFMLMISSILELOADER_HPP
