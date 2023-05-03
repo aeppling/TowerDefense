@@ -26,6 +26,7 @@ class Tower : public Buildable {
          std::shared_ptr<std::vector<TDUnit*>> enemiesList;
         std::vector<int> damage;
         std::vector<int> cost;
+        std::vector<int> slowValue;
         int level;
         bool speedBoosted;
         bool activated;
@@ -72,6 +73,8 @@ public:
         bool isMaxed() override;
         sf::Sprite getMissileSprite(int index);
         int getTotalMissiles();
+        void slowTarget(TDUnit *target);
+        void resetSlowTarget(TDUnit *target);
 };
 
 #endif

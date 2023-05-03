@@ -6,15 +6,7 @@ SlowTower::SlowTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowe
 }
 
 
-void SlowTower::slowTarget(TDUnit *target){
-    // decrease the target speed
-    target->setSpeed(target->getSpeed() - this->slowValue[this->level]);
-}
 
-void SlowTower::resetSlowTarget(TDUnit *target){
-    // reset the target speed
-    target->setSpeed(target->getSpeed() + this->slowValue[this->level]);
-}
 
 void SlowTower::addToEnemiesInRangeList(TDUnit *enemy){
     // slow the target and add him to in range list

@@ -44,6 +44,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->damage = damage;
     this->cost = cost;
     this->range = range;
+    this->slowValue = {15, 25, 30};
     this->timeBetweenAttack = timeBetweenAttack;
     this->activated = true;
     this->aerial = isAerial;
@@ -76,6 +77,15 @@ void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
 /*bool Tower::isAlreadyInList() {
 
 }*/
+void Tower::slowTarget(TDUnit *target){
+    // decrease the target speed
+    target->setSpeed(target->getSpeed() + this->slowValue[this->level]);
+}
+
+void Tower::resetSlowTarget(TDUnit *target){
+    // reset the target speed
+    target->setSpeed(target->getSpeed() - this->slowValue[this->level]);
+}
 
 void Tower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
@@ -89,11 +99,15 @@ void Tower::isInRange() {
             enemy->getPosY() >= this->coord.y - this->range) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
+                if (this->towerName == "SlowTower")
+                    slowTarget(enemy);
                 addToEnemiesInRangeList(enemy);
             }
         } else {
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) !=
                 this->enemiesInRange.end()) {
+                if (this->towerName == "SlowTower")
+                    resetSlowTarget(enemy);
                 removeFromEnemiesInRangeList(enemy);
             }
 
