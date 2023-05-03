@@ -175,7 +175,7 @@ void Game::towerMouseHovering(TDMap &map, sf::RenderWindow &window) {
     int i = 0;
     while (i < this->towerList.size()) {
         if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
-            this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, false, true);
+            this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, false, this->towerList.at(i));
             break;
         }
         i++;
@@ -336,7 +336,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->spritesHolderPtr->displayMap(window, this->cellSize, this->sfmlLoaderMap);
                     if (isBuilding == false) {
                         if (this->selectedActiveTower != nullptr) {
-                            this->setAllHoveringSprites(map, window, this->selectedActiveTower->getPosition().x, this->selectedActiveTower->getPosition().y, false, true);
+                            this->setAllHoveringSprites(map, window, this->selectedActiveTower->getPosition().x, this->selectedActiveTower->getPosition().y, false, this->selectedActiveTower);
                         }
                         this->towerMouseHovering(map, window);
                     }
@@ -346,7 +346,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
                             try {
-                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, false);
+                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex));
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -906,17 +906,9 @@ void Game::startLevel(){
     //*this->enemyList = retrieveLevel.getNextLevel();
 }
 
-void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, bool showSelected) {
-    int radius;
-    int range;
-    if (showSelected == true) {
-        radius = this->selectedActiveTower->getSize() - 1;
-        range = this->selectedActiveTower->getRange();
-    }
-    else {
-        radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
-        range = this->towerStoreList.at(this->towerSelectorIndex)->getRange();
-    }
+void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {
+    int radius = towerInfos->getSize() - 1;
+    int range = towerInfos->getRange();
     if (radius <= 1) {
         bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
                                                            posY, radius);
