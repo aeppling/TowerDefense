@@ -17,7 +17,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     else if (this->towerName == "AttackSpeedTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSpeed());
     else if (this->towerName == "SlowTower")
-        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getSlow());
     else if (this->towerName == "SniperTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
     else if (this->towerName == "SplashTower")
@@ -30,7 +30,10 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
-    this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
+    if (this->towerName == "SlowTower")
+        this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
+    else
+        this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
     this->towerSprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
     this->towerSprite.setOrigin(newOrigin);
@@ -41,6 +44,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->damage = damage;
     this->cost = cost;
     this->range = range;
+    this->slowValue = {15, 25, 30};
     this->timeBetweenAttack = timeBetweenAttack;
     this->activated = true;
     this->aerial = isAerial;
@@ -73,6 +77,15 @@ void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
 /*bool Tower::isAlreadyInList() {
 
 }*/
+void Tower::slowTarget(TDUnit *target){
+    // decrease the target speed
+    target->setSpeed(target->getSpeed() + this->slowValue[this->level]);
+}
+
+void Tower::resetSlowTarget(TDUnit *target){
+    // reset the target speed
+    target->setSpeed(target->getSpeed() - this->slowValue[this->level]);
+}
 
 void Tower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
@@ -86,11 +99,15 @@ void Tower::isInRange() {
             enemy->getPosY() >= this->coord.y - this->range) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
+                if (this->towerName == "SlowTower")
+                    slowTarget(enemy);
                 addToEnemiesInRangeList(enemy);
             }
         } else {
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) !=
                 this->enemiesInRange.end()) {
+                if (this->towerName == "SlowTower")
+                    resetSlowTarget(enemy);
                 removeFromEnemiesInRangeList(enemy);
             }
 
