@@ -1,4 +1,5 @@
-Drone:1
+Missile:2
+Missile:4
 Spaceship:2
 Drone:3
 Missile:2

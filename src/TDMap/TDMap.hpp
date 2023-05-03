@@ -17,6 +17,7 @@ private:
     std::vector<std::vector<MapCell>>                _map;
     int                                              _constructIterator;
     std::vector<std::vector<sf::Sprite>>             _tilesSprites;
+//    SFMLLoader                                       &_sfmlLoader;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
     TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> spriteHolder);

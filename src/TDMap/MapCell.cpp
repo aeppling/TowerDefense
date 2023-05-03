@@ -33,6 +33,14 @@ bool MapCell::isWalkable() {
         return (false);
 }
 
+bool MapCell::isWall() {
+    // ADD CONDITIONS HERE FOR TRANSPARENT OR NOT UNITS
+    if (this->_type == 'W')
+        return (true);
+    else
+        return (false);
+}
+
 std::ostream &operator<<(std::ostream &ostream, const MapCell &cell) {
     ostream << cell._type;
     return (ostream);

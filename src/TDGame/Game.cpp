@@ -646,7 +646,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
                                             (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
                 std::vector<std::shared_ptr<MapCell>> pathtofill;
-                if (pathFinder.runPathFinding(pathtofill, false) == false) {
+                if (pathFinder.runPathFinding(pathtofill, false, false) == false) {
                     map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
                     return;
                 }
