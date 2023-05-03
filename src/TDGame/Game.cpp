@@ -8,6 +8,7 @@
 #include "../TDTowers/AntiAirTower.hpp"
 #include "../TDTowers/BasicTower.hpp"
 #include "../TDTowers/AttackSpeedTower.hpp"
+#include "../TDTowers/SlowTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
 Game::Game(int difficulty, int level, TDPlayer *player1){
@@ -183,7 +184,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
             mousePointer.setTextureRect(textureRect);
             bool closing = false;
-            while((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
+            while ((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 bool isWaveRunning = false;
                 // CREATE SHARED PTR OF WAVE HERE
@@ -209,13 +210,15 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 Tower *buildTowerTest5 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
+                Tower *buildTowerTest6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
                 this->towerStoreList.push_back(buildTowerTest3);
                 this->towerStoreList.push_back(buildTowerTest4);
                 this->towerStoreList.push_back(buildTowerTest5);
+                this->towerStoreList.push_back(buildTowerTest6);
                 initializeTowerStoreCurrentWave();
                 this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 usleep(3000);
-                while(!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
+                while (!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
                     if (isWaveRunning) {

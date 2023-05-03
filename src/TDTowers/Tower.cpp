@@ -17,7 +17,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     else if (this->towerName == "AttackSpeedTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSpeed());
     else if (this->towerName == "SlowTower")
-        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getSlow());
     else if (this->towerName == "SniperTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
     else if (this->towerName == "SplashTower")
@@ -30,7 +30,10 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
-    this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
+    if (this->towerName == "SlowTower")
+        this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
+    else
+        this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
     this->towerSprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 2.f, this->towerSprite.getLocalBounds().height / 2.f);
     this->towerSprite.setOrigin(newOrigin);
