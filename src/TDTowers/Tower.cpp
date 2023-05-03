@@ -21,7 +21,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     else if (this->towerName == "SniperTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSniper());
     else if (this->towerName == "SplashTower")
-        this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
+        this->towerSprite.setTexture(*sfmlLoaderTower.getSplash());
     else {
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
@@ -30,7 +30,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
-    if (this->towerName == "SlowTower")
+    if ((this->towerName == "SlowTower") || (this->towerName == "SplashTower"))
         this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
     else if (this->towerName == "SniperTower")
         this->towerSprite.setScale(scaleFactor * 3, scaleFactor * 3);

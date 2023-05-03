@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled1-Release-07b0b9c63b2ef90c488d.json",
+					"jsonFile" : "target-untitled1-Release-acf3e5d5a2b0bbfb87d0.json",
 					"name" : "untitled1",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug",
+		"build" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-release",
 		"source" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense"
 	},
 	"version" : 

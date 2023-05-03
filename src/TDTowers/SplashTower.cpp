@@ -1,23 +1,10 @@
 #include "SplashTower.hpp"
 
-SplashTower::SplashTower(Game gameInstance):Tower(gameInstance){
-    this->damage = {15, 40, 80};
-    this->size = {2,3};
-    this->cost = {500, 600, 700};
-    this->range = 5;
-    this->timeBetweenAttack = 1;
-    this->area = 1;
-}
-SplashTower::SplashTower(Game gameInstance, int xPos, int yPos):Tower(gameInstance, xPos, yPos){
-    this->damage = {15, 40, 80};
-    this->size = {2,3};
-    this->cost = {500, 600, 700};
-    this->range = 5;
-    this->timeBetweenAttack = 1;
-    this->area = 1;
+SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SplashTower",
+                                                                                                                                                                              {7, 13, 20}, {480, 600, 750}, 10, 2.5, 0, false){
 }
 
-void SplashTower::fire(Enemy target){
+/*void SplashTower::fire(TDUnit *target){
     //* remove target health and all enemies around the target
     for each(Enemy hit in this->enemiesInRange){  
         if(hit.getXPos() <= target.getXPos() + this->area && hit.getXPos() >= target.getXPos() - this->area && hit.getYPos() <= target.getYPos() + this->area && hit.getYPos() >= target.getYPos() - this->area){
@@ -31,4 +18,4 @@ void SplashTower::fire(Enemy target){
             }
         }
     }
-}
+}*/

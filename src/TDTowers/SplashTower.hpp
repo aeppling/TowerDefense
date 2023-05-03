@@ -1,12 +1,11 @@
 #include "Tower.hpp"
 
-class SplashTower : Tower{
-
+class SplashTower : public Tower {
     private:
         int area;
     public :
-        SplashTower(Game gameInstance);
-        SplashTower(Game gameInstance, int xPos, int yPos);
+        SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
+        ~SplashTower() {};
         //! override
-        void fire(Enemy target);
+       // void fire(TDUnit *target);
 };
