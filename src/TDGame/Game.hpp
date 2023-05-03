@@ -6,6 +6,7 @@
 #include "RetrieveLevel.hpp"
 #include "usefullStruct.hpp"
 #include "Buildable.hpp"
+#include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLTowerLoader.hpp"
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
 #include "../TDGraphics/SFMLMissileLoader.hpp"
@@ -38,6 +39,7 @@ class Game{
         std::shared_ptr<std::vector<TDUnit*>> currentWave;
         std::vector<Tower *> towerList;
         std::vector<Tower *> towerStoreList;
+        Tower                *selectedActiveTower;
         RetrieveLevel        *levelRetriever;
         sf::Text             waveCounterDisplay;
         sf::Text             enemiesLeftDisplay;
@@ -85,13 +87,16 @@ class Game{
         void startLevel();
         void drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, const std::string& textString, bool display);
         bool waveEnd(sf::RenderWindow& window);
+        void setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, bool showSelected);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade);
         void setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite);
         void display();
         void displayCoins(sf::RenderWindow &window);
-        void displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell);
+        void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
         bool enemyAtBase();
         void upgradeTower(Tower &tower);
+        void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
+        void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);
     };
 
 #endif // GAME_HPP_

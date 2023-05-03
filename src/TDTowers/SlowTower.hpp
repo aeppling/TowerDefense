@@ -11,8 +11,6 @@ class SlowTower : public Tower{
     public:
         SlowTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
         //! Override
-        void removeFromEnemiesInRangeList(TDUnit *enemy);
-        void addToEnemiesInRangeList(TDUnit *enemy);
 };
 
 #endif /* SLOWTOWER_HPP_ */

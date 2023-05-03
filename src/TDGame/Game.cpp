@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include "Game.hpp"
-#include "SizeRatioCalculator.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
 #include "../TDTowers/AntiAirTower.hpp"
 #include "../TDTowers/BasicTower.hpp"
@@ -42,7 +41,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1){
     sf::Color hitMarkerColor(255, 0, 0, 0);
     this->hitMarker.setFillColor(hitMarkerColor);
     this->hitMarkerOpacity = 0;
-    
+    this->selectedActiveTower = nullptr;
 }
 
 
@@ -160,6 +159,28 @@ void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUn
         wave_count++;
     }
 }
+void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord) {
+    int i = 0;
+    while (i < this->towerList.size()) {
+        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
+            this->selectedActiveTower = this->towerList.at(i);
+            break;
+        }
+        i++;
+    }
+}
+
+void Game::towerMouseHovering(TDMap &map, sf::RenderWindow &window) {
+    mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    int i = 0;
+    while (i < this->towerList.size()) {
+        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
+            this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, false, true);
+            break;
+        }
+        i++;
+    }
+}
 
 void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX,
               unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount, int spawnCount) {
@@ -260,6 +281,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
+                                this->selectedActiveTower = nullptr;
                             }
                             else {
                                 //toBuild = nullptr;
@@ -299,37 +321,32 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                             }
                         }
+                        else {
+                            if (event.type == sf::Event::MouseButtonPressed &&
+                                sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
+                                mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+                                isTowerClicked(map, window, mouseCoord);
+                            }
+                        }
                     }
                     if (closing == true)
                         break;
                     int s = 0;
                     // DISPLAY MAP
-                    this->displayMapAndTowers(window, baseCell);
+                    this->spritesHolderPtr->displayMap(window, this->cellSize, this->sfmlLoaderMap);
+                    if (isBuilding == false) {
+                        if (this->selectedActiveTower != nullptr) {
+                            this->setAllHoveringSprites(map, window, this->selectedActiveTower->getPosition().x, this->selectedActiveTower->getPosition().y, false, true);
+                        }
+                        this->towerMouseHovering(map, window);
+                    }
+                    this->displayTowers(window, baseCell);
                     //DISPLAY BUILDING AREA (before enemies) and SHOOTING RANGE if tower building
                     if (isBuilding == true) {
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
                             try {
-                                int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
-                                int range = this->towerStoreList.at(this->towerSelectorIndex)->getRange();
-                                if (radius <= 1) {
-                                    bool isBuildable = isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                       mouseCoord.posY, radius);
-                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
-                                                       isBuildable, 48);
-                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                        isBuildable, 128);
-                                    setHoveringBuildable(window, mouseCoord.posX, mouseCoord.posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
-                                }
-                                else {
-                                    bool isBuildable = isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
-                                                                             radius);
-                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
-                                                       isBuildable, 48 );
-                                    setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                       isBuildable, 128);
-                                    setHoveringBuildable(window, mouseCoord.posX, mouseCoord.posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
-                                }
+                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, false);
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -419,6 +436,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // BREAK IF DEAD
                     if (this->player->getLifeNumber() <= 0)
                         break;
+                    // DISPLAY HUD
+                    this->sfmlHud->setWave(this->currentWaveNumber);
+                    this->sfmlHud->setMoney(this->player->getCoinNumber());
+                    this->sfmlHud->setLives(this->player->getLifeNumber());
+                    this->sfmlHud->update();
+                    this->sfmlHud->draw();
                     // SET AND DISPLAY MOUSE
                     if (isBuilding == true)
                         mousePointer.setColor(sf::Color::Transparent);
@@ -427,12 +450,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
                     mousePointer.setPosition(mousePositionScreen.x -(cellSize - 3) + _GAME_POSITION_X, mousePositionScreen.y -(cellSize - 3) + _GAME_POSITION_Y);
                     window.draw(mousePointer);
-                    // DISPLAY HUD
-                    this->sfmlHud->setWave(this->currentWaveNumber);
-                    this->sfmlHud->setMoney(this->player->getCoinNumber());
-                    this->sfmlHud->setLives(this->player->getLifeNumber());
-                    this->sfmlHud->update();
-                    this->sfmlHud->draw();
 
                     // DISPLAY WAVE NUMBER
                     
@@ -496,8 +513,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     this->loop(sfmlLoader, window, baseCell, map, spritesHolder);
 }
 
-void Game::displayMapAndTowers(sf::RenderWindow &window, MapCell *baseCell) {
-    this->spritesHolderPtr->displayMap(window, this->cellSize, this->sfmlLoaderMap);
+void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
     int i = 0;
     while (i != this->towerList.size()) {
             sf::Sprite support;
@@ -890,6 +906,38 @@ void Game::startLevel(){
     //*this->enemyList = retrieveLevel.getNextLevel();
 }
 
+void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, bool showSelected) {
+    int radius;
+    int range;
+    if (showSelected == true) {
+        radius = this->selectedActiveTower->getSize() - 1;
+        range = this->selectedActiveTower->getRange();
+    }
+    else {
+        radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
+        range = this->towerStoreList.at(this->towerSelectorIndex)->getRange();
+    }
+    if (radius <= 1) {
+        bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
+                                                           posY, radius);
+        setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48);
+        setHoveringSprites(window, posX, posY, radius,
+                           isBuildable, 128);
+        if (showBuildable)
+            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
+    }
+    else {
+        bool isBuildable = isBuildableAtPosition(map, posX, posY,
+                                                 radius);
+        setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48 );
+        setHoveringSprites(window, posX, posY, radius,
+                           isBuildable, 128);
+        if (showBuildable)
+            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
+    }
+}
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {
