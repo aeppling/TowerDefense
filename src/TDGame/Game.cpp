@@ -159,12 +159,19 @@ void Game::setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUn
         wave_count++;
     }
 }
+
 void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord) {
     int i = 0;
     while (i < this->towerList.size()) {
-        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
+        int posX = this->towerList.at(i)->getPosition().x;
+        int posY = this->towerList.at(i)->getPosition().y;
+        if ((mouseCoord.posX == posX || mouseCoord.posX == posX + 1 || mouseCoord.posX == posX - 1)
+            && (mouseCoord.posY == posY || mouseCoord.posY == posY + 1 || mouseCoord.posY == posY - 1)) {
             this->selectedActiveTower = this->towerList.at(i);
             break;
+        }
+        else {
+            this->selectedActiveTower = nullptr;
         }
         i++;
     }
@@ -174,8 +181,11 @@ void Game::towerMouseHovering(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     int i = 0;
     while (i < this->towerList.size()) {
-        if ((mouseCoord.posX  == this->towerList.at(i)->getPosition().x) && (mouseCoord.posY  == this->towerList.at(i)->getPosition().y)) {
-            this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, false, this->towerList.at(i));
+        int posX = this->towerList.at(i)->getPosition().x;
+        int posY = this->towerList.at(i)->getPosition().y;
+        if ((mouseCoord.posX == posX || mouseCoord.posX == posX + 1 || mouseCoord.posX == posX - 1)
+            && (mouseCoord.posY == posY || mouseCoord.posY == posY + 1 || mouseCoord.posY == posY - 1)) {
+            this->setAllHoveringSprites(map, window, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, false, this->towerList.at(i));
             break;
         }
         i++;

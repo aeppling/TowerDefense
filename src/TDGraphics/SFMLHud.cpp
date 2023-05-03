@@ -136,15 +136,12 @@ void SFMLHud::draw() {
         heartSprite.setPosition(50 + (heartSize + heartSpacing) * i, 50);
         _window->draw(heartSprite);
     }
-
-    
     
     _window->draw(coinSprite);
     m_moneyText.setPosition(150, 175);
     _window->draw(m_moneyText);
     m_waveText.setPosition(50, 100);
     _window->draw(m_waveText);
-
     
     int towerInfoX = 75;
     int towerInfoY = 300;
