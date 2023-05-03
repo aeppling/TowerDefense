@@ -313,20 +313,22 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 int radius = this->towerStoreList.at(this->towerSelectorIndex)->getSize() - 1;
                                 int range = this->towerStoreList.at(this->towerSelectorIndex)->getRange();
                                 if (radius <= 1) {
+                                    bool isBuildable = isBuildableAtPositionForSmaller(map, mouseCoord.posX,
+                                                                                       mouseCoord.posY, radius);
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
-                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                       mouseCoord.posY, radius), 48);
+                                                       isBuildable, 48);
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                       mouseCoord.posY, radius), 128);
+                                                        isBuildable, 128);
+                                    setHoveringBuildable(window, mouseCoord.posX, mouseCoord.posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
                                 }
                                 else {
+                                    bool isBuildable = isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
+                                                                             radius);
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, range,
-                                                       isBuildableAtPositionForSmaller(map, mouseCoord.posX,
-                                                                                       mouseCoord.posY, radius), 48 );
+                                                       isBuildable, 48 );
                                     setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, radius,
-                                                       isBuildableAtPosition(map, mouseCoord.posX, mouseCoord.posY,
-                                                                             radius), 128);
+                                                       isBuildable, 128);
+                                    setHoveringBuildable(window, mouseCoord.posX, mouseCoord.posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
                                 }
                             }
                             catch (const std::out_of_range& ex){
@@ -906,4 +908,9 @@ void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int 
             }
         }
     }
+}
+
+void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite) {
+    buildableSprite->setPosition((posX) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_X, (posY) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_Y);
+    window.draw(*buildableSprite);
 }

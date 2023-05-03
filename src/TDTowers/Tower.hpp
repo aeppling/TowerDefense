@@ -47,6 +47,7 @@ public:
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
+        sf::Sprite *getTowerSpritePtr() { return (&this->towerSprite); };
         void setCurrentWave(std::shared_ptr<std::vector<TDUnit*>> enemiesList);
         void removeFromEnemiesInRangeList(TDUnit *enemy) override;
         void addToEnemiesInRangeList(TDUnit *enemy) override;
