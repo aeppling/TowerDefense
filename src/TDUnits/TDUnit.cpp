@@ -17,11 +17,13 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
     this->_health_points = hp;
     this->_max_health = hp;
     this->_speed = speed;
+    this->_normalSpeedValue = speed;
     this->_scale = scale;
     this->_resistance = resistance;
     this->_posX = posX;
     this->_posY = posY;
     this->_isFlying = isFlying;
+    this->_isSlowed = false;
     this->_value = value;
     this->_timeOfLastMove = std::chrono::steady_clock::now();
     this->_alreadyCount = false;
@@ -44,6 +46,8 @@ void    TDUnit::live() {
             if (!(this->isAtBase())) {
                 this->move();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
+                if (this->_isSlowed)
+                    this->isSlowFinished();
             }
        // }
     }
@@ -74,8 +78,8 @@ void    TDUnit::move() {
         // Set desired speed and time per frame
         float totalTime = static_cast<float>(this->_speed);
         sf::Clock clock;
-        while (clock.getElapsedTime().asMilliseconds() < totalTime) {
-            float t = clock.getElapsedTime().asMilliseconds() / totalTime; // Interpolation parameter (0 to 1)
+        while (clock.getElapsedTime().asMilliseconds() < static_cast<float>(this->_speed)) {
+            float t = clock.getElapsedTime().asMilliseconds() / totalTime;
             float lerpX = currentPosition.x + t * distanceX;
             float lerpY = currentPosition.y + t * distanceY;
             this->_sprite.setPosition(lerpX, lerpY);
@@ -107,7 +111,7 @@ void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
 void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
     // GET SIZE RATIO OF UNITS SPRITE FROM WINDOW AND MAP
     //SFML RELOAD & SFMLLOADUNIT CLASS FOR RESSOURCES
-
+    this->_cellSize = cellSize;
     this->_spriteSpeed = (cellSize / this->_speed);
     this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     this->_cellSize = cellSize;
@@ -158,8 +162,26 @@ bool    TDUnit::isAlive() {
     else
         return (true);
 }
+void                   TDUnit::getSlow(int slowValue) {
+    std::cout << "HERE" << std::endl;
+    this->setSpeed(this->getSpeed() + slowValue);
+    this->_spriteSpeed = (this->_cellSize / this->_speed);
+    this->_slowChrono = std::chrono::steady_clock::now();
+    this->_isSlowed = true;
+}
 
-void    TDUnit::getShot(int damage) {
+void                   TDUnit::isSlowFinished() {
+    std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
+    int testTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_slowChrono).count();
+    if (testTime > 2500) {
+        this->setSpeed((float)this->_normalSpeedValue);
+        this->_spriteSpeed = (this->_cellSize / this->_speed);
+        this->_isSlowed = false;
+    }
+}
+void    TDUnit::getShot(int damage, int slowValue) {
+    //if ((slowValue > 0) && (this->_isSlowed == false))
+      //  this->getSlow(slowValue);
     this->_sprite.setColor(sf::Color::Red);
     std::this_thread::sleep_for(std::chrono::milliseconds(400));
     this->_sprite.setColor(sf::Color::White);
@@ -209,3 +231,4 @@ sf::RectangleShape    TDUnit::getMaxHealthBarSprite() {
     this->_healthMaxBar.setPosition(this->_sprite.getPosition().x - this->_cellSize, this->_sprite.getPosition().y - 25);
     return (this->_healthMaxBar);
 }
+

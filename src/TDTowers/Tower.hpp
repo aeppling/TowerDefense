@@ -26,7 +26,7 @@ class Tower : public Buildable {
          std::shared_ptr<std::vector<TDUnit*>> enemiesList;
         std::vector<int> damage;
         std::vector<int> cost;
-        std::vector<int> slowValue;
+        std::vector<float> slowValue;
         int level;
         bool speedBoosted;
         bool activated;

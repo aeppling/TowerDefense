@@ -23,12 +23,14 @@ public:
     int _posX;
     int _posY;
     int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN mSECONDS
+    int _normalSpeedValue;
     bool _isFlying;
     int  _value;
 
     bool _alreadyCount;
     bool _alreadyArrived;
     bool _isKilled; // TO AVOID SEGFAULT ON OTHER MULTIPLE TOWER
+    bool _isSlowed;
 
     //COORD
     int  _baseCoordX;
@@ -39,6 +41,7 @@ public:
 
     // PATH FINDING AND MOVE
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
+    std::chrono::steady_clock::time_point _slowChrono;
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
     std::thread                           _thread;
     TDMap                                 *_mapCopy;
@@ -80,6 +83,9 @@ public:
     void run(TDMap *map);
     void searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY);
     void move();
+    void getSlow(int slowValue);
+    void isSlowFinished();
+    bool isSlowed() { return (this->_isSlowed); };
     bool isAtBase();
     virtual std::string getDescription() {
         std::string description = getTypeName() + " (HP: " + std::to_string(this->_health_points) + ", Resistance: " + std::to_string(this->_resistance);
@@ -89,7 +95,7 @@ public:
     bool isAlive();
         // SFML
     void setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
-    void getShot(int damage);
+    void getShot(int damage, int slowValue);
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);

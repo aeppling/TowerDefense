@@ -5,10 +5,7 @@
 #include "../TDUnits/TDUnit.hpp"
 
 class SlowTower : public Tower{
-
-    private:
-        std::vector<int> slowValue;
-    public:
+ public:
         SlowTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window);
         //! Override
 };

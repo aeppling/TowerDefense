@@ -12,7 +12,7 @@ SFMLMissileLoader::SFMLMissileLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_antiAir.loadFromFile("Sprites/Missiles/48.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_slow.loadFromFile("Sprites/Missiles/34.png")))
+    if (!(this->_slow.loadFromFile("Sprites/Missiles/02.png")))//34
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_sniper.loadFromFile("Sprites/Missiles/55.png")))
         std::cout << "Error on loading texture..." << std::endl;
