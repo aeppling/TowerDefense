@@ -25,6 +25,7 @@ public:
     int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN mSECONDS
     int _normalSpeedValue;
     bool _isFlying;
+    bool _isSemiAerial;
     bool _isForcing;
     int  _value;
 
@@ -54,7 +55,7 @@ public:
 
 
     // CONSTRUCTOR & OVERLOADS
-    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale);
+    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial);
     ~TDUnit() {
         std::cout << "Unit destructed here : " << this->getTypeName() << std::endl;
     }

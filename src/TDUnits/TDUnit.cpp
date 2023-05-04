@@ -13,7 +13,7 @@
 
 std::mutex mtx2;
 
-TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale) {
+TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial) {
     this->_health_points = hp;
     this->_isForcing = false;
     this->_max_health = hp;
@@ -24,6 +24,7 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
     this->_posX = posX;
     this->_posY = posY;
     this->_isFlying = isFlying;
+    this->_isSemiAerial = isSemiAerial;
     this->_isSlowed = false;
     this->_value = value;
     this->_timeOfLastMove = std::chrono::steady_clock::now();
@@ -61,7 +62,7 @@ void    TDUnit::run(TDMap *map) {
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false)) {
+    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && (this->getTypeName() != "FlyingDrone")) {
         if (this->_isForcing == true) {
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
@@ -112,7 +113,7 @@ void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     this->_baseCoordX = baseCoordX;
     this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
-    pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isForcing);
+    pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isSemiAerial);
 }
 
 void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
@@ -130,6 +131,8 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getAlien());
     else if (this->getTypeName() == "Spaceship")
         this->_sprite.setTexture(*sfmlLoader.getSpaceship());
+    else if (this->getTypeName() == "FlyingDrone")
+        this->_sprite.setTexture(*sfmlLoader.getFlyingDrone());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor * this->_scale, scaleFactor * this->_scale);

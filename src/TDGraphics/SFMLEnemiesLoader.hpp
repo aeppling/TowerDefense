@@ -14,6 +14,7 @@ private:
     sf::Texture _missile;
     sf::Texture _alien;
     sf::Texture _spaceship;
+    sf::Texture _flyingDrone;
 public:
     SFMLEnemiesLoader();
     ~SFMLEnemiesLoader();
@@ -22,6 +23,7 @@ public:
     sf::Texture *getMissile() { return (&this->_missile); };
     sf::Texture *getAlien() { return (&this->_alien); };
     sf::Texture *getSpaceship() { return (&this->_spaceship); };
+    sf::Texture *getFlyingDrone() { return (&this->_flyingDrone); };
 };
 
 #endif //UNTITLED1_SFMLENEMIESLOADER_HPP

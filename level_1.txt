@@ -1,6 +1,7 @@
+FlyingDrone:1
+Spaceship:1
 Drone:2
 Alien:2
-Spaceship:1
 Missile:2
 Drone:3/Missile:1
 Spaceship:2

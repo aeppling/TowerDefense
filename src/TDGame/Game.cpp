@@ -371,10 +371,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase() == false) {
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "Spaceship" && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     sf::Sprite shipShadow(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
-                                    shipShadow.setPosition(enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().x - 15, enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().y + 30);
-                                    shipShadow.setScale(shipShadow.getScale().x * 0.7, shipShadow.getScale().y * 0.7);
+                                    shipShadow.setPosition(enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().x - 10, enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().y + 15);//15 - 30
+                                    shipShadow.setScale(shipShadow.getScale().x * 0.6, shipShadow.getScale().y * 0.6);
                                     shipShadow.setColor(sf::Color(0, 0, 0, 128));
                                     window.draw(shipShadow);
+                                }
+                                else if (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "FlyingDrone" && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                    sf::Sprite droneShadow(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                                    droneShadow.setPosition(enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().x - 10, enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().y + 15);
+                                    droneShadow.setScale(droneShadow.getScale().x * 0.9, droneShadow.getScale().y * 0.9);
+                                    droneShadow.setColor(sf::Color(0, 0, 0, 128));
+                                    window.draw(droneShadow);
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
