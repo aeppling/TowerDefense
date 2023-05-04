@@ -33,7 +33,7 @@ private:
     sf::Text m_moneyText;
     sf::Text wallPriceText;
     sf::Texture m_backgroundTexture;
-    std::vector<Tower*> towerStoreList;
+    std::vector<std::vector<Tower*>> towerStoreList;
     sf::Sprite coinSprite;
     //sf::Sprite wallPriceImage;
     sf::Sprite removeSprite;
@@ -56,7 +56,7 @@ public:
     void setLives(int life){ _lifeNumber = life;}
     void setMoney(int money){ _money = money;}
     void setMaxWave(int maxWave){ _maxWaveNumber = maxWave;}
-    void setTowerStoreList(std::vector<Tower*> towerStoreList){ this->towerStoreList = towerStoreList;}
+    void setTowerStoreList(std::vector<std::vector<Tower*>> towerStoreList){ this->towerStoreList = towerStoreList;}
     void setPaused(bool paused){ isPaused = paused;}
     bool getPaused(){  return isPaused;}
     void setMessage(std::string message){ textMessage.setString(message);}

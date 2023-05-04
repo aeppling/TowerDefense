@@ -12,7 +12,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     _level = level;
     this->isPaused = false;
     this->selectedTower = nullptr;
-    towerStoreList = std::vector<Tower*>();
+    towerStoreList = std::vector<std::vector<Tower*>>();
     this->_window = window;
     this->mainFont.loadFromFile("Fonts/neuropol.otf");
     this->m_lifeText.setFont(this->mainFont);
@@ -169,7 +169,7 @@ void SFMLHud::draw() {
         towerNameText.setFont(mainFont);
         towerNameText.setCharacterSize(24);
         towerNameText.setPosition(towerInfoX, towerInfoY);
-        towerNameText.setString(towerStoreList[i]->getTowerName());
+        towerNameText.setString(towerStoreList[i].at(0)->getTowerName());
         _window->draw(towerNameText);
 
         // Afficher le coût de la tour
@@ -177,11 +177,11 @@ void SFMLHud::draw() {
         towerCostText.setFont(mainFont);
         towerCostText.setCharacterSize(18);
         towerCostText.setPosition(towerInfoX, towerInfoY + 30);
-        towerCostText.setString("Cost: " + std::to_string(towerStoreList[i]->getCost()) + " coins");
+        towerCostText.setString("Cost: " + std::to_string(towerStoreList[i].at(0)->getCost()) + " coins");
         _window->draw(towerCostText);
 
         // Afficher le sprite de la tour
-        sf::Sprite towerSprite = towerStoreList[i]->getTowerSprite();
+        sf::Sprite towerSprite = towerStoreList[i].at(0)->getTowerSprite();
         towerSprite.setPosition(towerInfoX - 25, towerInfoY + 30);
         sf::RectangleShape towerInfoRect(sf::Vector2f(400, 80));
         towerInfoRect.setPosition(towerInfoX - 50, towerInfoY - 15);

@@ -130,8 +130,14 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
 }
 
 void Game::initializeTowerStore(sf::RenderWindow &window) {
+    int y = 0;
+    while (y <= 5) {
+        std::vector<Tower *> newVector;
+        this->towerStoreList.push_back(newVector);
+        y++;
+    }
     int i = 0;
-    while (i <= 1) {
+    while (i <= 2) {
         Tower *buildTowerType1 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                 window);
         Tower *buildTowerType2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader,
@@ -144,22 +150,26 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
                                                  window);
         Tower *buildTowerType6 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                  window);
-        this->towerStoreList.push_back(buildTowerType1);
-        this->towerStoreList.push_back(buildTowerType2);
-        this->towerStoreList.push_back(buildTowerType3);
-        this->towerStoreList.push_back(buildTowerType4);
-        this->towerStoreList.push_back(buildTowerType5);
-        this->towerStoreList.push_back(buildTowerType6);
+        this->towerStoreList.at(0).push_back(buildTowerType1);
+        this->towerStoreList.at(1).push_back(buildTowerType2);
+        this->towerStoreList.at(2).push_back(buildTowerType3);
+        this->towerStoreList.at(3).push_back(buildTowerType4);
+        this->towerStoreList.at(4).push_back(buildTowerType5);
+        this->towerStoreList.at(5).push_back(buildTowerType6);
         i++;
     }
     this->initializeTowerStoreCurrentWave();
 }
 
 void Game::initializeTowerStoreCurrentWave() {
-    int i = 0;
-    while (i < this->towerStoreList.size()) {
-        this->towerStoreList.at(i)->setCurrentWave(this->currentWave);
-        i++;
+    int y = 0;
+    while (y <= 5) {
+        int i = 0;
+        while (i < this->towerStoreList.at(y).size()) {
+            this->towerStoreList.at(y).at(i)->setCurrentWave(this->currentWave);
+            i++;
+        }
+        y++;
     }
 }
 
@@ -357,7 +367,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             if (event.type == sf::Event::KeyPressed &&
                                 event.key.code == sf::Keyboard::T) {// TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
                                 if (!this->towerStoreList.empty()) {
-                                    toBuild = this->towerStoreList.at(this->towerSelectorIndex);
+                                    toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
                                     if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning))
                                         isBuilding = false;
                                 }
@@ -388,7 +398,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
                             try {
-                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex));
+                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex).at(0));
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -989,7 +999,7 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
         setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128);
         if (showBuildable)
-            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
+            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
     }
     else {
         bool isBuildable = isBuildableAtPosition(map, posX, posY,
@@ -999,7 +1009,7 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
         setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128);
         if (showBuildable)
-            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex)->getTowerSpritePtr());
+            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
     }
 }
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
