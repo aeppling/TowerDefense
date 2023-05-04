@@ -4,9 +4,10 @@
 
 #include <iostream>
 #include "SpritesHolder.hpp"
+#include "SFMLDecorationLoader.hpp"
 
 void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map,
-                                                        SFMLLoader &sfmlLoader, int cellSize) {
+                                                        SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader) {
     SFMLSprite sprite;
     std::shared_ptr<SFMLSprite> newSprite = std::make_shared<SFMLSprite>(sprite);
     if (mapCell->getType() == 'X') {
@@ -19,10 +20,28 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
             newSprite->setSpriteCutted(sfmlLoader.getNotWalkableCellHeight(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
         else if (map->getElem(mapCell->getPosX(), mapCell->getPosY() + 1)->getType() != 'T')
             newSprite->setSpriteCutted(sfmlLoader.getNotWalkableCellHeight(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
-        else
-            newSprite->setSpriteCutted(sfmlLoader.getNotWalkableCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
+        else {
+            newSprite->setSpriteCutted(sfmlLoader.getNotWalkableCell(), cellSize, mapCell->getPosX(),
+                                       mapCell->getPosY(), mapCell->getType(), 1);
+           int randomNum = std::rand() % 100;
+            if ((randomNum >= 0) && (randomNum <= 5)){
+                SFMLSprite spriteDecoration;
+                spriteDecoration.setSprite(sfmlDecorationLoader.getBush2(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                spriteDecoration.setPosition(cellSize);
+                std::shared_ptr<SFMLSprite> newDecoration = std::make_shared<SFMLSprite>(spriteDecoration);
+                this->_decorationSprite.push_back(newDecoration);
+            }
+            else if ((randomNum >= 10) && (randomNum <= 11)){
+                SFMLSprite spriteDecoration;
+                spriteDecoration.setSprite(sfmlDecorationLoader.getTree1(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                spriteDecoration.setPosition(cellSize);
+                std::shared_ptr<SFMLSprite> newDecoration = std::make_shared<SFMLSprite>(spriteDecoration);
+                this->_decorationSprite.push_back(newDecoration);
+            }
+        }
         newSprite->setPosition(cellSize);
         this->_notWalkableSprite.push_back(newSprite);
+        // RANDOM DECORATION GENERATOR
     }
     else if (mapCell->getType() == 'W') {
         newSprite->setSprite(sfmlLoader.getWallCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
@@ -162,6 +181,12 @@ void                            SpritesHolder::displayMap(sf::RenderWindow &wind
     while (i != this->_notWalkableSprite.size()) {
         this->_notWalkableSprite.at(i)->setPosition(cellSize);
         window.draw(this->_notWalkableSprite.at(i)->getSprite());
+        i++;
+    }
+    i = 0;
+    while (i != this->_decorationSprite.size()) {
+        this->_decorationSprite.at(i)->setPosition(cellSize);
+        window.draw(this->_decorationSprite.at(i)->getSprite());
         i++;
     }
     i = 0;

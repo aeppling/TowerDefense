@@ -19,6 +19,8 @@ Game::Game(int difficulty, int level, TDPlayer *player1){
     SFMLMissileLoader sfmlMissileLoader;
     SFMLCoinAnimation sfmlCoinAnimation;
     SFMLLoader sfmlLoader;
+    SFMLDecorationLoader decorationLoader;
+    this->sfmlDecorationLoader = decorationLoader;
     this->sfmlLoaderMap = sfmlLoader;
     this->sfmlMissileLoader = sfmlMissileLoader;
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
@@ -549,7 +551,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr);
+    TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
    // this->initializeTowerStore();

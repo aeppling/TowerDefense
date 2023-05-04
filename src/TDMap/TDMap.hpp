@@ -9,6 +9,7 @@
 #include "../TDGraphics/SFMLLoader.hpp"
 #include "MapCell.hpp"
 #include "../TDGraphics/SpritesHolder.hpp"
+#include "../TDGraphics/SFMLDecorationLoader.hpp"
 
 class SpritesHolder;
 
@@ -20,9 +21,10 @@ private:
     SFMLLoader                                       &_sfmlLoader;
     std::shared_ptr<SpritesHolder>                   &_spritesHolderPtr;
     int                                              _cellSize;
+    SFMLDecorationLoader                             &_sfmlDecorationLoader;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
-    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder);
+    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder, SFMLDecorationLoader &sfmlDecorationLoader);
     ~TDMap();
 
     // MAP CONSTRUCTION

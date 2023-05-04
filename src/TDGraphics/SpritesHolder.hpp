@@ -10,6 +10,7 @@
 #include "SFMLSprite.hpp"
 #include "SFMLLoader.hpp"
 #include "../TDMap/TDMap.hpp"
+#include "../TDGraphics/SFMLDecorationLoader.hpp"
 
 class TDMap;
 
@@ -18,6 +19,7 @@ private:
     std::vector<std::shared_ptr<SFMLSprite>>  _wallSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _walkableSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _notWalkableSprite;
+    std::vector<std::shared_ptr<SFMLSprite>>  _decorationSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _baseSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _spawnSprite;
 public:
@@ -28,7 +30,7 @@ public:
     std::shared_ptr<SFMLSprite>               getSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getNotWalkableSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getWallSpriteFromPosition(int posX, int posY);
-    void                                      setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map, SFMLLoader &sfmlLoader, int cellSize);
+    void                                      setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map, SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader);
     void                                      displayDebug();
     void                                      displayMap(sf::RenderWindow &window, int cellSize, SFMLLoader &sfmlLoaderMap);
 };
