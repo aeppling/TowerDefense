@@ -61,7 +61,7 @@ class Game{
     public :
         Game(int difficulty, int level, TDPlayer *player1);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
-    void initializeTowerStore();
+    void initializeTowerStore(sf::RenderWindow &window);
     void initializeTowerStoreCurrentWave();
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);

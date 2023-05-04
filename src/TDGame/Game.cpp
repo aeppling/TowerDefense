@@ -129,15 +129,30 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
     file.close();
 }
 
-void Game::initializeTowerStore() {
-/*    Tower *buildTowerTest = new Tower(this, 1, this->cellSize, this->sfmlTowerLoader);
-    Tower *buildTowerTest2 = new Tower(this, 2, this->cellSize, this->sfmlTowerLoader);
-    Tower *buildTowerTest3 = new Tower(this, 3, this->cellSize, this->sfmlTowerLoader);
-    Tower *buildTowerTest4 = new Tower(this, 4, this->cellSize, this->sfmlTowerLoader);
-    this->towerStoreList.push_back(buildTowerTest);
-    this->towerStoreList.push_back(buildTowerTest2);
-    this->towerStoreList.push_back(buildTowerTest3);
-    this->towerStoreList.push_back(buildTowerTest4);*/
+void Game::initializeTowerStore(sf::RenderWindow &window) {
+    int i = 0;
+    while (i <= 1) {
+        Tower *buildTowerType1 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                window);
+        Tower *buildTowerType2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader,
+                                                      this->sfmlMissileLoader, window);
+        Tower *buildTowerType3 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                  window);
+        Tower *buildTowerType4 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                               window);
+        Tower *buildTowerType5 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                 window);
+        Tower *buildTowerType6 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                 window);
+        this->towerStoreList.push_back(buildTowerType1);
+        this->towerStoreList.push_back(buildTowerType2);
+        this->towerStoreList.push_back(buildTowerType3);
+        this->towerStoreList.push_back(buildTowerType4);
+        this->towerStoreList.push_back(buildTowerType5);
+        this->towerStoreList.push_back(buildTowerType6);
+        i++;
+    }
+    this->initializeTowerStoreCurrentWave();
 }
 
 void Game::initializeTowerStoreCurrentWave() {
@@ -245,19 +260,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
              //   Tower *buildTowerTest = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader);
                 // ATTACK SPEED TOWER CRASH
               //  Tower *buildTowerTest2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader);
-                Tower *buildTowerTest3 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                Tower *buildTowerTest4 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                Tower *buildTowerTest5 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                Tower *buildTowerTest6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                Tower *buildTowerTest7 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                Tower *buildTowerTest8 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window);
-                this->towerStoreList.push_back(buildTowerTest3);
-                this->towerStoreList.push_back(buildTowerTest4);
-                this->towerStoreList.push_back(buildTowerTest5);
-                this->towerStoreList.push_back(buildTowerTest6);
-                this->towerStoreList.push_back(buildTowerTest7);
-                this->towerStoreList.push_back(buildTowerTest8);
-                initializeTowerStoreCurrentWave();
+              // INITIALIZE TOWER STORE LIST
+                this->initializeTowerStore(window);
+                //
                 this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 usleep(3000);
                 while (!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
@@ -554,7 +559,6 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
-   // this->initializeTowerStore();
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->baseCellObject = baseCell;
     this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
