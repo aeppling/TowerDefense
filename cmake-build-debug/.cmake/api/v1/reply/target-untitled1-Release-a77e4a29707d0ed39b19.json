@@ -452,7 +452,8 @@
 				55,
 				57,
 				59,
-				61
+				61,
+				63
 			]
 		}
 	],
@@ -803,6 +804,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/TDTowers/SplashTower.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDUnits/FlyingDrone.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
