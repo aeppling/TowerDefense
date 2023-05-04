@@ -168,6 +168,7 @@ void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates
         if ((mouseCoord.posX == posX || mouseCoord.posX == posX + 1 || mouseCoord.posX == posX - 1)
             && (mouseCoord.posY == posY || mouseCoord.posY == posY + 1 || mouseCoord.posY == posY - 1)) {
             this->selectedActiveTower = this->towerList.at(i);
+            this->sfmlHud->setSelectedTower(this->selectedActiveTower);
             break;
         }
         else {
@@ -287,15 +288,37 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             this->activateTowers();
                             isWaveRunning = true;
                         }
+                        if ((event.type == sf::Event::KeyPressed &&
+                            event.key.code == sf::Keyboard::Escape && this->sfmlHud->getPaused() == false)
+                            ) {
+                            //Pause Menu
+                            this->sfmlHud->setPaused(true);
+                            this->deactivateTowers();
+                            isWaveRunning = false;
+                            this->sfmlHud->update();
+                            this->sfmlHud->draw();
+                        }
+                        if ((event.type == sf::Event::KeyPressed &&
+                            event.key.code == sf::Keyboard::Space && this->sfmlHud->getPaused() == true)
+                            ) {
+                            //UNPause Menu
+                            this->sfmlHud->setPaused(false);
+                            this->activateTowers();
+                            isWaveRunning = true;
+                            this->sfmlHud->update();
+                            this->sfmlHud->draw();
+                        }
                         if (event.type == sf::Event::MouseButtonPressed &&
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
+                                this->sfmlHud->setSelectedTower(nullptr);
                                 this->selectedActiveTower = nullptr;
                             }
                             else {
                                 //toBuild = nullptr;
                                 isBuilding = false;
+                               
                             }
                         }
                         if (isBuilding == true) {
