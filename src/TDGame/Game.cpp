@@ -173,6 +173,8 @@ void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates
         }
         else {
             this->selectedActiveTower = nullptr;
+            this->sfmlHud->setSelectedTower(this->selectedActiveTower);
+
         }
         i++;
     }
