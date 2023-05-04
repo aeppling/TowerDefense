@@ -61,11 +61,13 @@ public:
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
         int getCost() override;
+        int getUpgradeCost();
         int getLevel() override;
         bool isSpeedBoosted() override;
         void setSpeedBoosted(bool newSpeedBoosted) override;
         void setPosition(int posX, int posY, int cellSize) override;
         int getDamage();
+        int getUpgradeDamage();
         Point getPosition() override;
         bool isActivated();
         int getRange();

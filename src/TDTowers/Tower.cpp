@@ -285,12 +285,27 @@ int Tower::getTotalMissiles() {
 }
 
 bool Tower::isMaxed(){
-    if (this->level += 1 < this->cost.size()) {
-        return true;
-    } else {
+    if (this->level + 1 < this->cost.size()) {
         return false;
+    } else {
+        return true;
     }
 
 }
+
+int Tower::getUpgradeCost(){
+    if(this->isMaxed()){
+        return -1;
+    }
+    return (this->cost[this->level+1]);
+}
+
+int Tower::getUpgradeDamage(){
+    if(this->isMaxed()){
+        return -1;
+    }
+    return (this->damage[this->level+1]);
+}
+
 
 

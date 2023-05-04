@@ -18,6 +18,7 @@ private:
     int _level;
     sf::RenderWindow *_window;
     int _money;
+    sf::Text textMessage;
     sf::Font mainFont;
     sf::Text m_waveText;
     sf::Text m_lifeText;
@@ -42,6 +43,8 @@ private:
     sf::Sprite homeButtonSprite;
     sf::RectangleShape removeRect;
     sf::RectangleShape wallRect;
+    sf::RectangleShape upgradeRect;
+    sf::RectangleShape sellRect;
 public:
     SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePoxY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level);
     ~SFMLHud();
@@ -56,6 +59,7 @@ public:
     void setTowerStoreList(std::vector<Tower*> towerStoreList){ this->towerStoreList = towerStoreList;}
     void setPaused(bool paused){ isPaused = paused;}
     bool getPaused(){  return isPaused;}
+    void setMessage(std::string message){ textMessage.setString(message);}
     
 };
 #endif // UNTITLED1_SFMLHUD_HPP_

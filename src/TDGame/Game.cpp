@@ -419,6 +419,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 this->enemiesLeft--;
                                 this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
                                 this->player->addKill();
+                                
                                 std::cout << "Dead at position x:"
                                           << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
                                 std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY()
@@ -435,6 +436,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 this->enemiesLeftDisplay.setString(
                                         "Enemies left : " + std::to_string(this->enemiesLeft));
                                 this->addCoins(enemyList.at(this->currentWaveNumber).at(s)->getValue());
+                                this->sfmlHud->setMessage("You get coins when you kill enemies");
+
                             } else if (enemyList.at(this->currentWaveNumber).at(s)->isAtBase()) {
                                 if ((map.getElem(this->enemyList.at(this->currentWaveNumber).at(s)->getPosX(),
                                                  this->enemyList.at(this->currentWaveNumber).at(
@@ -442,6 +445,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                     this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
                                     this->player->looseLife();
+                                    this->sfmlHud->setMessage("Prevent enemies from reaching \nyour base to win the game");
+
                                     // RESET HIT MARKER OPACITY
                                     this->hitMarkerOpacity = 155;
                                     // DISPLAY HUD LIFE
@@ -642,6 +647,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->looseCoins(toBuild->getCost());
+                
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
                 if (isWaveRunning == true)
@@ -853,12 +859,15 @@ void Game::deactivateTowers(){
 }
 
 bool Game::enemyAtBase(){
+
     //* test if an enemy is at the base
     for(int i = 0; i<= this->enemyList[this->currentWaveNumber].size(); i++ ){
         //* if an enemy is at the base -> decrease life number and erase the enemy
         std::cout << "An enemy is a the base" << std::endl;
         if(this->enemyList[this->currentWaveNumber][i]->getPosX() == this->baseCoord.x && this->enemyList[this->currentWaveNumber][i]->getPosY() == this->baseCoord.y){
             this->player->looseLife();
+            this->sfmlHud->setMessage("Prevent enemies from reaching your base to win the game");
+
             this->enemyList[this->currentWaveNumber].erase(std::remove(enemyList[this->currentWaveNumber].begin(), enemyList[this->currentWaveNumber].end(), enemyList[this->currentWaveNumber][i]), enemyList[this->currentWaveNumber].end());
             return true;
         }else{
@@ -913,6 +922,7 @@ void Game::createTower(){
         if(canPlace(*newTower, stoi(newTowerPosX), stoi(newTowerPosY))){
             newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY), this->cellSize);
             this->addCoins(newTower->getCost());
+            
             this->towerList.push_back(newTower);
             newTower->run(this->currentWave);
             std::cout << "Tower succesfully created " << std::endl;
