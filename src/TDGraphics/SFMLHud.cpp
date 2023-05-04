@@ -112,6 +112,19 @@ int SFMLHud::checkForClick(sf::RenderWindow &window) {
     return (-1);
 }
 
+int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    if (this->sellRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        std::cout << "SELL" << std::endl;
+        return (1);
+    }
+    else if (this->upgradeRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        std::cout << "UPGRADE" << std::endl;
+        return (2);
+    }
+    return (-1);
+}
+
 void SFMLHud::update() {
     m_waveText.setString("Wave: " + std::to_string(_waveNumber) + "/" + std::to_string(_maxWaveNumber));
     m_moneyText.setString(std::to_string(_money));

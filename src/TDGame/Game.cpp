@@ -199,10 +199,12 @@ void Game::isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates
             this->sfmlHud->setSelectedTower(this->selectedActiveTower);
             break;
         }
+        else if (mouseCoord.posX > map.getSizeX()) {
+            break;
+        }
         else {
             this->selectedActiveTower = nullptr;
             this->sfmlHud->setSelectedTower(this->selectedActiveTower);
-
         }
         i++;
     }
@@ -393,7 +395,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 this->isTowerClicked(map, window, mouseCoord);
-                                this->sfmlHud->checkForClick(window);
+                                if (this->selectedActiveTower != nullptr)
+                                    this->sfmlHud->checkForSellUpgradeClick(window);
+                                else
+                                    this->sfmlHud->checkForClick(window);
                             }
                         }
                     }
