@@ -106,6 +106,9 @@ int SFMLHud::checkForClick(sf::RenderWindow &window) {
         }
         i++;
     }
+    if (this->wallRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        return (-2);
+    }
     return (-1);
 }
 

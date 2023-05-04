@@ -58,6 +58,7 @@ class Game{
         sf::RectangleShape  hitMarker;
         unsigned int       hitMarkerOpacity;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
+
     public :
         Game(int difficulty, int level, TDPlayer *player1);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
@@ -99,6 +100,7 @@ class Game{
         void upgradeTower(Tower &tower);
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
         void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);
+        bool isOnPath(MapCell *cell);
     };
 
 #endif // GAME_HPP_

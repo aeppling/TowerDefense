@@ -340,10 +340,18 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                
                             }
                         }
+                        mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (isBuilding == true) {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 setObstacleTest(std::ref(map), std::ref(window));
+                                if (!this->towerStoreList.empty()) {
+                                    if (this->towerSelectorIndex >= 0) {
+                                        toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
+                                        if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning))
+                                            isBuilding = false;
+                                    }
+                                }
                             }
                             if (event.type == sf::Event::KeyPressed) {
                                 if (!this->towerStoreList.empty()) {
@@ -366,17 +374,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             }
                             if (event.type == sf::Event::KeyPressed &&
                                 event.key.code == sf::Keyboard::T) {// TOWER BUILD TESTING -> SHOULD GO WITH WALL (UPPER IF) AFTER TEST OK
-                                if (!this->towerStoreList.empty()) {
-                                    toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
-                                    if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning))
-                                        isBuilding = false;
-                                }
+                               //OLD TOwER PLACEMENT
                             }
                         }
                         else {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
-                                mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                                 this->isTowerClicked(map, window, mouseCoord);
                                 this->sfmlHud->checkForClick(window);
                             }
@@ -399,7 +402,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
                             try {
-                                this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex).at(0));
+                                if (this->towerSelectorIndex >= 0)
+                                    this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex).at(0));
+                                else if (this->towerSelectorIndex == -2)
+                                    this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, this->isOnPath(map.getElem(mouseCoord.posX, mouseCoord.posY)), 128);
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -512,7 +518,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                         int whichClicked = this->sfmlHud->checkForClick(window);
                         if (whichClicked != -1) {
-                               this->towerSelectorIndex = whichClicked;
+                                this->towerSelectorIndex = whichClicked;
                                if (isBuilding == false)
                                    isBuilding = true;
                         }
@@ -679,9 +685,8 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 if (isWaveRunning == true)
                     this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
-                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
-                if (this->towerSelectorIndex > this->towerStoreList.size() - 1)
-                    this->towerSelectorIndex--;
+//                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
+                this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
                 return (true);
             }
             else {
@@ -696,6 +701,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
         return (false);
     }
 }
+
 
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
@@ -1022,6 +1028,7 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
             setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
     }
 }
+
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {
@@ -1040,6 +1047,13 @@ void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int 
             }
         }
     }
+}
+
+bool Game::isOnPath(MapCell *cell) {
+    if (cell->getType() == 'X')
+        return (true);
+    else
+        return (false);
 }
 
 void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite) {
