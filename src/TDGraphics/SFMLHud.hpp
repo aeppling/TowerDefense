@@ -45,6 +45,8 @@ private:
     sf::RectangleShape wallRect;
     sf::RectangleShape upgradeRect;
     sf::RectangleShape sellRect;
+
+    std::vector<sf::RectangleShape> towerRectangles;
 public:
     SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePoxY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level);
     ~SFMLHud();
@@ -60,6 +62,6 @@ public:
     void setPaused(bool paused){ isPaused = paused;}
     bool getPaused(){  return isPaused;}
     void setMessage(std::string message){ textMessage.setString(message);}
-    void checkForClick(sf::RenderWindow &window, mouseCoordinates &mouseCoord);
+    int checkForClick(sf::RenderWindow &window);
 };
 #endif // UNTITLED1_SFMLHUD_HPP_

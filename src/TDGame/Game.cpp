@@ -378,7 +378,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                                 this->isTowerClicked(map, window, mouseCoord);
-                                this->sfmlHud->checkForClick(window, mouseCoord);
+                                this->sfmlHud->checkForClick(window);
                             }
                         }
                     }
@@ -508,6 +508,15 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfmlHud->setLives(this->player->getLifeNumber());
                     this->sfmlHud->update();
                     this->sfmlHud->draw();
+                    if (event.type == sf::Event::MouseButtonPressed &&
+                        sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
+                        int whichClicked = this->sfmlHud->checkForClick(window);
+                        if (whichClicked != -1) {
+                               this->towerSelectorIndex = whichClicked;
+                               if (isBuilding == false)
+                                   isBuilding = true;
+                        }
+                    }
                     // SET AND DISPLAY MOUSE
                     if (isBuilding == true)
                         mousePointer.setColor(sf::Color::Transparent);

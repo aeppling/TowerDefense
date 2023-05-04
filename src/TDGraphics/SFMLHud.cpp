@@ -96,8 +96,17 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     
 }
 
-void SFMLHud::checkForClick(sf::RenderWindow &window, mouseCoordinates &mouseCoord) {
-    
+int SFMLHud::checkForClick(sf::RenderWindow &window) {
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    int i = 0;
+    while (i < this->towerRectangles.size()) {
+        sf::RectangleShape towerCase = towerRectangles.at(i);
+        if (towerCase.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+            return (i);
+        }
+        i++;
+    }
+    return (-1);
 }
 
 void SFMLHud::update() {
@@ -110,6 +119,7 @@ void SFMLHud::draw() {
     // Dessiner la texture du fond en répétition verticale
     
     // Afficher un sprite de coeur pour chaque vie restante
+    this->towerRectangles.clear();
     int windowHeight = _window->getSize().y;
     int textureHeight = m_backgroundTexture.getSize().y;
     for (int y = 0; y < windowHeight; y += textureHeight) {
@@ -192,12 +202,12 @@ void SFMLHud::draw() {
         towerInfoRect.setFillColor(sf::Color::Transparent);
         towerInfoRect.setOutlineThickness(2);
         towerInfoRect.setOutlineColor(sf::Color::White);
+        this->towerRectangles.push_back(towerInfoRect);
         _window->draw(towerInfoRect);
         _window->draw(towerSprite);
 
         towerInfoY += 100; // Avancer la position Y pour la prochaine tour
         }
-        
         _window->draw(wallSprite);
         _window->draw(wallRect);
         _window->draw(wallPriceText);
