@@ -60,6 +60,6 @@ public:
     void setPaused(bool paused){ isPaused = paused;}
     bool getPaused(){  return isPaused;}
     void setMessage(std::string message){ textMessage.setString(message);}
-    
+    void checkForClick(sf::RenderWindow &window, mouseCoordinates &mouseCoord);
 };
 #endif // UNTITLED1_SFMLHUD_HPP_

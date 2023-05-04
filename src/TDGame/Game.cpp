@@ -377,7 +377,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
-                                isTowerClicked(map, window, mouseCoord);
+                                this->isTowerClicked(map, window, mouseCoord);
+                                this->sfmlHud->checkForClick(window, mouseCoord);
                             }
                         }
                     }

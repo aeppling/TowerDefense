@@ -96,6 +96,10 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     
 }
 
+void SFMLHud::checkForClick(sf::RenderWindow &window, mouseCoordinates &mouseCoord) {
+    
+}
+
 void SFMLHud::update() {
     m_waveText.setString("Wave: " + std::to_string(_waveNumber) + "/" + std::to_string(_maxWaveNumber));
     m_moneyText.setString(std::to_string(_money));
