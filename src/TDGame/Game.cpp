@@ -543,10 +543,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // SET AND DISPLAY MOUSE
-                    if (isBuilding == true)
+                    if ((isBuilding == true) && !(this->isCursorOutsideMap))
                         mousePointer.setColor(sf::Color::Transparent);
                     else
-                        mousePointer.setColor(sf::Color::White);
+                        mousePointer.setColor(sf::Color::Blue);
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
                     mousePointer.setPosition(mousePositionScreen.x -(cellSize - 3) + _GAME_POSITION_X, mousePositionScreen.y -(cellSize - 3) + _GAME_POSITION_Y);
                     window.draw(mousePointer);
@@ -750,8 +750,8 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
-            this->addCoins(1);
-            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 1, true);
+            this->addCoins(2);
+            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 2, true);
             check = true;
         }
         if (check == false)
@@ -1037,8 +1037,6 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
                            isBuildable, 48);
         setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128);
-        if (showBuildable)
-            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
     }
     else {
         bool isBuildable = isBuildableAtPosition(map, posX, posY,
@@ -1047,9 +1045,10 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
                            isBuildable, 48 );
         setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128);
-        if (showBuildable)
-            setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
+
     }
+    if (showBuildable)
+        setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
 }
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
