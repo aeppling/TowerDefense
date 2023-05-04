@@ -130,6 +130,7 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
 }
 
 void Game::initializeTowerStore(sf::RenderWindow &window) {
+    this->towerStoreList.clear();
     int y = 0;
     while (y <= 5) {
         std::vector<Tower *> newVector;
@@ -137,7 +138,7 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
         y++;
     }
     int i = 0;
-    while (i <= 2) {
+    while (i <= 1) {
         Tower *buildTowerType1 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                 window);
         Tower *buildTowerType2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader,
@@ -220,6 +221,13 @@ void Game::towerMouseHovering(TDMap &map, sf::RenderWindow &window) {
         }
         i++;
     }
+}
+
+bool Game::checkCursorOutsideMap(int posX, int posY, TDMap &map) {
+    if ((posX >= map.getSizeX()) || (posY >= map.getSizeY()))
+        return (true);
+    else
+        return (false);
 }
 
 void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX,
@@ -342,14 +350,18 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (isBuilding == true) {
+                            this->isCursorOutsideMap = checkCursorOutsideMap(mouseCoord.posX, mouseCoord.posY, map);
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 setObstacleTest(std::ref(map), std::ref(window));
                                 if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
-                                        if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning))
+                                        if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
                                             isBuilding = false;
+                                            this->initializeTowerStore(window);
+                                            this->sfmlHud->update();
+                                        }
                                     }
                                 }
                             }
@@ -402,10 +414,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
                         if (!this->towerStoreList.empty()) {
                             try {
-                                if (this->towerSelectorIndex >= 0)
-                                    this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true, this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                else if (this->towerSelectorIndex == -2)
-                                    this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, this->isOnPath(map.getElem(mouseCoord.posX, mouseCoord.posY)), 128);
+                                if (!(this->isCursorOutsideMap)) {
+                                    if (this->towerSelectorIndex >= 0)
+                                        this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true,
+                                                                    this->towerStoreList.at(
+                                                                            this->towerSelectorIndex).at(0));
+                                    else if (this->towerSelectorIndex == -2)
+                                        this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
+                                                                 this->isOnPath(
+                                                                         map.getElem(mouseCoord.posX, mouseCoord.posY)),
+                                                                 128);
+                                }
                             }
                             catch (const std::out_of_range& ex){
                                 std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
@@ -584,6 +603,8 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
     TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
+    this->mapMaxPosX = map.getSizeX();
+    this->mapMaxPosY = map.getSizeY();
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->baseCellObject = baseCell;
@@ -1007,6 +1028,8 @@ void Game::startLevel(){
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {
     int radius = towerInfos->getSize() - 1;
     int range = towerInfos->getRange();
+    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY))
+        return;
     if (radius <= 1) {
         bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
                                                            posY, radius);
@@ -1030,6 +1053,8 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
 }
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
+    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY))
+        return;
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {
             if (i*i + j*j <= radius*radius) {
@@ -1057,6 +1082,8 @@ bool Game::isOnPath(MapCell *cell) {
 }
 
 void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite) {
+    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY))
+        return;
     buildableSprite->setPosition((posX) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_X, (posY) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_Y);
     window.draw(*buildableSprite);
 }

@@ -56,7 +56,10 @@ class Game{
         sf::Sprite          hearthDisplay;
         sf::Sprite          baseCell;
         sf::RectangleShape  hitMarker;
-        unsigned int       hitMarkerOpacity;
+        unsigned int        hitMarkerOpacity;
+        bool                isCursorOutsideMap;
+        int                 mapMaxPosX;
+        int                 mapMaxPosY;
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
 
     public :
@@ -101,6 +104,7 @@ class Game{
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
         void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);
         bool isOnPath(MapCell *cell);
+        bool checkCursorOutsideMap(int posX, int posY, TDMap &map);
     };
 
 #endif // GAME_HPP_
