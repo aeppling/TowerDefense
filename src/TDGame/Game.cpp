@@ -251,13 +251,15 @@ void Game::sellTower() {
 
 void Game::upgradeTower() {
     int i = 0;
+
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getUpgradeCost();
-            std::cout << "Upgrading" << std::endl;
-            this->looseCoins(cost);
-            this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
-            this->towerList.at(i)->upgrade();
+         //   if (cost <= this->player->getCoinNumber()){
+                this->looseCoins(cost);
+                this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
+                this->towerList.at(i)->upgrade(this->sfmlTowerLoader);
+           // }
             break;
         }
         i++;
@@ -1049,16 +1051,6 @@ void Game::addCoins(int number) {
 void Game::looseCoins(int number) {
     this->player->looseCoin(number);
     std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
-}
-
-
-void Game::upgradeTower(Tower &tower){
-    if(!tower.isMaxed()){
-        if(canBuy(tower, tower.getLevel() + 1)){
-            this->addCoins(tower.getCost());
-            tower.upgrade();      
-        }
-    }
 }
 
 void Game::startLevel(){

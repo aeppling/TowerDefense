@@ -57,7 +57,7 @@ public:
         void animateFiring();
         void fire(TDUnit *target) override;
         void isInRange() override;
-        void upgrade() override;
+        void upgrade(SFMLTowerLoader &sfmlTowerLoader) override;
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
         int getCost() override;

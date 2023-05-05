@@ -5,6 +5,8 @@
 #ifndef UNTITLED1_BUILDABLE_HPP
 #define UNTITLED1_BUILDABLE_HPP
 
+#include "../TDGraphics/SFMLTowerLoader.hpp"
+
 class Buildable {
 private:
     int         _size;
@@ -25,7 +27,7 @@ public:
     virtual void deactivate() = 0;
     virtual void fire(TDUnit *target) = 0;
     virtual void isInRange() = 0;
-    virtual void upgrade() = 0;
+    virtual void upgrade(SFMLTowerLoader &sfmlTowerLoader) = 0;
     virtual void setTimeBetweenAttack(float time) = 0;
     virtual float getTimeBetweenAttack() = 0;
     virtual int getCost() = 0;

@@ -102,7 +102,6 @@ class Game{
         bool enemyAtBase();
         void sellTower();
         void upgradeTower();
-        void upgradeTower(Tower &tower);
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
         void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);
         bool isOnPath(MapCell *cell);
