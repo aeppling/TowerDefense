@@ -242,6 +242,7 @@ void Game::sellTower() {
             this->towerList.at(i)->deactivate();
             this->towerList.erase(this->towerList.begin() + i);
             this->selectedActiveTower = nullptr;
+            this->sfmlHud->setSelectedTower(nullptr);
             break;
         }
         i++;
