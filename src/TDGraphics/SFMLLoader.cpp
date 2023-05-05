@@ -19,7 +19,7 @@ SFMLLoader::SFMLLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_spawnCell.loadFromFile("Sprites/MyTiles/tileGoo_slope.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_spawnBuilding.loadFromFile("Sprites/MyTiles/tileGoo_slope.png")))
+    if (!(this->_spawnBuilding.loadFromFile("Sprites/MyTiles/spawnBuilding.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_baseCell.loadFromFile("Sprites/MyTiles/tileStone_slope.png")))
         std::cout << "Error on loading texture..." << std::endl;

@@ -232,7 +232,7 @@ bool Game::checkCursorOutsideMap(int posX, int posY, TDMap &map) {
         return (false);
 }
 
-void Game::sellTower() {
+void Game::sellTower(TDMap &map) {
     int i = 0;
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
@@ -240,6 +240,7 @@ void Game::sellTower() {
             this->addCoins(cost);
             this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, true);
             this->towerList.at(i)->deactivate();
+            map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
             this->towerList.erase(this->towerList.begin() + i);
             this->selectedActiveTower = nullptr;
             this->sfmlHud->setSelectedTower(nullptr);
@@ -432,7 +433,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 if (this->selectedActiveTower != nullptr) {
                                     int clicked = this->sfmlHud->checkForSellUpgradeClick(window);
                                     if (clicked == 1)
-                                        this->sellTower();
+                                        this->sellTower(map);
                                     else if (clicked == 2)
                                         this->upgradeTower();
                                 }
@@ -612,6 +613,23 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
         }
 }
 
+void Game::setSpawnCellsSprites() {
+    int i = 0;
+    while (i < this->spawnCells.size()) {
+        sf::Sprite newSprite;
+        newSprite.setTexture(*this->sfmlLoaderMap.getSpawnBuilding());
+        float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(newSprite.getTexture()->getSize().x);
+        sf::IntRect textureRect(0, 0, newSprite.getTexture()->getSize().x, newSprite.getTexture()->getSize().y);
+        sf::Vector2f newOrigin(newSprite.getLocalBounds().width / 30.f, newSprite.getLocalBounds().height / 20.f);
+        newSprite.setOrigin(newOrigin);
+        newSprite.setScale(scaleFactor * 3, scaleFactor * 3);
+        newSprite.setTextureRect(textureRect);
+        newSprite.setPosition(this->spawnCells.at(i)->getPosX() * cellSize + _GAME_POSITION_X, this->spawnCells.at(i)->getPosY() * cellSize + _GAME_POSITION_Y);
+        this->spawnCellsSprites.push_back(newSprite);
+        i++;
+    }
+}
+
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     std::cout << "Launch HUD" << std::endl;
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
@@ -650,6 +668,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     this->mapMaxPosX = map.getSizeX();
     this->mapMaxPosY = map.getSizeY();
     this->cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
+    setSpawnCellsSprites();
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->baseCellObject = baseCell;
     this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
@@ -677,6 +696,11 @@ void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
             }
             i++;
         }
+    i = 0;
+    while (i < this->spawnCellsSprites.size()) {
+        window.draw(this->spawnCellsSprites.at(i));
+        i++;
+    }
     window.draw(this->baseCell);
 }
 

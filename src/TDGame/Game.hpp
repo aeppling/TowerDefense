@@ -29,6 +29,7 @@ class Game{
         int towerSelectorIndex;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
+        std::vector<sf::Sprite> spawnCellsSprites;
         int enemiesLeft;
         int totalEnemies;
         TDPlayer *player;
@@ -100,12 +101,13 @@ class Game{
         void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
         void displayExplosions(sf::RenderWindow &window);
         bool enemyAtBase();
-        void sellTower();
+        void sellTower(TDMap &map);
         void upgradeTower();
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
         void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);
         bool isOnPath(MapCell *cell);
         bool checkCursorOutsideMap(int posX, int posY, TDMap &map);
+        void setSpawnCellsSprites();
     };
 
 #endif // GAME_HPP_
