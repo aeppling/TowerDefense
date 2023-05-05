@@ -115,11 +115,9 @@ int SFMLHud::checkForClick(sf::RenderWindow &window) {
 int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     if (this->sellRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
-        std::cout << "SELL" << std::endl;
         return (1);
     }
     else if (this->upgradeRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
-        std::cout << "UPGRADE" << std::endl;
         return (2);
     }
     return (-1);

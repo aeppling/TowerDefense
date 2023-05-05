@@ -100,6 +100,8 @@ class Game{
         void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
         void displayExplosions(sf::RenderWindow &window);
         bool enemyAtBase();
+        void sellTower();
+        void upgradeTower();
         void upgradeTower(Tower &tower);
         void towerMouseHovering(TDMap &map, sf::RenderWindow &window);
         void isTowerClicked(TDMap &map, sf::RenderWindow &window, mouseCoordinates &mouseCoord);

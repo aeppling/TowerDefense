@@ -232,6 +232,37 @@ bool Game::checkCursorOutsideMap(int posX, int posY, TDMap &map) {
         return (false);
 }
 
+void Game::sellTower() {
+    int i = 0;
+    while (i < this->towerList.size()) {
+        if (this->selectedActiveTower == this->towerList.at(i)) {
+            int cost = this->towerList.at(i)->getCost() / 2;
+            this->addCoins(cost);
+            this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, true);
+            this->towerList.at(i)->deactivate();
+            this->towerList.erase(this->towerList.begin() + i);
+            this->selectedActiveTower = nullptr;
+            break;
+        }
+        i++;
+    }
+}
+
+void Game::upgradeTower() {
+    int i = 0;
+    while (i < this->towerList.size()) {
+        if (this->selectedActiveTower == this->towerList.at(i)) {
+            int cost = this->towerList.at(i)->getUpgradeCost();
+            std::cout << "Upgrading" << std::endl;
+            this->looseCoins(cost);
+            this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
+            this->towerList.at(i)->upgrade();
+            break;
+        }
+        i++;
+    }
+}
+
 void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX,
               unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount, int spawnCount) {
     // RUN EVERY UNIT THREADS
@@ -395,8 +426,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 this->isTowerClicked(map, window, mouseCoord);
-                                if (this->selectedActiveTower != nullptr)
-                                    this->sfmlHud->checkForSellUpgradeClick(window);
+                                if (this->selectedActiveTower != nullptr) {
+                                    int clicked = this->sfmlHud->checkForSellUpgradeClick(window);
+                                    if (clicked == 1)
+                                        this->sellTower();
+                                    else if (clicked == 2)
+                                        this->upgradeTower();
+                                }
                                 else
                                     this->sfmlHud->checkForClick(window);
                             }
