@@ -64,9 +64,9 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 
 int main() {
     // SETTING SOUNDS
-    int musicVolume = 15;
+    int musicVolume = 0;
     int soundVolume = 100;
-    int globalVolume = 100;
+    int globalVolume = 50;
     SFMainSoundLoader mainSoundLoader;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
@@ -78,8 +78,8 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume, soundVolume);
-    SFTowerSoundLoader sfTowerSoundLoader(musicVolume, soundVolume);
+    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
+    SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
     Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader);
     try {

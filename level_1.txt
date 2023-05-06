@@ -1,3 +1,4 @@
+RegenerateDrone:1
 FlyingDrone:1
 Spaceship:1
 Drone:2

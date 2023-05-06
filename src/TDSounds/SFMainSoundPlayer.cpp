@@ -49,7 +49,7 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned in
     this->_menuClick.setVolume((float)this->_soundVolume / 4);
     this->_gamePlacementClick.setVolume((float)this->_soundVolume);
     this->_gameCoinWon.setVolume((float)this->_soundVolume);
-    this->_waveClear.setVolume((float)this->_soundVolume);
+    this->_waveClear.setVolume((float)this->_soundVolume / 8);
     this->_gameCoinLoss.setVolume((float)this->_soundVolume);
     this->_gameLifeLoss.setVolume((float)this->_soundVolume / 8);
 }

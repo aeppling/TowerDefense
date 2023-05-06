@@ -131,7 +131,7 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                 std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
                 int res = std::chrono::duration_cast<std::chrono::milliseconds>(
                         testTime - this->_timeOfLastShot).count();
-                if (!this->enemiesInRange.empty())
+                if (!this->enemiesInRange.empty() && (this->towerName != "SplashTower"))
                     this->rotate(this->enemiesInRange.at(0));
                 if (res >= this->timeBetweenAttack * 1000) {
                     this->fire(this->enemiesInRange.at(0));
@@ -209,7 +209,7 @@ void Tower::fire(TDUnit *target){
         animationThread.detach();
         this->_shotSound.play();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-        target->getShot(this->damage[this->level], 200);
+        target->getShot(this->damage[this->level], 0);
         if (target->getHealth() <= 0) {
             //  this->gameInstance.addCoins(target->getValue());
             this->_killSound.play();

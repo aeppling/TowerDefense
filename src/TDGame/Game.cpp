@@ -650,7 +650,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
     MapCell *baseCell = new MapCell('B', -1, -1);
     std::vector<MapCell*> spawnCells;
-    if (testMap("level_1_map.txt", baseCell, spawnCells) == false) {
+    if (testMap("level_2_map.txt", baseCell, spawnCells) == false) {
         std::cout << "Cannot load level : Map is not valid." << std::endl;
         return (-1);
     }
@@ -667,7 +667,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map("level_1_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
+    TDMap map("level_2_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->mapMaxPosX = map.getSizeX();
     this->mapMaxPosY = map.getSizeY();

@@ -459,7 +459,8 @@
 				61,
 				63,
 				64,
-				66
+				66,
+				68
 			]
 		}
 	],
@@ -837,6 +838,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/TDSounds/SFTowerSoundLoader.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDUnits/RegenerateDrone.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -15,6 +15,7 @@ private:
     sf::Texture _alien;
     sf::Texture _spaceship;
     sf::Texture _flyingDrone;
+    sf::Texture _regenerateDrone;
 public:
     SFMLEnemiesLoader();
     ~SFMLEnemiesLoader();
@@ -24,6 +25,7 @@ public:
     sf::Texture *getAlien() { return (&this->_alien); };
     sf::Texture *getSpaceship() { return (&this->_spaceship); };
     sf::Texture *getFlyingDrone() { return (&this->_flyingDrone); };
+    sf::Texture *getRegenerateDrone() { return (&this->_regenerateDrone); };
 };
 
 #endif //UNTITLED1_SFMLENEMIESLOADER_HPP

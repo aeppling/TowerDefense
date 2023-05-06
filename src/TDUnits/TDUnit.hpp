@@ -86,6 +86,7 @@ public:
     void searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY);
     void move();
     void getSlow(int slowValue);
+    void regenerate();
     void isSlowFinished();
     bool isSlowed() { return (this->_isSlowed); };
     bool isAtBase();

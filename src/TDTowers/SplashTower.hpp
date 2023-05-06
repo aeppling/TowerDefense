@@ -6,6 +6,8 @@ class SplashTower : public Tower {
     public :
         SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader);
         ~SplashTower() {};
+
+        void fire(TDUnit *target) override;
         //! override
        // void fire(TDUnit *target);
 };

@@ -40,12 +40,19 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
     this->_healthBar.setFillColor(sf::Color::Green);
 }
 
+void    TDUnit::regenerate() {
+    if (this->_health_points < (this->_max_health - 20))
+        this->_health_points = this->_health_points + 20;
+}
+
 void    TDUnit::live() {
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
             if (!(this->isAtBase())) {
                 this->move();
+                if (this->getTypeName() == "RegenerateDrone")
+                    this->regenerate();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
                 if (this->_isSlowed)
                     this->isSlowFinished();
@@ -133,6 +140,8 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getSpaceship());
     else if (this->getTypeName() == "FlyingDrone")
         this->_sprite.setTexture(*sfmlLoader.getFlyingDrone());
+    else if (this->getTypeName() == "RegenerateDrone")
+        this->_sprite.setTexture(*sfmlLoader.getRegenerateDrone());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor * this->_scale, scaleFactor * this->_scale);
