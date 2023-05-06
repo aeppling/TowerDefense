@@ -43,7 +43,6 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
 void    TDUnit::regenerate() {
     if (this->_health_points < (this->_max_health - 15))
         this->_health_points = this->_health_points + 15;
-    this->setHealthBarSize();
 }
 
 void    TDUnit::live() {
@@ -51,6 +50,7 @@ void    TDUnit::live() {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
             if (!(this->isAtBase())) {
+                this->setHealthBarSize();
                 this->move();
                 if (this->getTypeName() == "RegenerateDrone")
                     this->regenerate();
@@ -212,7 +212,6 @@ void    TDUnit::getShot(int damage, int slowValue) {
     std::this_thread::sleep_for(std::chrono::milliseconds(400));
     this->_sprite.setColor(sf::Color::White);
     this->_health_points = this->_health_points - damage;
-    this->setHealthBarSize();
 }
 
 void    TDUnit::getKill() {

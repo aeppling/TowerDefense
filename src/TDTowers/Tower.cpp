@@ -195,9 +195,6 @@ void Tower::animateFiring() {
 }
 
 void Tower::fire(TDUnit *target){
-    //* remove target health
-   // target->setHealth(target->getHealth()-this->damage[this->level]);
-    // Get the position of the tower and the target
     if (target->_isKilled == true) {
         removeFromEnemiesInRangeList(target);
         return ;
@@ -208,10 +205,11 @@ void Tower::fire(TDUnit *target){
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
         this->_shotSound.play();
+        std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
+        shotThread.detach();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-        target->getShot(this->damage[this->level], 0);
+        //target->getShot(this->damage[this->level], 0);
         if (target->getHealth() <= 0) {
-            //  this->gameInstance.addCoins(target->getValue());
             this->_killSound.play();
             removeFromEnemiesInRangeList(target);
             this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
@@ -220,14 +218,12 @@ void Tower::fire(TDUnit *target){
         }
     } catch (const std::system_error& ex) {
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
-        // Additional error handling or recovery logic
     }
     this->missileLauncher->endFinishedThreads();
     mtx.unlock();
 }
 
 void Tower::upgrade(SFMLTowerLoader &sfmlTowerLoader){
-    //* upgrade tower level and stats
     if(!this->isMaxed()){
         this->level++;
         this->towerSprite.setTexture(*sfmlTowerLoader.getTextureFromName(this->towerName, this->level));
