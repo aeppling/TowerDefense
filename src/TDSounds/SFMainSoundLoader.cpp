@@ -20,7 +20,7 @@ SFMainSoundLoader::SFMainSoundLoader() {
         checkError = true;
     if (!(this->_waveClear.loadFromFile("Sounds/waveClear.ogg")))
         checkError = true;
-   if (!(this->_gameLifeLoss.loadFromFile("Sounds/LooseLife.wav")))
+   if (!(this->_gameLifeLoss.loadFromFile("Sounds/LowBassHit.wav")))
         checkError = true;
 /*    if (!(this->_gameSellObject.loadFromFile("sound.wav")))
         checkError = true;*/

@@ -13,13 +13,13 @@ SFTowerSoundLoader::SFTowerSoundLoader(unsigned int musicVolume, unsigned int so
         checkError = true;
     if (!(this->_speedShot.loadFromFile("Sounds/DefiniteShot5.wav")))
         checkError = true;
-    if (!(this->_antiAirShot.loadFromFile("Sounds/SimpleMissileLaunch.wav"))) //KO
+    if (!(this->_antiAirShot.loadFromFile("Sounds/MissileLaunchMini2.wav")))
         checkError = true;
-    if (!(this->_slowShot.loadFromFile("Sounds/.wav"))) // KO
+    if (!(this->_slowShot.loadFromFile("Sounds/SlowTowerShot.wav")))
         checkError = true;
     if (!(this->_sniperShot.loadFromFile("Sounds/SingleShot.wav")))
         checkError = true;
-    if (!(this->_splashShot.loadFromFile("Sounds/.wav"))) // KO
+    if (!(this->_splashShot.loadFromFile("Sounds/SplashTowerShot.wav")))
         checkError = true;
     if (checkError == true) {
         std::cout << "Error on loading tower sounds..." << std::endl;
