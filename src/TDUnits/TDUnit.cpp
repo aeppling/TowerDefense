@@ -41,8 +41,9 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
 }
 
 void    TDUnit::regenerate() {
-    if (this->_health_points < (this->_max_health - 20))
-        this->_health_points = this->_health_points + 20;
+    if (this->_health_points < (this->_max_health - 15))
+        this->_health_points = this->_health_points + 15;
+    this->setHealthBarSize();
 }
 
 void    TDUnit::live() {
@@ -198,6 +199,12 @@ void                   TDUnit::isSlowFinished() {
         this->_isSlowed = false;
     }
 }
+
+void    TDUnit::setHealthBarSize() {
+    float percentHealth = (float)this->_health_points / (float)this->_max_health * 100;
+    this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
+}
+
 void    TDUnit::getShot(int damage, int slowValue) {
     //if ((slowValue > 0) && (this->_isSlowed == false))
       //  this->getSlow(slowValue);
@@ -205,9 +212,7 @@ void    TDUnit::getShot(int damage, int slowValue) {
     std::this_thread::sleep_for(std::chrono::milliseconds(400));
     this->_sprite.setColor(sf::Color::White);
     this->_health_points = this->_health_points - damage;
-    float percentHealth = (float)this->_health_points / (float)this->_max_health * 100;
-    this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
-
+    this->setHealthBarSize();
 }
 
 void    TDUnit::getKill() {

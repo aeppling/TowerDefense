@@ -87,6 +87,7 @@ public:
     void move();
     void getSlow(int slowValue);
     void regenerate();
+    void setHealthBarSize();
     void isSlowFinished();
     bool isSlowed() { return (this->_isSlowed); };
     bool isAtBase();

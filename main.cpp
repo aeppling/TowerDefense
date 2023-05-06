@@ -64,7 +64,7 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 
 int main() {
     // SETTING SOUNDS
-    int musicVolume = 0;
+    int musicVolume = 100;
     int soundVolume = 100;
     int globalVolume = 50;
     SFMainSoundLoader mainSoundLoader;

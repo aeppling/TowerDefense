@@ -493,7 +493,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     shipShadow.setColor(sf::Color(0, 0, 0, 128));
                                     window.draw(shipShadow);
                                 }
-                                else if (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "FlyingDrone" && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                else if (((enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "FlyingDrone" )
+                                || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "RegenerateDrone")) && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     sf::Sprite droneShadow(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                     droneShadow.setPosition(enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().x - 10, enemyList.at(this->currentWaveNumber).at(s)->getSprite().getPosition().y + 15);
                                     droneShadow.setScale(droneShadow.getScale().x * 0.9, droneShadow.getScale().y * 0.9);
