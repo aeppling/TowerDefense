@@ -3,14 +3,45 @@
 //
 
 #include "../TDSounds/SFMainSoundPlayer.hpp"
+#include <iostream>
 
 SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader) {
-    this->_menuMusic.setBuffer(soundLoader.getMenuMusic());
-    this->_gameMusic.setBuffer(soundLoader.getGameMusic());
-    this->_menuClick.setBuffer(soundLoader.getMenuClick());
-    this->_gamePlacementClick.setBuffer(soundLoader.getGamePlacementClick());
-    this->_gameCoinWon.setBuffer(soundLoader.getGameCoinWon());
-    this->_gameCoinLoss.setBuffer(soundLoader.getGameCoinLoss());
-    this->_gameLifeLoss.setBuffer(soundLoader.getGameLifeLoss());
-    this->_gameSellObject.setBuffer(soundLoader.getGameSellObject());
+    bool checkError = false;
+    this->_musicVolume = 2;
+    this->_soundVolume = 80;
+    // MUSIC
+    if (!(this->_menuMusic.openFromFile("Music/menu_music.ogg")))
+        checkError = true;
+    if (!(this->_gameMusic1.openFromFile("Music/game_music1.ogg")))
+        checkError = true;
+    if (!(this->_gameMusic2.openFromFile("Music/game_music2.ogg")))
+        checkError = true;
+    if (!(this->_gameMusicChill.openFromFile("Music/game_music_chill.ogg")))
+        checkError = true;
+    if (!(this->_gameMusicEndWave.openFromFile("Music/game_music_endwave.ogg")))
+        checkError = true;
+    if (!(this->_gameMusicFaster.openFromFile("Music/game_music_faster.ogg")))
+        checkError = true;
+    if (checkError == true) {
+        std::cout << "Error on loading main sounds..." << std::endl;
+        return ;
+    }
+    this->_menuMusic.setVolume((float)this->_musicVolume);
+    this->_gameMusic1.setVolume((float)this->_musicVolume);
+    this->_gameMusic2.setVolume((float)this->_musicVolume);
+    this->_gameMusicChill.setVolume((float)this->_musicVolume);
+    this->_gameMusicEndWave.setVolume((float)this->_musicVolume);
+    this->_gameMusicFaster.setVolume((float)this->_musicVolume);
+
+    // SOUNDS
+    this->_menuClick.setBuffer(*soundLoader.getMenuClick());
+   // this->_gamePlacementClick.setBuffer(soundLoader.getGamePlacementClick());
+    this->_gameCoinWon.setBuffer(*soundLoader.getGameCoinWon());
+    this->_gameCoinLoss.setBuffer(*soundLoader.getGameCoinLoss());
+    //this->_gameLifeLoss.setBuffer(soundLoader.getGameLifeLoss());
+   // this->_gameSellObject.setBuffer(soundLoader.getGameSellObject());
+
+    this->_menuClick.setVolume((float)this->_soundVolume / 4);
+    this->_gameCoinWon.setVolume((float)this->_soundVolume);
+    this->_gameCoinLoss.setVolume((float)this->_soundVolume);
 }

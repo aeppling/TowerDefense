@@ -12,7 +12,7 @@
 #include "../TDTowers/SplashTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
-Game::Game(int difficulty, int level, TDPlayer *player1){
+Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1) : sfMainSoundPlayer(sfMainSoundPlayer1) {
     this->level = level;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
@@ -430,6 +430,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         else {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
+                                this->sfMainSoundPlayer.playMenuClick();
                                 this->isTowerClicked(map, window, mouseCoord);
                                 if (this->selectedActiveTower != nullptr) {
                                     int clicked = this->sfmlHud->checkForSellUpgradeClick(window);

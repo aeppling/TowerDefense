@@ -12,7 +12,7 @@
 #include "src/TDGame/Game.hpp"
 #include "src/TDPlayer/TDPlayer.hpp"
 #include "src/TDSounds/SFMainSoundLoader.hpp"
-
+#include "src/TDSounds/SFMainSoundPlayer.hpp"
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
@@ -75,7 +75,9 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    Game currentGame(1, 1, playerOne);
+    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader);
+    sfSoundPlayer.playGameMusic1();
+    Game currentGame(1, 1, playerOne, sfSoundPlayer);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
