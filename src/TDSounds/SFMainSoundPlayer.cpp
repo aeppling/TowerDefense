@@ -35,16 +35,16 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader) {
 
     // SOUNDS
     this->_menuClick.setBuffer(*soundLoader.getMenuClick());
-   // this->_gamePlacementClick.setBuffer(soundLoader.getGamePlacementClick());
     this->_gamePlacementClick.setBuffer(*soundLoader.getGamePlacementClick());
     this->_gameCoinLoss.setBuffer(*soundLoader.getGameCoinLoss());
     this->_gameCoinWon.setBuffer(*soundLoader.getGameCoinWon());
-    this->_waveClear.setBuffer(*soundLoader.getGameCoinLoss());
-    //this->_gameLifeLoss.setBuffer(soundLoader.getGameLifeLoss());
+    this->_waveClear.setBuffer(*soundLoader.getWaveClear());
+    this->_gameLifeLoss.setBuffer(*soundLoader.getGameLifeLoss());
    // this->_gameSellObject.setBuffer(soundLoader.getGameSellObject());
 
     this->_menuClick.setVolume((float)this->_soundVolume / 4);
     this->_gameCoinWon.setVolume((float)this->_soundVolume);
     this->_waveClear.setVolume((float)this->_soundVolume);
     this->_gameCoinLoss.setVolume((float)this->_soundVolume);
+    this->_gameLifeLoss.setVolume((float)this->_soundVolume / 8);
 }

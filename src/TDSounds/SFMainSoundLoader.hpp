@@ -26,7 +26,7 @@ public:
     sf::SoundBuffer *getGameCoinWon() { return (&this->_gameCoinWon); };
     sf::SoundBuffer *getGameCoinLoss() { return (&this->_gameCoinLoss); };
     sf::SoundBuffer *getWaveClear() { return (&this->_waveClear); };
-    //sf::SoundBuffer getGameLifeLoss() { return (this->_gameLifeLoss); };
+    sf::SoundBuffer *getGameLifeLoss() { return (&this->_gameLifeLoss); };
     //sf::SoundBuffer getGameSellObject() { return (this->_gameSellObject); };
 };
 

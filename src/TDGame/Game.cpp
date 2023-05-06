@@ -536,6 +536,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                     this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
                                     this->player->looseLife();
+                                    this->sfMainSoundPlayer.playLifeLoss();
                                     this->sfmlHud->setMessage("Prevent enemies from reaching \nyour base to win the game");
 
                                     // RESET HIT MARKER OPACITY
