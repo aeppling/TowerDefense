@@ -77,9 +77,9 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     wallRect.setPosition(1655, 905);
     wallRect.setFillColor(sf::Color::Transparent);
     wallRect.setOutlineThickness(3);
-    wallRect.setOutlineColor(sf::Color::Black);
+    wallRect.setOutlineColor(sf::Color::White);
     wallPriceText.setFont(mainFont);
-    wallPriceText.setColor(sf::Color::Black);
+    wallPriceText.setColor(sf::Color::White);
     wallPriceText.setCharacterSize(28);
     wallPriceText.setString("5 coins");
     wallPriceText.setPosition(1725, 915);
@@ -141,33 +141,6 @@ void SFMLHud::draw() {
     this->towerRectangles.clear();
     int windowHeight = _window->getSize().y;
     int textureHeight = m_backgroundTexture.getSize().y * 2;
-
-  /*  for (int y = 0; y < windowHeight; y += textureHeight) {
-        sf::Sprite sprite1(m_backgroundTexture);
-        sprite1.setPosition(0, y);
-         _window->draw(sprite1);
-        sf::Sprite sprite2(m_backgroundTexture);
-        sprite2.setPosition(m_backgroundTexture.getSize().x, y);
-        _window->draw(sprite2);
-        sf::Sprite sprite3(m_backgroundTexture);
-        sprite3.setPosition(m_backgroundTexture.getSize().x *2, y);
-        _window->draw(sprite3);
-        sf::Sprite sprite4(m_backgroundTexture);
-        sprite4.setPosition(m_backgroundTexture.getSize().x *3, y);
-        _window->draw(sprite4);
-        sf::Sprite sprite5(m_backgroundTexture);
-        sprite5.setPosition(1450, y);
-        _window->draw(sprite5);
-        sf::Sprite sprite6(m_backgroundTexture);
-        sprite6.setPosition(m_backgroundTexture.getSize().x + 1450, y);
-        _window->draw(sprite6);
-        sf::Sprite sprite7(m_backgroundTexture);
-        sprite7.setPosition(m_backgroundTexture.getSize().x *2 + 1450, y);
-        _window->draw(sprite7);
-        sf::Sprite sprite8(m_backgroundTexture);
-        sprite8.setPosition(m_backgroundTexture.getSize().x *3 + 1450, y);
-        _window->draw(sprite8);
-    }*/
     _window->draw(m_levelText);
     int heartSize = 32;
     int heartSpacing = 10;
