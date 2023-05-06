@@ -1,8 +1,8 @@
 #include <algorithm>
 #include "AntiAirTower.hpp"
 
-AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "AntiAirTower",
-                                                                                                      {80, 100, 140}, {400, 550, 700}, 12, 4, 3.5, true){
+AntiAirTower::AntiAirTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "AntiAirTower",
+                                                                                                      {80, 100, 140}, {400, 550, 700}, 12, 4, 3.5, true, soundLoader){
 }
 
 /*void AntiAirTower::isInRange(std::vector<TDUnit *> enemiesList){

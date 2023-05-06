@@ -8,6 +8,7 @@
 #include "../TDGraphics/SFMLTowerLoader.hpp"
 #include "../TDGraphics/SFMLMissileLoader.hpp"
 #include "../TDTowers/MissileLauncher.hpp"
+#include "../TDSounds/SFTowerSoundLoader.hpp"
 
 #include <vector>
 #include <thread>
@@ -40,10 +41,10 @@ class Tower : public Buildable {
         sf::Sprite towerSprite;
         MissileLauncher *missileLauncher;
         sf::RenderWindow &window;
-
+        sf::Sound       _shotSound;
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial);
+              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };

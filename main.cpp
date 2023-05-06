@@ -64,6 +64,9 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 
 int main() {
     // SETTING SOUNDS
+    int musicVolume = 0;
+    int soundVolume = 100;
+    int globalVolume = 100;
     SFMainSoundLoader mainSoundLoader;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
@@ -75,9 +78,10 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader);
+    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume, soundVolume);
+    SFTowerSoundLoader sfTowerSoundLoader(musicVolume, soundVolume);
     sfSoundPlayer.playGameMusic1();
-    Game currentGame(1, 1, playerOne, sfSoundPlayer);
+    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;

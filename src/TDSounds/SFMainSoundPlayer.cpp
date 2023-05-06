@@ -5,10 +5,11 @@
 #include "../TDSounds/SFMainSoundPlayer.hpp"
 #include <iostream>
 
-SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader) {
+SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned int globalVolume, unsigned int musicVolume, unsigned int soundVolume) {
     bool checkError = false;
-    this->_musicVolume = 0;
-    this->_soundVolume = 80;
+    this->_musicVolume = musicVolume;
+    this->_soundVolume = soundVolume;
+    this->_globalVolume = globalVolume;
     // MUSIC
     if (!(this->_menuMusic.openFromFile("Music/menu_music.ogg")))
         checkError = true;
@@ -26,6 +27,9 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader) {
         std::cout << "Error on loading main sounds..." << std::endl;
         return ;
     }
+
+    sf::Listener::setGlobalVolume((float)this->_globalVolume);
+
     this->_menuMusic.setVolume((float)this->_musicVolume);
     this->_gameMusic1.setVolume((float)this->_musicVolume);
     this->_gameMusic2.setVolume((float)this->_musicVolume);

@@ -1,7 +1,7 @@
 #include "SplashTower.hpp"
 
-SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SplashTower",
-                                                                                                                                                                              {13, 20, 30}, {650, 800, 1000}, 10, 2.5, 0, false){
+SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SplashTower",
+                                                                                                                                                                              {13, 20, 30}, {650, 800, 1000}, 10, 2.5, 0, false, soundLoader){
 }
 
 /*void SplashTower::fire(TDUnit *target){

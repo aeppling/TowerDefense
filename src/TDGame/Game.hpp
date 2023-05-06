@@ -14,6 +14,7 @@
 #include "../TDGraphics/SFMLCoinAnimation.hpp"
 #include "../TDGraphics/SFMLHud.hpp"
 #include "../TDSounds/SFMainSoundPlayer.hpp"
+#include "../TDSounds/SFTowerSoundLoader.hpp"
 #include <iostream>
 
 class Tower;
@@ -56,6 +57,7 @@ class Game{
         SFMLHud*            sfmlHud;
         SFMLDecorationLoader sfmlDecorationLoader;
         SFMainSoundPlayer   &sfMainSoundPlayer;
+        SFTowerSoundLoader  &sfTowerSoundLoader;
         sf::Sprite          hearthDisplay;
         sf::Sprite          baseCell;
         sf::RectangleShape  hitMarker;
@@ -66,7 +68,7 @@ class Game{
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
 
     public :
-        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1);
+        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
     void initializeTowerStore(sf::RenderWindow &window);
     void initializeTowerStoreCurrentWave();

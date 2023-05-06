@@ -11,6 +11,7 @@ class SFMainSoundPlayer {
 private:
     unsigned int _musicVolume;
     unsigned int _soundVolume;
+    unsigned int _globalVolume;
     // MUSIC
     sf::Music _menuMusic;
     sf::Music _gameMusic1;
@@ -28,8 +29,12 @@ private:
     sf::Sound _gameLifeLoss;
     sf::Sound _gameSellObject;
 public:
-    SFMainSoundPlayer(SFMainSoundLoader &soundLoader);
+    SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned int globalVolume, unsigned int musicVolume, unsigned int soundVolume);
     ~SFMainSoundPlayer() {};
+
+    // GETTER VOLUME
+    unsigned int getMusicVolume() { return (this->_musicVolume); };
+    unsigned int getSoundVolume() { return (this->_soundVolume); };
 
     // MUSIC
     void playMenuMusic() { this->_menuMusic.play(); };

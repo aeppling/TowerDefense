@@ -8,7 +8,7 @@
 std::mutex mtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial) : window(window), Buildable(size, "Tower") {
+             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
@@ -26,6 +26,8 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
     }
+    this->_shotSound.setBuffer(*soundLoader.getFromName(this->towerName));
+    this->_shotSound.setVolume((float)soundLoader.getSoundVolume() / 20);
     this->missileSpeed = missileSpeed;
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
@@ -203,6 +205,7 @@ void Tower::fire(TDUnit *target){
         mtx.lock();
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
+        this->_shotSound.play();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
         target->getShot(this->damage[this->level], 200);
         if (target->getHealth() <= 0) {
