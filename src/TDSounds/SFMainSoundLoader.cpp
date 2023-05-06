@@ -12,9 +12,13 @@ SFMainSoundLoader::SFMainSoundLoader() {
         checkError = true;
 /*    if (!(this->_gamePlacementClick.loadFromFile("sound.wav")))
         checkError = true;*/
-    if (!(this->_gameCoinWon.loadFromFile("Sounds/coinWon.ogg")))
+    if (!(this->_gamePlacementClick.loadFromFile("Sounds/coinLoss.ogg")))
         checkError = true;
     if (!(this->_gameCoinLoss.loadFromFile("Sounds/buySound.ogg")))
+        checkError = true;
+    if (!(this->_gameCoinWon.loadFromFile("Sounds/coinWon.ogg")))
+        checkError = true;
+    if (!(this->_waveClear.loadFromFile("Sounds/waveClear.ogg")))
         checkError = true;
 /*    if (!(this->_gameLifeLoss.loadFromFile("sound.wav")))
         checkError = true;

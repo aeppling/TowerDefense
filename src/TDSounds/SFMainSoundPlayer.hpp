@@ -23,6 +23,7 @@ private:
     sf::Sound _menuClick;
     sf::Sound _gamePlacementClick;
     sf::Sound _gameCoinWon;
+    sf::Sound _waveClear;
     sf::Sound _gameCoinLoss;
     sf::Sound _gameLifeLoss;
     sf::Sound _gameSellObject;
@@ -43,8 +44,9 @@ public:
 
     // SOUNDS
     void playMenuClick() { this->_menuClick.play(); };
-    //void playGamePlacementClick() { this->_gamePlacementClick.play(); };
+    void playGamePlacementClick() { this->_gamePlacementClick.play(); };
     void playGameCoinWon() { this->_gameCoinWon.play(); };
+    void playWaveClear() { this->_waveClear.play(); };
     void playGameCoinLoss() { this->_gameCoinLoss.play(); };
     //void playLifeLoss() { this->_gameLifeLoss.play(); };
 };

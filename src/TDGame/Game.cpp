@@ -238,6 +238,7 @@ void Game::sellTower(TDMap &map) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getCost() / 2;
             this->addCoins(cost);
+            this->sfMainSoundPlayer.playGameCoinWon();
             this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, true);
             this->towerList.at(i)->deactivate();
             map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
@@ -774,7 +775,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->looseCoins(toBuild->getCost());
-                
+                this->sfMainSoundPlayer.playGamePlacementClick();
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
                 if (isWaveRunning == true)
@@ -824,6 +825,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+            this->sfMainSoundPlayer.playGameCoinWon();
             this->addCoins(2);
             this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 2, true);
             check = true;
@@ -921,6 +923,7 @@ bool Game::waveEnd(sf::RenderWindow& window){
         //* if all the ennemies from the current wave are dead == wave ended
         //* deactivate towers, increase wave number
         this->deactivateTowers();
+        this->sfMainSoundPlayer.playWaveClear();
         this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
         sf::sleep(sf::seconds(1.5f));
         this->enemyList.at(currentWaveNumber).clear();
@@ -1079,6 +1082,7 @@ void Game::addCoins(int number) {
 }
 
 void Game::looseCoins(int number) {
+    this->sfMainSoundPlayer.playGameCoinLoss();
     this->player->looseCoin(number);
     std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
 }

@@ -15,15 +15,17 @@ private:
     sf::SoundBuffer _gameCoinWon;
     sf::SoundBuffer _gameCoinLoss;
     sf::SoundBuffer _gameLifeLoss;
+    sf::SoundBuffer _waveClear;
 public:
     SFMainSoundLoader();
     ~SFMainSoundLoader() = default;
 
     // SOUNDS
     sf::SoundBuffer *getMenuClick() { return (&this->_menuClick); };
-    //sf::SoundBuffer getGamePlacementClick() { return (this->_gamePlacementClick); };
+    sf::SoundBuffer *getGamePlacementClick() { return (&this->_gamePlacementClick); };
     sf::SoundBuffer *getGameCoinWon() { return (&this->_gameCoinWon); };
     sf::SoundBuffer *getGameCoinLoss() { return (&this->_gameCoinLoss); };
+    sf::SoundBuffer *getWaveClear() { return (&this->_waveClear); };
     //sf::SoundBuffer getGameLifeLoss() { return (this->_gameLifeLoss); };
     //sf::SoundBuffer getGameSellObject() { return (this->_gameSellObject); };
 };
