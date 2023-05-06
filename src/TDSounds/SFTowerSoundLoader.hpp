@@ -18,6 +18,7 @@ private:
     sf::SoundBuffer _slowShot;
     sf::SoundBuffer _sniperShot;
     sf::SoundBuffer _splashShot;
+    sf::SoundBuffer _enemyDeath;
 public:
     SFTowerSoundLoader(unsigned int musicVolume, unsigned int soundVolume);
     ~SFTowerSoundLoader() = default;
@@ -32,6 +33,7 @@ public:
     sf::SoundBuffer *getSlowShot() { return (&this->_slowShot); };
     sf::SoundBuffer *getSniperShot() { return (&this->_sniperShot); };
     sf::SoundBuffer *getSplashShot() { return (&this->_splashShot); };
+    sf::SoundBuffer *getEnemyDeath() { return (&this->_enemyDeath); };
 };
 
 #endif //UNTITLED1_SFTOWERSOUNDLOADER_HPP

@@ -511,11 +511,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 this->enemiesLeft--;
                                 this->enemyList.at(this->currentWaveNumber).at(s)->setCounted();
                                 this->player->addKill();
-                                
-                                std::cout << "Dead at position x:"
-                                          << enemyList.at(this->currentWaveNumber).at(s)->getPosX();
-                                std::cout << " y:" << enemyList.at(this->currentWaveNumber).at(s)->getPosY()
-                                          << std::endl;
                                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize,
                                                                              enemyList.at(this->currentWaveNumber).at(
                                                                                      s)->getPosX(),

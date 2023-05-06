@@ -42,6 +42,7 @@ class Tower : public Buildable {
         MissileLauncher *missileLauncher;
         sf::RenderWindow &window;
         sf::Sound       _shotSound;
+        sf::Sound       _killSound;
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
               std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);

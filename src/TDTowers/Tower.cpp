@@ -27,7 +27,9 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         return ;
     }
     this->_shotSound.setBuffer(*soundLoader.getFromName(this->towerName));
-    this->_shotSound.setVolume((float)soundLoader.getSoundVolume() / 20);
+    this->_shotSound.setVolume((float)soundLoader.getSoundVolume() / 10);
+    this->_killSound.setBuffer(*soundLoader.getEnemyDeath());
+    this->_killSound.setVolume((float)soundLoader.getSoundVolume() / 14);
     this->missileSpeed = missileSpeed;
     this->missileLauncher = new MissileLauncher(sfmlMissileLoader, cellSize, this->towerName);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->towerSprite.getTexture()->getSize().y);
@@ -210,6 +212,7 @@ void Tower::fire(TDUnit *target){
         target->getShot(this->damage[this->level], 200);
         if (target->getHealth() <= 0) {
             //  this->gameInstance.addCoins(target->getValue());
+            this->_killSound.play();
             removeFromEnemiesInRangeList(target);
             this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
             target->getKill();

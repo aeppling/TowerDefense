@@ -21,6 +21,8 @@ SFTowerSoundLoader::SFTowerSoundLoader(unsigned int musicVolume, unsigned int so
         checkError = true;
     if (!(this->_splashShot.loadFromFile("Sounds/SplashTowerShot.wav")))
         checkError = true;
+    if (!(this->_enemyDeath.loadFromFile("Sounds/DestroyMonster2.wav")))
+        checkError = true;
     if (checkError == true) {
         std::cout << "Error on loading tower sounds..." << std::endl;
         return ;
