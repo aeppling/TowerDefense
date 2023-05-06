@@ -341,6 +341,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // REFRESH WINDOW AND INTERCEPT EVENTS
                     sf::Event event;
                     window.clear(sf::Color::Black);
+                    this->sfmlHud->drawBackground();
                     while (window.pollEvent(event)) {
                         if (event.type == sf::Event::Closed) {
                             window.close();
@@ -386,8 +387,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             }
                         }
                         mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+                        this->isCursorOutsideMap = checkCursorOutsideMap(mouseCoord.posX, mouseCoord.posY, map);
                         if (isBuilding == true) {
-                            this->isCursorOutsideMap = checkCursorOutsideMap(mouseCoord.posX, mouseCoord.posY, map);
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
                                 setObstacleTest(std::ref(map), std::ref(window));
@@ -590,8 +591,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // SET AND DISPLAY MOUSE
                     if ((isBuilding == true) && !(this->isCursorOutsideMap))
                         mousePointer.setColor(sf::Color::Transparent);
-                    else
-                        mousePointer.setColor(sf::Color::Blue);
+                    else {
+                        if (this->isCursorOutsideMap)
+                            mousePointer.setColor(sf::Color::White);
+                        else
+                            mousePointer.setColor(sf::Color::Blue);
+                    }
                     sf::Vector2i mousePositionScreen = sf::Mouse::getPosition(window);
                     mousePointer.setPosition(mousePositionScreen.x -(cellSize - 3) + _GAME_POSITION_X, mousePositionScreen.y -(cellSize - 3) + _GAME_POSITION_Y);
                     window.draw(mousePointer);

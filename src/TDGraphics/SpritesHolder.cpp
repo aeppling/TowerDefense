@@ -10,6 +10,7 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
                                                         SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader) {
     SFMLSprite sprite;
     std::shared_ptr<SFMLSprite> newSprite = std::make_shared<SFMLSprite>(sprite);
+    int randomNum = std::rand() % 100;
     if (mapCell->getType() == 'X') {
         newSprite->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
         newSprite->setPosition(cellSize);
@@ -23,7 +24,6 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
         else {
             newSprite->setSpriteCutted(sfmlLoader.getNotWalkableCell(), cellSize, mapCell->getPosX(),
                                        mapCell->getPosY(), mapCell->getType(), 1);
-           int randomNum = std::rand() % 100;
             if ((randomNum >= 0) && (randomNum <= 5)){
                 SFMLSprite spriteDecoration;
                 spriteDecoration.setSprite(sfmlDecorationLoader.getBush2(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
@@ -131,7 +131,6 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
                 this->_wallSprite.erase(it);
                 this->_walkableSprite.insert(this->_walkableSprite.begin(), removed_element);
                 this->_walkableSprite.at(0)->getSprite().setColor(sf::Color::Green);
-                std::cout << "CHANGED TO PATH" << std::endl;
                 return;
             }
             i++;

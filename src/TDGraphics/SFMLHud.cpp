@@ -23,7 +23,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->m_moneyText.setCharacterSize(28);
     this->setMessage("Build a tower to kill the enemies !");
     textMessage.setFont(mainFont);
-    if (!m_backgroundTexture.loadFromFile("Sprites/hud_background.png")) {
+    if (!m_backgroundTexture.loadFromFile("Sprites/stars_texture.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
     if (!heartTexture.loadFromFile("Sprites/heart.png")) {
@@ -129,17 +129,23 @@ void SFMLHud::update() {
     
 }
 
+void SFMLHud::drawBackground() {
+    sf::Sprite background(m_backgroundTexture);
+    _window->draw(background);
+}
+
 void SFMLHud::draw() {
     // Dessiner la texture du fond en répétition verticale
     
     // Afficher un sprite de coeur pour chaque vie restante
     this->towerRectangles.clear();
     int windowHeight = _window->getSize().y;
-    int textureHeight = m_backgroundTexture.getSize().y;
-    for (int y = 0; y < windowHeight; y += textureHeight) {
+    int textureHeight = m_backgroundTexture.getSize().y * 2;
+
+  /*  for (int y = 0; y < windowHeight; y += textureHeight) {
         sf::Sprite sprite1(m_backgroundTexture);
         sprite1.setPosition(0, y);
-        _window->draw(sprite1);
+         _window->draw(sprite1);
         sf::Sprite sprite2(m_backgroundTexture);
         sprite2.setPosition(m_backgroundTexture.getSize().x, y);
         _window->draw(sprite2);
@@ -161,7 +167,7 @@ void SFMLHud::draw() {
         sf::Sprite sprite8(m_backgroundTexture);
         sprite8.setPosition(m_backgroundTexture.getSize().x *3 + 1450, y);
         _window->draw(sprite8);
-    }
+    }*/
     _window->draw(m_levelText);
     int heartSize = 32;
     int heartSpacing = 10;
@@ -180,7 +186,7 @@ void SFMLHud::draw() {
 
     textMessage.setPosition(15, 300);
     
-    textMessage.setColor(sf::Color::Black);
+    textMessage.setColor(sf::Color::White);
     textMessage.setCharacterSize(16);
     
     _window->draw(textMessage);

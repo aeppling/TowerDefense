@@ -53,6 +53,7 @@ public:
     
     void update();
     void draw();
+    void drawBackground();
     void setSelectedTower(Tower *tower){ selectedTower = tower;}
     void setWave(int wave){ _waveNumber = wave;}
     void setLives(int life){ _lifeNumber = life;}
