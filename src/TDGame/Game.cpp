@@ -393,8 +393,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (isBuilding == true) {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
-                                setObstacleTest(std::ref(map), std::ref(window));
-                                if (!this->towerStoreList.empty()) {
+                                if (this->towerSelectorIndex == -2)
+                                    setObstacleTest(std::ref(map), std::ref(window));
+                                else if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
                                         if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
@@ -580,7 +581,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfmlHud->update();
                     this->sfmlHud->draw();
                     if (event.type == sf::Event::MouseButtonPressed &&
-                        sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
+                        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         int whichClicked = this->sfmlHud->checkForClick(window);
                         if (whichClicked != -1) {
                                 this->towerSelectorIndex = whichClicked;
