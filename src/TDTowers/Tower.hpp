@@ -28,6 +28,7 @@ class Tower : public Buildable {
         std::vector<int> damage;
         std::vector<int> cost;
         std::vector<float> slowValue;
+        int shot_round;
         int level;
         bool speedBoosted;
         bool activated;
