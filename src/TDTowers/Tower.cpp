@@ -63,7 +63,6 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->activated = true;
     this->aerial = isAerial;
     this->speedBoosted = false;
-    this->shot_round = 1;
 }
 
 void Tower::live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) {
@@ -196,48 +195,32 @@ void Tower::animateFiring() {
 }
 
 void Tower::fire(TDUnit *target){
-    if (target == nullptr)
-        return;
-    if (target->getHealth() <= 0) {
-       // mtx.lock();
+    if (target->_isKilled == true) {
         removeFromEnemiesInRangeList(target);
-       // mtx.unlock();
         return ;
     }
     this->rotate(target);
     try  {
-        int shot_count = 0;
-       // while (shot_count < this->shot_round) {
-            std::thread animationThread(&Tower::animateFiring, this);
-           animationThread.detach();
-            this->_shotSound.play();
-            mtx.lock();
-            //std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
-            this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target,
-                                         this->missileSpeed);
-            // SHOT IS A THREAD SO IT CHECK FOR DEATH TOO LATE
-            target->getShot(this->damage[this->level], 0);
-           // mtx.unlock();
-            //shotThread.join();
-            if (target->getHealth() <= 0) {
-           //     mtx.lock();
-                std::cout << "Unit killed" << std::endl;
-                this->_killSound.play();
-                removeFromEnemiesInRangeList(target);
-               // this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target),
-                 //                        this->enemiesList->end());
-                target->getKill();
-                mtx.unlock();
-                //break;
-            }
-            mtx.unlock();
-          //  sf::sleep(sf::milliseconds(100));
-     //       shot_count++;
-       // }
+        mtx.lock();
+        std::thread animationThread(&Tower::animateFiring, this);
+        animationThread.detach();
+        this->_shotSound.play();
+        std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
+        //shotThread.detach();
+        this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
+        //target->getShot(this->damage[this->level], 0);
+        shotThread.join();
+        if (target->getHealth() <= 0) {
+            this->_killSound.play();
+            removeFromEnemiesInRangeList(target);
+            this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
+            target->getKill();
+        }
     } catch (const std::system_error& ex) {
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
     }
     this->missileLauncher->endFinishedThreads();
+    mtx.unlock();
 }
 
 void Tower::upgrade(SFMLTowerLoader &sfmlTowerLoader){

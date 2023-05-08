@@ -1004,6 +1004,65 @@ bool Game::enemyAtBase(){
     }
 }
 
+void Game::createTower(){
+    //* Tower choice
+    std::cout << "Enter the integer corresponding to the type of tower you want to build :" << std::endl;
+    std::cout << "1/ Basic Tower" << std::endl;
+    std::cout << "2/ Sniper Tower" << std::endl;
+    std::cout << "3/ Anti Air Tower" << std::endl;
+    std::cout << "4/ Splash Tower" << std::endl;
+    std::cout << "5/ Slow Tower" << std::endl;
+    std::cout << "6/ Attack Speed Tower" << std::endl;
+    std::string towerType;
+    std::getline(std::cin, towerType);
+    Tower *newTower;
+    switch(stoi(towerType)){
+        case 1:
+           // newTower = new Tower(this, 2, this->currentWave, this->cellSize);
+            break;
+        case 2:
+          //  SniperTower newTower = new SniperTower(this);
+            break;
+        case 3:
+            //AntiAirTower newTower = new AntiAirTower(this);
+            break;
+        case 4:
+           // SplashTower newTower = new SplashTower(this);
+            break;
+        case 5:
+            //SlowTower newTower = new SlowTower(this);
+            break;
+        case 6:
+            //AttackSpeedTower newTower = new AttackSpeedTower(this, this->towerList);
+            break;
+        default:
+            break;
+    }
+    if(canBuy(*newTower, 0)){
+        //* test if the player has enough coin to buy the tower
+        //* ask tower coord
+        std::cout << "posX : " << std::endl;
+        std::string newTowerPosX;
+        std::getline(std::cin, newTowerPosX);
+        std::cout << "posY : " << std::endl;
+        std::string newTowerPosY;
+        std::getline(std::cin, newTowerPosY);  
+        if(canPlace(*newTower, stoi(newTowerPosX), stoi(newTowerPosY))){
+            newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY), this->cellSize);
+            this->addCoins(newTower->getCost());
+            
+            this->towerList.push_back(newTower);
+            newTower->run(this->currentWave);
+            std::cout << "Tower succesfully created " << std::endl;
+            std::cout << "coin number : " << this->player->getCoinNumber() << std::endl;
+        }else{
+            std::cout << "Coords not valid " << std::endl;
+        }
+    }else{
+        delete newTower;
+    }
+}
+
 bool Game::canBuy(Tower &tower, int level){
     //* test if the player has enough coin to buy the tower
     if(this->player->getCoinNumber() >= tower.getCost()){
