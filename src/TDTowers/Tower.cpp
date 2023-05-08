@@ -37,9 +37,11 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     if ((this->towerName == "SlowTower") || (this->towerName == "SplashTower"))
         this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
     else if (this->towerName == "SniperTower")
-        this->towerSprite.setScale(scaleFactor * 3, scaleFactor * 3);
+        this->towerSprite.setScale(scaleFactor * 3.8, scaleFactor * 3.8);
+    else if (this->towerName == "AntiAirTower")
+        this->towerSprite.setScale(scaleFactor * 3.8, scaleFactor * 3.8);
     else
-        this->towerSprite.setScale(scaleFactor * 3.5, scaleFactor * 3.5);
+        this->towerSprite.setScale(scaleFactor * 4.5, scaleFactor * 4.5);
     this->towerSprite.setTextureRect(textureRect);
     if (this->towerName == "SniperTower") {
         sf::Vector2f newOrigin(this->towerSprite.getLocalBounds().width / 4.f,
@@ -134,8 +136,10 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                 if (!this->enemiesInRange.empty() && (this->towerName != "SplashTower"))
                     this->rotate(this->enemiesInRange.at(0));
                 if (res >= this->timeBetweenAttack * 1000) {
-                    this->fire(this->enemiesInRange.at(0));
-                    this->_timeOfLastShot = std::chrono::steady_clock::now();
+                    if (!this->enemiesInRange.empty()) {
+                        this->fire(this->enemiesInRange.at(0));
+                        this->_timeOfLastShot = std::chrono::steady_clock::now();
+                    }
                 }
                 //* wait time between fire
                 // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
@@ -205,15 +209,16 @@ void Tower::fire(TDUnit *target){
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
         this->_shotSound.play();
-        std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
+        // JUST REMOVE ANIMATION FROM GET SHOT
+        //std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
         //shotThread.detach();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-        //target->getShot(this->damage[this->level], 0);
-        shotThread.join();
+        target->getShot(this->damage[this->level], 0);
+        //shotThread.join();
         if (target->getHealth() <= 0) {
             this->_killSound.play();
             removeFromEnemiesInRangeList(target);
-            this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
+           this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
             target->getKill();
         }
     } catch (const std::system_error& ex) {

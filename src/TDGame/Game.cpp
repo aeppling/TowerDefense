@@ -690,7 +690,7 @@ void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
             support.setPosition(this->towerList.at(i)->getTowerSprite().getPosition());
             sf::Vector2f newOrigin(support.getLocalBounds().width / 2.f, support.getLocalBounds().height / 2.f);
             support.setOrigin(newOrigin);
-            support.setScale(1, 1);
+            support.setScale(1.2, 1.2);
             window.draw(support);
             window.draw(this->towerList.at(i)->getTowerSprite());
             int y = 0;
@@ -1076,14 +1076,12 @@ bool Game::canBuy(Tower &tower, int level){
 
 void Game::addCoins(int number) {
     this->player->addCoin(number);
-    std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
 }
 
 void Game::looseCoins(int number) {
     this->sfMainSoundPlayer.playGameCoinLoss();
     this->player->looseCoin(number);
-    std::cout << "You know have " << this->player->getCoinNumber() << " coins" << std::endl;
-}
+    }
 
 void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;

@@ -1,7 +1,7 @@
 Drone:4/Alien:5/Missile:1
+Spaceship:1
 RegenerateDrone:1
 FlyingDrone:1
-Spaceship:1
 Drone:2
 Alien:2
 Missile:2
@@ -11,3 +11,4 @@ Drone:4/Alien:5/Missile:1
 Spaceship:1/Alien:1/Missile:1/Alien:1
 Spaceship:5
 Drone:50
+RegenerateDrone:1

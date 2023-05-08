@@ -19,6 +19,7 @@ void MissileThread::animateExplosion() {
     int spriteWidth = this->_explosionSprite.getTexture()->getSize().y;
     sf::IntRect textureRect(0, 0, 80, 80);
     this->_explosionSprite.setTextureRect(textureRect);
+    this->_explosionSprite.setScale(0.8, 0.8);
     int displayedSprite = 0;
     // Check if animation time exceeds the time for one sprite
     while (displayedSprite != numSprites) {

@@ -208,9 +208,9 @@ void    TDUnit::setHealthBarSize() {
 void    TDUnit::getShot(int damage, int slowValue) {
     //if ((slowValue > 0) && (this->_isSlowed == false))
       //  this->getSlow(slowValue);
-    this->_sprite.setColor(sf::Color::Red);
-    std::this_thread::sleep_for(std::chrono::milliseconds(400));
-    this->_sprite.setColor(sf::Color::White);
+   // this->_sprite.setColor(sf::Color::Red);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(400));
+    //this->_sprite.setColor(sf::Color::White);
     this->_health_points = this->_health_points - damage;
 }
 
