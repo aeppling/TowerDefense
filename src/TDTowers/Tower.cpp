@@ -8,7 +8,7 @@
 std::mutex mtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-             std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
+             std::vector<int> damage, std::vector<int> cost, std::vector<float> range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
@@ -101,10 +101,10 @@ void Tower::isInRange() {
 
     for (TDUnit *enemy: *(this->enemiesList)) {
         mtx.lock();
-        if ((enemy->getPosX() <= this->coord.x + this->range + this->getSize() &&
-            enemy->getPosX() >= this->coord.x - this->range &&
-            enemy->getPosY() <= this->coord.y + this->range + this->getSize() &&
-            enemy->getPosY() >= this->coord.y - this->range) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
+        if ((enemy->getPosX() <= this->coord.x + this->range.at(this->level) + this->getSize() &&
+            enemy->getPosX() >= this->coord.x - this->range.at(this->level) &&
+            enemy->getPosY() <= this->coord.y + this->range.at(this->level) + this->getSize() &&
+            enemy->getPosY() >= this->coord.y - this->range.at(this->level)) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
                 addToEnemiesInRangeList(enemy);
@@ -266,7 +266,7 @@ int Tower::getLevel(){
 }
 
 int Tower::getRange() {
-    return (this->range);
+    return (this->range.at(this->level));
 }
 
 void Tower::setPosition(int newXPos, int newYPos, int cellSize){

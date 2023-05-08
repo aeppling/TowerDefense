@@ -31,7 +31,7 @@ class Tower : public Buildable {
         int level;
         bool speedBoosted;
         bool activated;
-        float range;
+        std::vector<float> range;
         float timeBetweenAttack;
         bool aerial;
         float missileSpeed;
@@ -45,7 +45,7 @@ class Tower : public Buildable {
         sf::Sound       _killSound;
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-              std::vector<int> damage, std::vector<int> cost, float range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);
+              std::vector<int> damage, std::vector<int> cost, std::vector<float> range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);
         ~Tower() override { this->_towerThread.join(); };
         std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
