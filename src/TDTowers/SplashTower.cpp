@@ -4,7 +4,7 @@
 std::mutex mtx_tow;
 
 SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SplashTower",
-                                                                                                                                                                              {13, 20, 30}, {650, 800, 1000}, {10, 12, 14}, 2.5, 6.5, false, soundLoader){
+                                                                                                                                                                              {13, 20, 30}, {650, 800, 1000}, {10, 12, 14}, {3, 2.5, 2}, 6.5, false, soundLoader){
 }
 
 void SplashTower::fire(TDUnit *target){

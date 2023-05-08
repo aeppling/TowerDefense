@@ -8,7 +8,7 @@
 std::mutex mtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
-             std::vector<int> damage, std::vector<int> cost, std::vector<float> range, float timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
+             std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
@@ -135,7 +135,7 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                         testTime - this->_timeOfLastShot).count();
                 if (!this->enemiesInRange.empty() && (this->towerName != "SplashTower"))
                     this->rotate(this->enemiesInRange.at(0));
-                if (res >= this->timeBetweenAttack * 1000) {
+                if (res >= this->timeBetweenAttack.at(this->level) * 1000) {
                     if (!this->enemiesInRange.empty()) {
                         this->fire(this->enemiesInRange.at(0));
                         this->_timeOfLastShot = std::chrono::steady_clock::now();
@@ -244,10 +244,10 @@ int Tower::getDamage(){
     return (this->damage[this->level]);
 }
 float Tower::getTimeBetweenAttack(){
-    return (this->timeBetweenAttack);
+    return (this->timeBetweenAttack.at(this->level));
 }
 void Tower::setTimeBetweenAttack(float time){
-    this->timeBetweenAttack = time;
+    this->timeBetweenAttack.at(this->level) = time;
 }
 
 bool Tower::isSpeedBoosted(){
