@@ -236,11 +236,13 @@ void SFMLHud::draw() {
         towerDamage.setFont(mainFont);
         towerDamage.setCharacterSize(24);
         towerDamage.setPosition(1465, 300);
+        std::string valueType("Damage: ");
+        if (selectedTower->getTowerName() == "SpeedAuraTower")
+            valueType = "Bonus: ";
         if(!selectedTower->isMaxed()){
-            
-            towerDamage.setString("Damage: " + std::to_string(selectedTower->getDamage()) + " -> " + std::to_string(selectedTower->getUpgradeDamage()));
+            towerDamage.setString(valueType + std::to_string(selectedTower->getDamage()) + " -> " + std::to_string(selectedTower->getUpgradeDamage()));
         }else{
-            towerDamage.setString("Damage: " + std::to_string(selectedTower->getDamage()));
+            towerDamage.setString(valueType + std::to_string(selectedTower->getDamage()));
         }
         _window->draw(towerDamage);
         sf::Text towerRange;
@@ -263,9 +265,8 @@ void SFMLHud::draw() {
         }
         else
             towerSpeed.setString("Attack Speed: " + str);
-        
-        _window->draw(towerSpeed);
-        
+        if (selectedTower->getTowerName() != "SpeedAuraTower")
+            _window->draw(towerSpeed);
         if(!selectedTower->isMaxed()){
             upgradeRect.setSize(sf::Vector2f(190, 70));
             upgradeRect.setPosition(1585, 495);
