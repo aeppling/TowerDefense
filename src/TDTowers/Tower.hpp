@@ -30,6 +30,7 @@ class Tower : public Buildable {
         std::vector<float> slowValue;
         int level;
         bool speedBoosted;
+        float speedBuff;
         bool activated;
         std::vector<float> range;
         std::vector<float> timeBetweenAttack;
@@ -82,6 +83,9 @@ public:
         int getTotalMissiles();
         void slowTarget(TDUnit *target);
         void resetSlowTarget(TDUnit *target);
+        void setSpeedBuffValue(int value);
+        float getSpeedBuff() { return (this->speedBuff);};
+        void resetSpeedBuff();
 };
 
 #endif

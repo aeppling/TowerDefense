@@ -10,6 +10,7 @@
 #include "../TDTowers/SlowTower.hpp"
 #include "../TDTowers/SniperTower.hpp"
 #include "../TDTowers/SplashTower.hpp"
+#include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader) : sfMainSoundPlayer(sfMainSoundPlayer1),
@@ -133,7 +134,7 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
 void Game::initializeTowerStore(sf::RenderWindow &window) {
     this->towerStoreList.clear();
     int y = 0;
-    while (y <= 5) {
+    while (y <= this->nb_tower_type) {
         std::vector<Tower *> newVector;
         this->towerStoreList.push_back(newVector);
         y++;
@@ -148,16 +149,20 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
                                                   window, this->sfTowerSoundLoader);
         Tower *buildTowerType4 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                window, this->sfTowerSoundLoader);
+        Tower *buildTowerType7 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                    window, this->sfTowerSoundLoader);
         Tower *buildTowerType5 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                  window, this->sfTowerSoundLoader);
         Tower *buildTowerType6 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                  window, this->sfTowerSoundLoader);
+
         this->towerStoreList.at(0).push_back(buildTowerType1);
         this->towerStoreList.at(1).push_back(buildTowerType2);
         this->towerStoreList.at(2).push_back(buildTowerType3);
         this->towerStoreList.at(3).push_back(buildTowerType4);
-        this->towerStoreList.at(4).push_back(buildTowerType5);
-        this->towerStoreList.at(5).push_back(buildTowerType6);
+        this->towerStoreList.at(4).push_back(buildTowerType7);
+        this->towerStoreList.at(5).push_back(buildTowerType5);
+        this->towerStoreList.at(6).push_back(buildTowerType6);
         i++;
     }
     this->initializeTowerStoreCurrentWave();
@@ -165,7 +170,7 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
 
 void Game::initializeTowerStoreCurrentWave() {
     int y = 0;
-    while (y <= 5) {
+    while (y <= this->nb_tower_type) {
         int i = 0;
         while (i < this->towerStoreList.at(y).size()) {
             this->towerStoreList.at(y).at(i)->setCurrentWave(this->currentWave);
@@ -686,13 +691,15 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
 void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
     int i = 0;
     while (i != this->towerList.size()) {
-            sf::Sprite support;
-            support.setTexture(*this->sfmlTowerLoader.getSupport());
-            support.setPosition(this->towerList.at(i)->getTowerSprite().getPosition());
-            sf::Vector2f newOrigin(support.getLocalBounds().width / 2.f, support.getLocalBounds().height / 2.f);
-            support.setOrigin(newOrigin);
-            support.setScale(1.2, 1.2);
-            window.draw(support);
+            if (!(this->towerList.at(i)->getTowerName() == "SpeedAuraTower")) {
+                sf::Sprite support;
+                support.setTexture(*this->sfmlTowerLoader.getSupport());
+                support.setPosition(this->towerList.at(i)->getTowerSprite().getPosition());
+                sf::Vector2f newOrigin(support.getLocalBounds().width / 2.f, support.getLocalBounds().height / 2.f);
+                support.setOrigin(newOrigin);
+                support.setScale(1.2, 1.2);
+                window.draw(support);
+            }
             window.draw(this->towerList.at(i)->getTowerSprite());
             int y = 0;
             while (y < this->towerList.at(i)->getTotalMissiles()) {
@@ -777,8 +784,17 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 this->sfMainSoundPlayer.playGamePlacementClick();
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
-                if (isWaveRunning == true)
-                    this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                if (isWaveRunning == true) {
+                    if (this->towerList[this->towerList.size() - 1]->getTowerName() == "SpeedAuraTower") {
+                        auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[this->towerList.size() - 1]);
+                        if (speedAuraTower != nullptr) {
+                            speedAuraTower->run(&this->towerList);
+                        }
+                    }
+                    else
+                        this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                    //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                }
                 map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
 //                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
@@ -970,9 +986,15 @@ void Game::activateTowers(){
     //* Activate all towers
     if (this->towerList.empty())
         return;
-    std::cout << "TDTowers activation" << std::endl;
-    for(int i = 0; i < this->towerList.size(); i++ ){
-        this->towerList[i]->run(this->currentWave);
+    for (int i = 0; i < this->towerList.size(); i++ ){
+        if (this->towerList[i]->getTowerName() == "SpeedAuraTower") {
+            auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[i]);
+            if (speedAuraTower != nullptr) {
+                speedAuraTower->run(&this->towerList);
+            }
+        }
+        else
+            this->towerList[i]->run(this->currentWave);
     }
 }
 

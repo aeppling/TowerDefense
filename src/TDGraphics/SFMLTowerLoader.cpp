@@ -21,6 +21,8 @@ SFMLTowerLoader::SFMLTowerLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_splash.loadFromFile("Sprites/MyTiles/SplashTower_lvl1.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_aura.loadFromFile("Sprites/MyTiles/SpeedAura_lvl1.png")))
+        std::cout << "Error on loading texture..." << std::endl;
 
     if (!(this->_basic2.loadFromFile("Sprites/MyTiles/basic_tower_lvl2.png")))
         std::cout << "Error on loading texture..." << std::endl;
@@ -34,6 +36,8 @@ SFMLTowerLoader::SFMLTowerLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_splash2.loadFromFile("Sprites/MyTiles/SplashTower_lvl2.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_aura2.loadFromFile("Sprites/MyTiles/SpeedAura_lvl2.png")))
+        std::cout << "Error on loading texture..." << std::endl;
 
     if (!(this->_basic3.loadFromFile("Sprites/MyTiles/basic_tower_lvl3.png")))
         std::cout << "Error on loading texture..." << std::endl;
@@ -46,6 +50,8 @@ SFMLTowerLoader::SFMLTowerLoader() {
     if (!(this->_sniper3.loadFromFile("Sprites/MyTiles/SniperTower_lvl3.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_splash3.loadFromFile("Sprites/MyTiles/SplashTower_lvl3.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_aura3.loadFromFile("Sprites/MyTiles/SpeedAura_lvl3.png")))
         std::cout << "Error on loading texture..." << std::endl;
 }
 
@@ -85,6 +91,12 @@ sf::Texture *SFMLTowerLoader::getTextureFromName(std::string name, int lvl) {
             return (&this->_splash2);
         else if (lvl == 2)
             return (&this->_splash3);
+    }
+    else if (name == "SpeedAuraTower"){
+        if (lvl == 1)
+            return (&this->_aura2);
+        else if (lvl == 2)
+            return (&this->_aura3);
     }
 }
 

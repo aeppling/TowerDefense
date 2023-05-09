@@ -256,7 +256,13 @@ void SFMLHud::draw() {
         std::stringstream stream;
         stream << std::fixed << std::setprecision(1) << 1000/(selectedTower->getTimeBetweenAttack()*1000);
         std::string str = stream.str();
-        towerSpeed.setString("Attack Speed: " + str);
+        if (selectedTower->isSpeedBoosted()) {
+            int bonusPercentValue = (1.0f - selectedTower->getSpeedBuff()) * 100.0f;
+            std::string bonusPercentString = std::to_string(bonusPercentValue);
+            towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");
+        }
+        else
+            towerSpeed.setString("Attack Speed: " + str);
         
         _window->draw(towerSpeed);
         
