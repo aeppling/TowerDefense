@@ -46,6 +46,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->hitMarker.setFillColor(hitMarkerColor);
     this->hitMarkerOpacity = 0;
     this->selectedActiveTower = nullptr;
+    this->isWaveEnding = false;
 }
 
 
@@ -935,16 +936,27 @@ void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, c
 bool Game::waveEnd(sf::RenderWindow& window){
     //* return true if the current wave is ended , ifnot return else
     if (this->enemiesLeft <= 0) {
-        //* if all the ennemies from the current wave are dead == wave ended
-        //* deactivate towers, increase wave number
-        this->deactivateTowers();
-        this->sfMainSoundPlayer.playWaveClear();
-        this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
-        sf::sleep(sf::seconds(1.5f));
-        this->enemyList.at(currentWaveNumber).clear();
-    //    this->sfmlCoinAnimation.clear();
-        this->currentWaveNumber++;
-        return true;
+        if (this->isWaveEnding == false) {
+            std::cout << "Chrono start" << std::endl;
+            this->endWaveTransitionTimer = std::chrono::steady_clock::now();
+            this->isWaveEnding = true;
+        }
+        std::chrono::steady_clock::time_point checkPoint = std::chrono::steady_clock::now();
+        int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(checkPoint - this->endWaveTransitionTimer).count();
+        if (elapsed >= 2500) {
+            std::cout << "5 seconds have passed!" << std::endl;
+            this->deactivateTowers();
+            this->sfMainSoundPlayer.playWaveClear();
+            this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
+            sf::sleep(sf::milliseconds(1500));
+            this->enemyList.at(currentWaveNumber).clear();
+            //    this->sfmlCoinAnimation.clear();
+            this->currentWaveNumber++;
+            return true;
+        } else {
+            std::cout << "Less than 2 seconds have passed." << std::endl;
+            return (false);
+        }
     } else {
         //* if all the ennemies from the current wave aren't dead == wave not ended
         return false;

@@ -1,3 +1,4 @@
+Spaceship:2
 FlyingDrone:1/Missile:3
 RegenerateDrone:1
 Drone:4/Alien:5/Missile:1

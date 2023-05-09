@@ -66,9 +66,12 @@ class Game{
         bool                isCursorOutsideMap;
         int                 mapMaxPosX;
         int                 mapMaxPosY;
-    std::chrono::steady_clock::time_point hitMarkerStartTimer;
+        std::chrono::steady_clock::time_point hitMarkerStartTimer;
+        std::chrono::steady_clock::time_point endWaveTransitionTimer;
+        bool                isWaveEnding;
 
-    public :
+
+public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
     void initializeTowerStore(sf::RenderWindow &window);
