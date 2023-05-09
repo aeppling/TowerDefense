@@ -41,7 +41,7 @@ TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFly
 }
 
 void    TDUnit::regenerate() {
-    if (this->_health_points < (this->_max_health - 15))
+    if ((this->_health_points > 0) && (this->_health_points < (this->_max_health - 15)))
         this->_health_points = this->_health_points + 15;
 }
 

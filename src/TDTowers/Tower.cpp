@@ -232,10 +232,7 @@ void Tower::upgrade(SFMLTowerLoader &sfmlTowerLoader){
     if(!this->isMaxed()){
         this->level++;
         this->towerSprite.setTexture(*sfmlTowerLoader.getTextureFromName(this->towerName, this->level));
-        std::cout << " Tower upgraded from level " << this->level-1 << " to " << this->level << std::endl;
-    }else{
-        std::cout << "The tower level is already maxed" << std::endl;
-    } 
+    }
 }
 
 //* getters | setters

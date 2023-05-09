@@ -11,7 +11,7 @@ void SplashTower::fire(TDUnit *target){
     //* remove target health
     // target->setHealth(target->getHealth()-this->damage[this->level]);
     // Get the position of the tower and the target
-    if (this->enemiesInRange.size() >= 2) {
+    if (this->enemiesInRange.size() >= 3) {
         try {
             mtx_tow.lock();
             this->_shotSound.play();
