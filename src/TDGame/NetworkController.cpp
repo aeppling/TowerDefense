@@ -6,17 +6,16 @@ NetworkController::NetworkController(bool isServer){
 
     if(this->isServer){
         std::cout << "serveur" << std::endl;
+        std::cout << "Local IP : " << sf::IpAddress::getLocalAddress() << std::endl;
         sf::IpAddress clientIp = this->waitForConnection();
         std::cout << "Client IP : " << clientIp << std::endl;
     }else{
         std::cout << "client" << std::endl;
-        // Envoie un message de broadcast pour demander l'adresse IP du serveur
-        this->broadcastMessage("Hello Supinfo !");
         // Attend la réponse du serveur contenant son adresse IP
-        sf::IpAddress serverAddress = this->receiveServerAddress();
-        if (serverAddress != sf::IpAddress::None)
-        {
-            std::cout << "Server address : " << serverAddress << std::endl;
+            std::string serverAddressString;
+            std::cout << "Please enter the IP address of the server : ";
+            std::cin >> serverAddressString;
+            sf::IpAddress serverAddress(serverAddressString);
 
             // Connecte le client au serveur
             if (this->connectToServer(serverAddress))
@@ -27,57 +26,7 @@ NetworkController::NetworkController(bool isServer){
             {
                 std::cout << "Failed to connect to server" << std::endl;
             }
-        }
-        else
-        {
-            std::cout << "Failed to receive server address" << std::endl;
-        }
     }  
-}
-
-void NetworkController::broadcastMessage( const std::string& message)
-{
-    // Crée une socket d'envoi de diffusion
-    sf::UdpSocket socket;
-    socket.setBlocking(false);
-
-    // Envoie le message en diffusion sur le port spécifié
-    sf::IpAddress broadcast = sf::IpAddress::Broadcast;
-    if (socket.send(message.c_str(), message.size(), broadcast, this->port) != sf::Socket::Done)
-    {
-        std::cout << "Failed to broadcast message" << std::endl;
-        return;
-    }
-
-    // Ferme la socket
-    socket.unbind();
-}
-
-sf::IpAddress NetworkController::receiveServerAddress()
-{
-    // Crée une socket d'écoute sur le port spécifié
-    sf::UdpSocket socket;
-    if (socket.bind(this->port) != sf::Socket::Done)
-    {
-        std::cout << "Failed to bind socket" << std::endl;
-        return sf::IpAddress::None;
-    }
-
-    // Attend la réception de la réponse du serveur
-    char data[1024];
-    std::size_t received;
-    sf::IpAddress serverAddress;
-    if (socket.receive(data, sizeof(data), received, serverAddress, this->port) != sf::Socket::Done)
-    {
-        std::cout << "Failed to receive message" << std::endl;
-        return sf::IpAddress::None;
-    } 
-    std::cout << "Received " << received << " bytes from " << serverAddress << " : " << data << std::endl;
-    // Ferme la socket
-    socket.unbind();
-
-    // Retourne l'adresse IP du serveur
-    return serverAddress;
 }
 
 bool NetworkController::connectToServer(const sf::IpAddress& serverAddress)
@@ -100,24 +49,21 @@ bool NetworkController::connectToServer(const sf::IpAddress& serverAddress)
 
 
 sf::IpAddress NetworkController::waitForConnection()
-{
-    // Crée une socket d'écoute sur le port spécifié
-    std::cout << "Waiting for connection..." << std::endl;
-    sf::TcpListener listener;
-    if (listener.listen(this->port) != sf::Socket::Done)
-    {
-        std::cout << "Failed to listen on port " << this->port << std::endl;
-        return sf::IpAddress::None;
-    }
+{    
     std::cout << "Server is listening to port " << this->port << ", waiting for connections... " << std::endl;
 
     // Attend la connexion d'un client
+    sf::TcpListener listener;
+
+    // lie l'écouteur à un port
+    if (listener.listen(this->port) != sf::Socket::Done)
+    {
+        std::cout << "Failed to bind listener to port " << this->port << std::endl;
+    }
     sf::TcpSocket client;
-    std::cout << "Waiting for client to connect..." << std::endl;
     if (listener.accept(client) != sf::Socket::Done)
     {
-        std::cout << "Failed to accept client" << std::endl;
-        return sf::IpAddress::None;
+        std::cout << "Failed to accept client's connection" << std::endl;
     }
     std::cout << "Client connected: " << client.getRemoteAddress() << std::endl;
     this->clients.push_back(&client);
@@ -132,7 +78,6 @@ sf::IpAddress NetworkController::waitForConnection()
     std::cout << "Server IP sent to client" << std::endl;
 
     // Ferme la socket d'écoute
-    listener.close();
 
     // Retourne l'adresse IP du client
     return client.getRemoteAddress();

@@ -355,4 +355,5 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SlowTower.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SniperTower.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.hpp \
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp
