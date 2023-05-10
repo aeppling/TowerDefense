@@ -87,11 +87,14 @@ int main() {
     
     if (networkController->getIsServer() == true) {
         std::string message = "5";
+       
         networkController->sendMessageToAllClients(message);
-    } else {
+
+    }else{
         std::string message = networkController->receiveMessage(networkController->getServerSocket());
         std::cout << "Message received : " << message << std::endl;
     }
+
     Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {

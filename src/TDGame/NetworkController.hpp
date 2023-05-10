@@ -3,30 +3,32 @@
 
 #include <SFML/Network.hpp>
 #include <vector>
-class NetworkController{
 
-private:
-    bool isServer;
-    short unsigned int port;
-    sf::TcpSocket *serverSocket;
-    std::vector<sf::TcpSocket*> clients;
-
-
-public:   
-    
+class NetworkController {
+public:
     NetworkController(bool isServer);
-    void broadcastMessage( const std::string& message);
-    sf::IpAddress receiveServerAddress();
+    ~NetworkController();
+
     bool connectToServer(const sf::IpAddress& serverAddress);
-    sf::IpAddress waitForConnection();
+    void waitForConnection();
     void sendMessageToAllClients(const std::string& message);
     void sendMessageToServer(const std::string& message);
     std::string receiveMessage(sf::TcpSocket* clientSocket);
+    void sendMessageToClient(const sf::IpAddress& clientIpAddress, const std::string& message);
     bool getIsServer() { return this->isServer; };
-    std::vector<sf::TcpSocket*> getClients() { return this->clients; };
-    sf::TcpSocket *getServerSocket() { return this->serverSocket; };
+    std::vector<sf::TcpSocket*> getClients();
+    sf::TcpSocket* getServerSocket() { return this->serverSocket; };
+    // TODO
+    // disconnect client
+    // disconnect from server
+    // disconnect all clients
 
 
+private:
+    bool isServer;
+    unsigned short port;
+    sf::TcpSocket* serverSocket;
+    std::vector<std::unique_ptr<sf::TcpSocket>> clients;
 };
 
 #endif //UNTITLED1_NETWORKCONTROLLER_HPP_

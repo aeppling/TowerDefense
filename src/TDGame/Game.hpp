@@ -22,6 +22,10 @@ class Tower;
 class SFMLHud;
 
 class Game{
+    struct GameState {
+    // Définition de la structure de données pour l'état du jeu
+    int numCoins;
+    };
     private : 
         int difficulty;
         int currentWaveNumber;
@@ -71,6 +75,7 @@ class Game{
         std::chrono::steady_clock::time_point hitMarkerStartTimer;
         std::chrono::steady_clock::time_point endWaveTransitionTimer;
         bool                isWaveEnding;
+        GameState           gameState;
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController);
@@ -117,6 +122,8 @@ class Game{
         bool isOnPath(MapCell *cell);
         bool checkCursorOutsideMap(int posX, int posY, TDMap &map);
         void setSpawnCellsSprites();
+        void sendGameStateToClients();
+        
     };
 
 #endif // GAME_HPP_

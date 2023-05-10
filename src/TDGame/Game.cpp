@@ -13,6 +13,7 @@
 #include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 #include <SFML/Network.hpp>
+#include <nlohmann/json.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController) : sfMainSoundPlayer(sfMainSoundPlayer1),
                                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
@@ -48,6 +49,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->selectedActiveTower = nullptr;
     this->networkController = networkController;
     this->isWaveEnding = false;
+    this->gameState.numCoins = 500-(difficulty*100);
 }
 
 
@@ -269,6 +271,7 @@ void Game::upgradeTower() {
             int cost = this->towerList.at(i)->getUpgradeCost();
          //   if (cost <= this->player->getCoinNumber()){
                 this->looseCoins(cost);
+
                 this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
                 this->towerList.at(i)->upgrade(this->sfmlTowerLoader);
            // }
@@ -796,6 +799,8 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->looseCoins(toBuild->getCost());
+                this->gameState.numCoins = this->player->getCoinNumber();
+                this->sendGameStateToClients();
                 this->sfMainSoundPlayer.playGamePlacementClick();
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
@@ -1134,33 +1139,7 @@ void Game::looseCoins(int number) {
 
 void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
-    //* start level
-    //*this->enemyList = retrieveLevel.getNextLevel();
-    sf::TcpSocket socket;
-    sf::Socket::Status status = socket.connect("10.128.173.166", 53000);
-    if (status != sf::Socket::Done)
-    {
-        std::cout << "Error connexion " << std::endl;
-    }
-    char data[100];
-    std::size_t received;
-
-    // socket TCP:
-    if (socket.receive(data, 100, received) != sf::Socket::Done)
-    {
-        std::cout << "Error reception " << std::endl;
-    }
-    std::cout << "Received " << received << " bytes" << std::endl;
-
-
-
-    char data2[100] = "Hello, I'm a client";
-
-    // socket TCP:
-    if (socket.send(data2, 100) != sf::Socket::Done)
-    {
-        std::cout << "Error envoi " << std::endl;
-    }
+    
 }
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {
@@ -1223,4 +1202,27 @@ void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf
         return;
     buildableSprite->setPosition((posX) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_X, (posY) * this->cellSize + (this->cellSize / 2) + _GAME_POSITION_Y);
     window.draw(*buildableSprite);
+}
+
+
+
+void Game::sendGameStateToClients() {
+    // Fonction pour envoyer l'état actuel du jeu à tous les clients connectés
+    // Serializez l'état du jeu en une chaîne de caractères JSON
+    nlohmann::json gameStateJson;
+    gameStateJson["numCoins"] = gameState.numCoins;
+    // ajoutez ici les autres informations pertinentes sur l'état du jeu à la structure JSON
+
+    std::string gameStateStr = gameStateJson.dump();
+
+    // Envoyer l'état du jeu à tous les clients
+    
+    if(this->networkController == nullptr)
+        return;
+    else if(this->networkController->getIsServer() == false)
+        this->networkController->sendMessageToServer(gameStateStr);
+    else{
+        this->networkController->sendMessageToAllClients(gameStateStr);
+    }
+    
 }
