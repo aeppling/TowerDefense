@@ -15,7 +15,7 @@
 #include "../TDUnits/ArmoredRegenerateDrone.hpp"
 #include "../TDUnits/ArmoredAlien.hpp"
 
-RetrieveLevel::RetrieveLevel(int starting_level) : _actual_level(starting_level) {
+RetrieveLevel::RetrieveLevel(int starting_level, int planet) : _actual_level(starting_level), _planet(planet) {
 }
 
 TDUnit *getUnitFromString(std::string enemyType) {
@@ -85,7 +85,7 @@ std::vector<TDUnit*> RetrieveLevel::getWaveFromString(std::string waveString) {
 }
 
 std::vector<std::vector<TDUnit*>> RetrieveLevel::getNextLevel() {
-    std::string path_to_open("level_" + std::to_string(this->_actual_level) + ".txt");
+    std::string path_to_open("level_" + std::to_string(this->_actual_level) + "_planet_" +  std::to_string(this->_planet) + ".txt");
     std::ifstream levelFile;
     std::vector<std::vector<TDUnit*>> enemyLevel;
     int i = 1;

@@ -29,7 +29,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;
     this->sfmlCoinAnimation = sfmlCoinAnimation;
-    this->levelRetriever = new RetrieveLevel(this->level);
+    this->levelRetriever = new RetrieveLevel(this->level, this->planet);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
     this->player = player1;

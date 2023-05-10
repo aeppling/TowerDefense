@@ -12,9 +12,10 @@
 class RetrieveLevel {
 private:
     int _actual_level = 1;
+    int _planet;
 public:
     RetrieveLevel();
-    RetrieveLevel(int starting_level);
+    RetrieveLevel(int starting_level, int planet);
     ~RetrieveLevel();
 
     std::vector<std::vector<TDUnit*>> getNextLevel();
