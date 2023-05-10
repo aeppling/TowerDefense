@@ -32,6 +32,7 @@ class Game{
         int unitCount;
         int spawnCount;
         int cellSize;
+        int planet;
         int level;
         int towerSelectorIndex;
         int nb_tower_type = 6;
@@ -78,7 +79,7 @@ class Game{
         GameState           gameState;
 
     public :
-        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController);
+        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
     void initializeTowerStore(sf::RenderWindow &window);
     void initializeTowerStoreCurrentWave();

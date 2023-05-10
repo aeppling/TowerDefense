@@ -28,12 +28,19 @@ public:
     ~Menus() = default;
 
     // MENUS LOADERS
+    std::string loadMenuByName(std::string name);
     void loadHome();
     void loadSingleplayer();
     void loadMultiplayer();
     void loadSettings();
     void loadTutorial();
+    void loadLevelsPlanet1();
+    void loadLevelsPlanet2();
+    void loadLevelsPlanet3();
     void drawMenu(sf::RenderWindow &window);
+
+    // FUNCTION
+    std::string checkForClick(sf::Vector2i mousePos);
 };
 
 #endif //UNTITLED1_MENUS_HPP

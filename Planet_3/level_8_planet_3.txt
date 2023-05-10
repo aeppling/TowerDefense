@@ -1,0 +1,2 @@
+Drone:3
+Alien:3

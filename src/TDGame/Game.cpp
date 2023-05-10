@@ -14,9 +14,10 @@
 #include "../TDGame/usefullStruct.hpp"
 #include <SFML/Network.hpp>
 #include <nlohmann/json.hpp>
-Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController) : sfMainSoundPlayer(sfMainSoundPlayer1),
+Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
                                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
+    this->planet = planetToLoad;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
@@ -29,12 +30,13 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;
     this->sfmlCoinAnimation = sfmlCoinAnimation;
-    this->levelRetriever = new RetrieveLevel(this->level);
+    this->levelRetriever = new RetrieveLevel(this->level, this->planet);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
     this->player = player1;
     this->player->setLifeNumber(8/difficulty);
     this->player->setCoinNumber(500-(difficulty*100));
+    this->player->setCoinNumber(5000);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -292,7 +294,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 }
 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder){
-            startLevel();
+            //startLevel();
             bool isBuilding = false;
             int timeBetweenSpawn = 1200;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
@@ -353,6 +355,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
+                    if(this->networkController->isMessageReceived() != nullptr){
+
+                    }
                     sf::Event event;
                     window.clear(sf::Color::Black);
                     this->sfmlHud->drawBackground();
@@ -658,7 +663,8 @@ void Game::setSpawnCellsSprites() {
 }
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
-    std::cout << "Launch HUD" << std::endl;
+    std::string mapPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
+
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
     
     sf::Texture hearthTexture;
@@ -673,7 +679,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
     MapCell *baseCell = new MapCell('B', -1, -1);
     std::vector<MapCell*> spawnCells;
-    if (testMap("level_7_map.txt", baseCell, spawnCells) == false) {
+    if (testMap(mapPath, baseCell, spawnCells) == false) {
         std::cout << "Cannot load level : Map is not valid." << std::endl;
         return (-1);
     }
@@ -690,7 +696,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map("level_7_map.txt", sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
+    TDMap map(mapPath, sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->mapMaxPosX = map.getSizeX();
     this->mapMaxPosY = map.getSizeY();
