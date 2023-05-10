@@ -44,6 +44,7 @@ private:
     sf::RectangleShape removeRect;
     sf::RectangleShape wallRect;
     sf::RectangleShape upgradeRect;
+    sf::RectangleShape upgradeArmorRect;
     sf::RectangleShape sellRect;
 
     std::vector<sf::RectangleShape> towerRectangles;

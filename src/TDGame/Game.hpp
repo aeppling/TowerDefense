@@ -30,6 +30,7 @@ class Game{
         int cellSize;
         int level;
         int towerSelectorIndex;
+        int nb_tower_type = 6;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
         std::vector<sf::Sprite> spawnCellsSprites;
@@ -67,7 +68,9 @@ class Game{
         bool                isCursorOutsideMap;
         int                 mapMaxPosX;
         int                 mapMaxPosY;
-    std::chrono::steady_clock::time_point hitMarkerStartTimer;
+        std::chrono::steady_clock::time_point hitMarkerStartTimer;
+        std::chrono::steady_clock::time_point endWaveTransitionTimer;
+        bool                isWaveEnding;
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController);

@@ -213,7 +213,7 @@
 				{
 					"backtrace" : 27,
 					"isSystem" : true,
-					"path" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include"
+					"path" : "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include"
 				}
 			],
 			"language" : "CXX",
@@ -259,7 +259,9 @@
 				60,
 				62,
 				65,
-				67
+				67,
+				70,
+				72
 			]
 		}
 	],
@@ -278,32 +280,32 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-system-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-system-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-window-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-window-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-graphics-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-graphics-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-network-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-network-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-audio-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-audio-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-window-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-window-s.a",
 				"role" : "libraries"
 			},
 			{
@@ -318,7 +320,7 @@
 			},
 			{
 				"backtrace" : 12,
-				"fragment" : "..\\lib\\libfreetype.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libfreetype.a",
 				"role" : "libraries"
 			},
 			{
@@ -328,7 +330,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\lib\\libsfml-system-s.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-system-s.a",
 				"role" : "libraries"
 			},
 			{
@@ -338,32 +340,32 @@
 			},
 			{
 				"backtrace" : 16,
-				"fragment" : "..\\lib\\libopenal32.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libopenal32.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 18,
-				"fragment" : "..\\lib\\libvorbisfile.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbisfile.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 20,
-				"fragment" : "..\\lib\\libvorbisenc.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbisenc.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 22,
-				"fragment" : "..\\lib\\libvorbis.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbis.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 24,
-				"fragment" : "..\\lib\\libogg.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libogg.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 26,
-				"fragment" : "..\\lib\\libFLAC.a",
+				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libFLAC.a",
 				"role" : "libraries"
 			},
 			{
@@ -418,7 +420,9 @@
 				60,
 				62,
 				65,
-				67
+				67,
+				70,
+				72
 			]
 		},
 		{
@@ -460,7 +464,9 @@
 				63,
 				64,
 				66,
-				68
+				68,
+				69,
+				71
 			]
 		}
 	],
@@ -843,6 +849,28 @@
 			"backtrace" : 1,
 			"path" : "src/TDUnits/RegenerateDrone.hpp",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDTowers/SpeedAuraTower.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDTowers/SpeedAuraTower.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDGame/NetworkController.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDGame/NetworkController.cpp",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -114,6 +114,9 @@ int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
     else if (this->upgradeRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
         return (2);
     }
+    else if (this->upgradeArmorRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        return (3);
+    }
     return (-1);
 }
 
@@ -230,11 +233,13 @@ void SFMLHud::draw() {
         towerDamage.setFont(mainFont);
         towerDamage.setCharacterSize(24);
         towerDamage.setPosition(1465, 300);
+        std::string valueType("Damage: ");
+        if (selectedTower->getTowerName() == "SpeedAuraTower")
+            valueType = "Bonus: ";
         if(!selectedTower->isMaxed()){
-            
-            towerDamage.setString("Damage: " + std::to_string(selectedTower->getDamage()) + " -> " + std::to_string(selectedTower->getUpgradeDamage()));
+            towerDamage.setString(valueType + std::to_string(selectedTower->getDamage()) + " -> " + std::to_string(selectedTower->getUpgradeDamage()));
         }else{
-            towerDamage.setString("Damage: " + std::to_string(selectedTower->getDamage()));
+            towerDamage.setString(valueType + std::to_string(selectedTower->getDamage()));
         }
         _window->draw(towerDamage);
         sf::Text towerRange;
@@ -250,10 +255,24 @@ void SFMLHud::draw() {
         std::stringstream stream;
         stream << std::fixed << std::setprecision(1) << 1000/(selectedTower->getTimeBetweenAttack()*1000);
         std::string str = stream.str();
-        towerSpeed.setString("Attack Speed: " + str);
-        
-        _window->draw(towerSpeed);
-        
+        if (selectedTower->isSpeedBoosted()) {
+            int bonusPercentValue = (1.0f - selectedTower->getSpeedBuff()) * 100.0f;
+            std::string bonusPercentString = std::to_string(bonusPercentValue);
+            towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");
+        }
+        else
+            towerSpeed.setString("Attack Speed: " + str);
+        std::string stringArmorP("Armor penetration : " + std::to_string(selectedTower->getArmor()));
+        sf::Text towerArmorP;
+        towerArmorP.setFont(mainFont);
+        towerArmorP.setCharacterSize(24);
+        towerArmorP.setPosition(1465, 450);
+        towerArmorP.setString(stringArmorP);
+        if (selectedTower->getTowerName() != "SpeedAuraTower") {
+            _window->draw(towerSpeed);
+            _window->draw(towerArmorP);
+        }
+        // DISPLAY UPGRADE BUTTON
         if(!selectedTower->isMaxed()){
             upgradeRect.setSize(sf::Vector2f(190, 70));
             upgradeRect.setPosition(1585, 495);
@@ -270,6 +289,21 @@ void SFMLHud::draw() {
             _window->draw(towerUpgradeCost);
             
         }
+        // DISPLAY ARMOR PIERCE BUY BUTTON
+        this->upgradeArmorRect.setSize(sf::Vector2f(210, 70));
+        this->upgradeArmorRect.setPosition(1575, 695);
+        this->upgradeArmorRect.setFillColor(sf::Color::Transparent);
+        this->upgradeArmorRect.setOutlineThickness(3);
+        this->upgradeArmorRect.setOutlineColor(sf::Color::White);
+        sf::Text armorText;
+        armorText.setString("+ 5 Armor p. \n   50 coins");
+        armorText.setFont(mainFont);
+        armorText.setColor(sf::Color::Magenta);
+        armorText.setCharacterSize(24);
+        armorText.setPosition(1585, 700);
+        _window->draw(upgradeArmorRect);
+        _window->draw(armorText);
+        // DISPLAY SELL BUTTON
         sellRect.setSize(sf::Vector2f(190, 70));
         sellRect.setPosition(1585, 595);
         sellRect.setFillColor(sf::Color::Transparent);

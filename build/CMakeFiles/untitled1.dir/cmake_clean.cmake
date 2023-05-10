@@ -61,6 +61,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj.d"
+  "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj"
+  "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj"

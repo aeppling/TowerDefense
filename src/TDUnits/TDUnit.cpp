@@ -13,14 +13,14 @@
 
 std::mutex mtx2;
 
-TDUnit::TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial) {
+TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial) {
     this->_health_points = hp;
     this->_isForcing = false;
     this->_max_health = hp;
     this->_speed = speed;
     this->_normalSpeedValue = speed;
     this->_scale = scale;
-    this->_resistance = resistance;
+    this->_armor = armor;
     this->_posX = posX;
     this->_posY = posY;
     this->_isFlying = isFlying;
@@ -70,7 +70,7 @@ void    TDUnit::run(TDMap *map) {
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && (this->getTypeName() != "FlyingDrone")) {
+    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && ((this->getTypeName() != "FlyingDrone") && (this->getTypeName() != "RegenerateDrone"))) {
         if (this->_isForcing == true) {
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
@@ -97,6 +97,7 @@ void    TDUnit::move() {
             float lerpX = currentPosition.x + t * distanceX;
             float lerpY = currentPosition.y + t * distanceY;
             this->_sprite.setPosition(lerpX, lerpY);
+            this->_armorSprite.setPosition(lerpX, lerpY);
             float rotation = atan2(distanceY, distanceX) * 180 / 3.14159265f; // Convert radians to degrees
             this->_sprite.setRotation(rotation + 90.0f);
             // Check if target position is reached
@@ -135,21 +136,31 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getMissile());
     else if (this->getTypeName() == "Drone")
         this->_sprite.setTexture(*sfmlLoader.getDrone());
-    else if (this->getTypeName() == "Alien")
+    else if ((this->getTypeName() == "Alien") || (this->getTypeName() == "ArmoredAlien"))
         this->_sprite.setTexture(*sfmlLoader.getAlien());
     else if (this->getTypeName() == "Spaceship")
         this->_sprite.setTexture(*sfmlLoader.getSpaceship());
-    else if (this->getTypeName() == "FlyingDrone")
+    else if ((this->getTypeName() == "FlyingDrone") || (this->getTypeName() == "ArmoredFlyingDrone"))
         this->_sprite.setTexture(*sfmlLoader.getFlyingDrone());
-    else if (this->getTypeName() == "RegenerateDrone")
+    else if ((this->getTypeName() == "RegenerateDrone") || (this->getTypeName() == "ArmoredRegenerateDrone"))
         this->_sprite.setTexture(*sfmlLoader.getRegenerateDrone());
+    else if (this->getTypeName() == "ArmoredDrone")
+        this->_sprite.setTexture(*sfmlLoader.getArmoredDrone());
+    this->_armorSprite.setTexture(*sfmlLoader.getArmor());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
+    // SET UNIT SPRITE
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
     this->_sprite.setScale(scaleFactor * this->_scale, scaleFactor * this->_scale);
     this->_sprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);
     this->_sprite.setPosition((this->_posX * this->_unitSize) + cellSize/2 + _GAME_POSITION_X, (this->_posY * this->_unitSize) + cellSize / 2 + _GAME_POSITION_Y);
+    // SET ARMOR SPRITE
+    sf::IntRect textureRect2(0, 0, this->_armorSprite.getTexture()->getSize().x, this->_armorSprite.getTexture()->getSize().y);
+    this->_armorSprite.setScale(scaleFactor * (this->_scale * 1.8), scaleFactor * (this->_scale * 1.8));
+    this->_armorSprite.setTextureRect(textureRect2);
+    sf::Vector2f newOrigin2(this->_armorSprite.getLocalBounds().width / 2.f, this->_armorSprite.getLocalBounds().height / 2.f);
+    this->_armorSprite.setOrigin(newOrigin2);
 /*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     sf::Sprite newSprite;
     newSprite.setTexture(*sfmlLoader.getCowards());
@@ -205,13 +216,18 @@ void    TDUnit::setHealthBarSize() {
     this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
 }
 
-void    TDUnit::getShot(int damage, int slowValue) {
+void    TDUnit::getShot(int damage, int slowValue, int armorPierce) {
     //if ((slowValue > 0) && (this->_isSlowed == false))
       //  this->getSlow(slowValue);
    // this->_sprite.setColor(sf::Color::Red);
     //std::this_thread::sleep_for(std::chrono::milliseconds(400));
     //this->_sprite.setColor(sf::Color::White);
-    this->_health_points = this->_health_points - damage;
+    int real_armor = this->_armor - armorPierce;
+    if (real_armor < 0)
+        real_armor = 0;
+    if (real_armor >= damage)
+        return;
+    this->_health_points = this->_health_points - (damage - real_armor);
 }
 
 void    TDUnit::getKill() {

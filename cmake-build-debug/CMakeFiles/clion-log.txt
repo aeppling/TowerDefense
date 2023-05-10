@@ -1,16 +1,4 @@
 "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense -B C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug
--- The C compiler identification is GNU 7.3.0
--- The CXX compiler identification is GNU 7.3.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/MINGW, GLEW AND SFML/mingw64/bin/gcc.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/MINGW, GLEW AND SFML/mingw64/bin/g++.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
 -- Found SFML 2.5.1 in C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML
 -- Configuring done
 -- Generating done

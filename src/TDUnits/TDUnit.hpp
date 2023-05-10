@@ -19,7 +19,7 @@ public:
     // BASICS STATS
     int _max_health;
     int _health_points;
-    int _resistance;
+    int _armor;
     int _posX;
     int _posY;
     int _speed; // TIME TO TRAVEL FROM ONE CASE TO ANOTHER IN mSECONDS
@@ -49,6 +49,7 @@ public:
     TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite          _sprite;
+    sf::Sprite          _armorSprite;
     int                 _unitSize; // SIZE OF UNIT IN MAP CELL
     sf::RectangleShape  _healthBar;
     sf::RectangleShape  _healthMaxBar;
@@ -92,19 +93,21 @@ public:
     bool isSlowed() { return (this->_isSlowed); };
     bool isAtBase();
     virtual std::string getDescription() {
-        std::string description = getTypeName() + " (HP: " + std::to_string(this->_health_points) + ", Resistance: " + std::to_string(this->_resistance);
+        std::string description = getTypeName() + " (HP: " + std::to_string(this->_health_points) + ", Armor: " + std::to_string(this->_armor);
         return description;
     }
     bool isBlocked(int nextPosX, int nextPosY);
     bool isAlive();
         // SFML
     void setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
-    void getShot(int damage, int slowValue);
+    void getShot(int damage, int slowValue, int armorPierce);
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);
     sf::RectangleShape getHealthBarSprite();
     sf::RectangleShape getMaxHealthBarSprite();
+    int getArmor() { return (this->_armor); };
+    sf::Sprite getArmorSprite() { return (this->_armorSprite); };
 };
 /*
 class TestUnit {

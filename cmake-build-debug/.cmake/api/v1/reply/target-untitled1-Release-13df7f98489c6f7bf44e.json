@@ -213,7 +213,7 @@
 				{
 					"backtrace" : 27,
 					"isSystem" : true,
-					"path" : "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include"
+					"path" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include"
 				}
 			],
 			"language" : "CXX",
@@ -279,32 +279,32 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-system-s.a",
+				"fragment" : "..\\lib\\libsfml-system-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-window-s.a",
+				"fragment" : "..\\lib\\libsfml-window-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-graphics-s.a",
+				"fragment" : "..\\lib\\libsfml-graphics-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-network-s.a",
+				"fragment" : "..\\lib\\libsfml-network-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-audio-s.a",
+				"fragment" : "..\\lib\\libsfml-audio-s.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-window-s.a",
+				"fragment" : "..\\lib\\libsfml-window-s.a",
 				"role" : "libraries"
 			},
 			{
@@ -319,7 +319,7 @@
 			},
 			{
 				"backtrace" : 12,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libfreetype.a",
+				"fragment" : "..\\lib\\libfreetype.a",
 				"role" : "libraries"
 			},
 			{
@@ -329,7 +329,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-system-s.a",
+				"fragment" : "..\\lib\\libsfml-system-s.a",
 				"role" : "libraries"
 			},
 			{
@@ -339,32 +339,32 @@
 			},
 			{
 				"backtrace" : 16,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libopenal32.a",
+				"fragment" : "..\\lib\\libopenal32.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 18,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbisfile.a",
+				"fragment" : "..\\lib\\libvorbisfile.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 20,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbisenc.a",
+				"fragment" : "..\\lib\\libvorbisenc.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 22,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libvorbis.a",
+				"fragment" : "..\\lib\\libvorbis.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 24,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libogg.a",
+				"fragment" : "..\\lib\\libogg.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 26,
-				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libFLAC.a",
+				"fragment" : "..\\lib\\libFLAC.a",
 				"role" : "libraries"
 			},
 			{
@@ -849,13 +849,13 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/TDGame/NetworkController.hpp",
+			"path" : "src/TDTowers/SpeedAuraTower.hpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/TDGame/NetworkController.cpp",
+			"path" : "src/TDTowers/SpeedAuraTower.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

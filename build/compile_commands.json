@@ -199,6 +199,12 @@
 },
 {
   "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDTowers\\SpeedAuraTower.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDTowers\\SpeedAuraTower.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SpeedAuraTower.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\NetworkController.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\NetworkController.cpp",
   "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/NetworkController.cpp",
   "output": "CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj"

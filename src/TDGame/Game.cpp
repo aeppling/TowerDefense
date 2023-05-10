@@ -10,6 +10,7 @@
 #include "../TDTowers/SlowTower.hpp"
 #include "../TDTowers/SniperTower.hpp"
 #include "../TDTowers/SplashTower.hpp"
+#include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 #include <SFML/Network.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController) : sfMainSoundPlayer(sfMainSoundPlayer1),
@@ -46,6 +47,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->hitMarkerOpacity = 0;
     this->selectedActiveTower = nullptr;
     this->networkController = networkController;
+    this->isWaveEnding = false;
 }
 
 
@@ -134,7 +136,7 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
 void Game::initializeTowerStore(sf::RenderWindow &window) {
     this->towerStoreList.clear();
     int y = 0;
-    while (y <= 5) {
+    while (y <= this->nb_tower_type) {
         std::vector<Tower *> newVector;
         this->towerStoreList.push_back(newVector);
         y++;
@@ -149,16 +151,20 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
                                                   window, this->sfTowerSoundLoader);
         Tower *buildTowerType4 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                window, this->sfTowerSoundLoader);
+        Tower *buildTowerType7 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                    window, this->sfTowerSoundLoader);
         Tower *buildTowerType5 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                  window, this->sfTowerSoundLoader);
         Tower *buildTowerType6 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                  window, this->sfTowerSoundLoader);
+
         this->towerStoreList.at(0).push_back(buildTowerType1);
         this->towerStoreList.at(1).push_back(buildTowerType2);
         this->towerStoreList.at(2).push_back(buildTowerType3);
         this->towerStoreList.at(3).push_back(buildTowerType4);
-        this->towerStoreList.at(4).push_back(buildTowerType5);
-        this->towerStoreList.at(5).push_back(buildTowerType6);
+        this->towerStoreList.at(4).push_back(buildTowerType7);
+        this->towerStoreList.at(5).push_back(buildTowerType5);
+        this->towerStoreList.at(6).push_back(buildTowerType6);
         i++;
     }
     this->initializeTowerStoreCurrentWave();
@@ -166,7 +172,7 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
 
 void Game::initializeTowerStoreCurrentWave() {
     int y = 0;
-    while (y <= 5) {
+    while (y <= this->nb_tower_type) {
         int i = 0;
         while (i < this->towerStoreList.at(y).size()) {
             this->towerStoreList.at(y).at(i)->setCurrentWave(this->currentWave);
@@ -256,6 +262,8 @@ void Game::sellTower(TDMap &map) {
 void Game::upgradeTower() {
     int i = 0;
 
+    if (this->selectedActiveTower->getUpgradeCost() > this->player->getCoinNumber())
+        return ;
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getUpgradeCost();
@@ -442,6 +450,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         this->sellTower(map);
                                     else if (clicked == 2)
                                         this->upgradeTower();
+                                    else if (clicked == 3) {
+                                        if ((this->player->getCoinNumber() >= 50) && (this->selectedActiveTower->getArmor() < 30)) {
+                                            this->looseCoins(50);
+                                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
+                                            this->selectedActiveTower->addArmor();
+                                        }
+                                    }
                                 }
                                 else
                                     this->sfmlHud->checkForClick(window);
@@ -505,6 +520,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                    if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
+                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }
@@ -687,13 +704,15 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
 void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {
     int i = 0;
     while (i != this->towerList.size()) {
-            sf::Sprite support;
-            support.setTexture(*this->sfmlTowerLoader.getSupport());
-            support.setPosition(this->towerList.at(i)->getTowerSprite().getPosition());
-            sf::Vector2f newOrigin(support.getLocalBounds().width / 2.f, support.getLocalBounds().height / 2.f);
-            support.setOrigin(newOrigin);
-            support.setScale(1.2, 1.2);
-            window.draw(support);
+            if (!(this->towerList.at(i)->getTowerName() == "SpeedAuraTower")) {
+                sf::Sprite support;
+                support.setTexture(*this->sfmlTowerLoader.getSupport());
+                support.setPosition(this->towerList.at(i)->getTowerSprite().getPosition());
+                sf::Vector2f newOrigin(support.getLocalBounds().width / 2.f, support.getLocalBounds().height / 2.f);
+                support.setOrigin(newOrigin);
+                support.setScale(1.2, 1.2);
+                window.draw(support);
+            }
             window.draw(this->towerList.at(i)->getTowerSprite());
             int y = 0;
             while (y < this->towerList.at(i)->getTotalMissiles()) {
@@ -751,6 +770,8 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
 
 bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    if (toBuild->getCost() > this->player->getCoinNumber())
+        return (false);
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX()) {
         // SET TOWER
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
@@ -778,8 +799,17 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 this->sfMainSoundPlayer.playGamePlacementClick();
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
-                if (isWaveRunning == true)
-                    this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                if (isWaveRunning == true) {
+                    if (this->towerList[this->towerList.size() - 1]->getTowerName() == "SpeedAuraTower") {
+                        auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[this->towerList.size() - 1]);
+                        if (speedAuraTower != nullptr) {
+                            speedAuraTower->run(&this->towerList);
+                        }
+                    }
+                    else
+                        this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                    //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                }
                 map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
 //                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
@@ -920,16 +950,27 @@ void Game::drawInfoBox(sf::RenderWindow& window, const sf::Vector2f& rectSize, c
 bool Game::waveEnd(sf::RenderWindow& window){
     //* return true if the current wave is ended , ifnot return else
     if (this->enemiesLeft <= 0) {
-        //* if all the ennemies from the current wave are dead == wave ended
-        //* deactivate towers, increase wave number
-        this->deactivateTowers();
-        this->sfMainSoundPlayer.playWaveClear();
-        this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
-        sf::sleep(sf::seconds(1.5f));
-        this->enemyList.at(currentWaveNumber).clear();
-    //    this->sfmlCoinAnimation.clear();
-        this->currentWaveNumber++;
-        return true;
+        if (this->isWaveEnding == false) {
+            std::cout << "Chrono start" << std::endl;
+            this->endWaveTransitionTimer = std::chrono::steady_clock::now();
+            this->isWaveEnding = true;
+        }
+        std::chrono::steady_clock::time_point checkPoint = std::chrono::steady_clock::now();
+        int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(checkPoint - this->endWaveTransitionTimer).count();
+        if (elapsed >= 2500) {
+            std::cout << "5 seconds have passed!" << std::endl;
+            this->deactivateTowers();
+            this->sfMainSoundPlayer.playWaveClear();
+            this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
+            sf::sleep(sf::milliseconds(1500));
+            this->enemyList.at(currentWaveNumber).clear();
+            //    this->sfmlCoinAnimation.clear();
+            this->currentWaveNumber++;
+            this->isWaveEnding = false;
+            return true;
+        } else {
+            return (false);
+        }
     } else {
         //* if all the ennemies from the current wave aren't dead == wave not ended
         return false;
@@ -971,9 +1012,15 @@ void Game::activateTowers(){
     //* Activate all towers
     if (this->towerList.empty())
         return;
-    std::cout << "TDTowers activation" << std::endl;
-    for(int i = 0; i < this->towerList.size(); i++ ){
-        this->towerList[i]->run(this->currentWave);
+    for (int i = 0; i < this->towerList.size(); i++ ){
+        if (this->towerList[i]->getTowerName() == "SpeedAuraTower") {
+            auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[i]);
+            if (speedAuraTower != nullptr) {
+                speedAuraTower->run(&this->towerList);
+            }
+        }
+        else
+            this->towerList[i]->run(this->currentWave);
     }
 }
 
@@ -1089,6 +1136,31 @@ void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
     //* start level
     //*this->enemyList = retrieveLevel.getNextLevel();
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("10.128.173.166", 53000);
+    if (status != sf::Socket::Done)
+    {
+        std::cout << "Error connexion " << std::endl;
+    }
+    char data[100];
+    std::size_t received;
+
+    // socket TCP:
+    if (socket.receive(data, 100, received) != sf::Socket::Done)
+    {
+        std::cout << "Error reception " << std::endl;
+    }
+    std::cout << "Received " << received << " bytes" << std::endl;
+
+
+
+    char data2[100] = "Hello, I'm a client";
+
+    // socket TCP:
+    if (socket.send(data2, 100) != sf::Socket::Done)
+    {
+        std::cout << "Error envoi " << std::endl;
+    }
 }
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {

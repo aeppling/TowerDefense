@@ -38,6 +38,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileThread.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SlowTower.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj.d"
+  "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.cpp" "CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/TDUnit.cpp" "CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj.d"

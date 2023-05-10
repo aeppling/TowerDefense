@@ -17,6 +17,7 @@ private:
     sf::Texture _slow;
     sf::Texture _sniper;
     sf::Texture _splash;
+    sf::Texture _aura;
 
     sf::Texture _basic2;
     sf::Texture _speed2;
@@ -24,6 +25,7 @@ private:
     sf::Texture _slow2;
     sf::Texture _sniper2;
     sf::Texture _splash2;
+    sf::Texture _aura2;
 
     sf::Texture _basic3;
     sf::Texture _speed3;
@@ -31,6 +33,7 @@ private:
     sf::Texture _slow3;
     sf::Texture _sniper3;
     sf::Texture _splash3;
+    sf::Texture _aura3;
 public:
     SFMLTowerLoader();
     ~SFMLTowerLoader();
@@ -42,6 +45,7 @@ public:
     sf::Texture *getSlow() { return (&this->_slow); };
     sf::Texture *getSniper() { return (&this->_sniper); };
     sf::Texture *getSplash() { return (&this->_splash); };
+    sf::Texture *getAura() { return (&this->_aura); };
 
     sf::Texture *getTextureFromName(std::string name, int lvl);
 };

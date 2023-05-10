@@ -872,6 +872,30 @@ src/TDTowers/SniperTower.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.s
 .PHONY : src/TDTowers/SniperTower.cpp.s
 
+src/TDTowers/SpeedAuraTower.obj: src/TDTowers/SpeedAuraTower.cpp.obj
+.PHONY : src/TDTowers/SpeedAuraTower.obj
+
+# target to build an object file
+src/TDTowers/SpeedAuraTower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj
+.PHONY : src/TDTowers/SpeedAuraTower.cpp.obj
+
+src/TDTowers/SpeedAuraTower.i: src/TDTowers/SpeedAuraTower.cpp.i
+.PHONY : src/TDTowers/SpeedAuraTower.i
+
+# target to preprocess a source file
+src/TDTowers/SpeedAuraTower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.i
+.PHONY : src/TDTowers/SpeedAuraTower.cpp.i
+
+src/TDTowers/SpeedAuraTower.s: src/TDTowers/SpeedAuraTower.cpp.s
+.PHONY : src/TDTowers/SpeedAuraTower.s
+
+# target to generate assembly for a file
+src/TDTowers/SpeedAuraTower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.s
+.PHONY : src/TDTowers/SpeedAuraTower.cpp.s
+
 src/TDTowers/SplashTower.obj: src/TDTowers/SplashTower.cpp.obj
 .PHONY : src/TDTowers/SplashTower.obj
 
@@ -1046,6 +1070,9 @@ help:
 	@echo ... src/TDTowers/SniperTower.obj
 	@echo ... src/TDTowers/SniperTower.i
 	@echo ... src/TDTowers/SniperTower.s
+	@echo ... src/TDTowers/SpeedAuraTower.obj
+	@echo ... src/TDTowers/SpeedAuraTower.i
+	@echo ... src/TDTowers/SpeedAuraTower.s
 	@echo ... src/TDTowers/SplashTower.obj
 	@echo ... src/TDTowers/SplashTower.i
 	@echo ... src/TDTowers/SplashTower.s

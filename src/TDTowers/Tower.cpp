@@ -22,6 +22,8 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
         this->towerSprite.setTexture(*sfmlLoaderTower.getSniper());
     else if (this->towerName == "SplashTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getSplash());
+    else if (this->towerName == "SpeedAuraTower")
+        this->towerSprite.setTexture(*sfmlLoaderTower.getAura());
     else {
         std::cout << "Tower name not found ... Cannot add to shop." << std::endl;
         return ;
@@ -36,9 +38,9 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     sf::IntRect textureRect(0, 0, this->towerSprite.getTexture()->getSize().y, this->towerSprite.getTexture()->getSize().y);
     if ((this->towerName == "SlowTower") || (this->towerName == "SplashTower"))
         this->towerSprite.setScale(scaleFactor * 2.5, scaleFactor * 2.5);
-    else if (this->towerName == "SniperTower")
+    else if ((this->towerName == "SniperTower") || (this->towerName == "AntiAirTower"))
         this->towerSprite.setScale(scaleFactor * 3.8, scaleFactor * 3.8);
-    else if (this->towerName == "AntiAirTower")
+    else if (this->towerName == "SpeedAuraTower")
         this->towerSprite.setScale(scaleFactor * 3.8, scaleFactor * 3.8);
     else
         this->towerSprite.setScale(scaleFactor * 4.5, scaleFactor * 4.5);
@@ -65,6 +67,8 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->activated = true;
     this->aerial = isAerial;
     this->speedBoosted = false;
+    this->speedBuff = 1;
+    this->armorPierceValue = 0;
 }
 
 void Tower::live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) {
@@ -121,29 +125,24 @@ void Tower::isInRange() {
 }
 
 void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
-    //* run while tower is activated 
     this->enemiesList = enemiesList;
     this->activated = true;
-        while (this->activated) { // EXITING TO QUICKLY ?
+        while (this->activated) {
             if (this->activated == false)
                 break;
             isInRange();
             if (enemiesInRange.size() > 0 && this->damage[this->level] > 0) {
-                //* Fire on ennemies in tower range
                 std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
                 int res = std::chrono::duration_cast<std::chrono::milliseconds>(
                         testTime - this->_timeOfLastShot).count();
                 if (!this->enemiesInRange.empty() && (this->towerName != "SplashTower"))
                     this->rotate(this->enemiesInRange.at(0));
-                if (res >= this->timeBetweenAttack.at(this->level) * 1000) {
+                if (res >= (this->timeBetweenAttack.at(this->level) * this->speedBuff) * 1000) {
                     if (!this->enemiesInRange.empty()) {
                         this->fire(this->enemiesInRange.at(0));
                         this->_timeOfLastShot = std::chrono::steady_clock::now();
                     }
                 }
-                //* wait time between fire
-                // CHANGE TO TIME SINCE LAST SHOT < TIME FOR SHOOT == SHOOT
-                // std::this_thread::sleep_for(std::chrono::milliseconds(1000) * this->timeBetweenAttack);
             }
         }
 }
@@ -213,7 +212,7 @@ void Tower::fire(TDUnit *target){
         //std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
         //shotThread.detach();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-        target->getShot(this->damage[this->level], 0);
+        target->getShot(this->damage[this->level], 0, this->armorPierceValue);
         //shotThread.join();
         if (target->getHealth() <= 0) {
             this->_killSound.play();
@@ -252,7 +251,7 @@ bool Tower::isSpeedBoosted(){
 }
 
 void Tower::setSpeedBoosted(bool newSpeedBoosted){
-    this->speedBoosted = speedBoosted;
+    this->speedBoosted = newSpeedBoosted;
 }
 
 int Tower::getCost(){
@@ -312,5 +311,20 @@ int Tower::getUpgradeDamage(){
     return (this->damage[this->level+1]);
 }
 
+void Tower::setSpeedBuffValue(int value) {
+    this->setSpeedBoosted(true);
+    float bonusPercentage = static_cast<float>(value) / 100.0f;
 
+    // Apply the bonus percentage to the attack speed
+    float newSpeed = this->timeBetweenAttack[this->level] * (1.0f - bonusPercentage);
+    this->speedBuff = (1.0f - bonusPercentage);
+}
 
+void Tower::resetSpeedBuff() {
+    this->speedBuff = 1;
+}
+
+void Tower::addArmor() {
+    if (this->armorPierceValue < 30)
+        this->armorPierceValue = this->armorPierceValue + 5;
+}

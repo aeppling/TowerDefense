@@ -16,6 +16,10 @@ private:
     sf::Texture _spaceship;
     sf::Texture _flyingDrone;
     sf::Texture _regenerateDrone;
+
+    sf::Texture _armoredDrone;
+
+    sf::Texture _armor;
 public:
     SFMLEnemiesLoader();
     ~SFMLEnemiesLoader();
@@ -26,6 +30,10 @@ public:
     sf::Texture *getSpaceship() { return (&this->_spaceship); };
     sf::Texture *getFlyingDrone() { return (&this->_flyingDrone); };
     sf::Texture *getRegenerateDrone() { return (&this->_regenerateDrone); };
+
+    sf::Texture *getArmoredDrone() { return (&this->_armoredDrone); };
+
+    sf::Texture *getArmor() { return (&this->_armor); };
 };
 
 #endif //UNTITLED1_SFMLENEMIESLOADER_HPP
