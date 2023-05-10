@@ -266,6 +266,8 @@ CMakeFiles/untitled1.dir/main.cpp.obj: ../main.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  ../src/TDGraphics/SFMLLoaderPlanet1.hpp \
+  ../src/TDGraphics/SFMLLoader.hpp \
   ../src/TDMap/mapParser.hpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
@@ -718,6 +720,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../include/SFML/Network/TcpListener.hpp \
   ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGraphics/SFMLMapReloader.hpp \
+  ../src/TDGraphics/SFMLLoaderPlanet1.hpp \
   ../src/TDTowers/AntiAirTower.hpp \
   ../src/TDTowers/Tower.hpp \
   ../src/TDTowers/BasicTower.hpp \
@@ -1709,6 +1712,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDGraphics/SFMLLoader.hpp \
   ../src/TDGraphics/SFMLEnemiesLoader.hpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
+  ../src/TDGraphics/SFMLLoaderPlanet1.hpp \
   ../src/TDUnits/Drone.hpp \
   ../src/TDUnits/TDUnit.hpp \
   ../src/TDUnits/Missile.hpp \
@@ -1718,8 +1722,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/RegenerateDrone.hpp \
   ../src/TDUnits/ArmoredDrone.hpp \
   ../src/TDUnits/ArmoredFlyingDrone.hpp \
-  ../src/TDUnits/ArmoredRegenerateDrone.hpp \
-  ../src/TDUnits/ArmoredAlien.hpp
+  ../src/TDUnits/ArmoredRegenerateDrone.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: ../src/TDGame/SizeRatioCalculator.cpp \
   ../src/TDGame/SizeRatioCalculator.hpp \
@@ -9949,8 +9952,6 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h:
 
-../src/TDUnits/ArmoredAlien.hpp:
-
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h:
@@ -10450,6 +10451,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h:
+
+../src/TDGraphics/SFMLLoaderPlanet1.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h:
 

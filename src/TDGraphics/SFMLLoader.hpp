@@ -26,7 +26,8 @@ private:
     sf::Texture _bats;
     sf::Texture _golem;
 public:
-    SFMLLoader();
+    SFMLLoader(std::string pathCell, std::string pathCellHeights, std::string wallCell, std::string wallCellHeights);
+    SFMLLoader() {};
     ~SFMLLoader();
     // GETTERS
     sf::Texture *getPathCell() { return (&this->_pathCell); }
@@ -41,9 +42,6 @@ public:
     sf::Texture *getTowerBasic() { return (&this->_towerBasic); }
     sf::Texture *getTowerSupport() { return (&this->_towerSupport); }
     sf::Texture getMapBorder() { return (this->_mapBorder); }
-    sf::Texture *getCowards() { return (&this->_cowards); }
-    sf::Texture getBats() { return (this->_bats); }
-    sf::Texture getGolem() { return (this->_golem); }
 };
 
 #endif //UNTITLED1_SFMLLOADER_HPP

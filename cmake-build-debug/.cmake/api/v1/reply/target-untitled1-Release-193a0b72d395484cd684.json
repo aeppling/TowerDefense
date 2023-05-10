@@ -472,7 +472,8 @@
 				69,
 				71,
 				73,
-				75
+				75,
+				77
 			]
 		}
 	],
@@ -899,6 +900,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/TDGame/Menus.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDGraphics/SFMLLoaderPlanet1.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
