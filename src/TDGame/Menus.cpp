@@ -7,7 +7,7 @@
 #include "Menus.hpp"
 
 Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSizeY) {
-
+    // PLANETS
     if (this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
     if (this->_planet2txt.loadFromFile("Sprites/Planets/planet07.png"))
@@ -27,8 +27,11 @@ Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSiz
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTutorial.loadFromFile("Sprites/Units/CharRed1.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
+    // FONTS
     if (!(this->_mainFont.loadFromFile("Fonts/neuropol.otf")))
         std::cout << "Error on loading menus textures..." << std::endl;
+    if (this->_fontTitle.loadFromFile("Fonts/ModernWarfare-OV7KP.ttf"))
+        std::cout << "Title font not loaded correctly" << std::endl;
   /*  this->_nbPlanet1Unlocked = 10;
     this->_nbPlanet2Unlocked = 7;
     this->_nbPlanet3Unlocked = 0;*/
@@ -37,7 +40,9 @@ Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSiz
 void Menus::loadHome() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
+    // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(300, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
     MenusButton *multiplayerButton = new MenusButton(300, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
     MenusButton *settingsButton = new MenusButton(300, 70, nullptr, "Settings", "settings", false, this->_mainFont);
@@ -53,14 +58,27 @@ void Menus::loadHome() {
     this->_visibleButtons.push_back(settingsButton);
     this->_visibleButtons.push_back(exitButton);
 
+    // SETUP BACKGROUN
     this->_actualBackground.setTexture(this->_backgroundHome);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
+
+    // SETUP TITLE
+    std::string title("Space Defender");
+    sf::Text *mainTitle = new sf::Text;
+    mainTitle->setString(title);
+    mainTitle->setFont(this->_fontTitle);
+    mainTitle->setCharacterSize(120);
+    sf::Vector2f newOriginTitle(mainTitle->getLocalBounds().width / 2.f, mainTitle->getLocalBounds().height / 2.f);
+    mainTitle->setOrigin(newOriginTitle);
+    mainTitle->setPosition(this->_winSizeX / 2, 100);
+    this->_visibleText.push_back(mainTitle);
 }
 
 void Menus::loadSingleplayer() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, nullptr, "Planet-1", "planet1", false, this->_mainFont);
@@ -122,6 +140,7 @@ void Menus::loadSingleplayer() {
 void Menus::loadMultiplayer() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -137,6 +156,7 @@ void Menus::loadMultiplayer() {
 void Menus::loadSettings() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -152,6 +172,7 @@ void Menus::loadSettings() {
 void Menus::loadTutorial() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -167,6 +188,7 @@ void Menus::loadTutorial() {
 void Menus::loadLevelsPlanet1() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -199,6 +221,7 @@ void Menus::loadLevelsPlanet1() {
 void Menus::loadLevelsPlanet2() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -231,6 +254,7 @@ void Menus::loadLevelsPlanet2() {
 void Menus::loadLevelsPlanet3() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
+    this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -275,6 +299,11 @@ void Menus::drawMenu(sf::RenderWindow &window) {
     i = 0;
     while (i < this->_visibleSprites.size()) {
         window.draw(*this->_visibleSprites.at(i));
+        i++;
+    }
+    i = 0;
+    while (i < this->_visibleText.size()) {
+        window.draw(*this->_visibleText.at(i));
         i++;
     }
 }

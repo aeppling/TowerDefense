@@ -14,6 +14,7 @@ private:
 
     std::vector<MenusButton*>   _visibleButtons;
     std::vector<sf::Sprite*>    _visibleSprites;
+    std::vector<sf::Text*>      _visibleText;
     sf::Sprite                  _actualBackground;
 
     sf::Texture                 _planet1txt;
@@ -28,6 +29,8 @@ private:
     sf::Texture                 _backgroundTutorial;
 
     sf::Font                    _mainFont;
+    sf::Font                    _fontTitle;
+
 public:
     Menus(int winSizeX, int winSizeY);
     ~Menus() = default;
