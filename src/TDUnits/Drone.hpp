@@ -9,7 +9,7 @@
 
 class Drone : public TDUnit {
 public:
-    Drone(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(20, 350, 0, posX, posY, false, 12, sfmlLoaderUnit, 1.3, false) {}
+    Drone(int posX, int posY) : TDUnit(20, 350, 0, posX, posY, false, 12, 1.3, false) {}
 
     virtual std::string getTypeName() {
         return "Drone";

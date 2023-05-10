@@ -473,7 +473,9 @@
 				71,
 				73,
 				75,
-				77
+				77,
+				78,
+				79
 			]
 		}
 	],
@@ -904,6 +906,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/TDGraphics/SFMLLoaderPlanet1.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDGraphics/SFMLLoaderPlanet2.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDGraphics/SFMLLoaderPlanet3.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],

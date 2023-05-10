@@ -22,23 +22,23 @@ TDUnit *getUnitFromString(std::string enemyType) {
     TDUnit *newUnit;
     SFMLLoaderPlanet1 sfmlLoaderUnit;
     if (enemyType == "Drone")
-        newUnit = new Drone(0, 0, sfmlLoaderUnit);
+        newUnit = new Drone(0, 0);
     else if (enemyType == "Missile")
-        newUnit = new Missile(0, 0, sfmlLoaderUnit);
+        newUnit = new Missile(0, 0);
     else if (enemyType == "Spaceship")
-        newUnit = new Spaceship(0, 0, sfmlLoaderUnit);
+        newUnit = new Spaceship(0, 0);
     else if (enemyType == "Alien")
-        newUnit = new Alien(0, 0, sfmlLoaderUnit);
+        newUnit = new Alien(0, 0);
     else if (enemyType == "FlyingDrone")
-        newUnit = new FlyingDrone(0, 0, sfmlLoaderUnit);
+        newUnit = new FlyingDrone(0, 0);
     else if (enemyType == "RegenerateDrone")
-        newUnit = new RegenerateDrone(0, 0, sfmlLoaderUnit);
+        newUnit = new RegenerateDrone(0, 0);
     else if (enemyType == "ArmoredDrone")
-        newUnit = new ArmoredDrone(0, 0, sfmlLoaderUnit);
+        newUnit = new ArmoredDrone(0, 0);
     else if (enemyType == "ArmoredFlyingDrone")
-        newUnit = new ArmoredFlyingDrone(0, 0, sfmlLoaderUnit);
+        newUnit = new ArmoredFlyingDrone(0, 0);
     else if (enemyType == "ArmoredRegenerateDrone")
-        newUnit = new ArmoredRegenerateDrone(0, 0, sfmlLoaderUnit);
+        newUnit = new ArmoredRegenerateDrone(0, 0);
     else {
         std::cout << "Unknown unit named '" << enemyType << "'" << std::endl;
         return (nullptr);
