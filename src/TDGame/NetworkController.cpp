@@ -136,3 +136,60 @@ NetworkController::~NetworkController() {
     delete this->serverSocket;
 }
 
+sf::Socket* NetworkController::isMessageReceived()
+{
+    bool messageReceived = false;
+
+    // Si on est un serveur, on vérifie si un message a été reçu sur chacun des clients
+    if (isServer)
+    {
+        for (const auto& client : clients)
+        {
+            char buffer[1024];
+            std::size_t received;
+            client->setBlocking(false);
+            sf::Socket::Status status = client->receive(buffer, sizeof(buffer), received);
+
+            if (status == sf::Socket::Done)
+            {
+                std::cout << "Received message \"" << buffer << "\" from client " << client->getRemoteAddress() << std::endl;
+                messageReceived = true;
+                return client.get();
+            }
+            else if (status == sf::Socket::Disconnected)
+            {
+                std::cout << "Client " << client->getRemoteAddress() << " disconnected" << std::endl;
+            }
+            else if (status == sf::Socket::Error)
+            {
+                std::cout << "An error occurred while receiving data from client " << client->getRemoteAddress() << std::endl;
+            }
+            client->setBlocking(false);
+        }
+    }
+    // Si on est un client, on vérifie si un message a été reçu sur la socket du serveur
+    else
+    {
+        char buffer[1024];
+        this->serverSocket->setBlocking(false);
+        std::size_t received;
+        sf::Socket::Status status = this->serverSocket->receive(buffer, sizeof(buffer), received);
+        if (status == sf::Socket::Done)
+        {
+            std::cout << "Received message \"" << buffer << "\" from server" << std::endl;
+            messageReceived = true;
+            return this->serverSocket;
+        }
+        else if (status == sf::Socket::Disconnected)
+        {
+            std::cout << "Disconnected from server" << std::endl;
+        }
+        else if (status == sf::Socket::Error)
+        {
+            std::cout << "An error occurred while receiving data from server" << std::endl;
+        }
+        this->serverSocket->setBlocking(true);
+    }
+
+    return nullptr;
+}
