@@ -12,6 +12,7 @@
 #include "../TDTowers/SplashTower.hpp"
 #include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
+#include <SFML/Network.hpp>
 
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader) : sfMainSoundPlayer(sfMainSoundPlayer1),
                                                                                                   sfTowerSoundLoader(towerSoundLoader) {
@@ -513,6 +514,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }
+                                //DISPLAY ARMOR HERE
+                                if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
+                                    window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
                             }
                             if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
                                 && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {
@@ -952,9 +956,9 @@ bool Game::waveEnd(sf::RenderWindow& window){
             this->enemyList.at(currentWaveNumber).clear();
             //    this->sfmlCoinAnimation.clear();
             this->currentWaveNumber++;
+            this->isWaveEnding = false;
             return true;
         } else {
-            std::cout << "Less than 2 seconds have passed." << std::endl;
             return (false);
         }
     } else {
@@ -1122,6 +1126,31 @@ void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
     //* start level
     //*this->enemyList = retrieveLevel.getNextLevel();
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("10.128.173.166", 53000);
+    if (status != sf::Socket::Done)
+    {
+        std::cout << "Error connexion " << std::endl;
+    }
+    char data[100];
+    std::size_t received;
+
+    // socket TCP:
+    if (socket.receive(data, 100, received) != sf::Socket::Done)
+    {
+        std::cout << "Error reception " << std::endl;
+    }
+    std::cout << "Received " << received << " bytes" << std::endl;
+
+
+
+    char data2[100] = "Hello, I'm a client";
+
+    // socket TCP:
+    if (socket.send(data2, 100) != sf::Socket::Done)
+    {
+        std::cout << "Error envoi " << std::endl;
+    }
 }
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {

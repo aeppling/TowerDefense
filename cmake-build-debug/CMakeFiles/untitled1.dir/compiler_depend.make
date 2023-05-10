@@ -695,7 +695,20 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../src/TDTowers/SniperTower.hpp \
   ../src/TDTowers/SplashTower.hpp \
   ../src/TDTowers/SpeedAuraTower.hpp \
-  ../src/TDGame/usefullStruct.hpp
+  ../src/TDGame/usefullStruct.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/RetrieveLevel.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
@@ -985,7 +998,8 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/Alien.hpp \
   ../src/TDUnits/Spaceship.hpp \
   ../src/TDUnits/FlyingDrone.hpp \
-  ../src/TDUnits/RegenerateDrone.hpp
+  ../src/TDUnits/RegenerateDrone.hpp \
+  ../src/TDUnits/ArmoredDrone.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: ../src/TDGame/SizeRatioCalculator.cpp \
   ../src/TDGame/SizeRatioCalculator.hpp \
@@ -8987,6 +9001,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/crtdefs.h:
 
+../include/SFML/Network/Packet.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar:
@@ -9004,6 +9020,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/vadefs.h:
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream:
 
 ../src/TDTowers/MissileLauncher.cpp:
+
+../include/SFML/Network/Export.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/thread:
 
@@ -9173,6 +9191,10 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h:
 
+../include/SFML/Network/TcpListener.hpp:
+
+../include/SFML/Network/IpAddress.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/concurrence.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread.h:
@@ -9187,6 +9209,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_time.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h:
 
+../include/SFML/Network/Socket.hpp:
+
 ../src/TDGraphics/SFMLLoader.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h:
@@ -9194,6 +9218,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h:
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_signal.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/timeb.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h:
 
 ../include/SFML/Audio/SoundBufferRecorder.hpp:
 
@@ -9235,6 +9261,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h:
 
+../include/SFML/Network/SocketHandle.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h:
@@ -9264,6 +9292,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h:
+
+../include/SFML/Network/Http.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept:
 
@@ -9641,6 +9671,16 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDTowers/SpeedAuraTower.hpp:
 
+../include/SFML/Network.hpp:
+
+../include/SFML/Network/Ftp.hpp:
+
+../include/SFML/Network/TcpSocket.hpp:
+
+../include/SFML/Network/SocketSelector.hpp:
+
+../include/SFML/Network/UdpSocket.hpp:
+
 ../src/TDUnits/Drone.hpp:
 
 ../src/TDUnits/Missile.hpp:
@@ -9648,6 +9688,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../src/TDUnits/Alien.hpp:
 
 ../src/TDUnits/FlyingDrone.hpp:
+
+../src/TDUnits/ArmoredDrone.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
 

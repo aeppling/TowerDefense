@@ -19,6 +19,13 @@ SFMLEnemiesLoader::SFMLEnemiesLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_regenerateDrone.loadFromFile("Sprites/Units/RegenerateDrone.png")))
         std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_armoredDrone.loadFromFile("Sprites/Units/CharRed1.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+
+
+    // ARMOR SPRITE
+    if (!(this->_armor.loadFromFile("Sprites/Units/spr_shield.png")))
+        std::cout << "Error on loading texture..." << std::endl;
     //this->_pathCell.setSmooth(false);
     //this->_notWalkableCell.setSmooth(false);
     //   this->_wallCell.loadFromFile();

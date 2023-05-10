@@ -342,4 +342,17 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Ftp.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Export.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/TcpSocket.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Socket.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/SocketHandle.hpp \
+ C:/MINGW_~1/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Http.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/IpAddress.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Packet.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/SocketSelector.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/TcpListener.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/UdpSocket.hpp
