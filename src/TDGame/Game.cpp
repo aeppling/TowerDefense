@@ -5,6 +5,8 @@
 #include "Game.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
 #include "../TDGraphics/SFMLLoaderPlanet1.hpp"
+#include "../TDGraphics/SFMLLoaderPlanet2.hpp"
+#include "../TDGraphics/SFMLLoaderPlanet3.hpp"
 #include "../TDTowers/AntiAirTower.hpp"
 #include "../TDTowers/BasicTower.hpp"
 #include "../TDTowers/AttackSpeedTower.hpp"
@@ -14,6 +16,7 @@
 #include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 #include <SFML/Network.hpp>
+
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
                                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
@@ -22,10 +25,19 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
     SFMLCoinAnimation sfmlCoinAnimation;
-    SFMLLoaderPlanet1 sfmlLoader;
+    SFMLLoaderPlanet1 sfmlLoader1;
+    SFMLLoaderPlanet2 sfmlLoader2;
+    SFMLLoaderPlanet3 sfmlLoader3;
     SFMLDecorationLoader decorationLoader;
     this->sfmlDecorationLoader = decorationLoader;
-    this->sfmlLoaderMap = sfmlLoader;
+    if (this->planet == 1)
+        this->sfmlLoaderMap = sfmlLoader1;
+    if (this->planet == 2)
+        this->sfmlLoaderMap = sfmlLoader2;
+    if (this->planet == 3)
+        this->sfmlLoaderMap = sfmlLoader3;
+    else
+        this->sfmlLoaderMap = sfmlLoader1;
     this->sfmlMissileLoader = sfmlMissileLoader;
     this->sfmlEnemiesLoader = sfmlEnemiesLoader;
     this->sfmlTowerLoader = sfmlTowerLoader;

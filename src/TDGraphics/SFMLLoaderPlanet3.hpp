@@ -9,8 +9,8 @@
 
 class SFMLLoaderPlanet3 : public SFMLLoader {
 public:
-    SFMLLoaderPlanet3() : SFMLLoader("Sprites/MyTiles/tileSand_slope.png", "Sprites/MyTiles/tileSand.png",
-                                     "Sprites/MyTiles/tileGrass_slope.png", "Sprites/MyTiles/tileGrass.png") {};
+    SFMLLoaderPlanet3() : SFMLLoader("Sprites/MyTiles/tileDirt_slope.png", "Sprites/MyTiles/tileDirt.png",
+                                     "Sprites/MyTiles/tileGoo_slope.png", "Sprites/MyTiles/tileGoo.png") {};
 };
 
 #endif //UNTITLED1_SFMLLOADERPLANET3_HPP

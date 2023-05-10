@@ -6,6 +6,8 @@
 
 #include "src/TDGraphics/SFMLLoader.hpp"
 #include "src/TDGraphics/SFMLLoaderPlanet1.hpp"
+#include "src/TDGraphics/SFMLLoaderPlanet2.hpp"
+#include "src/TDGraphics/SFMLLoaderPlanet3.hpp"
 #include "src/TDMap/mapParser.hpp"
 #include "src/TDMap/AStarPathFinding.hpp"
 #include "src/TDUnits/TDUnit.hpp"
@@ -74,7 +76,28 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     settings.stencilBits = 8;
     settings.antialiasingLevel = 4;
     window.setActive(true);
-    SFMLLoaderPlanet1 sfmlLoader;
+    SFMLLoader sfmlLoader;
+    if (planetToLoad == 1) {
+        SFMLLoaderPlanet1 sfmlLoader1;
+        sfmlLoader = sfmlLoader1;
+        std::cout << "LOAD 1" << std::endl;
+    }
+    else if (planetToLoad == 2) {
+        SFMLLoaderPlanet2 sfmlLoader2;
+        sfmlLoader = sfmlLoader2;
+        std::cout << "LOAD 2" << std::endl;
+    }
+    else if (planetToLoad == 3) {
+        SFMLLoaderPlanet3 sfmlLoader3;
+        sfmlLoader = sfmlLoader3;
+        std::cout << "LOAD 3" << std::endl;
+    }
+    else {
+        SFMLLoaderPlanet1 sfmlLoader1;
+        sfmlLoader = sfmlLoader1;
+        std::cout << "LOAD LAST" << std::endl;
+    }
+
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
