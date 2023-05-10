@@ -105,6 +105,18 @@
 		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Game.hpp">
 			<Option target="untitled1"/>
 		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Menus.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Menus.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/MenusButton.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/MenusButton.hpp">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/NetworkController.cpp">
 			<Option target="untitled1"/>
 		</Unit>

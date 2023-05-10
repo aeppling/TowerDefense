@@ -196,7 +196,6 @@ void SFMLHud::draw() {
         this->towerRectangles.push_back(towerInfoRect);
         _window->draw(towerInfoRect);
         _window->draw(towerSprite);
-
         towerInfoY += 100; // Avancer la position Y pour la prochaine tour
         }
         _window->draw(wallSprite);

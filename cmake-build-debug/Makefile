@@ -224,6 +224,54 @@ src/TDGame/Game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.s
 .PHONY : src/TDGame/Game.cpp.s
 
+src/TDGame/Menus.obj: src/TDGame/Menus.cpp.obj
+.PHONY : src/TDGame/Menus.obj
+
+# target to build an object file
+src/TDGame/Menus.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj
+.PHONY : src/TDGame/Menus.cpp.obj
+
+src/TDGame/Menus.i: src/TDGame/Menus.cpp.i
+.PHONY : src/TDGame/Menus.i
+
+# target to preprocess a source file
+src/TDGame/Menus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.i
+.PHONY : src/TDGame/Menus.cpp.i
+
+src/TDGame/Menus.s: src/TDGame/Menus.cpp.s
+.PHONY : src/TDGame/Menus.s
+
+# target to generate assembly for a file
+src/TDGame/Menus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.s
+.PHONY : src/TDGame/Menus.cpp.s
+
+src/TDGame/MenusButton.obj: src/TDGame/MenusButton.cpp.obj
+.PHONY : src/TDGame/MenusButton.obj
+
+# target to build an object file
+src/TDGame/MenusButton.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj
+.PHONY : src/TDGame/MenusButton.cpp.obj
+
+src/TDGame/MenusButton.i: src/TDGame/MenusButton.cpp.i
+.PHONY : src/TDGame/MenusButton.i
+
+# target to preprocess a source file
+src/TDGame/MenusButton.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.i
+.PHONY : src/TDGame/MenusButton.cpp.i
+
+src/TDGame/MenusButton.s: src/TDGame/MenusButton.cpp.s
+.PHONY : src/TDGame/MenusButton.s
+
+# target to generate assembly for a file
+src/TDGame/MenusButton.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.s
+.PHONY : src/TDGame/MenusButton.cpp.s
+
 src/TDGame/NetworkController.obj: src/TDGame/NetworkController.cpp.obj
 .PHONY : src/TDGame/NetworkController.obj
 
@@ -989,6 +1037,12 @@ help:
 	@echo ... src/TDGame/Game.obj
 	@echo ... src/TDGame/Game.i
 	@echo ... src/TDGame/Game.s
+	@echo ... src/TDGame/Menus.obj
+	@echo ... src/TDGame/Menus.i
+	@echo ... src/TDGame/Menus.s
+	@echo ... src/TDGame/MenusButton.obj
+	@echo ... src/TDGame/MenusButton.i
+	@echo ... src/TDGame/MenusButton.s
 	@echo ... src/TDGame/NetworkController.obj
 	@echo ... src/TDGame/NetworkController.i
 	@echo ... src/TDGame/NetworkController.s
