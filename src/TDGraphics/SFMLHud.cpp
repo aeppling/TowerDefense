@@ -18,7 +18,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->m_lifeText.setFont(this->mainFont);
     this->m_lifeText.setCharacterSize(32);
     this->m_waveText.setFont(this->mainFont);
-    this->m_waveText.setCharacterSize(28);
+    this->m_waveText.setCharacterSize(24);
     this->m_moneyText.setFont(this->mainFont);
     this->m_moneyText.setCharacterSize(28);
     this->setMessage("Build a tower to kill the enemies !");
@@ -57,11 +57,11 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     
 
     coinSprite.setTexture(coinTexture);
-    coinSprite.setPosition(50, 150);
+    coinSprite.setPosition(50, 265);
     m_levelText.setFont(mainFont);
-    m_levelText.setCharacterSize(28);
-    m_levelText.setString("Level " + std::to_string(_level));
-    m_levelText.setPosition(150, 5);
+    m_levelText.setCharacterSize(56);
+    m_levelText.setString("- Level " + std::to_string(_level) + " -");
+    m_levelText.setPosition(95, 20);
     removeSprite.setTexture(removeTexture);
     removeSprite.setScale(2,2);
     removeSprite.setPosition(1550, 875);
@@ -139,22 +139,23 @@ void SFMLHud::draw() {
     int windowHeight = _window->getSize().y;
     int textureHeight = m_backgroundTexture.getSize().y * 2;
     _window->draw(m_levelText);
-    int heartSize = 32;
-    int heartSpacing = 10;
+    int heartSize = 38;
+    int heartSpacing = 12;
     
     for (int i = 0; i < _lifeNumber; i++) {
         sf::Sprite heartSprite(heartTexture);
-        heartSprite.setPosition(50 + (heartSize + heartSpacing) * i, 50);
+        heartSprite.setPosition(50 + (heartSize + heartSpacing) * i, 200);
+        heartSprite.setScale(1.4, 1.4);
         _window->draw(heartSprite);
     }
     
     _window->draw(coinSprite);
-    m_moneyText.setPosition(150, 175);
+    m_moneyText.setPosition(150, 300);
     _window->draw(m_moneyText);
-    m_waveText.setPosition(50, 100);
+    m_waveText.setPosition(175, 100);
     _window->draw(m_waveText);
 
-    textMessage.setPosition(15, 300);
+    textMessage.setPosition(15, 400);
     
     textMessage.setColor(sf::Color::White);
     textMessage.setCharacterSize(16);
