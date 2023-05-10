@@ -52,7 +52,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->selectedActiveTower = nullptr;
     this->networkController = networkController;
     this->isWaveEnding = false;
-    this->gameState.numCoins = 500-(difficulty*100);
+    this->gameState.numCoins = 5000;
 }
 
 
@@ -274,7 +274,8 @@ void Game::upgradeTower() {
             int cost = this->towerList.at(i)->getUpgradeCost();
          //   if (cost <= this->player->getCoinNumber()){
                 this->looseCoins(cost);
-
+                this->gameState.numCoins = this->player->getCoinNumber();
+                this->sendGameStateToClients();
                 this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
                 this->towerList.at(i)->upgrade(this->sfmlTowerLoader);
            // }
@@ -356,9 +357,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
-                    if(this->networkController->isMessageReceived() != nullptr){
-
-                    }
                     sf::Event event;
                     window.clear(sf::Color::Black);
                     this->sfmlHud->drawBackground();
@@ -1146,7 +1144,32 @@ void Game::looseCoins(int number) {
 
 void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
-    
+    //* start level
+    //*this->enemyList = retrieveLevel.getNextLevel();
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("10.128.173.166", 53000);
+    if (status != sf::Socket::Done)
+    {
+        std::cout << "Error connexion " << std::endl;
+    }
+    char data[100];
+    std::size_t received;
+
+    if (socket.receive(data, 100, received) != sf::Socket::Done)
+    {
+        std::cout << "Error reception " << std::endl;
+    }
+    std::cout << "Received " << received << " bytes" << std::endl;
+
+
+
+    char data2[100] = "Hello, I'm a client";
+
+    // socket TCP:
+    if (socket.send(data2, 100) != sf::Socket::Done)
+    {
+        std::cout << "Error envoi " << std::endl;
+    }
 }
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {

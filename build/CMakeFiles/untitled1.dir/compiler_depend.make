@@ -718,6 +718,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: C:/Users/leori/OneDrive/Docume
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/TcpListener.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/UdpSocket.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AntiAirTower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/Tower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/BasicTower.hpp \
@@ -1784,6 +1785,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/OneDri
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/Drone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/TDUnit.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/Missile.hpp \
@@ -1793,8 +1795,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/OneDri
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/RegenerateDrone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredDrone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredFlyingDrone.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.cpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.hpp \
@@ -10004,8 +10005,6 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facet
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd:
 
-C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp:
-
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_function.h:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.hpp:
@@ -10679,6 +10678,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iteration_proxy.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AntiAirTower.hpp:
 

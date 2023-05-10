@@ -1,11 +1,13 @@
+//
+// Created by adrie on 10/05/2023.
+//
+
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
 #include <mutex>
-#include <cstdlib>
 
 #include "src/TDGraphics/SFMLLoader.hpp"
-#include "src/TDGraphics/SFMLLoaderPlanet1.hpp"
 #include "src/TDMap/mapParser.hpp"
 #include "src/TDMap/AStarPathFinding.hpp"
 #include "src/TDUnits/TDUnit.hpp"
@@ -73,104 +75,36 @@ int main() {
     int globalVolume = 50;
     SFMainSoundLoader mainSoundLoader;
     // LAUNCHING MENU
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
-    menu.loadHome();
-    while (windowTestMenu.isOpen()) {
-        sf::Event event;
-        while (windowTestMenu.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                windowTestMenu.close();
-            }
-            // HANDLE KEYBOARD/MOUSE EVENT HERE
-        }
-        windowTestMenu.clear();
-        menu.drawMenu(windowTestMenu);
-        windowTestMenu.display();
-    }
-    return (-1);
-}
-
-void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad) {
+    //Menus menu;
+    std::cout << "MENU LOADED" << std::endl;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
     settings.depthBits = 24;
     settings.stencilBits = 8;
     settings.antialiasingLevel = 4;
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     window.setActive(true);
-    SFMLLoaderPlanet1 sfmlLoader;
+    SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    
+
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
-    NetworkController* networkController = new NetworkController(false);
 
-     if (networkController->getIsServer() == true) {
-          std::string message = "5";
-          networkController->sendMessageToAllClients(message);
-      } else {
-          std::string message = networkController->receiveMessage(networkController->getServerSocket());
-          std::cout << "Message received : " << message << std::endl;
-      }
-    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr);
+    NetworkController* networkController = new NetworkController(true);
+
+   
+    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, 1);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
-            return ;
+            return (-1);
         }
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
     // WINDOW LOOP AND MOUSE SETUP
     // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
-}
-
-int main() {
-    // SETTING SOUNDS
-    int musicVolume = 100;
-    int soundVolume = 100;
-    int globalVolume = 50;
-    SFMainSoundLoader mainSoundLoader;
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
-    // LAUNCHING MENU
-    sfSoundPlayer.playMenuMusic();
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
-    menu.loadHome();
-    std::string selectionInformation("none");
-    int         levelToPlay = -1;
-    int         planetToLoad = -1;
-    int gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
-    while (windowTestMenu.isOpen()) {
-        sf::Event event;
-        while (windowTestMenu.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                windowTestMenu.close();
-            }
-            if (event.type == sf::Event::MouseButtonPressed &&
-                sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
-                std::string clicked = menu.checkForClick(mousePos);
-                if (clicked != "no") {
-                    if (clicked == "exit")
-                        return (1);
-                    else {
-                        selectionInformation = clicked;
-                        levelToPlay = extractLevelNumber(selectionInformation);
-                        planetToLoad = extractPlanetNumber(selectionInformation);
-                        launchGame(sfSoundPlayer, musicVolume, soundVolume, gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
-                    }
-                }
-            }
-        }
-        windowTestMenu.clear();
-        // ADD LOOP LOGIC HERE
-        menu.drawMenu(windowTestMenu);
-        windowTestMenu.display();
-    }
-    sfSoundPlayer.stopMenuMusic();
-    //OLD GAME LAUNCH HERE
     return (0);
 }
