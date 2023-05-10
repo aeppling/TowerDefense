@@ -658,7 +658,6 @@ void Game::setSpawnCellsSprites() {
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
     std::string mapPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
-    std::cout << "MAP PATH :" << mapPath << std::endl;
 
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
     
