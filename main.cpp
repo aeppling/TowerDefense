@@ -85,7 +85,8 @@ int main() {
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
-                menu.checkForClick(mousePos);
+                if (menu.checkForClick(mousePos) == "exit")
+                    return (1);
             }
         }
         windowTestMenu.clear();

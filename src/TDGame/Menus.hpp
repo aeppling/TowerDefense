@@ -34,10 +34,13 @@ public:
     void loadMultiplayer();
     void loadSettings();
     void loadTutorial();
+    void loadLevelsPlanet1();
+    void loadLevelsPlanet2();
+    void loadLevelsPlanet3();
     void drawMenu(sf::RenderWindow &window);
 
     // FUNCTION
-    void checkForClick(sf::Vector2i mousePos);
+    std::string checkForClick(sf::Vector2i mousePos);
 };
 
 #endif //UNTITLED1_MENUS_HPP

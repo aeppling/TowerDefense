@@ -67,11 +67,87 @@ void Menus::loadSingleplayer() {
 }
 
 void Menus::loadMultiplayer() {
+    this->_visibleButtons.clear();
 
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
 }
 
 void Menus::loadSettings() {
+    this->_visibleButtons.clear();
 
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadTutorial() {
+    this->_visibleButtons.clear();
+
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadLevelsPlanet1() {
+    this->_visibleButtons.clear();
+
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false, this->_mainFont);
+
+    back->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(back);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadLevelsPlanet2() {
+    this->_visibleButtons.clear();
+
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadLevelsPlanet3() {
+    this->_visibleButtons.clear();
+
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
 }
 
 void Menus::drawMenu(sf::RenderWindow &window) {
@@ -97,18 +173,23 @@ void Menus::loadMenuByName(std::string name) {
         this->loadSettings();
     else if (name == "home")
         this->loadHome();
-    else if (name == "exit") {
-
-    }
+    else if (name == "planet1")
+        this->loadLevelsPlanet1();
+    else if (name == "planet2")
+        this->loadLevelsPlanet2();
+    else if (name == "planet3")
+        this->loadLevelsPlanet3();
 }
 
-void Menus::checkForClick(sf::Vector2i mousePos) {
+std::string Menus::checkForClick(sf::Vector2i mousePos) {
     int i = 0;
 
     std::string whichClick;
     while (i < this->_visibleButtons.size()) {
         whichClick = this->_visibleButtons.at(i)->isClicked(mousePos.x, mousePos.y);
-        if (whichClick != "no") {
+        if (whichClick == "exit")
+            return (whichClick);
+        else if (whichClick != "no") {
             this->loadMenuByName(whichClick);
             break;
         }
