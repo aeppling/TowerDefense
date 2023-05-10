@@ -34,6 +34,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->player = player1;
     this->player->setLifeNumber(8/difficulty);
     this->player->setCoinNumber(500-(difficulty*100));
+    this->player->setCoinNumber(5000);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -289,7 +290,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
 }
 
 int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder){
-            startLevel();
+            //startLevel();
             bool isBuilding = false;
             int timeBetweenSpawn = 1200;
             int cellSize = getCellSize(window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
@@ -1145,7 +1146,6 @@ void Game::startLevel(){
     char data[100];
     std::size_t received;
 
-    // socket TCP:
     if (socket.receive(data, 100, received) != sf::Socket::Done)
     {
         std::cout << "Error reception " << std::endl;

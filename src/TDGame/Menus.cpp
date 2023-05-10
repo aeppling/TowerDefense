@@ -252,7 +252,7 @@ std::string Menus::loadMenuByName(std::string name) {
         return ("no");
     }
     else
-        return (name);
+        return (name); // COMPACT WITH DIFFICULTY ????
     // ELSE RETURN BECAUSE IT IS A LEVEL & PLANET INFORMATION
 }
 

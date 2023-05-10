@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <mutex>
+#include <cstdlib>
 
 #include "src/TDGraphics/SFMLLoader.hpp"
 #include "src/TDMap/mapParser.hpp"
@@ -46,23 +47,59 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 
 }
 
+int extractPlanetNumber(const std::string& str) {
+    size_t planetPos = str.find("planet");
+    if (planetPos != std::string::npos) {
+        std::string planetNumberStr = str.substr(planetPos + 6);
+        return std::atoi(planetNumberStr.c_str());
+    }
+    return (-1);
+}
 
-/* UNCOMMENT TO DEBUG PATH FINDING
- std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;
- std::cout << "GOAL CELL 1 x/y : " << (*nmap)[10][10].getPosX() << " : " << (*nmap)[10][10].getPosY() << std::endl;
- AStarPathFinding pathFinder((*nmap), (*nmap)[0][1], (*nmap)[20][29]);
- std::vector<MapCell*> path = pathFinder.runPathFinding();
- int i = 0;
- while (i != path.size()) {
-     std::cout << path[i]->getPosX() << " : " << path[i]->getPosY() << " | ";
-     i++;
- }
- std::cout << std::endl;
- displayDebugMap((nmap), path);
- if (path.empty()) {
-     std::cout << "NO PATH FOUND !!!" << std::endl;
- }
-*/
+int extractLevelNumber(const std::string& str) {
+    size_t levelPos = str.find("level");
+    if (levelPos != std::string::npos) {
+        // Extract the number following "level"
+        std::string levelNumberStr = str.substr(levelPos + 5);
+        return std::atoi(levelNumberStr.c_str());
+    }
+    return (-1);
+}
+
+void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int gameDifficulty, sf::RenderWindow &window) {
+    // SETTING WINDOW AND MAP
+    sf::ContextSettings settings;
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 4;
+    window.setActive(true);
+    SFMLLoader sfmlLoader;
+    // CREATE GAME OBJET
+    TDPlayer *playerOne = new TDPlayer("Joueur1");
+    SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
+    sfSoundPlayer.playGameMusic1();
+    /*  NetworkController* networkController = new NetworkController(false);
+
+       if (networkController->getIsServer() == true) {
+            std::string message = "5";
+            networkController->sendMessageToAllClients(message);
+        } else {
+            std::string message = networkController->receiveMessage(networkController->getServerSocket());
+            std::cout << "Message received : " << message << std::endl;
+        }*/
+
+    Game currentGame(gameDifficulty, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr);
+    try {
+        if (currentGame.launch(sfmlLoader, window) == -1) {
+            std::cout << "Error on map initialisation" << std::endl;
+            return ;
+        }
+    } catch (const std::out_of_range& ex) {
+        std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
+    }
+    // WINDOW LOOP AND MOUSE SETUP
+    // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
+}
 
 int main() {
     // SETTING SOUNDS
@@ -76,7 +113,10 @@ int main() {
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
     menu.loadHome();
-    std::string levelToPlay("none");
+    std::string selectionInformation("none");
+    int         levelToPlay = -1;
+    int         planetToLoad = -1;
+    int gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
@@ -91,7 +131,10 @@ int main() {
                     if (clicked == "exit")
                         return (1);
                     else {
-                        levelToPlay = clicked;
+                        selectionInformation = clicked;
+                        levelToPlay = extractLevelNumber(selectionInformation);
+                        planetToLoad = extractPlanetNumber(selectionInformation);
+                        launchGame(sfSoundPlayer, musicVolume, soundVolume, gameDifficulty, windowTestMenu);
                     }
                 }
             }
@@ -102,38 +145,6 @@ int main() {
         windowTestMenu.display();
     }
     sfSoundPlayer.stopMenuMusic();
-    std::cout << "MENU LOADED" << std::endl;
-    // SETTING WINDOW AND MAP
-    sf::ContextSettings settings;
-    settings.depthBits = 24;
-    settings.stencilBits = 8;
-    settings.antialiasingLevel = 4;
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    window.setActive(true);
-    SFMLLoader sfmlLoader;
-    // CREATE GAME OBJET
-    TDPlayer *playerOne = new TDPlayer("Joueur1");
-    SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
-    sfSoundPlayer.playGameMusic1();
-    NetworkController* networkController = new NetworkController(false);
-
-     if (networkController->getIsServer() == true) {
-          std::string message = "5";
-          networkController->sendMessageToAllClients(message);
-      } else {
-          std::string message = networkController->receiveMessage(networkController->getServerSocket());
-          std::cout << "Message received : " << message << std::endl;
-      }
-    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr);
-    try {
-        if (currentGame.launch(sfmlLoader, window) == -1) {
-            std::cout << "Error on map initialisation" << std::endl;
-            return (-1);
-        }
-    } catch (const std::out_of_range& ex) {
-        std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
-    }
-    // WINDOW LOOP AND MOUSE SETUP
-   // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
+    //OLD GAME LAUNCH HERE
     return (0);
 }
