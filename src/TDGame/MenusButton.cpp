@@ -33,7 +33,7 @@ void MenusButton::setPosition(int posX, int posY) {
 }
 
 std::string MenusButton::isClicked(int mousePosX, int mousePosY) {
-    if (this->_rectangle.getGlobalBounds().contains(mousePosX + _GAME_POSITION_X, mousePosY + _GAME_POSITION_Y))
+    if (this->_rectangle.getGlobalBounds().contains(mousePosX, mousePosY))
         return (this->_shortname);
     else
         return ("no");

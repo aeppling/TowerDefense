@@ -47,7 +47,23 @@ void Menus::loadHome() {
 }
 
 void Menus::loadSingleplayer() {
+    this->_visibleButtons.clear();
 
+    MenusButton *world1 = new MenusButton(400, 600, nullptr, "Planet-1", "planet1", false, this->_mainFont);
+    MenusButton *world2 = new MenusButton(400, 600, nullptr, "Planet-2", "planet2", false, this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+
+    world1->setPosition(_winSizeX / 3, 500);
+    world2->setPosition(_winSizeX / 1.7, 500);
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(world1);
+    this->_visibleButtons.push_back(world2);
+    this->_visibleButtons.push_back(backhome);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
 }
 
 void Menus::loadMultiplayer() {
@@ -72,6 +88,30 @@ void Menus::drawMenu(sf::RenderWindow &window) {
     }
 }
 
-void Menus::checkForClick(sf::Vector2i mousePos) {
+void Menus::loadMenuByName(std::string name) {
+    if (name == "singleplayer")
+        this->loadSingleplayer();
+    else if (name == "multiplayer")
+        this->loadMultiplayer();
+    else if (name == "settings")
+        this->loadSettings();
+    else if (name == "home")
+        this->loadHome();
+    else if (name == "exit") {
 
+    }
+}
+
+void Menus::checkForClick(sf::Vector2i mousePos) {
+    int i = 0;
+
+    std::string whichClick;
+    while (i < this->_visibleButtons.size()) {
+        whichClick = this->_visibleButtons.at(i)->isClicked(mousePos.x, mousePos.y);
+        if (whichClick != "no") {
+            this->loadMenuByName(whichClick);
+            break;
+        }
+        i++;
+    }
 }

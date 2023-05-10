@@ -70,7 +70,9 @@ int main() {
     int soundVolume = 100;
     int globalVolume = 50;
     SFMainSoundLoader mainSoundLoader;
+    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     // LAUNCHING MENU
+    sfSoundPlayer.playMenuMusic();
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
     menu.loadHome();
@@ -91,6 +93,7 @@ int main() {
         menu.drawMenu(windowTestMenu);
         windowTestMenu.display();
     }
+    sfSoundPlayer.stopMenuMusic();
     std::cout << "MENU LOADED" << std::endl;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
@@ -102,8 +105,6 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
     NetworkController* networkController = new NetworkController(false);
