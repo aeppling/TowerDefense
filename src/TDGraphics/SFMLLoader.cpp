@@ -7,6 +7,7 @@
 #include "SFMLLoader.hpp"
 
 SFMLLoader::SFMLLoader() {
+    // MAP CELL THAT WILL CHANGE
     if (!(this->_pathCell.loadFromFile("Sprites/MyTiles/tileSand_slope.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_pathCellHeight.loadFromFile("Sprites/MyTiles/tileSand.png")))
