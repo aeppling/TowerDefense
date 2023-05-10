@@ -11,9 +11,9 @@
 #include "../TDTowers/SniperTower.hpp"
 #include "../TDTowers/SplashTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
-
-Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader) : sfMainSoundPlayer(sfMainSoundPlayer1),
-                                                                                                  sfTowerSoundLoader(towerSoundLoader) {
+#include <SFML/Network.hpp>
+Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController) : sfMainSoundPlayer(sfMainSoundPlayer1),
+                                                                                                  sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
@@ -45,6 +45,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->hitMarker.setFillColor(hitMarkerColor);
     this->hitMarkerOpacity = 0;
     this->selectedActiveTower = nullptr;
+    this->networkController = networkController;
 }
 
 

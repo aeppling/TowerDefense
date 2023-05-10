@@ -13,7 +13,7 @@
 #include "src/TDPlayer/TDPlayer.hpp"
 #include "src/TDSounds/SFMainSoundLoader.hpp"
 #include "src/TDSounds/SFMainSoundPlayer.hpp"
-
+#include "src/TDGame/NetworkController.hpp"
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
     while (i != path.size()) {
@@ -63,6 +63,7 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
 */
 
 int main() {
+    
     // SETTING SOUNDS
     int musicVolume = 100;
     int soundVolume = 100;
@@ -78,10 +79,20 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
+    
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
-    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader);
+    NetworkController* networkController = new NetworkController(true);
+    
+    if (networkController->getIsServer() == true) {
+        std::string message = "5";
+        networkController->sendMessageToAllClients(message);
+    } else {
+        std::string message = networkController->receiveMessage(networkController->getServerSocket());
+        std::cout << "Message received : " << message << std::endl;
+    }
+    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;

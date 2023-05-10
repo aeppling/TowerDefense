@@ -87,13 +87,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     wallPriceImage.setTexture(coinTexture);
     wallPriceImage.setPosition(385, 940);
     wallPriceImage.setScale(0.30, 0.30);
-    */
-
-
-    
-    
-    
-    
+    */  
 }
 
 int SFMLHud::checkForClick(sf::RenderWindow &window) {

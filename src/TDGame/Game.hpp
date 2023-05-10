@@ -16,6 +16,7 @@
 #include "../TDSounds/SFMainSoundPlayer.hpp"
 #include "../TDSounds/SFTowerSoundLoader.hpp"
 #include <iostream>
+#include "NetworkController.hpp"
 
 class Tower;
 class SFMLHud;
@@ -58,6 +59,7 @@ class Game{
         SFMLDecorationLoader sfmlDecorationLoader;
         SFMainSoundPlayer   &sfMainSoundPlayer;
         SFTowerSoundLoader  &sfTowerSoundLoader;
+        NetworkController*  networkController;
         sf::Sprite          hearthDisplay;
         sf::Sprite          baseCell;
         sf::RectangleShape  hitMarker;
@@ -68,7 +70,7 @@ class Game{
     std::chrono::steady_clock::time_point hitMarkerStartTimer;
 
     public :
-        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader);
+        Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController);
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
     void initializeTowerStore(sf::RenderWindow &window);
     void initializeTowerStoreCurrentWave();
