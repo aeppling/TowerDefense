@@ -35,7 +35,6 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->player = player1;
     this->player->setLifeNumber(8/difficulty);
     this->player->setCoinNumber(500-(difficulty*100));
-    this->player->setCoinNumber(10000);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -263,6 +262,8 @@ void Game::sellTower(TDMap &map) {
 void Game::upgradeTower() {
     int i = 0;
 
+    if (this->selectedActiveTower->getUpgradeCost() > this->player->getCoinNumber())
+        return ;
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getUpgradeCost();
@@ -769,6 +770,8 @@ void Game::startWave(TDMap &map, MapCell *baseCell, std::vector<MapCell*> &spawn
 
 bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    if (toBuild->getCost() > this->player->getCoinNumber())
+        return (false);
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX()) {
         // SET TOWER
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'T') { // CHECK IF TOWER BUILDABLE CELL
