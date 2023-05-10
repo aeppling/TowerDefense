@@ -343,9 +343,26 @@ CMakeFiles/untitled1.dir/main.cpp.obj: ../main.cpp \
   ../src/TDSounds/SFMainSoundPlayer.hpp \
   ../src/TDSounds/SFMainSoundLoader.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDPlayer/TDPlayer.hpp \
   ../src/TDSounds/SFMainSoundLoader.hpp \
-  ../src/TDSounds/SFMainSoundPlayer.hpp
+  ../src/TDSounds/SFMainSoundPlayer.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../src/TDGame/Menus.hpp \
+  ../src/TDGame/MenusButton.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj: ../src/TDGame/AnimationsMaths.cpp \
   ../src/TDGame/AnimationsMaths.hpp
@@ -686,16 +703,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../src/TDSounds/SFMainSoundPlayer.hpp \
   ../src/TDSounds/SFMainSoundLoader.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
-  ../src/TDGraphics/SFMLMapReloader.hpp \
-  ../src/TDTowers/AntiAirTower.hpp \
-  ../src/TDTowers/Tower.hpp \
-  ../src/TDTowers/BasicTower.hpp \
-  ../src/TDTowers/AttackSpeedTower.hpp \
-  ../src/TDTowers/SlowTower.hpp \
-  ../src/TDTowers/SniperTower.hpp \
-  ../src/TDTowers/SplashTower.hpp \
-  ../src/TDTowers/SpeedAuraTower.hpp \
-  ../src/TDGame/usefullStruct.hpp \
+  ../src/TDGame/NetworkController.hpp \
   ../include/SFML/Network.hpp \
   ../include/SFML/Network/Ftp.hpp \
   ../include/SFML/Network/Export.hpp \
@@ -708,7 +716,716 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../include/SFML/Network/Packet.hpp \
   ../include/SFML/Network/SocketSelector.hpp \
   ../include/SFML/Network/TcpListener.hpp \
-  ../include/SFML/Network/UdpSocket.hpp
+  ../include/SFML/Network/UdpSocket.hpp \
+  ../src/TDGraphics/SFMLMapReloader.hpp \
+  ../src/TDTowers/AntiAirTower.hpp \
+  ../src/TDTowers/Tower.hpp \
+  ../src/TDTowers/BasicTower.hpp \
+  ../src/TDTowers/AttackSpeedTower.hpp \
+  ../src/TDTowers/SlowTower.hpp \
+  ../src/TDTowers/SniperTower.hpp \
+  ../src/TDTowers/SplashTower.hpp \
+  ../src/TDTowers/SpeedAuraTower.hpp \
+  ../src/TDGame/usefullStruct.hpp
+
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wchar.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_directx.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/exception \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/typeinfo \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/nested_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/move.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/localefwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/ctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ios_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/atomicity.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/errno.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/process.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream_insert.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_function.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/binders.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/string_conversions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/malloc.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/streambuf \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  ../src/TDGame/Menus.hpp \
+  ../src/TDGame/MenusButton.hpp \
+  ../include/SFML/Graphics.hpp \
+  ../include/SFML/Window.hpp \
+  ../include/SFML/System.hpp \
+  ../include/SFML/Config.hpp \
+  ../include/SFML/System/Clock.hpp \
+  ../include/SFML/System/Export.hpp \
+  ../include/SFML/System/Time.hpp \
+  ../include/SFML/System/Err.hpp \
+  ../include/SFML/System/FileInputStream.hpp \
+  ../include/SFML/System/InputStream.hpp \
+  ../include/SFML/System/NonCopyable.hpp \
+  ../include/SFML/System/Lock.hpp \
+  ../include/SFML/System/MemoryInputStream.hpp \
+  ../include/SFML/System/Mutex.hpp \
+  ../include/SFML/System/Sleep.hpp \
+  ../include/SFML/System/String.hpp \
+  ../include/SFML/System/Utf.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/algorithm \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/utility \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_relops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/limits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/tuple \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/array \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uses_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
+  ../include/SFML/System/Utf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
+  ../include/SFML/System/String.inl \
+  ../include/SFML/System/Thread.hpp \
+  ../include/SFML/System/Thread.inl \
+  ../include/SFML/System/ThreadLocal.hpp \
+  ../include/SFML/System/ThreadLocalPtr.hpp \
+  ../include/SFML/System/ThreadLocalPtr.inl \
+  ../include/SFML/System/Vector2.hpp \
+  ../include/SFML/System/Vector2.inl \
+  ../include/SFML/System/Vector3.hpp \
+  ../include/SFML/System/Vector3.inl \
+  ../include/SFML/Window/Clipboard.hpp \
+  ../include/SFML/Window/Export.hpp \
+  ../include/SFML/Window/Context.hpp \
+  ../include/SFML/Window/GlResource.hpp \
+  ../include/SFML/Window/ContextSettings.hpp \
+  ../include/SFML/Window/Cursor.hpp \
+  ../include/SFML/Window/Event.hpp \
+  ../include/SFML/Window/Joystick.hpp \
+  ../include/SFML/Window/Keyboard.hpp \
+  ../include/SFML/Window/Mouse.hpp \
+  ../include/SFML/Window/Sensor.hpp \
+  ../include/SFML/Window/Touch.hpp \
+  ../include/SFML/Window/VideoMode.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_vector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/vector.tcc \
+  ../include/SFML/Window/Window.hpp \
+  ../include/SFML/Window/WindowHandle.hpp \
+  ../include/SFML/Window/WindowStyle.hpp \
+  ../include/SFML/Graphics/BlendMode.hpp \
+  ../include/SFML/Graphics/Export.hpp \
+  ../include/SFML/Graphics/CircleShape.hpp \
+  ../include/SFML/Graphics/Shape.hpp \
+  ../include/SFML/Graphics/Drawable.hpp \
+  ../include/SFML/Graphics/RenderStates.hpp \
+  ../include/SFML/Graphics/Transform.hpp \
+  ../include/SFML/Graphics/Rect.hpp \
+  ../include/SFML/Graphics/Rect.inl \
+  ../include/SFML/Graphics/Transformable.hpp \
+  ../include/SFML/Graphics/VertexArray.hpp \
+  ../include/SFML/Graphics/Vertex.hpp \
+  ../include/SFML/Graphics/Color.hpp \
+  ../include/SFML/Graphics/PrimitiveType.hpp \
+  ../include/SFML/Graphics/ConvexShape.hpp \
+  ../include/SFML/Graphics/Font.hpp \
+  ../include/SFML/Graphics/Glyph.hpp \
+  ../include/SFML/Graphics/Texture.hpp \
+  ../include/SFML/Graphics/Image.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h \
+  ../include/SFML/Graphics/RectangleShape.hpp \
+  ../include/SFML/Graphics/RenderTarget.hpp \
+  ../include/SFML/Graphics/View.hpp \
+  ../include/SFML/Graphics/RenderTexture.hpp \
+  ../include/SFML/Graphics/RenderWindow.hpp \
+  ../include/SFML/Graphics/Shader.hpp \
+  ../include/SFML/Graphics/Glsl.hpp \
+  ../include/SFML/Graphics/Glsl.inl \
+  ../include/SFML/Graphics/Sprite.hpp \
+  ../include/SFML/Graphics/Text.hpp \
+  ../include/SFML/Graphics/VertexBuffer.hpp \
+  ../src/TDGame/usefullStruct.hpp
+
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: ../src/TDGame/MenusButton.cpp \
+  ../src/TDGame/MenusButton.hpp \
+  ../include/SFML/Graphics.hpp \
+  ../include/SFML/Window.hpp \
+  ../include/SFML/System.hpp \
+  ../include/SFML/Config.hpp \
+  ../include/SFML/System/Clock.hpp \
+  ../include/SFML/System/Export.hpp \
+  ../include/SFML/System/Time.hpp \
+  ../include/SFML/System/Err.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wchar.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_directx.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/exception \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/typeinfo \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/nested_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/move.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/localefwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/ctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ios_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/atomicity.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/errno.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/process.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream_insert.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_function.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/binders.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/string_conversions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/malloc.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/streambuf \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  ../include/SFML/System/FileInputStream.hpp \
+  ../include/SFML/System/InputStream.hpp \
+  ../include/SFML/System/NonCopyable.hpp \
+  ../include/SFML/System/Lock.hpp \
+  ../include/SFML/System/MemoryInputStream.hpp \
+  ../include/SFML/System/Mutex.hpp \
+  ../include/SFML/System/Sleep.hpp \
+  ../include/SFML/System/String.hpp \
+  ../include/SFML/System/Utf.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/algorithm \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/utility \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_relops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/limits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/tuple \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/array \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uses_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
+  ../include/SFML/System/Utf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
+  ../include/SFML/System/String.inl \
+  ../include/SFML/System/Thread.hpp \
+  ../include/SFML/System/Thread.inl \
+  ../include/SFML/System/ThreadLocal.hpp \
+  ../include/SFML/System/ThreadLocalPtr.hpp \
+  ../include/SFML/System/ThreadLocalPtr.inl \
+  ../include/SFML/System/Vector2.hpp \
+  ../include/SFML/System/Vector2.inl \
+  ../include/SFML/System/Vector3.hpp \
+  ../include/SFML/System/Vector3.inl \
+  ../include/SFML/Window/Clipboard.hpp \
+  ../include/SFML/Window/Export.hpp \
+  ../include/SFML/Window/Context.hpp \
+  ../include/SFML/Window/GlResource.hpp \
+  ../include/SFML/Window/ContextSettings.hpp \
+  ../include/SFML/Window/Cursor.hpp \
+  ../include/SFML/Window/Event.hpp \
+  ../include/SFML/Window/Joystick.hpp \
+  ../include/SFML/Window/Keyboard.hpp \
+  ../include/SFML/Window/Mouse.hpp \
+  ../include/SFML/Window/Sensor.hpp \
+  ../include/SFML/Window/Touch.hpp \
+  ../include/SFML/Window/VideoMode.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_vector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/vector.tcc \
+  ../include/SFML/Window/Window.hpp \
+  ../include/SFML/Window/WindowHandle.hpp \
+  ../include/SFML/Window/WindowStyle.hpp \
+  ../include/SFML/Graphics/BlendMode.hpp \
+  ../include/SFML/Graphics/Export.hpp \
+  ../include/SFML/Graphics/CircleShape.hpp \
+  ../include/SFML/Graphics/Shape.hpp \
+  ../include/SFML/Graphics/Drawable.hpp \
+  ../include/SFML/Graphics/RenderStates.hpp \
+  ../include/SFML/Graphics/Transform.hpp \
+  ../include/SFML/Graphics/Rect.hpp \
+  ../include/SFML/Graphics/Rect.inl \
+  ../include/SFML/Graphics/Transformable.hpp \
+  ../include/SFML/Graphics/VertexArray.hpp \
+  ../include/SFML/Graphics/Vertex.hpp \
+  ../include/SFML/Graphics/Color.hpp \
+  ../include/SFML/Graphics/PrimitiveType.hpp \
+  ../include/SFML/Graphics/ConvexShape.hpp \
+  ../include/SFML/Graphics/Font.hpp \
+  ../include/SFML/Graphics/Glyph.hpp \
+  ../include/SFML/Graphics/Texture.hpp \
+  ../include/SFML/Graphics/Image.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h \
+  ../include/SFML/Graphics/RectangleShape.hpp \
+  ../include/SFML/Graphics/RenderTarget.hpp \
+  ../include/SFML/Graphics/View.hpp \
+  ../include/SFML/Graphics/RenderTexture.hpp \
+  ../include/SFML/Graphics/RenderWindow.hpp \
+  ../include/SFML/Graphics/Shader.hpp \
+  ../include/SFML/Graphics/Glsl.hpp \
+  ../include/SFML/Graphics/Glsl.inl \
+  ../include/SFML/Graphics/Sprite.hpp \
+  ../include/SFML/Graphics/Text.hpp \
+  ../include/SFML/Graphics/VertexBuffer.hpp \
+  ../src/TDGame/usefullStruct.hpp
+
+CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj: ../src/TDGame/NetworkController.cpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/System.hpp \
+  ../include/SFML/Config.hpp \
+  ../include/SFML/System/Clock.hpp \
+  ../include/SFML/System/Export.hpp \
+  ../include/SFML/System/Time.hpp \
+  ../include/SFML/System/Err.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wchar.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_directx.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/exception \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/typeinfo \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/nested_exception.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/move.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/localefwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/locale.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/ctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ios_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/atomicity.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/errno.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/process.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/limits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream_insert.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_function.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/binders.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/alloc_traits.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/string_conversions.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/malloc.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/streambuf \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/wctype.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf_iterator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  ../include/SFML/System/FileInputStream.hpp \
+  ../include/SFML/System/InputStream.hpp \
+  ../include/SFML/System/NonCopyable.hpp \
+  ../include/SFML/System/Lock.hpp \
+  ../include/SFML/System/MemoryInputStream.hpp \
+  ../include/SFML/System/Mutex.hpp \
+  ../include/SFML/System/Sleep.hpp \
+  ../include/SFML/System/String.hpp \
+  ../include/SFML/System/Utf.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/algorithm \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/utility \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_relops.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/limits \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/tuple \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/array \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uses_allocator.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
+  ../include/SFML/System/Utf.inl \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
+  ../include/SFML/System/String.inl \
+  ../include/SFML/System/Thread.hpp \
+  ../include/SFML/System/Thread.inl \
+  ../include/SFML/System/ThreadLocal.hpp \
+  ../include/SFML/System/ThreadLocalPtr.hpp \
+  ../include/SFML/System/ThreadLocalPtr.inl \
+  ../include/SFML/System/Vector2.hpp \
+  ../include/SFML/System/Vector2.inl \
+  ../include/SFML/System/Vector3.hpp \
+  ../include/SFML/System/Vector3.inl \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_vector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/vector.tcc \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream
 
 CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/RetrieveLevel.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
@@ -2347,6 +3064,20 @@ CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj: ../src/TDGraphics/SFMLH
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -5804,6 +6535,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj: ../src/TDTowers/Anti
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -6132,6 +6877,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj: ../src/TDTowers/
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -6460,6 +7219,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj: ../src/TDTowers/BasicT
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -7339,6 +8112,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj: ../src/TDTowers/SlowTow
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -7667,6 +8454,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj: ../src/TDTowers/Snipe
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -7995,6 +8796,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj: ../src/TDTowers/Sp
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -8325,6 +9140,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj: ../src/TDTowers/Splas
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -8664,6 +9493,20 @@ CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj: ../src/TDTowers/Tower.cpp \
   ../include/SFML/Audio/SoundFileReader.hpp \
   ../include/SFML/Audio/SoundFileWriter.hpp \
   ../src/TDSounds/SFTowerSoundLoader.hpp \
+  ../src/TDGame/NetworkController.hpp \
+  ../include/SFML/Network.hpp \
+  ../include/SFML/Network/Ftp.hpp \
+  ../include/SFML/Network/Export.hpp \
+  ../include/SFML/Network/TcpSocket.hpp \
+  ../include/SFML/Network/Socket.hpp \
+  ../include/SFML/Network/SocketHandle.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h \
+  ../include/SFML/Network/Http.hpp \
+  ../include/SFML/Network/IpAddress.hpp \
+  ../include/SFML/Network/Packet.hpp \
+  ../include/SFML/Network/SocketSelector.hpp \
+  ../include/SFML/Network/TcpListener.hpp \
+  ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGame/usefullStruct.hpp \
   ../src/TDGame/Buildable.hpp \
   ../src/TDGraphics/SFMLTowerLoader.hpp \
@@ -9134,6 +9977,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h:
 
+../src/TDGame/MenusButton.hpp:
+
 ../include/SFML/System/Vector2.inl:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h:
@@ -9342,6 +10187,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream:
 
+../src/TDGame/MenusButton.cpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/unistd.h:
@@ -9435,6 +10282,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../include/SFML/System/MemoryInputStream.hpp:
 
 ../include/SFML/System/String.hpp:
+
+../src/TDGame/NetworkController.cpp:
 
 ../include/SFML/System/Utf.hpp:
 
@@ -9664,6 +10513,20 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDSounds/SFMainSoundLoader.hpp:
 
+../src/TDGame/NetworkController.hpp:
+
+../include/SFML/Network.hpp:
+
+../include/SFML/Network/Ftp.hpp:
+
+../include/SFML/Network/TcpSocket.hpp:
+
+../include/SFML/Network/SocketSelector.hpp:
+
+../include/SFML/Network/UdpSocket.hpp:
+
+../src/TDGame/Menus.hpp:
+
 ../src/TDGraphics/SpritesHolder.cpp:
 
 ../src/TDGame/AnimationsMaths.hpp:
@@ -9680,15 +10543,7 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDTowers/SpeedAuraTower.hpp:
 
-../include/SFML/Network.hpp:
-
-../include/SFML/Network/Ftp.hpp:
-
-../include/SFML/Network/TcpSocket.hpp:
-
-../include/SFML/Network/SocketSelector.hpp:
-
-../include/SFML/Network/UdpSocket.hpp:
+../src/TDGame/Menus.cpp:
 
 ../src/TDUnits/Drone.hpp:
 

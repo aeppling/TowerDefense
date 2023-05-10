@@ -593,6 +593,36 @@ CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.s"
 	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\NetworkController.cpp -o CMakeFiles\untitled1.dir\src\TDGame\NetworkController.cpp.s
 
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: CMakeFiles/untitled1.dir/flags.make
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: CMakeFiles/untitled1.dir/includes_CXX.rsp
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: ../src/TDGame/MenusButton.cpp
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: CMakeFiles/untitled1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj -MF CMakeFiles\untitled1.dir\src\TDGame\MenusButton.cpp.obj.d -o CMakeFiles\untitled1.dir\src\TDGame\MenusButton.cpp.obj -c C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\MenusButton.cpp
+
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.i"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\MenusButton.cpp > CMakeFiles\untitled1.dir\src\TDGame\MenusButton.cpp.i
+
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.s"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\MenusButton.cpp -o CMakeFiles\untitled1.dir\src\TDGame\MenusButton.cpp.s
+
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: CMakeFiles/untitled1.dir/flags.make
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: CMakeFiles/untitled1.dir/includes_CXX.rsp
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: CMakeFiles/untitled1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj -MF CMakeFiles\untitled1.dir\src\TDGame\Menus.cpp.obj.d -o CMakeFiles\untitled1.dir\src\TDGame\Menus.cpp.obj -c C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.cpp
+
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.i"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.cpp > CMakeFiles\untitled1.dir\src\TDGame\Menus.cpp.i
+
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.s"
+	C:\MINGW_~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.cpp -o CMakeFiles\untitled1.dir\src\TDGame\Menus.cpp.s
+
 # Object files for target untitled1
 untitled1_OBJECTS = \
 "CMakeFiles/untitled1.dir/main.cpp.obj" \
@@ -629,7 +659,9 @@ untitled1_OBJECTS = \
 "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.obj" \
 "CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj" \
 "CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj" \
-"CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj"
+"CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj" \
+"CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj" \
+"CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj"
 
 # External object files for target untitled1
 untitled1_EXTERNAL_OBJECTS =
@@ -669,6 +701,8 @@ untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj
+untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj
+untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj
 untitled1.exe: CMakeFiles/untitled1.dir/build.make
 untitled1.exe: ../lib/libsfml-system-s.a
 untitled1.exe: ../lib/libsfml-window-s.a
@@ -687,7 +721,7 @@ untitled1.exe: ../lib/libFLAC.a
 untitled1.exe: CMakeFiles/untitled1.dir/linklibs.rsp
 untitled1.exe: CMakeFiles/untitled1.dir/objects1.rsp
 untitled1.exe: CMakeFiles/untitled1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable untitled1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Linking CXX executable untitled1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\untitled1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

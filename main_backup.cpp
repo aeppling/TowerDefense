@@ -1,3 +1,7 @@
+//
+// Created by adrie on 10/05/2023.
+//
+
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
@@ -71,21 +75,7 @@ int main() {
     int globalVolume = 50;
     SFMainSoundLoader mainSoundLoader;
     // LAUNCHING MENU
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
-    menu.loadHome();
-    while (windowTestMenu.isOpen()) {
-        sf::Event event;
-        while (windowTestMenu.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                windowTestMenu.close();
-            }
-            // HANDLE KEYBOARD/MOUSE EVENT HERE
-        }
-        windowTestMenu.clear();
-        menu.drawMenu(windowTestMenu);
-        windowTestMenu.display();
-    }
+    Menus menu;
     std::cout << "MENU LOADED" << std::endl;
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
@@ -97,23 +87,21 @@ int main() {
     SFMLLoader sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-    
+
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
-    NetworkController* networkController = new NetworkController(true);
-    
+
+    /* NetworkController* networkController = new NetworkController(false);
+
     if (networkController->getIsServer() == true) {
-        std::string message = "5";
-       
-        networkController->sendMessageToAllClients(message);
-
-    }else{
-        std::string message = networkController->receiveMessage(networkController->getServerSocket());
-        std::cout << "Message received : " << message << std::endl;
-    }
-
-    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController);
+         std::string message = "5";
+         networkController->sendMessageToAllClients(message);
+     } else {
+         std::string message = networkController->receiveMessage(networkController->getServerSocket());
+         std::cout << "Message received : " << message << std::endl;
+     }*/
+    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
@@ -123,6 +111,6 @@ int main() {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
     // WINDOW LOOP AND MOUSE SETUP
-   // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
+    // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
     return (0);
 }

@@ -123,7 +123,6 @@ int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
 void SFMLHud::update() {
     m_waveText.setString("Wave: " + std::to_string(_waveNumber) + "/" + std::to_string(_maxWaveNumber));
     m_moneyText.setString(std::to_string(_money));
-    
 }
 
 void SFMLHud::drawBackground() {
@@ -154,7 +153,6 @@ void SFMLHud::draw() {
     _window->draw(m_moneyText);
     m_waveText.setPosition(175, 100);
     _window->draw(m_waveText);
-
     textMessage.setPosition(15, 400);
     
     textMessage.setColor(sf::Color::White);
@@ -196,7 +194,6 @@ void SFMLHud::draw() {
         this->towerRectangles.push_back(towerInfoRect);
         _window->draw(towerInfoRect);
         _window->draw(towerSprite);
-
         towerInfoY += 100; // Avancer la position Y pour la prochaine tour
         }
         _window->draw(wallSprite);
