@@ -13,7 +13,12 @@ private:
     int                         _winSizeY;
 
     std::vector<MenusButton*>   _visibleButtons;
+    std::vector<sf::Sprite*>    _visibleSprites;
     sf::Sprite                  _actualBackground;
+
+    sf::Texture                 _planet1txt;
+    sf::Texture                 _planet2txt;
+    sf::Texture                 _planet3txt;
 
     sf::Texture                 _backgroundStars;
     sf::Texture                 _backgroundHome;

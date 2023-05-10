@@ -80,22 +80,18 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     if (planetToLoad == 1) {
         SFMLLoaderPlanet1 sfmlLoader1;
         sfmlLoader = sfmlLoader1;
-        std::cout << "LOAD 1" << std::endl;
     }
     else if (planetToLoad == 2) {
         SFMLLoaderPlanet2 sfmlLoader2;
         sfmlLoader = sfmlLoader2;
-        std::cout << "LOAD 2" << std::endl;
     }
     else if (planetToLoad == 3) {
         SFMLLoaderPlanet3 sfmlLoader3;
         sfmlLoader = sfmlLoader3;
-        std::cout << "LOAD 3" << std::endl;
     }
     else {
         SFMLLoaderPlanet1 sfmlLoader1;
         sfmlLoader = sfmlLoader1;
-        std::cout << "LOAD LAST" << std::endl;
     }
 
     // CREATE GAME OBJET

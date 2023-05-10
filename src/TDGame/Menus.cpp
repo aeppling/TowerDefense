@@ -7,6 +7,14 @@
 #include "Menus.hpp"
 
 Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSizeY) {
+
+    if (this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
+        std::cout << "Planet sprite not loaded correctly" << std::endl;
+    if (this->_planet2txt.loadFromFile("Sprites/Planets/planet07.png"))
+        std::cout << "Planet sprite not loaded correctly" << std::endl;
+    if (this->_planet3txt.loadFromFile("Sprites/Planets/planet09.png"))
+        std::cout << "Planet sprite not loaded correctly" << std::endl;
+    //
     if (!this->_backgroundStars.loadFromFile("Sprites/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_backgroundHome.loadFromFile("Sprites/Backgrounds/BattleTankBackground.png")))
@@ -28,6 +36,7 @@ Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSiz
 
 void Menus::loadHome() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     MenusButton *singleplayerButton = new MenusButton(300, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
     MenusButton *multiplayerButton = new MenusButton(300, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
@@ -51,16 +60,24 @@ void Menus::loadHome() {
 
 void Menus::loadSingleplayer() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
+    // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, nullptr, "Planet-1", "planet1", false, this->_mainFont);
     MenusButton *world2 = new MenusButton(400, 600, nullptr, "Planet-2", "planet2", false, this->_mainFont);
     MenusButton *world3 = new MenusButton(400, 600, nullptr, "Planet-3", "planet3", false, this->_mainFont);
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    world1->getText()->setCharacterSize(40);
+    world2->getText()->setCharacterSize(40);
+    world3->getText()->setCharacterSize(40);
 
     int offset = (_winSizeX / 5) + 70;
     world1->setPosition(offset, 500);
     world2->setPosition(offset + 500, 500);
     world3->setPosition(offset + 1000, 500);
+    world1->getText()->setPosition(world1->getText()->getPosition().x - 50, world1->getText()->getPosition().y + 170);
+    world2->getText()->setPosition(world2->getText()->getPosition().x - 50, world2->getText()->getPosition().y + 170);
+    world3->getText()->setPosition(world3->getText()->getPosition().x - 50, world3->getText()->getPosition().y + 170);
     backhome->setPosition(_winSizeX / 2, 900);
 
     this->_visibleButtons.push_back(world1);
@@ -68,13 +85,43 @@ void Menus::loadSingleplayer() {
     this->_visibleButtons.push_back(world3);
     this->_visibleButtons.push_back(backhome);
 
+    // BACKGROUND SETUP
     this->_actualBackground.setTexture(this->_backgroundHome);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
+
+    // OTHERS SPRITE SET UP
+
+    sf::Sprite *planet1Spr = new sf::Sprite;
+    sf::Sprite *planet2Spr = new sf::Sprite;
+    sf::Sprite *planet3Spr = new sf::Sprite;
+
+    planet1Spr->setTexture(this->_planet1txt);
+    planet2Spr->setTexture(this->_planet2txt);
+    planet3Spr->setTexture(this->_planet3txt);
+
+    sf::Vector2f newOriginText1(planet1Spr->getLocalBounds().width / 2.f, planet1Spr->getLocalBounds().height / 2.f);
+    planet1Spr->setOrigin(newOriginText1);
+    sf::Vector2f newOriginText2(planet2Spr->getLocalBounds().width / 2.f, planet2Spr->getLocalBounds().height / 2.f);
+    planet2Spr->setOrigin(newOriginText2);
+    sf::Vector2f newOriginText3(planet3Spr->getLocalBounds().width / 2.f, planet3Spr->getLocalBounds().height / 2.f);
+    planet3Spr->setOrigin(newOriginText3);
+
+    planet1Spr->setPosition(offset, 400);
+    planet2Spr->setPosition(offset + 500, 400);
+    planet3Spr->setPosition(offset + 1000, 400);
+    planet1Spr->setScale(0.25, 0.25);
+    planet2Spr->setScale(0.25, 0.25);
+    planet3Spr->setScale(0.25, 0.25);
+
+    this->_visibleSprites.push_back(planet1Spr);
+    this->_visibleSprites.push_back(planet2Spr);
+    this->_visibleSprites.push_back(planet3Spr);
 }
 
 void Menus::loadMultiplayer() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -89,6 +136,7 @@ void Menus::loadMultiplayer() {
 
 void Menus::loadSettings() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -103,6 +151,7 @@ void Menus::loadSettings() {
 
 void Menus::loadTutorial() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
 
@@ -117,6 +166,7 @@ void Menus::loadTutorial() {
 
 void Menus::loadLevelsPlanet1() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -148,6 +198,7 @@ void Menus::loadLevelsPlanet1() {
 
 void Menus::loadLevelsPlanet2() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -179,6 +230,7 @@ void Menus::loadLevelsPlanet2() {
 
 void Menus::loadLevelsPlanet3() {
     this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
@@ -218,6 +270,11 @@ void Menus::drawMenu(sf::RenderWindow &window) {
             window.draw(*this->_visibleButtons.at(i)->getIcon());
         window.draw(*this->_visibleButtons.at(i)->getText());
         window.draw(*this->_visibleButtons.at(i)->getRectangle());
+        i++;
+    }
+    i = 0;
+    while (i < this->_visibleSprites.size()) {
+        window.draw(*this->_visibleSprites.at(i));
         i++;
     }
 }
