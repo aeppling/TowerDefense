@@ -24,13 +24,14 @@ class Tower : public Buildable {
         std::vector<Tower *> towersList;
         std::vector<TDUnit *> enemiesInRange;
         std::string towerName;
-         std::shared_ptr<std::vector<TDUnit*>> enemiesList;
+        std::shared_ptr<std::vector<TDUnit*>> enemiesList;
         std::vector<int> damage;
         std::vector<int> cost;
         std::vector<float> slowValue;
         int level;
         bool speedBoosted;
         float speedBuff;
+        int armorPierceValue;
         bool activated;
         std::vector<float> range;
         std::vector<float> timeBetweenAttack;
@@ -61,6 +62,8 @@ public:
         void fire(TDUnit *target) override;
         void isInRange() override;
         void upgrade(SFMLTowerLoader &sfmlTowerLoader) override;
+        void addArmor();
+        int getArmor() { return (this->armorPierceValue); };
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
         int getCost() override;

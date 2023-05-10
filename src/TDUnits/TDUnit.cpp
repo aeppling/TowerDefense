@@ -136,13 +136,13 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getMissile());
     else if (this->getTypeName() == "Drone")
         this->_sprite.setTexture(*sfmlLoader.getDrone());
-    else if (this->getTypeName() == "Alien")
+    else if ((this->getTypeName() == "Alien") || (this->getTypeName() == "ArmoredAlien"))
         this->_sprite.setTexture(*sfmlLoader.getAlien());
     else if (this->getTypeName() == "Spaceship")
         this->_sprite.setTexture(*sfmlLoader.getSpaceship());
-    else if (this->getTypeName() == "FlyingDrone")
+    else if ((this->getTypeName() == "FlyingDrone") || (this->getTypeName() == "ArmoredFlyingDrone"))
         this->_sprite.setTexture(*sfmlLoader.getFlyingDrone());
-    else if (this->getTypeName() == "RegenerateDrone")
+    else if ((this->getTypeName() == "RegenerateDrone") || (this->getTypeName() == "ArmoredRegenerateDrone"))
         this->_sprite.setTexture(*sfmlLoader.getRegenerateDrone());
     else if (this->getTypeName() == "ArmoredDrone")
         this->_sprite.setTexture(*sfmlLoader.getArmoredDrone());
@@ -157,9 +157,9 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
     this->_sprite.setPosition((this->_posX * this->_unitSize) + cellSize/2 + _GAME_POSITION_X, (this->_posY * this->_unitSize) + cellSize / 2 + _GAME_POSITION_Y);
     // SET ARMOR SPRITE
     sf::IntRect textureRect2(0, 0, this->_armorSprite.getTexture()->getSize().x, this->_armorSprite.getTexture()->getSize().y);
-    this->_armorSprite.setScale(scaleFactor * (this->_scale * 1.5), scaleFactor * (this->_scale * 1.5));
+    this->_armorSprite.setScale(scaleFactor * (this->_scale * 1.8), scaleFactor * (this->_scale * 1.8));
     this->_armorSprite.setTextureRect(textureRect2);
-    sf::Vector2f newOrigin2(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
+    sf::Vector2f newOrigin2(this->_armorSprite.getLocalBounds().width / 2.f, this->_armorSprite.getLocalBounds().height / 2.f);
     this->_armorSprite.setOrigin(newOrigin2);
 /*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     sf::Sprite newSprite;
@@ -216,13 +216,18 @@ void    TDUnit::setHealthBarSize() {
     this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
 }
 
-void    TDUnit::getShot(int damage, int slowValue) {
+void    TDUnit::getShot(int damage, int slowValue, int armorPierce) {
     //if ((slowValue > 0) && (this->_isSlowed == false))
       //  this->getSlow(slowValue);
    // this->_sprite.setColor(sf::Color::Red);
     //std::this_thread::sleep_for(std::chrono::milliseconds(400));
     //this->_sprite.setColor(sf::Color::White);
-    this->_health_points = this->_health_points - damage;
+    int real_armor = this->_armor - armorPierce;
+    if (real_armor < 0)
+        real_armor = 0;
+    if (real_armor >= damage)
+        return;
+    this->_health_points = this->_health_points - (damage - real_armor);
 }
 
 void    TDUnit::getKill() {

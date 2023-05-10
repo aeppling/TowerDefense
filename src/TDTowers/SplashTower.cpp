@@ -23,7 +23,7 @@ void SplashTower::fire(TDUnit *target){
                     continue;
                 }
                 this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-                target->getShot(this->damage[this->level], 0);
+                target->getShot(this->damage[this->level], 0, this->armorPierceValue);
                 if (target->getHealth() <= 0) {
                     //  this->gameInstance.addCoins(target->getValue());
                     this->_killSound.play();

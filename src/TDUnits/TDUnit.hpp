@@ -100,7 +100,7 @@ public:
     bool isAlive();
         // SFML
     void setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
-    void getShot(int damage, int slowValue);
+    void getShot(int damage, int slowValue, int armorPierce);
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);

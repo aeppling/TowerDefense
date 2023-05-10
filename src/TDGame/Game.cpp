@@ -35,6 +35,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->player = player1;
     this->player->setLifeNumber(8/difficulty);
     this->player->setCoinNumber(500-(difficulty*100));
+    this->player->setCoinNumber(10000);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -448,6 +449,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         this->sellTower(map);
                                     else if (clicked == 2)
                                         this->upgradeTower();
+                                    else if (clicked == 3) {
+                                        if ((this->player->getCoinNumber() >= 50) && (this->selectedActiveTower->getArmor() < 30)) {
+                                            this->looseCoins(50);
+                                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
+                                            this->selectedActiveTower->addArmor();
+                                        }
+                                    }
                                 }
                                 else
                                     this->sfmlHud->checkForClick(window);
@@ -511,12 +519,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
+                                    if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
+                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }
-                                //DISPLAY ARMOR HERE
-                                if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
-                                    window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
                             }
                             if ((enemyList.at(this->currentWaveNumber).at(s)->isAlive() == false)
                                 && (enemyList.at(this->currentWaveNumber).at(s)->alreadyCounted() == false)) {

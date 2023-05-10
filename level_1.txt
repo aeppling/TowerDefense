@@ -1,4 +1,6 @@
+ArmoredAlien:2
 Drone:3/ArmoredDrone:2/Drone:2
+ArmoredFlyingDrone:2
 Spaceship:2
 FlyingDrone:1/Missile:3
 RegenerateDrone:1

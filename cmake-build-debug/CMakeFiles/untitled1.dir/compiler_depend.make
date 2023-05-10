@@ -999,7 +999,10 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/Spaceship.hpp \
   ../src/TDUnits/FlyingDrone.hpp \
   ../src/TDUnits/RegenerateDrone.hpp \
-  ../src/TDUnits/ArmoredDrone.hpp
+  ../src/TDUnits/ArmoredDrone.hpp \
+  ../src/TDUnits/ArmoredFlyingDrone.hpp \
+  ../src/TDUnits/ArmoredRegenerateDrone.hpp \
+  ../src/TDUnits/ArmoredAlien.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: ../src/TDGame/SizeRatioCalculator.cpp \
   ../src/TDGame/SizeRatioCalculator.hpp \
@@ -9103,6 +9106,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h:
 
+../src/TDUnits/ArmoredAlien.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h:
@@ -9333,6 +9338,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc:
 
+../src/TDUnits/ArmoredFlyingDrone.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc:
@@ -9436,6 +9443,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../include/SFML/System/Vector3.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h:
+
+../src/TDUnits/ArmoredRegenerateDrone.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h:
 

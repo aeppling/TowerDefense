@@ -68,6 +68,7 @@ Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLo
     this->aerial = isAerial;
     this->speedBoosted = false;
     this->speedBuff = 1;
+    this->armorPierceValue = 0;
 }
 
 void Tower::live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) {
@@ -211,7 +212,7 @@ void Tower::fire(TDUnit *target){
         //std::thread shotThread(&TDUnit::getShot, target, this->damage[this->level], 0);
         //shotThread.detach();
         this->missileLauncher->shoot(this->towerSprite.getPosition().x, this->towerSprite.getPosition().y, target, this->missileSpeed);
-        target->getShot(this->damage[this->level], 0);
+        target->getShot(this->damage[this->level], 0, this->armorPierceValue);
         //shotThread.join();
         if (target->getHealth() <= 0) {
             this->_killSound.play();
@@ -323,3 +324,7 @@ void Tower::resetSpeedBuff() {
     this->speedBuff = 1;
 }
 
+void Tower::addArmor() {
+    if (this->armorPierceValue < 30)
+        this->armorPierceValue = this->armorPierceValue + 5;
+}

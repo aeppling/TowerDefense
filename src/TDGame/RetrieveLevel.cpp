@@ -11,6 +11,9 @@
 #include "../TDUnits/FlyingDrone.hpp"
 #include "../TDUnits/RegenerateDrone.hpp"
 #include "../TDUnits/ArmoredDrone.hpp"
+#include "../TDUnits/ArmoredFlyingDrone.hpp"
+#include "../TDUnits/ArmoredRegenerateDrone.hpp"
+#include "../TDUnits/ArmoredAlien.hpp"
 
 RetrieveLevel::RetrieveLevel(int starting_level) : _actual_level(starting_level) {
 }
@@ -32,6 +35,12 @@ TDUnit *getUnitFromString(std::string enemyType) {
         newUnit = new RegenerateDrone(0, 0, sfmlLoaderUnit);
     else if (enemyType == "ArmoredDrone")
         newUnit = new ArmoredDrone(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "ArmoredFlyingDrone")
+        newUnit = new ArmoredFlyingDrone(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "ArmoredRegenerateDrone")
+        newUnit = new ArmoredRegenerateDrone(0, 0, sfmlLoaderUnit);
+    else if (enemyType == "ArmoredAlien")
+        newUnit = new ArmoredAlien(0, 0, sfmlLoaderUnit);
     else {
         std::cout << "Unknown unit named '" << enemyType << "'" << std::endl;
         return (nullptr);
