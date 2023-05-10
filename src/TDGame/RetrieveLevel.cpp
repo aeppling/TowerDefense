@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include "RetrieveLevel.hpp"
+#include "../TDGraphics/SFMLLoaderPlanet1.hpp"
 #include "../TDUnits/Drone.hpp"
 #include "../TDUnits/Missile.hpp"
 #include "../TDUnits/Alien.hpp"
@@ -19,7 +20,7 @@ RetrieveLevel::RetrieveLevel(int starting_level, int planet) : _actual_level(sta
 
 TDUnit *getUnitFromString(std::string enemyType) {
     TDUnit *newUnit;
-    SFMLLoader sfmlLoaderUnit;
+    SFMLLoaderPlanet1 sfmlLoaderUnit;
     if (enemyType == "Drone")
         newUnit = new Drone(0, 0, sfmlLoaderUnit);
     else if (enemyType == "Missile")

@@ -5,6 +5,7 @@
 #include <cstdlib>
 
 #include "src/TDGraphics/SFMLLoader.hpp"
+#include "src/TDGraphics/SFMLLoaderPlanet1.hpp"
 #include "src/TDMap/mapParser.hpp"
 #include "src/TDMap/AStarPathFinding.hpp"
 #include "src/TDUnits/TDUnit.hpp"
@@ -73,7 +74,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     settings.stencilBits = 8;
     settings.antialiasingLevel = 4;
     window.setActive(true);
-    SFMLLoader sfmlLoader;
+    SFMLLoaderPlanet1 sfmlLoader;
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);

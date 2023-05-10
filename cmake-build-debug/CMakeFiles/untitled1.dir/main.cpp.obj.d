@@ -264,6 +264,8 @@ CMakeFiles/untitled1.dir/main.cpp.obj: \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGraphics/SFMLLoaderPlanet1.hpp \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGraphics/SFMLLoader.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDMap/mapParser.hpp \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \

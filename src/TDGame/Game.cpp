@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Game.hpp"
 #include "../TDGraphics/SFMLMapReloader.hpp"
+#include "../TDGraphics/SFMLLoaderPlanet1.hpp"
 #include "../TDTowers/AntiAirTower.hpp"
 #include "../TDTowers/BasicTower.hpp"
 #include "../TDTowers/AttackSpeedTower.hpp"
@@ -21,7 +22,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
     SFMLCoinAnimation sfmlCoinAnimation;
-    SFMLLoader sfmlLoader;
+    SFMLLoaderPlanet1 sfmlLoader;
     SFMLDecorationLoader decorationLoader;
     this->sfmlDecorationLoader = decorationLoader;
     this->sfmlLoaderMap = sfmlLoader;
