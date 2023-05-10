@@ -66,7 +66,7 @@ int extractLevelNumber(const std::string& str) {
     return (-1);
 }
 
-void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int gameDifficulty, sf::RenderWindow &window) {
+void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad) {
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
     settings.depthBits = 24;
@@ -88,7 +88,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
             std::cout << "Message received : " << message << std::endl;
         }*/
 
-    Game currentGame(gameDifficulty, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr);
+    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
@@ -134,7 +134,7 @@ int main() {
                         selectionInformation = clicked;
                         levelToPlay = extractLevelNumber(selectionInformation);
                         planetToLoad = extractPlanetNumber(selectionInformation);
-                        launchGame(sfSoundPlayer, musicVolume, soundVolume, gameDifficulty, windowTestMenu);
+                        launchGame(sfSoundPlayer, musicVolume, soundVolume, gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
                     }
                 }
             }
