@@ -224,6 +224,30 @@ src/TDGame/Game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.s
 .PHONY : src/TDGame/Game.cpp.s
 
+src/TDGame/NetworkController.obj: src/TDGame/NetworkController.cpp.obj
+.PHONY : src/TDGame/NetworkController.obj
+
+# target to build an object file
+src/TDGame/NetworkController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj
+.PHONY : src/TDGame/NetworkController.cpp.obj
+
+src/TDGame/NetworkController.i: src/TDGame/NetworkController.cpp.i
+.PHONY : src/TDGame/NetworkController.i
+
+# target to preprocess a source file
+src/TDGame/NetworkController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.i
+.PHONY : src/TDGame/NetworkController.cpp.i
+
+src/TDGame/NetworkController.s: src/TDGame/NetworkController.cpp.s
+.PHONY : src/TDGame/NetworkController.s
+
+# target to generate assembly for a file
+src/TDGame/NetworkController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.s
+.PHONY : src/TDGame/NetworkController.cpp.s
+
 src/TDGame/RetrieveLevel.obj: src/TDGame/RetrieveLevel.cpp.obj
 .PHONY : src/TDGame/RetrieveLevel.obj
 
@@ -965,6 +989,9 @@ help:
 	@echo ... src/TDGame/Game.obj
 	@echo ... src/TDGame/Game.i
 	@echo ... src/TDGame/Game.s
+	@echo ... src/TDGame/NetworkController.obj
+	@echo ... src/TDGame/NetworkController.i
+	@echo ... src/TDGame/NetworkController.s
 	@echo ... src/TDGame/RetrieveLevel.obj
 	@echo ... src/TDGame/RetrieveLevel.i
 	@echo ... src/TDGame/RetrieveLevel.s

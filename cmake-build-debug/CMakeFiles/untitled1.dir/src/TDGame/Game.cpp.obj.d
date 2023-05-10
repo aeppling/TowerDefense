@@ -333,16 +333,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundPlayer.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundLoader.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFTowerSoundLoader.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AttackSpeedTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SlowTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\NetworkController.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Ftp.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Export.hpp \
@@ -355,4 +346,14 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/Packet.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/SocketSelector.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/TcpListener.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/UdpSocket.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/UdpSocket.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AttackSpeedTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SlowTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp

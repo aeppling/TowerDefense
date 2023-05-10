@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj.d"
+  "CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj"
+  "CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj"

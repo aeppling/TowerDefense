@@ -260,7 +260,8 @@
 				62,
 				65,
 				67,
-				70
+				70,
+				72
 			]
 		}
 	],
@@ -420,7 +421,8 @@
 				62,
 				65,
 				67,
-				70
+				70,
+				72
 			]
 		},
 		{
@@ -463,7 +465,8 @@
 				64,
 				66,
 				68,
-				69
+				69,
+				71
 			]
 		}
 	],
@@ -856,6 +859,17 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/TDTowers/SpeedAuraTower.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/TDGame/NetworkController.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/TDGame/NetworkController.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

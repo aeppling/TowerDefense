@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/AnimationsMaths.cpp" "CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Buildable.cpp" "CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Game.cpp" "CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj.d"
+  "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/NetworkController.cpp" "CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/RetrieveLevel.cpp" "CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/SizeRatioCalculator.cpp" "CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj.d"
   "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp" "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj" "gcc" "CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj.d"
