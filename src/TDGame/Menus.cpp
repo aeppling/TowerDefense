@@ -71,3 +71,7 @@ void Menus::drawMenu(sf::RenderWindow &window) {
         i++;
     }
 }
+
+void Menus::checkForClick(sf::Vector2i mousePos) {
+
+}

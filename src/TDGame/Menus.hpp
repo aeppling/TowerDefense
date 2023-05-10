@@ -34,6 +34,9 @@ public:
     void loadSettings();
     void loadTutorial();
     void drawMenu(sf::RenderWindow &window);
+
+    // FUNCTION
+    void checkForClick(sf::Vector2i mousePos);
 };
 
 #endif //UNTITLED1_MENUS_HPP

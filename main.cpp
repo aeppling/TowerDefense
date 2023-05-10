@@ -80,9 +80,14 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 windowTestMenu.close();
             }
-            // HANDLE KEYBOARD/MOUSE EVENT HERE
+            if (event.type == sf::Event::MouseButtonPressed &&
+                sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
+                menu.checkForClick(mousePos);
+            }
         }
         windowTestMenu.clear();
+        // ADD LOOP LOGIC HERE
         menu.drawMenu(windowTestMenu);
         windowTestMenu.display();
     }
