@@ -23,6 +23,8 @@ MenusButton::MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::st
 }
 
 void MenusButton::setPosition(int posX, int posY) {
+    this->_posX = posX;
+    this->_posY = posY;
     this->_rectangle.setPosition(posX, posY);
 }
 

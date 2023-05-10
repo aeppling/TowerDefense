@@ -23,6 +23,7 @@ private:
     sf::Text m_waveText;
     sf::Text m_lifeText;
     sf::Text m_levelText;
+    sf::Text m_enemyLeftText;
     sf::Texture heartTexture;
     sf::Texture coinTexture;
     sf::Texture removeTexture;
