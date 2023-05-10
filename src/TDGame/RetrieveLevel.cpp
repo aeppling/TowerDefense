@@ -13,7 +13,6 @@
 #include "../TDUnits/ArmoredDrone.hpp"
 #include "../TDUnits/ArmoredFlyingDrone.hpp"
 #include "../TDUnits/ArmoredRegenerateDrone.hpp"
-#include "../TDUnits/ArmoredAlien.hpp"
 
 RetrieveLevel::RetrieveLevel(int starting_level, int planet) : _actual_level(starting_level), _planet(planet) {
 }
@@ -39,8 +38,6 @@ TDUnit *getUnitFromString(std::string enemyType) {
         newUnit = new ArmoredFlyingDrone(0, 0, sfmlLoaderUnit);
     else if (enemyType == "ArmoredRegenerateDrone")
         newUnit = new ArmoredRegenerateDrone(0, 0, sfmlLoaderUnit);
-    else if (enemyType == "ArmoredAlien")
-        newUnit = new ArmoredAlien(0, 0, sfmlLoaderUnit);
     else {
         std::cout << "Unknown unit named '" << enemyType << "'" << std::endl;
         return (nullptr);
@@ -85,7 +82,7 @@ std::vector<TDUnit*> RetrieveLevel::getWaveFromString(std::string waveString) {
 }
 
 std::vector<std::vector<TDUnit*>> RetrieveLevel::getNextLevel() {
-    std::string path_to_open("level_" + std::to_string(this->_actual_level) + "_planet_" +  std::to_string(this->_planet) + ".txt");
+    std::string path_to_open("Planet_" + std::to_string(this->_planet) + "/level_" + std::to_string(this->_actual_level) + "_planet_" +  std::to_string(this->_planet) + ".txt");
     std::ifstream levelFile;
     std::vector<std::vector<TDUnit*>> enemyLevel;
     int i = 1;
