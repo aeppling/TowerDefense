@@ -1,21 +1,12 @@
 CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.cpp \
- C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.hpp \
- C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\MenusButton.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Graphics.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Window.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Config.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Clock.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Export.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Time.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Err.hpp \
- C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
- C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
- C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
@@ -133,6 +124,18 @@ CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+ C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\Menus.hpp \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\MenusButton.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Graphics.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Window.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Config.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Clock.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Export.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Time.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Err.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/FileInputStream.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/InputStream.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/NonCopyable.hpp \
@@ -173,8 +176,6 @@ CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Utf.inl \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
- C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
- C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
  C:/MINGW_~1/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/String.inl \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/System/Thread.hpp \

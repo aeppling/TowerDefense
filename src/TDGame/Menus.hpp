@@ -9,13 +9,22 @@
 
 class Menus {
 private:
+    int                         _winSizeX;
+    int                         _winSizeY;
+
     std::vector<MenusButton*>   _visibleButtons;
+    sf::Sprite                  _actualBackground;
+
+    sf::Texture                 _backgroundStars;
     sf::Texture                 _backgroundHome;
     sf::Texture                 _backgroundSingleplayer;
     sf::Texture                 _backgroundMultiplayer;
     sf::Texture                 _backgroundSettings;
+    sf::Texture                 _backgroundTutorial;
+
+    sf::Font                    _mainFont;
 public:
-    Menus() {};
+    Menus(int winSizeX, int winSizeY);
     ~Menus() = default;
 
     // MENUS LOADERS
@@ -23,6 +32,7 @@ public:
     void loadSingleplayer();
     void loadMultiplayer();
     void loadSettings();
+    void loadTutorial();
     void drawMenu(sf::RenderWindow &window);
 };
 

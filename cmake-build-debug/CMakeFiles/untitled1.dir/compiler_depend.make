@@ -729,22 +729,13 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../src/TDGame/usefullStruct.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp \
-  ../src/TDGame/Menus.hpp \
-  ../src/TDGame/MenusButton.hpp \
-  ../include/SFML/Graphics.hpp \
-  ../include/SFML/Window.hpp \
-  ../include/SFML/System.hpp \
-  ../include/SFML/Config.hpp \
-  ../include/SFML/System/Clock.hpp \
-  ../include/SFML/System/Export.hpp \
-  ../include/SFML/System/Time.hpp \
-  ../include/SFML/System/Err.hpp \
-  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
-  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
-  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
@@ -862,6 +853,18 @@ CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  ../src/TDGame/Menus.hpp \
+  ../src/TDGame/MenusButton.hpp \
+  ../include/SFML/Graphics.hpp \
+  ../include/SFML/Window.hpp \
+  ../include/SFML/System.hpp \
+  ../include/SFML/Config.hpp \
+  ../include/SFML/System/Clock.hpp \
+  ../include/SFML/System/Export.hpp \
+  ../include/SFML/System/Time.hpp \
+  ../include/SFML/System/Err.hpp \
   ../include/SFML/System/FileInputStream.hpp \
   ../include/SFML/System/InputStream.hpp \
   ../include/SFML/System/NonCopyable.hpp \
@@ -902,8 +905,6 @@ CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
   ../include/SFML/System/Utf.inl \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
-  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
-  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
   ../include/SFML/System/String.inl \
   ../include/SFML/System/Thread.hpp \

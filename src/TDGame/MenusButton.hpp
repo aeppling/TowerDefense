@@ -19,7 +19,7 @@ private:
     bool                _hasIcon;
     std::string         _shortname;
 public:
-    MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname);
+    MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname, bool hasIcon, sf::Font &mainFont);
     ~MenusButton() = default;
 
     // GETTER & SETTER
