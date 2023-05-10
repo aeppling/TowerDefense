@@ -76,6 +76,7 @@ int main() {
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
     menu.loadHome();
+    std::string levelToPlay("none");
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
@@ -85,8 +86,14 @@ int main() {
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
-                if (menu.checkForClick(mousePos) == "exit")
-                    return (1);
+                std::string clicked = menu.checkForClick(mousePos);
+                if (clicked != "no") {
+                    if (clicked == "exit")
+                        return (1);
+                    else {
+                        levelToPlay = clicked;
+                    }
+                }
             }
         }
         windowTestMenu.clear();

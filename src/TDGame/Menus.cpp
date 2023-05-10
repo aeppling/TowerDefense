@@ -137,7 +137,7 @@ void Menus::loadLevelsPlanet1() {
             horizontal_offset = 0;
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
-        std::string shortNameStr("planetlevel" + std::to_string(i + 1));
+        std::string shortNameStr("planet1level" + std::to_string(i + 1));
         MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
@@ -168,7 +168,7 @@ void Menus::loadLevelsPlanet2() {
             horizontal_offset = 0;
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
-        std::string shortNameStr("planetlevel" + std::to_string(i + 1));
+        std::string shortNameStr("planet2level" + std::to_string(i + 1));
         MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
@@ -199,7 +199,7 @@ void Menus::loadLevelsPlanet3() {
             horizontal_offset = 0;
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
-        std::string shortNameStr("planetlevel" + std::to_string(i + 1));
+        std::string shortNameStr("planet3level" + std::to_string(i + 1));
         MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
@@ -222,21 +222,37 @@ void Menus::drawMenu(sf::RenderWindow &window) {
     }
 }
 
-void Menus::loadMenuByName(std::string name) {
-    if (name == "singleplayer")
+std::string Menus::loadMenuByName(std::string name) {
+    if (name == "singleplayer") {
         this->loadSingleplayer();
-    else if (name == "multiplayer")
+        return ("no");
+    }
+    else if (name == "multiplayer") {
         this->loadMultiplayer();
-    else if (name == "settings")
+        return ("no");
+    }
+    else if (name == "settings") {
         this->loadSettings();
-    else if (name == "home")
+        return ("no");
+    }
+    else if (name == "home") {
         this->loadHome();
-    else if (name == "planet1")
+        return ("no");
+    }
+    else if (name == "planet1") {
         this->loadLevelsPlanet1();
-    else if (name == "planet2")
+        return ("no");
+    }
+    else if (name == "planet2") {
         this->loadLevelsPlanet2();
-    else if (name == "planet3")
+        return ("no");
+    }
+    else if (name == "planet3") {
         this->loadLevelsPlanet3();
+        return ("no");
+    }
+    else
+        return (name);
     // ELSE RETURN BECAUSE IT IS A LEVEL & PLANET INFORMATION
 }
 
@@ -249,9 +265,13 @@ std::string Menus::checkForClick(sf::Vector2i mousePos) {
         if (whichClick == "exit")
             return (whichClick);
         else if (whichClick != "no") {
-            this->loadMenuByName(whichClick);
-            break;
+            std::string answer = this->loadMenuByName(whichClick);
+            if (answer != "no")
+                return (answer);
+            else
+                break;
         }
         i++;
     }
+    return ("no");
 }

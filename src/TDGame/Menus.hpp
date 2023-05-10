@@ -28,7 +28,7 @@ public:
     ~Menus() = default;
 
     // MENUS LOADERS
-    void loadMenuByName(std::string name);
+    std::string loadMenuByName(std::string name);
     void loadHome();
     void loadSingleplayer();
     void loadMultiplayer();
