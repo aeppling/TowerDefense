@@ -360,7 +360,9 @@ CMakeFiles/untitled1.dir/main.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDPlayer/TDPlayer.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundLoader.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFMainSoundPlayer.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/NetworkController.hpp
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/NetworkController.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.cpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.hpp
@@ -716,6 +718,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: C:/Users/leori/OneDrive/Docume
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/TcpListener.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/UdpSocket.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AntiAirTower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/Tower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/BasicTower.hpp \
@@ -724,6 +727,571 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: C:/Users/leori/OneDrive/Docume
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SniperTower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/json.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_function.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/numeric \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_numeric.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/adl_serializer.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/abi_macros.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/from_json.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/forward_list \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/unordered_map \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable_policy.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unordered_map.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/valarray \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cmath \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/math.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_before.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/slice_array.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_after.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice_array.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/mask_array.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/indirect_array.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/exceptions.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/value_t.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/macro_scope.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/detected.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/void_t.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/thirdparty/hedley/hedley.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cassert \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/assert.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/string_escape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/position_t.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/cpp_future.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/type_traits.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iterator_traits.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/call_std/begin.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/call_std/end.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/json_fwd.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/string_concat.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstring \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/identity_tag.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/std_fs.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/to_json.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/byte_container_with_subtype.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/hash.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/binary_reader.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/input_adapters.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/json_sax.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/lexer.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/is_sax.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/parser.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/internal_iterator.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iter_impl.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/json_pointer.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/json_ref.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/binary_writer.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/output_adapters.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/serializer.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iomanip \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/quoted_string.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/sstream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/to_chars.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/ordered_map.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/macro_unscope.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+
+CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.cpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/wchar.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_directx.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/exception \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stddef.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/typeinfo \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/nested_exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/move.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/localefwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/locale.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdio.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cctype \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/ctype.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ios_base.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/atomicity.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/errno.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/process.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/limits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/limits.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/signal.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream_insert.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_function.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/binders.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/alloc_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/alloc_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/string_conversions.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/malloc.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/streambuf \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/wctype.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf_iterator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Config.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Clock.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Time.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Err.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/FileInputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/InputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/NonCopyable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Lock.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/MemoryInputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Mutex.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Sleep.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/String.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Utf.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/algorithm \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/utility \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_relops.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/limits \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/tuple \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/array \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uses_allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Utf.inl \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/String.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Thread.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Thread.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocal.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocalPtr.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocalPtr.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector2.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector2.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector3.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector3.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Clipboard.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Context.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/GlResource.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/ContextSettings.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Cursor.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Event.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Joystick.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Keyboard.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Mouse.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Sensor.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Touch.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/VideoMode.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_vector.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/vector.tcc \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Window.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/WindowHandle.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/WindowStyle.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/BlendMode.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/CircleShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Shape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Drawable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderStates.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Transform.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Transformable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/VertexArray.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Vertex.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Color.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/PrimitiveType.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/ConvexShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Font.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glyph.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Texture.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Image.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RectangleShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderTarget.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/View.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderTexture.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderWindow.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Shader.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Sprite.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Text.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/VertexBuffer.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp
+
+CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.cpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Config.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Clock.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Time.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Err.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ios \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/postypes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwchar \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/wchar.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_directx.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/exception \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_defines.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stddef.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stddef.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/typeinfo \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/nested_exception.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/move.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/concept_check.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/char_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_pair.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdint.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/localefwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/locale.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdio.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cctype \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/ctype.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ios_base.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/atomicity.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/errno.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/process.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/limits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/limits.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/signal.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream_insert.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_function.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/binders.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/range_access.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/initializer_list \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/alloc_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/alloc_traits.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/string_conversions.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/malloc.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_classes.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdexcept \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/streambuf \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/wctype.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf_iterator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ostream.tcc \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/FileInputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/InputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/NonCopyable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Lock.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/MemoryInputStream.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Mutex.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Sleep.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/String.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Utf.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/algorithm \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/utility \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_relops.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/algorithmfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/limits \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_facets_nonio.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stringfwd.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/tuple \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/array \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uses_allocator.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/invoke.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Utf.inl \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iterator \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/istream \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/istream.tcc \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stream_iterator.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/String.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Thread.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Thread.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocal.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocalPtr.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/ThreadLocalPtr.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector2.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector2.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector3.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Vector3.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Clipboard.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Context.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/GlResource.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/ContextSettings.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Cursor.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Event.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Joystick.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Keyboard.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Mouse.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Sensor.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Touch.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/VideoMode.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_vector.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/vector.tcc \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Window.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/WindowHandle.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/WindowStyle.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/BlendMode.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Export.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/CircleShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Shape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Drawable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderStates.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Transform.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Transformable.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/VertexArray.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Vertex.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Color.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/PrimitiveType.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/ConvexShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Font.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glyph.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Texture.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Image.hpp \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h \
+  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RectangleShape.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderTarget.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/View.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderTexture.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RenderWindow.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Shader.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.inl \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Sprite.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Text.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/VertexBuffer.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/NetworkController.cpp \
@@ -1217,6 +1785,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/OneDri
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/Drone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/TDUnit.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/Missile.hpp \
@@ -1226,8 +1795,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/OneDri
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/RegenerateDrone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredDrone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredFlyingDrone.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.cpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.hpp \
@@ -9317,6 +9885,8 @@ C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/main.cpp:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/byte_container_with_subtype.hpp:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/stdlib.h:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/stddef.h:
@@ -9332,6 +9902,8 @@ C:/msys64/mingw64/x86_64-w64-mingw32/include/stdlib.h:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdlib:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/detected.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/Utf.hpp:
 
@@ -9351,7 +9923,13 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw3
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMissileLoader.cpp:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/call_std/begin.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/adl_serializer.hpp:
+
 C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice_array.h:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h:
 
@@ -9379,9 +9957,13 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/ptr_traits.h
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed/syslimits.h:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Mouse.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/assertions.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/to_chars.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/vector:
 
@@ -9425,13 +10007,13 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iosfwd:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_function.h:
 
-C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp:
-
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/numeric_traits.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/unordered_map:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/FileInputStream.hpp:
 
@@ -9448,6 +10030,8 @@ C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h:
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLHud.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/memoryfwd.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iterator_traits.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/streambuf.tcc:
 
@@ -9541,6 +10125,8 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdint:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/type_traits.hpp:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdint.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h:
@@ -9556,6 +10142,8 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/allocator.h:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/clocale:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/slice_array.h:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/wctype.h:
 
@@ -9586,6 +10174,10 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw3
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/std_fs.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/macro_scope.hpp:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/errno.h:
 
@@ -9627,6 +10219,8 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/string:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice.h:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/System/MemoryInputStream.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/new_allocator.h:
@@ -9659,6 +10253,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstdio:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/void_t.hpp:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cerrno:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functional_hash.h:
@@ -9684,6 +10280,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cwctype:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/json_sax.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h:
 
@@ -9783,11 +10381,15 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_heap.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.cpp:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_construct.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/uniform_int_dist.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/locale:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/json.hpp:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/map:
 
@@ -9823,9 +10425,13 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Export.hpp:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/position_t.hpp:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/Context.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/GlResource.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Window/ContextSettings.hpp:
 
@@ -9861,6 +10467,8 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/CircleShape.hpp:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unordered_map.h:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Shape.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileLauncher.hpp:
@@ -9872,6 +10480,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/SocketHandle.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/input_adapters.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Rect.inl:
 
@@ -9891,6 +10501,10 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tree.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iter_impl.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.tcc:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_map.h:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/RectangleShape.hpp:
@@ -9900,6 +10514,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLHud.cpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/View.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/json_ref.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLTowerLoader.hpp:
 
@@ -9916,6 +10532,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Glsl.inl:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/call_std/end.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/Text.hpp:
 
@@ -9969,6 +10587,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/primitive_iterator.hpp:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/set:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/deque:
@@ -10019,6 +10639,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Audio/SoundFileWriter.hpp:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/identity_tag.hpp:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDPlayer/TDPlayer.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLCoinAnimation.hpp:
@@ -10028,6 +10650,8 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/math.h:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/Ftp.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/internal_iterator.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/TcpSocket.hpp:
 
@@ -10039,17 +10663,113 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/Packet.hpp:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cassert:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Network/TcpListener.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/MenusButton.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Buildable.cpp:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/iterators/iteration_proxy.hpp:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AntiAirTower.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/AttackSpeedTower.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cmath:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/numeric:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_numeric.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/abi_macros.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/from_json.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/forward_list:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/lexer.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.tcc:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable_policy.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/valarray:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_before.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_after.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/mask_array.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/indirect_array.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/exceptions.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/value_t.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/thirdparty/hedley/hedley.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/is_sax.hpp:
+
+C:/msys64/mingw64/x86_64-w64-mingw32/include/assert.h:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/string_escape.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/meta/cpp_future.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/json_fwd.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/string_concat.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstring:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/TDMap.cpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/conversions/to_json.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/hash.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/binary_reader.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/input/parser.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileLauncher.cpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/json_pointer.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/binary_writer.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/output_adapters.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/output/serializer.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/ordered_map.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/detail/macro_unscope.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.cpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/NetworkController.cpp:
 
@@ -10063,13 +10783,7 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp:
 
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
-
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.cpp:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cmath:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.cpp:
 
@@ -10079,11 +10793,7 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/MapCell.cpp:
 
-C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/TDMap.cpp:
-
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDSounds/SFTowerSoundLoader.cpp:
-
-C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileLauncher.cpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/MissileThread.cpp:
 
