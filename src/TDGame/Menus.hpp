@@ -29,6 +29,8 @@ private:
     sf::Texture                 _multiIcon;
     sf::Texture                 _tutoIcon;
     sf::Texture                 _settingsIcon;
+    sf::Texture                 _hostIcon;
+    sf::Texture                 _joinIcon;
 
 
     sf::Texture                 _backgroundStars;

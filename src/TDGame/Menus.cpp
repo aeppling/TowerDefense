@@ -26,6 +26,10 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
         std::cout << "Menu icon not loaded correctly" << std::endl;
     if (!this->_settingsIcon.loadFromFile("Icons/settingsIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
+    if (!this->_hostIcon.loadFromFile("Icons/hostIcon.png"))
+        std::cout << "Menu icon not loaded correctly" << std::endl;
+    if (!this->_joinIcon.loadFromFile("Icons/joinIcon.png"))
+        std::cout << "Menu icon not loaded correctly" << std::endl;
     // BACKGROUNDS
     if (!this->_backgroundStars.loadFromFile("Sprites/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
@@ -205,6 +209,23 @@ void Menus::loadMultiplayer() {
     this->_visibleButtons.push_back(host);
     this->_visibleButtons.push_back(join);
     this->_visibleButtons.push_back(backhome);
+
+    // ICON SETUP
+    sf::Sprite *hostIcon = new sf::Sprite;
+    hostIcon->setTexture(this->_hostIcon);
+    sf::Vector2f newOriginIcon1(hostIcon->getLocalBounds().width / 2.f, hostIcon->getLocalBounds().height / 2.f);
+    hostIcon->setOrigin(newOriginIcon1);
+    hostIcon->setPosition(offset, 450);
+    hostIcon->setScale(0.8, 0.8);
+    this->_visibleSprites.push_back(hostIcon);
+
+    sf::Sprite *joinIcon = new sf::Sprite;
+    joinIcon->setTexture(this->_joinIcon);
+    sf::Vector2f newOriginIcon2(joinIcon->getLocalBounds().width / 2.f, joinIcon->getLocalBounds().height / 2.f);
+    joinIcon->setOrigin(newOriginIcon2);
+    joinIcon->setPosition(offset + 500, 450);
+    joinIcon->setScale(0.8, 0.8);
+    this->_visibleSprites.push_back(joinIcon);
 
     // BACKGROUND SETUP
     this->_actualBackground.setTexture(this->_backgroundSingleplayer);
