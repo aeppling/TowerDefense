@@ -69,6 +69,19 @@ int extractLevelNumber(const std::string& str) {
     return (-1);
 }
 
+bool extractGameMode(const std::string& infoString) {
+    size_t singlePos = infoString.find("single");
+    size_t multiPos = infoString.find("multi");
+    if (singlePos != std::string::npos) {
+        return (0);
+    }
+    else if (multiPos != std::string::npos) {
+        return (1);
+    }
+    else
+        return (0);
+}
+
 void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int globalVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad) {
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
@@ -137,6 +150,7 @@ int main() {
     std::string selectionInformation("none");
     int         levelToPlay = -1;
     int         planetToLoad = -1;
+    bool        gameMode = 0;
     int gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
     while (windowTestMenu.isOpen()) {
         sf::Event event;
@@ -151,11 +165,42 @@ int main() {
                 if (clicked != "no") {
                     if (clicked == "exit")
                         return (1);
+                    else if (clicked.find("ip:") != std::string::npos) {
+                        // LAUNCH CONNEXION TO HOST WITH menu.getIp
+                        std::string ipAddressToConnect = clicked.substr(3);
+
+                    }
+                    else if (clicked.find("hostwait") != std::string::npos) {
+                        // LAUNCH HOST WAITING FOR CLIENT
+                    }
                     else {
                         selectionInformation = clicked;
                         levelToPlay = extractLevelNumber(selectionInformation);
                         planetToLoad = extractPlanetNumber(selectionInformation);
-                        launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
+                        std::string str1(selectionInformation);
+                        gameMode = extractGameMode(str1);
+                        if (gameMode == 0)
+                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
+                        else {
+                            // OPEN WINDOW WITH HOST INFOS AND WAIT
+                            menu.loadHost();
+                            // WAIT FOR CONNECTION
+                        }
+                    }
+                }
+            }
+            if ((event.type == sf::Event::TextEntered) && (menu.isIpEntering())) {
+                if (event.text.unicode < 128) {
+                    if (event.text.unicode == '\b' && !menu.getIpAddressField().empty()) { // SUPPRESION CHARACTERE
+                        std::string inputString = menu.getIpAddressField();
+                        inputString.pop_back();
+                        menu.setIpAddressField(inputString);
+                    }
+                    else if ((menu.getIpAddressField().size() < 15) && (event.text.unicode != '\r')) { // AJOUT DE TEXTE
+                        std::string inputString = menu.getIpAddressField();
+                        inputString += static_cast<char>(event.text.unicode);
+                        menu.setIpAddressField(inputString);
+                        menu.loadJoin();
                     }
                 }
             }

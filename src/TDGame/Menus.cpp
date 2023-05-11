@@ -7,6 +7,9 @@
 #include "Menus.hpp"
 
 Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY), _globalVolume(globalVolume) {
+    this->_players = "single";
+    this->_isIpEntering = false;
+    this->_ipAddressField = "";
     // PLANETS
     if (this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
@@ -38,6 +41,10 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
 }
 
 void Menus::loadHome() {
+    this->_players = "single";
+    this->_isIpEntering = false;
+    this->_ipAddressField = "";
+
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
@@ -138,16 +145,144 @@ void Menus::loadSingleplayer() {
 }
 
 void Menus::loadMultiplayer() {
+    this->_players = "multi";
+    this->_isIpEntering = false;
+    this->_ipAddressField = "";
+    this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
+    this->_visibleText.clear();
+
+    // BUTTONS SETUP
+    MenusButton *host = new MenusButton(400, 600, nullptr, "Host", "singleplayer", false, this->_mainFont);
+    MenusButton *join = new MenusButton(400, 600, nullptr, "Join", "join", false, this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    host->getText()->setCharacterSize(40);
+    join->getText()->setCharacterSize(40);
+
+    int offset = (_winSizeX / 5) + 70;
+    host->setPosition(offset, 500);
+    join->setPosition(offset + 500, 500);
+    host->getText()->setPosition(host->getText()->getPosition().x - 50, host->getText()->getPosition().y + 170);
+    join->getText()->setPosition(join->getText()->getPosition().x - 50, join->getText()->getPosition().y + 170);
+    backhome->setPosition(_winSizeX / 2, 900);
+
+    this->_visibleButtons.push_back(host);
+    this->_visibleButtons.push_back(join);
+    this->_visibleButtons.push_back(backhome);
+
+    // BACKGROUND SETUP
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+
+}
+
+void Menus::loadHostLobby() {
+    this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
+    this->_visibleText.clear();
+
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", false, this->_mainFont);
+    back->setPosition(_winSizeX / 2, 900);
+    this->_visibleButtons.push_back(back);
+
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadHost() {
+    this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
+    this->_visibleText.clear();
+
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to planet choice", "singleplayer", false, this->_mainFont);
+    back->setPosition(_winSizeX / 2, 900);
+    this->_visibleButtons.push_back(back);
+
+    std::string title("Waiting for player connection...");
+    sf::Text *mainTitle = new sf::Text;
+    mainTitle->setString(title);
+    mainTitle->setFont(this->_mainFont);
+    mainTitle->setCharacterSize(60);
+    sf::Vector2f newOriginTitle(mainTitle->getLocalBounds().width / 2.f, mainTitle->getLocalBounds().height / 2.f);
+    mainTitle->setOrigin(newOriginTitle);
+    mainTitle->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
+    this->_visibleText.push_back(mainTitle);
+
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadJoin() {
+    this->_visibleButtons.clear();
+    this->_visibleSprites.clear();
+    this->_visibleText.clear();
+    this->_isIpEntering = true;
+
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", false, this->_mainFont);
+    MenusButton *joinTest = new MenusButton(600, 80, nullptr, "Join", "jointest", false, this->_mainFont);
+    joinTest->setPosition(_winSizeX / 2, 700);
+    back->setPosition(_winSizeX / 2, 900);
+    this->_visibleButtons.push_back(joinTest);
+    this->_visibleButtons.push_back(back);
+
+    // INFO TEXT
+    std::string title("Enter host IP address :");
+    sf::Text *infoText = new sf::Text;
+    infoText->setString(title);
+    infoText->setFont(this->_mainFont);
+    infoText->setCharacterSize(60);
+    sf::Vector2f newOriginTitle(infoText->getLocalBounds().width / 2.f, infoText->getLocalBounds().height / 2.f);
+    infoText->setOrigin(newOriginTitle);
+    infoText->setPosition(this->_winSizeX / 2, this->_winSizeY / 6);
+    this->_visibleText.push_back(infoText);
+
+    // TEXT FIELD INPUT
+    sf::RectangleShape textField(sf::Vector2f(200.f, 30.f));
+    textField.setFillColor(sf::Color::White);
+    textField.setOutlineThickness(2.f);
+    textField.setOutlineColor(sf::Color::Black);
+    textField.setPosition(300.f, 200.f);
+    std::string ipAdressText(this->_ipAddressField);
+    sf::Text *inputText = new sf::Text;
+    inputText->setString(ipAdressText);
+    inputText->setFont(this->_mainFont);
+    inputText->setCharacterSize(60);
+    sf::Vector2f newOriginInfo(inputText->getLocalBounds().width / 2.f, inputText->getLocalBounds().height / 2.f);
+    inputText->setOrigin(newOriginInfo);
+    inputText->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
+    inputText->setFillColor(sf::Color::White);
+    this->_visibleText.push_back(inputText);
+
+    // BACKGROUND
+    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
+    this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::loadJoinTest() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
-
     backhome->setPosition(_winSizeX / 2, 900);
-
     this->_visibleButtons.push_back(backhome);
 
+    // INFO TEXT
+    std::string title("Trying to connect to host...");
+    sf::Text *mainTitle = new sf::Text;
+    mainTitle->setString(title);
+    mainTitle->setFont(this->_mainFont);
+    mainTitle->setCharacterSize(60);
+    sf::Vector2f newOriginTitle(mainTitle->getLocalBounds().width / 2.f, mainTitle->getLocalBounds().height / 2.f);
+    mainTitle->setOrigin(newOriginTitle);
+    mainTitle->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
+
+    this->_visibleText.push_back(mainTitle);
     this->_actualBackground.setTexture(this->_backgroundHome);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
@@ -325,6 +460,18 @@ std::string Menus::loadMenuByName(std::string name) {
         this->loadHome();
         return ("no");
     }
+    else if (name == "host") {
+        this->loadHost();
+        return ("hostwait");
+    }
+    else if (name == "join") {
+        this->loadJoin();
+        return ("no");
+    }
+    else if (name == "jointest") {
+        this->loadJoinTest();
+        return ("ip:" + this->_ipAddressField);
+    }
     else if (name == "planet1") {
         this->loadLevelsPlanet1();
         return ("no");
@@ -338,7 +485,7 @@ std::string Menus::loadMenuByName(std::string name) {
         return ("no");
     }
     else
-        return (name); // COMPACT WITH DIFFICULTY ????
+        return (name + this->_players); // COMPACT WITH DIFFICULTY ????
     // ELSE RETURN BECAUSE IT IS A LEVEL & PLANET INFORMATION
 }
 
