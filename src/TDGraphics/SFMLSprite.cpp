@@ -28,6 +28,9 @@ void        SFMLSprite::setSpriteCutted(sf::Texture *texture, int cellSize, int 
     this->_posY = posY;
     this->_type = type;
     this->_sprite.setTexture(*texture);
+    // UNCOMMENT THOSE 2 LINE TO CUT THE MAPCELL BORDER
+   // float scaleFactor = static_cast<float>(cellSize + 8) / static_cast<float>(texture->getSize().x);
+//    sf::IntRect textureRect(8, 60, texture->getSize().x - 8, texture->getSize().y - 60);
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(texture->getSize().x);
     sf::IntRect textureRect(0, 72, texture->getSize().x, texture->getSize().y - 72);
     this->_sprite.setScale(scaleFactor * scale, scaleFactor * scale);
