@@ -131,8 +131,6 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
-    // WINDOW LOOP AND MOUSE SETUP
-    // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
 }
 
 int main() {

@@ -25,16 +25,26 @@ private:
     sf::Texture                 _planet2txt;
     sf::Texture                 _planet3txt;
 
+    sf::Texture                 _singleIcon;
+    sf::Texture                 _multiIcon;
+    sf::Texture                 _tutoIcon;
+    sf::Texture                 _settingsIcon;
+
+
     sf::Texture                 _backgroundStars;
     sf::Texture                 _backgroundHome;
     sf::Texture                 _backgroundSingleplayer;
     sf::Texture                 _backgroundMultiplayer;
+    sf::Texture                 _backgroundLevels;
     sf::Texture                 _backgroundSettings;
     sf::Texture                 _backgroundTutorial;
 
     sf::Font                    _mainFont;
     sf::Font                    _fontTitle;
 
+    int                         _nbUnlockedPlanet1 = 10;
+    int                         _nbUnlockedPlanet2 = 7;
+    int                         _nbUnlockedPlanet3= 0;
 public:
     Menus(int winSizeX, int winSizeY, int globalVolume);
     ~Menus() = default;

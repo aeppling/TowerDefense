@@ -4,7 +4,7 @@
 
 #include "MenusButton.hpp"
 
-MenusButton::MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname, sf::Font &mainFont) : _shortname(shortname) {
+MenusButton::MenusButton(int sizeX, int sizeY, bool isUnlocked, std::string text, std::string shortname, sf::Font &mainFont) : _shortname(shortname) {
     // SET TEXT
     this->_text.setString(text);
     this->_text.setFont(mainFont);
@@ -16,6 +16,8 @@ MenusButton::MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::st
     this->_rectangle.setFillColor(sf::Color::Transparent);
     this->_rectangle.setOutlineThickness(3);
     this->_rectangle.setOutlineColor(sf::Color::White);
+    // SET LOCKED SPRITE
+
     // ERASE BORDERS
     sf::Vector2f newOrigin(this->_rectangle.getLocalBounds().width / 2.f, this->_rectangle.getLocalBounds().height / 2.f);
     this->_rectangle.setOrigin(newOrigin);

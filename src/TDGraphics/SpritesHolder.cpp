@@ -203,7 +203,6 @@ void                            SpritesHolder::displayMap(sf::RenderWindow &wind
     i = 0;
     while (i != this->_wallSprite.size()) {
         this->_wallSprite.at(i)->setPosition(cellSize);
-//        this->_wallSprite.at(i)->getSprite().setTexture(*sfmlLoaderTest.getWallCell());
         window.draw(this->_wallSprite.at(i)->getSprite());
         i++;
     }
