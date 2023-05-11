@@ -34,6 +34,7 @@ public:
     void            addKill() { this->_totalKill++; };
     void            looseCoin(int toLoose) { this->_coinNumber = this->_coinNumber - toLoose; };
     void            addCoin(int toAdd) { this->_coinNumber = this->_coinNumber + toAdd; };
+    void            setCoin(int value) { this->_coinNumber = value; };
 };
 
 #endif //UNTITLED1_TDPLAYER_HPP

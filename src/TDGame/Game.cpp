@@ -16,7 +16,7 @@
 #include <SFML/Network.hpp>
 #include <nlohmann/json.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
-                                                                                                  sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
+                                                                                        sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
     this->planet = planetToLoad;
     SFMLEnemiesLoader sfmlEnemiesLoader;
@@ -53,6 +53,8 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->networkController = networkController;
     this->isWaveEnding = false;
     this->gameState.numCoins = 5000;
+    this->gameState.towerList = &this->towerList;
+    this->id = 0;
 }
 
 
@@ -258,6 +260,9 @@ void Game::sellTower(TDMap &map) {
             this->towerList.erase(this->towerList.begin() + i);
             this->selectedActiveTower = nullptr;
             this->sfmlHud->setSelectedTower(nullptr);
+            if(this->networkController != nullptr){
+                    this->sendGameStateToClients();
+            }
             break;
         }
         i++;
@@ -275,9 +280,12 @@ void Game::upgradeTower() {
          //   if (cost <= this->player->getCoinNumber()){
                 this->looseCoins(cost);
                 this->gameState.numCoins = this->player->getCoinNumber();
-                this->sendGameStateToClients();
+                
                 this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
                 this->towerList.at(i)->upgrade(this->sfmlTowerLoader);
+                if(this->networkController != nullptr){
+                    this->sendGameStateToClients();
+                }
            // }
             break;
         }
@@ -357,6 +365,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
+                    if(this->networkController!= nullptr){
+                        this->handleUpdateGameState(std::ref(map), window, isWaveRunning);
+                    }
+
+
                     sf::Event event;
                     window.clear(sf::Color::Black);
                     this->sfmlHud->drawBackground();
@@ -462,6 +475,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                             this->looseCoins(50);
                                             this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
                                             this->selectedActiveTower->addArmor();
+                                            if(this->networkController != nullptr){
+                                                this->sendGameStateToClients();
+                                            }
                                         }
                                     }
                                 }
@@ -801,11 +817,16 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                     std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
                     return (false);
                 }
+                id++;
+                toAdd->setId(this->id);
+                std::cout << "Tower id : " << this->id << std::endl;
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->looseCoins(toBuild->getCost());
                 this->gameState.numCoins = this->player->getCoinNumber();
-                this->sendGameStateToClients();
+                if(this->networkController != nullptr){
+                    this->sendGameStateToClients();
+                }
                 this->sfMainSoundPlayer.playGamePlacementClick();
                 this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, toBuild->getCost(), false);
                 toBuild = nullptr;
@@ -1110,6 +1131,7 @@ void Game::createTower(){
             newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY), this->cellSize);
             this->addCoins(newTower->getCost());
             
+            
             this->towerList.push_back(newTower);
             newTower->run(this->currentWave);
             std::cout << "Tower succesfully created " << std::endl;
@@ -1146,30 +1168,7 @@ void Game::startLevel(){
     std::cout << "Starting level ..." << std::endl;
     //* start level
     //*this->enemyList = retrieveLevel.getNextLevel();
-    sf::TcpSocket socket;
-    sf::Socket::Status status = socket.connect("10.128.173.166", 53000);
-    if (status != sf::Socket::Done)
-    {
-        std::cout << "Error connexion " << std::endl;
-    }
-    char data[100];
-    std::size_t received;
-
-    if (socket.receive(data, 100, received) != sf::Socket::Done)
-    {
-        std::cout << "Error reception " << std::endl;
-    }
-    std::cout << "Received " << received << " bytes" << std::endl;
-
-
-
-    char data2[100] = "Hello, I'm a client";
-
-    // socket TCP:
-    if (socket.send(data2, 100) != sf::Socket::Done)
-    {
-        std::cout << "Error envoi " << std::endl;
-    }
+    
 }
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {
@@ -1241,18 +1240,171 @@ void Game::sendGameStateToClients() {
     // Serializez l'état du jeu en une chaîne de caractères JSON
     nlohmann::json gameStateJson;
     gameStateJson["numCoins"] = gameState.numCoins;
-    // ajoutez ici les autres informations pertinentes sur l'état du jeu à la structure JSON
+    std::cout << "nbr tours gamestate" << gameState.towerList->size() << std::endl;
+    std::cout << "nbr tours" << this->towerList.size() << std::endl;
+    // Ajouter les informations des tours dans le JSON
+    nlohmann::json towersJson = nlohmann::json::array();
+    for (auto& tower : *(gameState.towerList)) {
+        nlohmann::json towerJson;
+        towerJson["id"] = tower->getId();
+        towerJson["type"] = tower->getTowerName();
+        towerJson["position"] = {tower->getPosition().x, tower->getPosition().y};
+        towerJson["level"] = tower->getLevel();
+        towerJson["armorPierceValue"] = tower->getArmor();
+        towersJson.push_back(towerJson);
+    }
+    gameStateJson["towers"] = towersJson;
 
     std::string gameStateStr = gameStateJson.dump();
-
+    std::cout << "Sending game state to clients: " << gameStateStr << std::endl;
+    std::cout << gameStateStr << std::endl;
     // Envoyer l'état du jeu à tous les clients
-    
-    if(this->networkController == nullptr)
+    if (this->networkController == nullptr) {
         return;
-    else if(this->networkController->getIsServer() == false)
+    } else if (this->networkController->getIsServer() == false) {
         this->networkController->sendMessageToServer(gameStateStr);
-    else{
+    } else {
         this->networkController->sendMessageToAllClients(gameStateStr);
     }
-    
+}
+void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool isWaveRunning) {
+    // Fonction pour mettre à jour l'état du jeu
+    // Désérialisez l'état du jeu à partir d'une chaîne de caractères JSON
+    std::string message = this->networkController->detectMessageReceived();
+                    
+    if(message != ""){
+                        
+        
+        try {
+            nlohmann::json gameStateJson = nlohmann::json::parse(message);
+            int numCoins = gameStateJson["numCoins"].get<int>();
+            //this->player->setCoin(numCoins);
+            // std::cout << "Coins : " << numCoins << std::endl;
+
+            // Mettre à jour les informations des tours
+            int numTowers = gameStateJson["towers"].size();
+            auto towersJson = gameStateJson["towers"];
+            std::cout << "nbr tours actuelle : " << this->gameState.towerList->size() << std::endl;
+            std::cout << "nbr tours recu : " << towersJson.size() << std::endl;
+            for (int i = 0; i < towersJson.size(); i++) {
+                std::cout << "Recuperation des caracteristiques de la tour " << i << std::endl;
+                auto towerJson = towersJson[i];
+                int towerId = towerJson["id"].get<int>();
+                std::string towerType = towerJson["type"].get<std::string>();
+                Point towerPosition = {towerJson["position"][0], towerJson["position"][1]};
+                int towerLevel = towerJson["level"].get<int>();
+                int towerArmorPierceValue = towerJson["armorPierceValue"].get<int>();
+                std::cout << "Caracteristiques de la tour recupérés" << std::endl;
+                bool towerFound = false;
+                // Rechercher la tour correspondante dans la liste des tours et la mettre à jour
+                for (auto& tower : *(gameState.towerList)) {
+                    std::cout << "Recherche de la Tower " << tower->getId() << std::endl;
+                    if (tower->getId() == towerId) {
+                        std::cout << "Tower found" << std::endl;
+                        towerFound = true;
+                        if( tower->getLevel() + 1 == towerLevel){
+                            // Tower leveled up by other player
+                            std::cout << "Tower leveled up by other player" << std::endl;
+                            int cost = tower->getUpgradeCost();
+                            this->looseCoins(cost);
+                            this->gameState.numCoins = this->player->getCoinNumber();
+
+                            this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, false);
+                            tower->upgrade(this->sfmlTowerLoader);
+                        }
+                           // Tower armor changed by other player 
+                        std::cout << tower->getArmor() << std::endl;
+                        std::cout << towerArmorPierceValue << std::endl;
+                        if(tower->getArmor() < towerArmorPierceValue){
+                            std::cout << "Tower armor changed by other player" << std::endl;
+                            this->looseCoins(50);
+                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
+                            tower->addArmor();
+                        }
+                        break;
+                    }
+                    // Tower built by other player
+
+                    
+                }
+                if(!towerFound){
+                    std::cout << "Tower not found" << std::endl;
+                    std::cout << "Tower built by other player" << std::endl;
+                    Buildable *toBuild = nullptr;
+                    for(int i = 0; i < this->towerStoreList.size(); i++){
+                        if (this->towerStoreList.at(i)[0]->getTowerName() == towerType) {
+                            toBuild = this->towerStoreList.at(i).at(0);
+                            break;
+                        }
+                    }
+                    map.getElem(towerPosition.x, towerPosition.y)->setType('A');
+                    // BUILD->Add tower with its coordinate to vector of actives towers
+                    Tower *toAdd = dynamic_cast<Tower *>(toBuild);
+                    if (toAdd == nullptr) {
+                        std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
+                        return;
+                    }
+                    this->towerList.push_back(toAdd);
+                    this->id++;
+                    toAdd->setId(this->id);
+                    std::cout << "Tower added to towerList" << std::endl;
+                    std::cout << "TowerList size : " << this->towerList.size() << std::endl;
+                    std::cout << "id : " << this->id << std::endl;
+
+                    this->towerList[this->towerList.size() - 1]->setPosition(towerPosition.x, towerPosition.y, this->cellSize);
+                    this->looseCoins(toBuild->getCost());
+                    this->gameState.numCoins = this->player->getCoinNumber();
+                    
+                    
+                    this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, towerPosition.x,towerPosition.y, toBuild->getCost(), false);
+                    toBuild = nullptr;
+                    if (isWaveRunning == true) {
+                        if (this->towerList[this->towerList.size() - 1]->getTowerName() == "SpeedAuraTower") {
+                            auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[this->towerList.size() - 1]);
+                            if (speedAuraTower != nullptr) {
+                                speedAuraTower->run(&this->towerList);
+                            }
+                        }
+                        else
+                            this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                    //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
+                    }
+                    map.refreshTextures(towerPosition.x, towerPosition.y);
+//                  this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
+                    this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
+                    std::cout << "Tower built" << std::endl;
+                }
+            }
+
+            if( this->gameState.towerList->size() > numTowers){
+                std::cout << "Tower sell by other player" << std::endl;
+                for(int i = 0; i < this->gameState.towerList->size(); i++){
+                    bool found = false;
+                     for (int i = 0; i < towersJson.size(); i++) {
+                        auto towerJson = towersJson[i];
+                        int towerId = towerJson["id"].get<int>();
+                        if(this->gameState.towerList->at(i)->getId() == towerId){
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        int cost = this->towerList.at(i)->getCost() / 2;
+                        this->addCoins(cost);
+                        this->gameState.numCoins = this->player->getCoinNumber();
+                        this->sfMainSoundPlayer.playGameCoinWon();
+                        this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, true);
+                        this->towerList.at(i)->deactivate();
+                        map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
+                        this->towerList.erase(this->towerList.begin() + i);
+                        this->selectedActiveTower = nullptr;
+                        this->sfmlHud->setSelectedTower(nullptr);
+                        break;
+                    }
+                }
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error parsing JSON: " << e.what() << std::endl;
+        }
+    }
 }

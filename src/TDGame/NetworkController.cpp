@@ -11,21 +11,23 @@ NetworkController::NetworkController(bool isServer){
         
     }else{
         std::cout << "client" << std::endl;
-        // Attend la réponse du serveur contenant son adresse IP
+        while (true) {
             std::string serverAddressString;
-            std::cout << "Please enter the IP address of the server : ";
+            std::cout << "Please enter the IP address of the server: ";
             std::cin >> serverAddressString;
             sf::IpAddress serverAddress(serverAddressString);
 
-            // Connecte le client au serveur
+            // Connect the client to the server
             if (this->connectToServer(serverAddress))
             {
                 std::cout << "Connected to server" << std::endl;
+                break; // Successful connection, exit loop
             }
             else
             {
                 std::cout << "Failed to connect to server" << std::endl;
             }
+        }
     }  
 }
 
@@ -91,16 +93,19 @@ void NetworkController::sendMessageToServer(const std::string& message)
 }
 
 std::string NetworkController::receiveMessage(sf::TcpSocket* clientSocket)
-{
+
+{   
+    std::cout << "Receiving message from client" << std::endl;
     char buffer[1024];
     std::size_t received;
     sf::Socket::Status status = clientSocket->receive(buffer, sizeof(buffer), received);
     if (status == sf::Socket::Done) {
         return std::string(buffer, received);
     }
-    std::cout << "Failed to receive message from client" << std::endl;
+    std::cout << "Failed to receive message from client test" << std::endl;
     return "";
 }
+
 
 
 
@@ -136,7 +141,7 @@ NetworkController::~NetworkController() {
     delete this->serverSocket;
 }
 
-sf::Socket* NetworkController::isMessageReceived()
+std::string NetworkController::detectMessageReceived()
 {
     bool messageReceived = false;
 
@@ -154,7 +159,7 @@ sf::Socket* NetworkController::isMessageReceived()
             {
                 std::cout << "Received message \"" << buffer << "\" from client " << client->getRemoteAddress() << std::endl;
                 messageReceived = true;
-                return client.get();
+                return std::string(buffer, received);
             }
             else if (status == sf::Socket::Disconnected)
             {
@@ -178,7 +183,7 @@ sf::Socket* NetworkController::isMessageReceived()
         {
             std::cout << "Received message \"" << buffer << "\" from server" << std::endl;
             messageReceived = true;
-            return this->serverSocket;
+            return std::string(buffer, received);
         }
         else if (status == sf::Socket::Disconnected)
         {
@@ -191,5 +196,5 @@ sf::Socket* NetworkController::isMessageReceived()
         this->serverSocket->setBlocking(true);
     }
 
-    return nullptr;
+    return "";
 }

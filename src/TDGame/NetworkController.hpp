@@ -18,7 +18,7 @@ public:
     bool getIsServer() { return this->isServer; };
     std::vector<sf::TcpSocket*> getClients();
     sf::TcpSocket* getServerSocket() { return this->serverSocket; };
-    sf::Socket* isMessageReceived();
+    std::string detectMessageReceived();
     // TODO
     // disconnect client
     // disconnect from server
