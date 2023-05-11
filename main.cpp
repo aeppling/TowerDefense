@@ -138,7 +138,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     sfSoundPlayer.playGameMusic1();
     
     //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
-    int level = 2;
+    
     /*if(networkController != nullptr){
       if (networkController->getIsServer() == true) {
           std::string levelstr = "1";
@@ -150,8 +150,8 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
           level = atoi(levelstr.c_str());
       }
     }*/
-    std::cout << "level : " << level << std::endl;
-    Game currentGame(1, level, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr /*networkController  nullptr si solo */, 1);
+    
+    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr /*networkController  nullptr si solo */, 1);
     
     try {
         if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
