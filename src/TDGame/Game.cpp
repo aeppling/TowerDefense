@@ -1048,6 +1048,7 @@ void Game::gameWon(){
     //* game won
     std::cout << "Game Won !!!" << std::endl;
     std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
+
 }
 
 void Game::gameLost(){

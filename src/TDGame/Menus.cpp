@@ -20,7 +20,7 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
     //
     if (!this->_backgroundStars.loadFromFile("Sprites/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_backgroundHome.loadFromFile("Sprites/Backgrounds/BattleTankBackground.png")))
+    if (!(this->_backgroundHome.loadFromFile("Sprites/Backgrounds/titleScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundSingleplayer.loadFromFile("Sprites/Units/CharRed1.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
@@ -50,36 +50,25 @@ void Menus::loadHome() {
     this->_visibleText.clear();
 
     // SETUP BUTTON
-    MenusButton *singleplayerButton = new MenusButton(300, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
-    MenusButton *multiplayerButton = new MenusButton(300, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
-    MenusButton *settingsButton = new MenusButton(300, 70, nullptr, "Settings", "settings", false, this->_mainFont);
+    MenusButton *singleplayerButton = new MenusButton(500, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
+    MenusButton *multiplayerButton = new MenusButton(500, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
+    MenusButton *settingsButton = new MenusButton(500, 70, nullptr, "Settings", "settings", false, this->_mainFont);
     MenusButton *exitButton = new MenusButton(300, 70, nullptr, "Exit Game", "exit", false, this->_mainFont);
 
-    singleplayerButton->setPosition(_winSizeX / 2, 400);
-    multiplayerButton->setPosition(_winSizeX / 2, 500);
-    settingsButton->setPosition(_winSizeX / 2, 600);
-    exitButton->setPosition(_winSizeX / 2, 800);
+    singleplayerButton->setPosition(_winSizeX / 2, 500);
+    multiplayerButton->setPosition(_winSizeX / 2, 600);
+    settingsButton->setPosition(_winSizeX / 2, 700);
+    exitButton->setPosition(_winSizeX / 2, 850);
 
     this->_visibleButtons.push_back(singleplayerButton);
     this->_visibleButtons.push_back(multiplayerButton);
     this->_visibleButtons.push_back(settingsButton);
     this->_visibleButtons.push_back(exitButton);
 
-    // SETUP BACKGROUN
+    // SETUP BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundHome);
-    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
-    this->_actualBackground.setScale(0.5, 0.5);
-
-    // SETUP TITLE
-    std::string title("Space Defender");
-    sf::Text *mainTitle = new sf::Text;
-    mainTitle->setString(title);
-    mainTitle->setFont(this->_fontTitle);
-    mainTitle->setCharacterSize(120);
-    sf::Vector2f newOriginTitle(mainTitle->getLocalBounds().width / 2.f, mainTitle->getLocalBounds().height / 2.f);
-    mainTitle->setOrigin(newOriginTitle);
-    mainTitle->setPosition(this->_winSizeX / 2, 100);
-    this->_visibleText.push_back(mainTitle);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
 }
 
 void Menus::loadSingleplayer() {
@@ -111,7 +100,7 @@ void Menus::loadSingleplayer() {
     this->_visibleButtons.push_back(backhome);
 
     // BACKGROUND SETUP
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 
@@ -171,7 +160,7 @@ void Menus::loadMultiplayer() {
     this->_visibleButtons.push_back(backhome);
 
     // BACKGROUND SETUP
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 
@@ -187,7 +176,7 @@ void Menus::loadHostLobby() {
     this->_visibleButtons.push_back(back);
 
 
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -211,7 +200,7 @@ void Menus::loadHost() {
     mainTitle->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
     this->_visibleText.push_back(mainTitle);
 
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -258,7 +247,7 @@ void Menus::loadJoin() {
     this->_visibleText.push_back(inputText);
 
     // BACKGROUND
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -283,7 +272,7 @@ void Menus::loadJoinTest() {
     mainTitle->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
 
     this->_visibleText.push_back(mainTitle);
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -299,7 +288,7 @@ void Menus::loadSettings() {
 
     this->_visibleButtons.push_back(backhome);
 
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -315,7 +304,7 @@ void Menus::loadTutorial() {
 
     this->_visibleButtons.push_back(backhome);
 
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
 }
@@ -330,7 +319,7 @@ void Menus::loadLevelsPlanet1() {
                                         this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
     // LEVELS SET
@@ -363,7 +352,7 @@ void Menus::loadLevelsPlanet2() {
                                         this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
     // LEVELS SET
@@ -396,7 +385,7 @@ void Menus::loadLevelsPlanet3() {
                                         this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
-    this->_actualBackground.setTexture(this->_backgroundHome);
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
     // LEVELS SET
@@ -422,7 +411,7 @@ void Menus::loadLevelsPlanet3() {
 void Menus::drawMenu(sf::RenderWindow &window) {
     sf::Sprite backgroundStarsSpr(this->_backgroundStars);
     window.draw(backgroundStarsSpr);
-//    window.draw(this->_actualBackground);
+    window.draw(this->_actualBackground);
     int i = 0;
     while (i < this->_visibleButtons.size()) {
        if (this->_visibleButtons.at(i)->hasIcon())
