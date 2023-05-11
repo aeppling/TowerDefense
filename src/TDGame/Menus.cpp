@@ -6,10 +6,12 @@
 
 #include "Menus.hpp"
 
-Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY), _globalVolume(globalVolume) {
+Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY),
+                                                                                                _globalVolume(globalVolume), _musicVolume(musicVolume), _soundVolume(soundVolume) {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
+    this->_isInSettings = false;
     // PLANETS
     if (!this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
@@ -55,15 +57,63 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
     this->_nbPlanet3Unlocked = 0;*/
 }
 
+void Menus::createText(std::string text, sf::Font &font, int characterSize, int posX, int posY) {
+    sf::Text *textPtr = new sf::Text;
+    textPtr->setString(text);
+    textPtr->setFont(font);
+    textPtr->setCharacterSize(characterSize);
+    sf::Vector2f newOriginText2(textPtr->getLocalBounds().width / 2.f, textPtr->getLocalBounds().height / 2.f);
+    textPtr->setOrigin(newOriginText2);
+    textPtr->setPosition(posX, posY);
+    this->_visibleText.push_back(textPtr);
+}
+
+void Menus::createSlider(float value, float posX, float posY, std::string type) {
+   // actualVolume = this->_globalVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+    sf::RectangleShape background(sf::Vector2f(600.f, 40.f));
+    background.setFillColor(sf::Color::White);
+    sf::Vector2f newOrigin(background.getLocalBounds().width / 2.f, background.getLocalBounds().height / 2.f);
+    background.setOrigin(newOrigin);
+    background.setPosition(posX, posY);
+    if (type == "global")
+        value = this->_globalVolume / 100.f * background.getSize().x;
+    else if (type == "music")
+        value = this->_musicVolume / 100.f * background.getSize().x;
+    else if (type == "sound")
+        value = this->_soundVolume / 100.f * background.getSize().x;
+    sf::RectangleShape slider(sf::Vector2f(value, 40.f));
+    slider.setFillColor(sf::Color::Cyan);
+    slider.setOrigin(newOrigin);
+    slider.setPosition(posX, posY);
+    if (type == "global") {
+        this->_globalVolumeSliderBackground = background;
+        this->_globalVolumeSlider = slider;
+    }
+    else if (type == "music") {
+        this->_musicVolumeSliderBackground = background;
+        this->_musicVolumeSlider = slider;
+    }
+    else if (type == "sound") {
+        this->_soundVolumeSliderBackground = background;
+        this->_soundVolumeSlider = slider;
+    }
+}
+
 void Menus::loadHome() {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
+    this->_isInSettings = false;
 
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    std::cout << "BEFORE" << std::endl;
+    this->deleteVisibleButtons();
+    std::cout << "DESTROY1" << std::endl;
+    this->deleteVisibleSprites();
+    std::cout << "DESTROY2" << std::endl;
+    this->deleteVisibleText();
+    std::cout << "DESTROY3" << std::endl;
+    this->deleteVisibleRectangle();
+    std::cout << "DESTROY4" << std::endl;
 
     // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(500, 70, true, "Singleplayer", "singleplayer", this->_mainFont);
@@ -124,10 +174,10 @@ void Menus::loadHome() {
 }
 
 void Menus::loadSingleplayer() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, true, "Terra", "planet1", this->_mainFont);
@@ -190,10 +240,10 @@ void Menus::loadMultiplayer() {
     this->_players = "multi";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BUTTONS SETUP
     MenusButton *host = new MenusButton(400, 600, true, "Host", "singleplayer", this->_mainFont);
@@ -238,10 +288,10 @@ void Menus::loadMultiplayer() {
 }
 
 void Menus::loadHostLobby() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -254,10 +304,10 @@ void Menus::loadHostLobby() {
 }
 
 void Menus::loadHost() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to planet choice", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -279,10 +329,10 @@ void Menus::loadHost() {
 }
 
 void Menus::loadJoin() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
     this->_isIpEntering = true;
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
@@ -327,10 +377,10 @@ void Menus::loadJoin() {
 }
 
 void Menus::loadJoinTest() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
@@ -353,64 +403,27 @@ void Menus::loadJoinTest() {
 }
 
 void Menus::loadSettings() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+    this->_isInSettings = true;
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(backhome);
 
     // VOLUMES SLIDERS
-    sf::RectangleShape *globalVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    globalVolumeSliderBackground->setFillColor(sf::Color::White);
-    sf::Vector2f newOriginVolume1(globalVolumeSliderBackground->getLocalBounds().width / 2.f, globalVolumeSliderBackground->getLocalBounds().height / 2.f);
-    globalVolumeSliderBackground->setOrigin(newOriginVolume1);
-    globalVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 400);
-    sf::RectangleShape *globalVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    globalVolumeSlider->setFillColor(sf::Color::Cyan);
-    globalVolumeSlider->setOrigin(newOriginVolume1);
-    globalVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 400);
-    this->_globalVolumeSlider = *globalVolumeSlider;
-    globalVolumeSlider = &this->_globalVolumeSlider;
-    this->_globalVolumeSliderBackground = *globalVolumeSliderBackground;
-    globalVolumeSliderBackground = &this->_globalVolumeSliderBackground;
-    this->_visibleRectangle.push_back(globalVolumeSliderBackground);
-    this->_visibleRectangle.push_back(globalVolumeSlider);
+    this->createSlider(this->_globalVolume, (this->_winSizeX / 2) + 300, 400, "global");
+    this->createSlider(this->_musicVolume, (this->_winSizeX / 2) + 300, 550, "music");
+    this->createSlider(this->_soundVolume, (this->_winSizeX / 2) + 300, 700, "sound");
 
-    sf::RectangleShape *musicVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    musicVolumeSliderBackground->setFillColor(sf::Color::White);
-    sf::Vector2f newOriginVolume2(musicVolumeSliderBackground->getLocalBounds().width / 2.f, musicVolumeSliderBackground->getLocalBounds().height / 2.f);
-    musicVolumeSliderBackground->setOrigin(newOriginVolume2);
-    musicVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 550);
-    sf::RectangleShape *musicVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    musicVolumeSlider->setFillColor(sf::Color::Cyan);
-    musicVolumeSlider->setOrigin(newOriginVolume2);
-    musicVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 550);
-    this->_musicVolumeSlider = *musicVolumeSlider;
-    musicVolumeSlider = &this->_musicVolumeSlider;
-    this->_musicVolumeSliderBackground = *musicVolumeSliderBackground;
-    musicVolumeSliderBackground = &this->_musicVolumeSliderBackground;
-    this->_visibleRectangle.push_back(musicVolumeSliderBackground);
-    this->_visibleRectangle.push_back(musicVolumeSlider);
+    // VOLUME TEXT
+    this->createText("Global volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 390);
+    this->createText("Music volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 540);
+    this->createText("Sound volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 690);
 
-    sf::RectangleShape *soundVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    soundVolumeSliderBackground->setFillColor(sf::Color::White);
-    sf::Vector2f newOriginVolume3(soundVolumeSliderBackground->getLocalBounds().width / 2.f, soundVolumeSliderBackground->getLocalBounds().height / 2.f);
-    soundVolumeSliderBackground->setOrigin(newOriginVolume3);
-    soundVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 700);
-    sf::RectangleShape *soundVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
-    soundVolumeSlider->setFillColor(sf::Color::Cyan);
-    soundVolumeSlider->setOrigin(newOriginVolume3);
-    soundVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 700);
-    this->_soundVolumeSlider = *soundVolumeSlider;
-    soundVolumeSlider = &this->_soundVolumeSlider;
-    this->_soundVolumeSliderBackground = *soundVolumeSliderBackground;
-    soundVolumeSliderBackground = &this->_soundVolumeSliderBackground;
-    this->_visibleRectangle.push_back(soundVolumeSliderBackground);
-    this->_visibleRectangle.push_back(soundVolumeSlider);
-
+    //
     // BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
@@ -419,27 +432,22 @@ void Menus::loadSettings() {
 
 void Menus::reloadVolume(int newVolume, std::string type) {
 
-    if (type == "global") {
-        float newValue = newVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+    float newValue = newVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+    if (type == "global")
         this->_globalVolumeSlider.setSize(sf::Vector2f(newValue, this->_globalVolumeSlider.getSize().y));
-    }
-    else if (type == "music") {
-        float newValue = newVolume / 100.f * this->_musicVolumeSliderBackground.getSize().x;
+    else if (type == "music")
         this->_musicVolumeSlider.setSize(sf::Vector2f(newValue, this->_musicVolumeSlider.getSize().y));
-    }
-    else if (type == "sound") {
-        float newValue = newVolume / 100.f * this->_soundVolumeSliderBackground.getSize().x;
+    else if (type == "sound")
         this->_soundVolumeSlider.setSize(sf::Vector2f(newValue, this->_soundVolumeSlider.getSize().y));
-    }
     else
         return ;
 }
 
 void Menus::loadTutorial() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *backhome = new MenusButton(200, 80, true, "< Back", "home", this->_mainFont);
     backhome->setPosition((this->_winSizeX / 2) - 800, this->_winSizeY - 150);
@@ -459,10 +467,10 @@ void Menus::loadTutorial() {
 }
 
 void Menus::loadLevelsPlanet1() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -492,10 +500,10 @@ void Menus::loadLevelsPlanet1() {
 }
 
 void Menus::loadLevelsPlanet2() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -525,10 +533,10 @@ void Menus::loadLevelsPlanet2() {
 }
 
 void Menus::loadLevelsPlanet3() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
-    this->_visibleRectangle.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -583,9 +591,14 @@ void Menus::drawMenu(sf::RenderWindow &window) {
             window.draw(*this->_visibleRectangle.at(i));
             i++;
         }
-    /*    window.draw(this->_globalVolumeSlider);
+    }
+    if (this->_isInSettings) {
+        window.draw(this->_globalVolumeSliderBackground);
+        window.draw(this->_globalVolumeSlider);
+        window.draw(this->_musicVolumeSliderBackground);
         window.draw(this->_musicVolumeSlider);
-        window.draw(this->_);*/
+        window.draw(this->_soundVolumeSliderBackground);
+        window.draw(this->_soundVolumeSlider);
     }
 }
 
@@ -659,28 +672,35 @@ std::string Menus::checkForClick(sf::Vector2i mousePos) {
     return ("no");
 }
 
-int Menus::checkIfVolumeClicked(sf::Vector2i mousePosition) {
+bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, int *globalVolume, int *musicVolume, int *soundVolume) {
     sf::FloatRect globalSliderBorder = this->_globalVolumeSliderBackground.getGlobalBounds();
     sf::FloatRect musicSliderBorder = this->_musicVolumeSliderBackground.getGlobalBounds();
     sf::FloatRect soundSliderBorder = this->_soundVolumeSliderBackground.getGlobalBounds();
 
-    float newVolume;
+    float newVolume = -1;
     if (globalSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - globalSliderBorder.left) / globalSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *globalVolume = newVolume;
+        this->_globalVolume = newVolume;
         reloadVolume(newVolume, "global");
     }
     else if (musicSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - musicSliderBorder.left) / musicSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *musicVolume = newVolume;
+        this->_musicVolume = newVolume;
         reloadVolume(newVolume, "music");
     }
     else if (soundSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - soundSliderBorder.left) / soundSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *soundVolume = newVolume;
+        this->_soundVolume = newVolume;
         reloadVolume(newVolume, "sound");
     }
+    if (newVolume == -1)
+        return (false);
     else
-        newVolume = -1;
-    return (newVolume);
+        return (true);
 }

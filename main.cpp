@@ -152,7 +152,7 @@ int main() {
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume);
+    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume, musicVolume, soundVolume);
     menu.loadHome();
     std::string selectionInformation("none");
     int         levelToPlay = -1;
@@ -170,7 +170,8 @@ int main() {
                 if (event.type == sf::Event::MouseButtonReleased)
                 {
                     sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
-                    menu.checkIfVolumeClicked(mousePosition);
+                    menu.checkIfVolumeClicked(mousePosition, &globalVolume, &musicVolume, &soundVolume);
+                    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed &&

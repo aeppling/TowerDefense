@@ -12,9 +12,12 @@ private:
     int                         _winSizeX;
     int                         _winSizeY;
     int                         _globalVolume;
+    int                         _musicVolume;
+    int                         _soundVolume;
     std::string                 _players;
     std::string                 _ipAddressField;
     bool                        _isIpEntering;
+    bool                        _isInSettings;
 
     sf::RectangleShape          _globalVolumeSlider;
     sf::RectangleShape          _musicVolumeSlider;
@@ -56,7 +59,7 @@ private:
     int                         _nbUnlockedPlanet2 = 7;
     int                         _nbUnlockedPlanet3= 0;
 public:
-    Menus(int winSizeX, int winSizeY, int globalVolume);
+    Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume);
     ~Menus() = default;
 
     // GETTER & SETTER
@@ -65,6 +68,9 @@ public:
     std::string getIpAddressField() { return(this->_ipAddressField); };
     bool isIpEntering() { return(this->_isIpEntering); };
 
+    // CREATOR
+    void createText(std::string text, sf::Font &font, int characterSize, int posX, int posY);
+    void createSlider(float value, float posX, float posY, std::string type);
     // MENUS LOADERS
     std::string loadMenuByName(std::string name);
     void loadHome();
@@ -82,9 +88,42 @@ public:
     void loadLevelsPlanet3();
     void drawMenu(sf::RenderWindow &window);
 
+    // DELETOR
+    void deleteVisibleButtons() {
+        if (this->_visibleButtons.empty())
+            return;
+        for (MenusButton *element: this->_visibleButtons) {
+            delete element;
+        }
+        this->_visibleButtons.clear();
+    }
+    void deleteVisibleRectangle() {
+        if (this->_visibleRectangle.empty())
+            return;
+        for (sf::RectangleShape *element: this->_visibleRectangle) {
+            delete element;
+        }
+        this->_visibleRectangle.clear();
+    }
+    void deleteVisibleText() {
+        if (this->_visibleText.empty())
+            return;
+        for (sf::Text *element: this->_visibleText) {
+            delete element;
+        }
+        this->_visibleText.clear();
+    }
+    void deleteVisibleSprites() {
+        if (this->_visibleSprites.empty())
+            return;
+        for (sf::Sprite *element: this->_visibleSprites) {
+            delete element;
+        }
+        this->_visibleSprites.clear();
+    }
     // FUNCTION
     std::string checkForClick(sf::Vector2i mousePos);
-    int checkIfVolumeClicked(sf::Vector2i mousePos);
+    bool checkIfVolumeClicked(sf::Vector2i mousePos, int *globalVolume, int *musicVolume, int *soundVolume);
 };
 
 #endif //UNTITLED1_MENUS_HPP
