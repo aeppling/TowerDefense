@@ -28,7 +28,7 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundSettings.loadFromFile("Sprites/Units/CharRed1.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundTutorial.loadFromFile("Sprites/Units/CharRed1.png")))
+    if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     // FONTS
     if (!(this->_mainFont.loadFromFile("Fonts/neuropol.otf")))
@@ -52,16 +52,19 @@ void Menus::loadHome() {
     // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(500, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
     MenusButton *multiplayerButton = new MenusButton(500, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
+    MenusButton *howToButton = new MenusButton(500, 70, nullptr, "How To Play", "tutorial", false, this->_mainFont);
     MenusButton *settingsButton = new MenusButton(500, 70, nullptr, "Settings", "settings", false, this->_mainFont);
     MenusButton *exitButton = new MenusButton(300, 70, nullptr, "Exit Game", "exit", false, this->_mainFont);
 
-    singleplayerButton->setPosition(_winSizeX / 2, 500);
-    multiplayerButton->setPosition(_winSizeX / 2, 600);
+    singleplayerButton->setPosition(_winSizeX / 2, 400);
+    multiplayerButton->setPosition(_winSizeX / 2, 500);
+    howToButton->setPosition(_winSizeX / 2, 600);
     settingsButton->setPosition(_winSizeX / 2, 700);
     exitButton->setPosition(_winSizeX / 2, 850);
 
     this->_visibleButtons.push_back(singleplayerButton);
     this->_visibleButtons.push_back(multiplayerButton);
+    this->_visibleButtons.push_back(howToButton);
     this->_visibleButtons.push_back(settingsButton);
     this->_visibleButtons.push_back(exitButton);
 
@@ -298,15 +301,21 @@ void Menus::loadTutorial() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
-
-    backhome->setPosition(_winSizeX / 2, 900);
-
+    MenusButton *backhome = new MenusButton(200, 80, nullptr, "< Back", "home", false, this->_mainFont);
+    backhome->setPosition((this->_winSizeX / 2) - 800, this->_winSizeY - 150);
     this->_visibleButtons.push_back(backhome);
 
-    this->_actualBackground.setTexture(this->_backgroundStars);
-    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
-    this->_actualBackground.setScale(0.5, 0.5);
+    MenusButton *unitManual = new MenusButton(400, 80, nullptr, "Towers Manual", "towermanual", false, this->_mainFont);
+    unitManual->setPosition((this->_winSizeX / 2) - 250, this->_winSizeY - 150);
+    this->_visibleButtons.push_back(unitManual);
+
+    MenusButton *towerManual = new MenusButton(400, 80, nullptr, "Units Manual", "unitmanual", false, this->_mainFont);
+    towerManual->setPosition((this->_winSizeX / 2) + 250, this->_winSizeY - 150);
+    this->_visibleButtons.push_back(towerManual);
+
+    this->_actualBackground.setTexture(this->_backgroundTutorial);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
 }
 
 void Menus::loadLevelsPlanet1() {
@@ -439,6 +448,10 @@ std::string Menus::loadMenuByName(std::string name) {
     }
     else if (name == "multiplayer") {
         this->loadMultiplayer();
+        return ("no");
+    }
+    else if (name == "tutorial") {
+        this->loadTutorial();
         return ("no");
     }
     else if (name == "settings") {
