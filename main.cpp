@@ -1,11 +1,8 @@
-//
-// Created by adrie on 10/05/2023.
-//
-
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
 #include <mutex>
+#include <cstdlib>
 
 #include "src/TDGraphics/SFMLLoader.hpp"
 #include "src/TDGraphics/SFMLLoaderPlanet1.hpp"
@@ -22,6 +19,8 @@
 #include "src/TDSounds/SFMainSoundPlayer.hpp"
 #include "src/TDGame/NetworkController.hpp"
 #include "src/TDGame/Menus.hpp"
+#include "src/TDGame/NetworkController.hpp"
+
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
@@ -115,7 +114,6 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
 
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.stopMenuMusic();
     sfSoundPlayer.playGameMusic1();
@@ -133,7 +131,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
       }
     }*/
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
-    
+
     try {
         if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
