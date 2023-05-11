@@ -11,6 +11,7 @@ class Menus {
 private:
     int                         _winSizeX;
     int                         _winSizeY;
+    int                         _globalVolume;
 
     std::vector<MenusButton*>   _visibleButtons;
     std::vector<sf::Sprite*>    _visibleSprites;
@@ -32,8 +33,11 @@ private:
     sf::Font                    _fontTitle;
 
 public:
-    Menus(int winSizeX, int winSizeY);
+    Menus(int winSizeX, int winSizeY, int globalVolume);
     ~Menus() = default;
+
+    // GETTER & SETTER
+    int getGlobalVolume() { return(this->_globalVolume);};
 
     // MENUS LOADERS
     std::string loadMenuByName(std::string name);

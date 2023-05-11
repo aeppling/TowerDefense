@@ -21,6 +21,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
                                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
     this->planet = planetToLoad;
+    this->isMuted = false;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
     SFMLMissileLoader sfmlMissileLoader;
@@ -382,20 +383,16 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if ((event.type == sf::Event::KeyPressed &&
                             event.key.code == sf::Keyboard::Escape && this->sfmlHud->getPaused() == false)
                             ) {
-                            //Pause Menu
+                            // OPEN MENU
                             this->sfmlHud->setPaused(true);
-                            this->deactivateTowers();
-                            isWaveRunning = false;
                             this->sfmlHud->update();
                             this->sfmlHud->draw();
                         }
-                        if ((event.type == sf::Event::KeyPressed &&
-                            event.key.code == sf::Keyboard::Space && this->sfmlHud->getPaused() == true)
+                        else if ((event.type == sf::Event::KeyPressed &&
+                            event.key.code == sf::Keyboard::Escape && this->sfmlHud->getPaused() == true)
                             ) {
-                            //UNPause Menu
+                            // CLOSE MENU
                             this->sfmlHud->setPaused(false);
-                            this->activateTowers();
-                            isWaveRunning = true;
                             this->sfmlHud->update();
                             this->sfmlHud->draw();
                         }
@@ -615,11 +612,44 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfmlHud->draw();
                     if (event.type == sf::Event::MouseButtonPressed &&
                         sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                        int whichClicked = this->sfmlHud->checkForClick(window);
-                        if (whichClicked != -1) {
+                        int whichClicked;
+                        if (this->sfmlHud->getPaused()) {
+                            whichClicked = this->sfmlHud->checkForPausedClick(window);
+                            if (whichClicked == 1) {
+                                if (this->isMuted) {
+                                    sf::Listener::setGlobalVolume((float)this->globalVolume);
+                                    this->isMuted = false;
+                                }
+                                else {
+                                    sf::Listener::setGlobalVolume(0);
+                                    this->isMuted = true;
+                                }
+                            }
+                            else if (whichClicked == 2) {
+                                // PAUSED
+                                if (isWaveRunning) {
+                                    this->deactivateTowers();
+                                    isWaveRunning = false;
+                                }
+                                else {
+                                    this->activateTowers();
+                                    isWaveRunning = true;
+                                }
+                            }
+                            else if (whichClicked == 3) {
+                                window.setMouseCursorVisible(true);
+                                this->deactivateTowers();
+                                isWaveRunning = false;
+                                return (1);
+                            }
+                        }
+                        else {
+                            whichClicked = this->sfmlHud->checkForClick(window);
+                            if (whichClicked != -1) {
                                 this->towerSelectorIndex = whichClicked;
-                               if (isBuilding == false)
-                                   isBuilding = true;
+                                if (isBuilding == false)
+                                    isBuilding = true;
+                            }
                         }
                     }
                     // SET AND DISPLAY MOUSE
@@ -669,11 +699,12 @@ void Game::setSpawnCellsSprites() {
     }
 }
 
-int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window) {
+int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume) {
     std::string mapPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
 
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
-    
+    this->globalVolume = globalVolume;
+    sf::Listener::setGlobalVolume((float)globalVolume);
     sf::Texture hearthTexture;
     this->player->resetTotalKill();
     

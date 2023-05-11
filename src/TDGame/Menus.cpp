@@ -6,7 +6,7 @@
 
 #include "Menus.hpp"
 
-Menus::Menus(int winSizeX, int winSizeY) : _winSizeX(winSizeX), _winSizeY(winSizeY) {
+Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY), _globalVolume(globalVolume) {
     // PLANETS
     if (this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;

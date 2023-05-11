@@ -32,6 +32,8 @@ class Game{
         int level;
         int towerSelectorIndex;
         int nb_tower_type = 6;
+        int globalVolume;
+        int isMuted;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
         std::vector<sf::Sprite> spawnCellsSprites;
@@ -81,7 +83,7 @@ class Game{
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
         int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder);
-        int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window);
+        int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume);
         void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
                             std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
         void setObstacleTest(TDMap &map, sf::RenderWindow &window);

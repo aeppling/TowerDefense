@@ -69,7 +69,7 @@ int extractLevelNumber(const std::string& str) {
     return (-1);
 }
 
-void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad) {
+void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int globalVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad) {
     // SETTING WINDOW AND MAP
     sf::ContextSettings settings;
     settings.depthBits = 24;
@@ -97,6 +97,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
+    sfSoundPlayer.stopMenuMusic();
     sfSoundPlayer.playGameMusic1();
     /*  NetworkController* networkController = new NetworkController(false);
 
@@ -110,7 +111,7 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
 
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
     try {
-        if (currentGame.launch(sfmlLoader, window) == -1) {
+        if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
             return ;
         }
@@ -131,7 +132,7 @@ int main() {
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y);
+    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume);
     menu.loadHome();
     std::string selectionInformation("none");
     int         levelToPlay = -1;
@@ -154,7 +155,7 @@ int main() {
                         selectionInformation = clicked;
                         levelToPlay = extractLevelNumber(selectionInformation);
                         planetToLoad = extractPlanetNumber(selectionInformation);
-                        launchGame(sfSoundPlayer, musicVolume, soundVolume, gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
+                        launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
                     }
                 }
             }
