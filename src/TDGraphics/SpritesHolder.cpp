@@ -171,6 +171,18 @@ std::shared_ptr<SFMLSprite>     SpritesHolder::getSpriteFromPosition(int posX, i
 
 void                            SpritesHolder::displayMap(sf::RenderWindow &window, int cellSize, SFMLLoader &sfmlLoaderMap) {
     int i = 0;
+    while (i != this->_baseSprite.size()) {
+        this->_baseSprite.at(i)->setPosition(cellSize);
+        window.draw(this->_baseSprite.at(i)->getSprite());
+        i++;
+    }
+    i = 0;
+    while (i != this->_spawnSprite.size()) {
+        this->_spawnSprite.at(i)->setPosition(cellSize);
+        window.draw(this->_spawnSprite.at(i)->getSprite());
+        i++;
+    }
+    i = 0;
     while (i != this->_walkableSprite.size()) {
         this->_walkableSprite.at(i)->setPosition(cellSize);
         window.draw(this->_walkableSprite.at(i)->getSprite());
@@ -193,18 +205,6 @@ void                            SpritesHolder::displayMap(sf::RenderWindow &wind
         this->_wallSprite.at(i)->setPosition(cellSize);
 //        this->_wallSprite.at(i)->getSprite().setTexture(*sfmlLoaderTest.getWallCell());
         window.draw(this->_wallSprite.at(i)->getSprite());
-        i++;
-    }
-    i = 0;
-    while (i != this->_baseSprite.size()) {
-        this->_baseSprite.at(i)->setPosition(cellSize);
-        window.draw(this->_baseSprite.at(i)->getSprite());
-        i++;
-    }
-    i = 0;
-    while (i != this->_spawnSprite.size()) {
-        this->_spawnSprite.at(i)->setPosition(cellSize);
-        window.draw(this->_spawnSprite.at(i)->getSprite());
         i++;
     }
 }
