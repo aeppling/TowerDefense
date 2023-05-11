@@ -91,11 +91,20 @@ int main() {
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.playGameMusic1();
-
-    NetworkController* networkController = new NetworkController(true);
-
-   
-    Game currentGame(1, 1, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, 1);
+    
+    NetworkController* networkController = new NetworkController(false);
+    int level = 2;
+    if (networkController->getIsServer() == true) {
+        std::string levelstr = "1";
+        networkController->sendMessageToAllClients(levelstr);
+        level = atoi(levelstr.c_str());
+        
+    } else {
+        std::string levelstr = networkController->receiveMessage(networkController->getServerSocket());
+        level = atoi(levelstr.c_str());
+    }
+    Game currentGame(1, level, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, 1);
+    
     try {
         if (currentGame.launch(sfmlLoader, window) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
