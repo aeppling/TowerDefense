@@ -50,11 +50,11 @@ void Menus::loadHome() {
     this->_visibleText.clear();
 
     // SETUP BUTTON
-    MenusButton *singleplayerButton = new MenusButton(500, 70, nullptr, "Singleplayer", "singleplayer", false, this->_mainFont);
-    MenusButton *multiplayerButton = new MenusButton(500, 70, nullptr, "Multiplayer", "multiplayer", false, this->_mainFont);
-    MenusButton *howToButton = new MenusButton(500, 70, nullptr, "How To Play", "tutorial", false, this->_mainFont);
-    MenusButton *settingsButton = new MenusButton(500, 70, nullptr, "Settings", "settings", false, this->_mainFont);
-    MenusButton *exitButton = new MenusButton(300, 70, nullptr, "Exit Game", "exit", false, this->_mainFont);
+    MenusButton *singleplayerButton = new MenusButton(500, 70, nullptr, "Singleplayer", "singleplayer", this->_mainFont);
+    MenusButton *multiplayerButton = new MenusButton(500, 70, nullptr, "Multiplayer", "multiplayer", this->_mainFont);
+    MenusButton *howToButton = new MenusButton(500, 70, nullptr, "How To Play", "tutorial", this->_mainFont);
+    MenusButton *settingsButton = new MenusButton(500, 70, nullptr, "Settings", "settings", this->_mainFont);
+    MenusButton *exitButton = new MenusButton(300, 70, nullptr, "Exit Game", "exit", this->_mainFont);
 
     singleplayerButton->setPosition(_winSizeX / 2, 400);
     multiplayerButton->setPosition(_winSizeX / 2, 500);
@@ -80,10 +80,10 @@ void Menus::loadSingleplayer() {
     this->_visibleText.clear();
 
     // BUTTONS SETUP
-    MenusButton *world1 = new MenusButton(400, 600, nullptr, "Planet-1", "planet1", false, this->_mainFont);
-    MenusButton *world2 = new MenusButton(400, 600, nullptr, "Planet-2", "planet2", false, this->_mainFont);
-    MenusButton *world3 = new MenusButton(400, 600, nullptr, "Planet-3", "planet3", false, this->_mainFont);
-    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    MenusButton *world1 = new MenusButton(400, 600, nullptr, "Planet-1", "planet1", this->_mainFont);
+    MenusButton *world2 = new MenusButton(400, 600, nullptr, "Planet-2", "planet2", this->_mainFont);
+    MenusButton *world3 = new MenusButton(400, 600, nullptr, "Planet-3", "planet3", this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", this->_mainFont);
     world1->getText()->setCharacterSize(40);
     world2->getText()->setCharacterSize(40);
     world3->getText()->setCharacterSize(40);
@@ -145,9 +145,9 @@ void Menus::loadMultiplayer() {
     this->_visibleText.clear();
 
     // BUTTONS SETUP
-    MenusButton *host = new MenusButton(400, 600, nullptr, "Host", "singleplayer", false, this->_mainFont);
-    MenusButton *join = new MenusButton(400, 600, nullptr, "Join", "join", false, this->_mainFont);
-    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    MenusButton *host = new MenusButton(400, 600, nullptr, "Host", "singleplayer", this->_mainFont);
+    MenusButton *join = new MenusButton(400, 600, nullptr, "Join", "join", this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", this->_mainFont);
     host->getText()->setCharacterSize(40);
     join->getText()->setCharacterSize(40);
 
@@ -174,7 +174,7 @@ void Menus::loadHostLobby() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", false, this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
 
@@ -189,7 +189,7 @@ void Menus::loadHost() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to planet choice", "singleplayer", false, this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to planet choice", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
 
@@ -214,8 +214,8 @@ void Menus::loadJoin() {
     this->_visibleText.clear();
     this->_isIpEntering = true;
 
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", false, this->_mainFont);
-    MenusButton *joinTest = new MenusButton(600, 80, nullptr, "Join", "jointest", false, this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back to host choice", "multiplayer", this->_mainFont);
+    MenusButton *joinTest = new MenusButton(600, 80, nullptr, "Join", "jointest", this->_mainFont);
     joinTest->setPosition(_winSizeX / 2, 700);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(joinTest);
@@ -260,7 +260,7 @@ void Menus::loadJoinTest() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(backhome);
 
@@ -285,7 +285,7 @@ void Menus::loadSettings() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", false, this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, nullptr, "Back To Home", "home", this->_mainFont);
 
     backhome->setPosition(_winSizeX / 2, 900);
 
@@ -301,15 +301,15 @@ void Menus::loadTutorial() {
     this->_visibleSprites.clear();
     this->_visibleText.clear();
 
-    MenusButton *backhome = new MenusButton(200, 80, nullptr, "< Back", "home", false, this->_mainFont);
+    MenusButton *backhome = new MenusButton(200, 80, nullptr, "< Back", "home", this->_mainFont);
     backhome->setPosition((this->_winSizeX / 2) - 800, this->_winSizeY - 150);
     this->_visibleButtons.push_back(backhome);
 
-    MenusButton *unitManual = new MenusButton(400, 80, nullptr, "Towers Manual", "towermanual", false, this->_mainFont);
+    MenusButton *unitManual = new MenusButton(400, 80, nullptr, "Towers Manual", "towermanual", this->_mainFont);
     unitManual->setPosition((this->_winSizeX / 2) - 250, this->_winSizeY - 150);
     this->_visibleButtons.push_back(unitManual);
 
-    MenusButton *towerManual = new MenusButton(400, 80, nullptr, "Units Manual", "unitmanual", false, this->_mainFont);
+    MenusButton *towerManual = new MenusButton(400, 80, nullptr, "Units Manual", "unitmanual", this->_mainFont);
     towerManual->setPosition((this->_winSizeX / 2) + 250, this->_winSizeY - 150);
     this->_visibleButtons.push_back(towerManual);
 
@@ -324,8 +324,7 @@ void Menus::loadLevelsPlanet1() {
     this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
-                                        this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
     this->_actualBackground.setTexture(this->_backgroundStars);
@@ -343,7 +342,7 @@ void Menus::loadLevelsPlanet1() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet1level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
+        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);
@@ -357,8 +356,7 @@ void Menus::loadLevelsPlanet2() {
     this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
-                                        this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
     this->_actualBackground.setTexture(this->_backgroundStars);
@@ -376,7 +374,7 @@ void Menus::loadLevelsPlanet2() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet2level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
+        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);
@@ -390,8 +388,7 @@ void Menus::loadLevelsPlanet3() {
     this->_visibleText.clear();
 
     // BACK BUTTON & BACKGROUND
-    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", false,
-                                        this->_mainFont);
+    MenusButton *back = new MenusButton(400, 80, nullptr, "Back To Planets", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
     this->_actualBackground.setTexture(this->_backgroundStars);
@@ -409,7 +406,7 @@ void Menus::loadLevelsPlanet3() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet3level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, false, this->_mainFont);
+        MenusButton *newLevel = new MenusButton(200, 200, nullptr, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);
@@ -423,8 +420,6 @@ void Menus::drawMenu(sf::RenderWindow &window) {
     window.draw(this->_actualBackground);
     int i = 0;
     while (i < this->_visibleButtons.size()) {
-       if (this->_visibleButtons.at(i)->hasIcon())
-            window.draw(*this->_visibleButtons.at(i)->getIcon());
         window.draw(*this->_visibleButtons.at(i)->getText());
         window.draw(*this->_visibleButtons.at(i)->getRectangle());
         i++;

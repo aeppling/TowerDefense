@@ -19,7 +19,7 @@ SFMLLoader::SFMLLoader(std::string pathCell, std::string pathCellHeights, std::s
     // THAT WILL NOT MOVE
     if (!(this->_wallCell.loadFromFile("Sprites/MyTiles/IndustrialTileSet1.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_spawnCell.loadFromFile("Sprites/MyTiles/tileGoo_slope.png")))
+    if (!(this->_spawnCell.loadFromFile("Sprites/MyTiles/tileSpawnCell.png")))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_spawnBuilding.loadFromFile("Sprites/MyTiles/spawnBuilding.png")))
         std::cout << "Error on loading texture..." << std::endl;

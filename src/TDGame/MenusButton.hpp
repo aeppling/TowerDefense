@@ -16,10 +16,9 @@ private:
 
     int                 _posX;
     int                 _posY;
-    bool                _hasIcon;
     std::string         _shortname;
 public:
-    MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname, bool hasIcon, sf::Font &mainFont);
+    MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname, sf::Font &mainFont);
     ~MenusButton() = default;
 
     // GETTER & SETTER
@@ -27,7 +26,6 @@ public:
     sf::RectangleShape *getRectangle() { return(&this->_rectangle); };
     sf::Sprite         *getIcon() { return(&this->_icon); };
     sf::Text           *getText() { return(&this->_text); };
-    bool               hasIcon() { return(this->_hasIcon); };
     // FUNCTIONS
     std::string isClicked(int mousePosX, int mousePosY);
 };
