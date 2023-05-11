@@ -19,6 +19,7 @@ public:
     std::vector<sf::TcpSocket*> getClients();
     sf::TcpSocket* getServerSocket() { return this->serverSocket; };
     std::string detectMessageReceived();
+    void handleMessage(std::string message);
     // TODO
     // disconnect client
     // disconnect from server

@@ -55,6 +55,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->gameState.numCoins = 5000;
     this->gameState.towerList = &this->towerList;
     this->id = 0;
+    ;
 }
 
 
@@ -366,7 +367,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
                     if(this->networkController!= nullptr){
-                        this->handleUpdateGameState(std::ref(map), window, isWaveRunning);
+                        this->handleUpdateGameState(std::ref(map), window, &isWaveRunning);
                     }
 
 
@@ -381,28 +382,35 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         if ((event.type == sf::Event::KeyPressed &&
                             event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)) {
-                            this->activateTowers();
-                            isWaveRunning = true;
+                            //Start Wave
+                            if(this->networkController != nullptr && this->networkController->getIsServer()){
+                                this->networkController->handleMessage("startWave");
+                                this->activateTowers();
+                                isWaveRunning = true;
+                            }else if (this->networkController == nullptr){
+                                this->activateTowers();
+                                isWaveRunning = true;
+                            }
+                            
                         }
                         if ((event.type == sf::Event::KeyPressed &&
                             event.key.code == sf::Keyboard::Escape && this->sfmlHud->getPaused() == false)
                             ) {
                             //Pause Menu
-                            this->sfmlHud->setPaused(true);
-                            this->deactivateTowers();
+                            if(this->networkController!= nullptr){
+                                
+                            }
                             isWaveRunning = false;
-                            this->sfmlHud->update();
-                            this->sfmlHud->draw();
+                            pauseMenu(true);
+                            
                         }
                         if ((event.type == sf::Event::KeyPressed &&
                             event.key.code == sf::Keyboard::Space && this->sfmlHud->getPaused() == true)
                             ) {
                             //UNPause Menu
-                            this->sfmlHud->setPaused(false);
-                            this->activateTowers();
                             isWaveRunning = true;
-                            this->sfmlHud->update();
-                            this->sfmlHud->draw();
+                            pauseMenu(false);
+                            
                         }
                         if (event.type == sf::Event::MouseButtonPressed &&
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
@@ -593,7 +601,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         this->displayExplosions(window);
                     }
                     else {
-                        this->drawInfoBox(window, {700, 150}, "Press enter for next wave.", false);
+                        if(this->networkController == nullptr){
+                            this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
+                        }else if(this->networkController->getIsServer()){
+                            this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
+                        }else{
+                            this->drawInfoBox(window, {900, 150}, "Waiting for server to start next wave.", false);
+                        }
                     }
                     // DISPLAY COINS
                     this->displayCoins(window);
@@ -870,6 +884,8 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             int count_spawn = 0;
             while (count_spawn < this->spawnCells.size()) {
                 map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+                
+                
                 std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
                 AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
                                             (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
@@ -880,6 +896,14 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 }
                 count_spawn++;
             }
+            Point wallPos;
+            wallPos.x = mouseCoord.posX;
+            wallPos.y = mouseCoord.posY;
+            this->gameState.walls.push_back(wallPos);
+            std::cout << "wall created at : " << wallPos.x << " " << wallPos.y << std::endl;           
+            if(this->networkController != nullptr){
+                this->sendGameStateToClients();
+            }
             this->looseCoins(5);
             this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 5, false);
             check = true;
@@ -888,6 +912,18 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
             this->sfMainSoundPlayer.playGameCoinWon();
             this->addCoins(2);
+            for(int j = 0; j < this->gameState.walls.size(); j++)
+            {
+                if(this->gameState.walls.at(j).x == mouseCoord.posX && this->gameState.walls.at(j).y == mouseCoord.posY)
+                {
+                    this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                    break;
+                }
+            }
+            if(this->networkController != nullptr){
+                    this->sendGameStateToClients();
+            }
+            
             this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, mouseCoord.posX,mouseCoord.posY, 2, true);
             check = true;
         }
@@ -1255,24 +1291,46 @@ void Game::sendGameStateToClients() {
     }
     gameStateJson["towers"] = towersJson;
 
+    
+    
+    // Envoyer l'état du jeu à tous les clients
+    // Ajouter les informations des murs dans le JSON
+    nlohmann::json wallsJson = nlohmann::json::array();
+    for (auto& wall : gameState.walls) {
+        nlohmann::json wallJson;
+        wallJson["position"] = {wall.x, wall.y};
+        wallsJson.push_back(wallJson);
+    }
+    gameStateJson["walls"] = wallsJson;
     std::string gameStateStr = gameStateJson.dump();
+    std::cout << "wall number : " << gameState.walls.size() << std::endl;
+    std::cout << "wall number json : " << wallsJson.size() << std::endl;
     std::cout << "Sending game state to clients: " << gameStateStr << std::endl;
     std::cout << gameStateStr << std::endl;
-    // Envoyer l'état du jeu à tous les clients
-    if (this->networkController == nullptr) {
-        return;
-    } else if (this->networkController->getIsServer() == false) {
-        this->networkController->sendMessageToServer(gameStateStr);
-    } else {
-        this->networkController->sendMessageToAllClients(gameStateStr);
-    }
+
+    this->networkController->handleMessage(gameStateStr);
+    
 }
-void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool isWaveRunning) {
+void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isWaveRunning) {
     // Fonction pour mettre à jour l'état du jeu
     // Désérialisez l'état du jeu à partir d'une chaîne de caractères JSON
     std::string message = this->networkController->detectMessageReceived();
-                    
-    if(message != ""){
+    if (message == "pause"){
+        if(this->sfmlHud->getPaused() == false){
+            pauseMenu(true);
+        }
+    } 
+    else if(message == "unpause"){
+        if(this->sfmlHud->getPaused() == true){
+            pauseMenu(false);
+        }
+    }
+    else if(message == "startWave"){
+        this->activateTowers();
+        *isWaveRunning = true;
+        
+    }      
+    else if(message != ""){
                         
         
         try {
@@ -1358,7 +1416,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool isWa
                     
                     this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, towerPosition.x,towerPosition.y, toBuild->getCost(), false);
                     toBuild = nullptr;
-                    if (isWaveRunning == true) {
+                    if (*isWaveRunning == true) {
                         if (this->towerList[this->towerList.size() - 1]->getTowerName() == "SpeedAuraTower") {
                             auto *speedAuraTower = dynamic_cast<SpeedAuraTower*>(this->towerList[this->towerList.size() - 1]);
                             if (speedAuraTower != nullptr) {
@@ -1403,8 +1461,93 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool isWa
                     }
                 }
             }
+            auto wallsJson = gameStateJson["walls"];
+            if(this->gameState.walls.size() < wallsJson.size()){
+            
+                for (int i = 0; i < wallsJson.size(); i++) {
+                    auto wallJson = wallsJson[i];
+                    Point wallPosition = {wallJson["position"][0], wallJson["position"][1]};
+                    if(map.getElem(wallPosition.x, wallPosition.y)->getType() == 'W'){
+                        std::cout << "Wall already built" << std::endl;
+                        continue;
+                    }else{
+                        std::cout << "wall built by other player" << std::endl;
+                        int count_spawn = 0;
+                        this->gameState.walls.push_back(wallPosition);
+                        while (count_spawn < this->spawnCells.size()) {
+                            map.getElem(wallPosition.x, wallPosition.y)->setType('W');
+                            
+                            std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
+                            AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
+                                            (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
+                            std::vector<std::shared_ptr<MapCell>> pathtofill;
+                            if (pathFinder.runPathFinding(pathtofill, false, false) == false) {
+                                map.getElem(wallPosition.x, wallPosition.y)->setType('X');
+                                return;
+                            }
+                            count_spawn++;
+                        }
+                        this->looseCoins(5);
+                        this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, wallPosition.x, wallPosition.y, 5, false);
+                    
+                        continue;
+                    }
+                    
+                }
+            }
+            if(this->gameState.walls.size() > wallsJson.size()){
+                std::cout << "Wall destroyed by other player" << std::endl;
+                for(int j = 0; j < this->gameState.walls.size(); j++){
+                    bool found = false;
+                     for (int i = 0; i < wallsJson.size(); i++) {
+                        auto wallJson = wallsJson[i];
+                        Point wallPosition = {wallJson["position"][0], wallJson["position"][1]};
+                        if(this->gameState.walls.at(j).x == wallPosition.x && this->gameState.walls.at(j).y == wallPosition.y){
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->setType('X');
+                        this->sfMainSoundPlayer.playGameCoinWon();
+                        this->addCoins(2);
+                        this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->gameState.walls.at(j).x, this->gameState.walls.at(j).y, 2, true);
+                        this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                        map.refreshTextures(map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosX(),
+                        map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosY());
+                        break;
+                    }
+                }
+            }
         } catch (const std::exception& e) {
             std::cerr << "Error parsing JSON: " << e.what() << std::endl;
         }
     }
+}
+
+void Game::pauseMenu(bool pause){
+    if(pause){
+        if(this->networkController != nullptr){
+            this->networkController->handleMessage("pause");
+        }
+        
+        this->sfmlHud->setPaused(true);
+        this->deactivateTowers();
+        
+        this->sfmlHud->update();
+        this->sfmlHud->draw();
+    }else{
+        if(this->networkController != nullptr){
+            this->networkController->handleMessage("unpause");
+        }
+        this->sfmlHud->setPaused(false);
+        this->activateTowers();
+        
+        this->sfmlHud->update();
+        this->sfmlHud->draw();
+    }
+    
+
+
+
 }

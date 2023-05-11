@@ -198,3 +198,11 @@ std::string NetworkController::detectMessageReceived()
 
     return "";
 }
+
+void NetworkController::handleMessage(std::string message){
+    if (this->isServer == false) {
+        this->sendMessageToServer(message);
+    } else {
+        this->sendMessageToAllClients(message);
+    }
+}

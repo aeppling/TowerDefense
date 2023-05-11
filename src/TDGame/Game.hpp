@@ -26,7 +26,7 @@ class Game{
     // Définition de la structure de données pour l'état du jeu
     int numCoins;
     std::vector<Tower*>* towerList;
-
+    std::vector<Point> walls;
 
     };
     private : 
@@ -128,8 +128,8 @@ class Game{
         bool checkCursorOutsideMap(int posX, int posY, TDMap &map);
         void setSpawnCellsSprites();
         void sendGameStateToClients();
-        void handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool isWaveRunning);
-        
+        void handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isWaveRunning);
+        void pauseMenu(bool pause);
     };
 
 #endif // GAME_HPP_
