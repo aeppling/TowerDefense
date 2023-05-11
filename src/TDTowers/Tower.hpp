@@ -45,6 +45,7 @@ class Tower : public Buildable {
         sf::RenderWindow &window;
         sf::Sound       _shotSound;
         sf::Sound       _killSound;
+        int id;
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
               std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);
@@ -64,6 +65,8 @@ public:
         void upgrade(SFMLTowerLoader &sfmlTowerLoader) override;
         void addArmor();
         int getArmor() { return (this->armorPierceValue); };
+        void setArmor(int armor) { this->armorPierceValue = armor; };
+        void setLevel(int level){this->level = level;};
         void setTimeBetweenAttack(float time) override;
         float getTimeBetweenAttack() override;
         int getCost() override;
@@ -89,6 +92,8 @@ public:
         void setSpeedBuffValue(int value);
         float getSpeedBuff() { return (this->speedBuff);};
         void resetSpeedBuff();
+        int getId(){return (this->id);};
+        void setId(int id){this->id = id;};
 };
 
 #endif

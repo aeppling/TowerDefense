@@ -358,4 +358,6 @@ CMakeFiles/untitled1.dir/main.cpp.obj: \
  C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDPlayer/TDPlayer.hpp \
  C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDSounds/SFMainSoundLoader.hpp \
  C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDSounds/SFMainSoundPlayer.hpp \
- C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDGame/NetworkController.hpp
+ C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDGame/NetworkController.hpp \
+ C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDGame/Menus.hpp \
+ C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDGame/MenusButton.hpp

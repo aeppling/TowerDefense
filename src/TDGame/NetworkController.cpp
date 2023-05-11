@@ -7,31 +7,33 @@ NetworkController::NetworkController(bool isServer){
     if(this->isServer){
         std::cout << "serveur" << std::endl;
         std::cout << "Local IP : " << sf::IpAddress::getLocalAddress() << std::endl;
-        sf::IpAddress clientIp = this->waitForConnection();
-        std::cout << "Client IP : " << clientIp << std::endl;
+        this->waitForConnection();
+        
     }else{
         std::cout << "client" << std::endl;
-        // Attend la réponse du serveur contenant son adresse IP
+        while (true) {
             std::string serverAddressString;
-            std::cout << "Please enter the IP address of the server : ";
+            std::cout << "Please enter the IP address of the server: ";
             std::cin >> serverAddressString;
             sf::IpAddress serverAddress(serverAddressString);
 
-            // Connecte le client au serveur
+            // Connect the client to the server
             if (this->connectToServer(serverAddress))
             {
                 std::cout << "Connected to server" << std::endl;
+                break; // Successful connection, exit loop
             }
             else
             {
                 std::cout << "Failed to connect to server" << std::endl;
             }
+        }
     }  
 }
 
 bool NetworkController::connectToServer(const sf::IpAddress& serverAddress)
 {
-    // Crée une socket de connexion TCP
+    // Create a TCP connection socket
     this->serverSocket = new sf::TcpSocket;
 
     std::cout << "Connecting to server..." << std::endl;
@@ -40,15 +42,11 @@ bool NetworkController::connectToServer(const sf::IpAddress& serverAddress)
         delete this->serverSocket;
         return false;
     }
-
-    std::cout << "Connected to server" << std::endl;
-
-    
     return true;
 }
 
 
-sf::IpAddress NetworkController::waitForConnection()
+void NetworkController::waitForConnection()
 {    
     std::cout << "Server is listening to port " << this->port << ", waiting for connections... " << std::endl;
 
@@ -60,33 +58,24 @@ sf::IpAddress NetworkController::waitForConnection()
     {
         std::cout << "Failed to bind listener to port " << this->port << std::endl;
     }
-    sf::TcpSocket client;
-    if (listener.accept(client) != sf::Socket::Done)
+    auto client = std::make_unique<sf::TcpSocket>();
+    if (listener.accept(*client) != sf::Socket::Done)
     {
         std::cout << "Failed to accept client's connection" << std::endl;
+        return;
     }
-    std::cout << "Client connected: " << client.getRemoteAddress() << std::endl;
-    this->clients.push_back(&client);
-    // Envoie l'adresse IP du serveur au client
-    sf::Packet packet;
-    packet << sf::IpAddress::getLocalAddress().toString();
-    if (client.send(packet) != sf::Socket::Done)
-    {
-        std::cout << "Failed to send server IP" << std::endl;
-        return sf::IpAddress::None;
-    }
-    std::cout << "Server IP sent to client" << std::endl;
+    std::cout << "Client connected: " << client->getRemoteAddress() << std::endl;
 
-    // Ferme la socket d'écoute
-
-    // Retourne l'adresse IP du client
-    return client.getRemoteAddress();
+    // Ajoute le client à la liste
+    this->clients.push_back(std::move(client));
 }
+
 
 void NetworkController::sendMessageToAllClients(const std::string& message)
 {
     for (auto& client : this->clients)
     {
+        std::cout << "Sending message to client " << client->getRemoteAddress() << std::endl;
         if (client->send(message.c_str(), message.size()) != sf::Socket::Done)
         {
             std::cout << "Failed to send message to client" << std::endl;
@@ -100,16 +89,120 @@ void NetworkController::sendMessageToServer(const std::string& message)
     {
         std::cout << "Failed to send message to server" << std::endl;
     }
+    std::cout << "Message sent to server" << std::endl;
 }
 
 std::string NetworkController::receiveMessage(sf::TcpSocket* clientSocket)
-{
-    int message;
+
+{   
+    std::cout << "Receiving message from client" << std::endl;
+    char buffer[1024];
     std::size_t received;
-    sf::Socket::Status status = clientSocket->receive(&message, sizeof(message), received);
-    if (status == sf::Socket::Done && received == sizeof(message)) {
-        return std::to_string(message);
+    sf::Socket::Status status = clientSocket->receive(buffer, sizeof(buffer), received);
+    if (status == sf::Socket::Done) {
+        return std::string(buffer, received);
     }
+    std::cout << "Failed to receive message from client test" << std::endl;
+    return "";
 }
 
 
+
+
+void NetworkController::sendMessageToClient(const sf::IpAddress& clientIpAddress, const std::string& message)
+{   
+    for (const auto& client : clients) {
+        std::cout << "Client IP address: " << client->getRemoteAddress() << std::endl;
+    }
+    std::cout << "Sending message to client " << clientIpAddress << std::endl;
+    auto client = std::find_if(clients.begin(), clients.end(), [&](const std::unique_ptr<sf::TcpSocket>& c) { return c->getRemoteAddress() == clientIpAddress; });
+
+    if (client != clients.end())
+    {
+        if ((*client)->send(message.c_str(), message.size()) != sf::Socket::Done)
+        {
+            std::cout << "Failed to send message to client" << std::endl;
+        }
+        std::cout << "Message sent to client " << clientIpAddress << std::endl;
+    }else{
+        std::cout << "Client not found" << std::endl;
+    }
+}
+
+std::vector<sf::TcpSocket*> NetworkController::getClients() {
+    std::vector<sf::TcpSocket*> result;
+    for (auto& client : this->clients) {
+        result.push_back(client.get());
+    }
+    return result;
+}
+
+NetworkController::~NetworkController() {
+    delete this->serverSocket;
+}
+
+std::string NetworkController::detectMessageReceived()
+{
+    bool messageReceived = false;
+
+    // Si on est un serveur, on vérifie si un message a été reçu sur chacun des clients
+    if (isServer)
+    {
+        for (const auto& client : clients)
+        {
+            char buffer[1024];
+            std::size_t received;
+            client->setBlocking(false);
+            sf::Socket::Status status = client->receive(buffer, sizeof(buffer), received);
+
+            if (status == sf::Socket::Done)
+            {
+                std::cout << "Received message \"" << buffer << "\" from client " << client->getRemoteAddress() << std::endl;
+                messageReceived = true;
+                return std::string(buffer, received);
+            }
+            else if (status == sf::Socket::Disconnected)
+            {
+                std::cout << "Client " << client->getRemoteAddress() << " disconnected" << std::endl;
+            }
+            else if (status == sf::Socket::Error)
+            {
+                std::cout << "An error occurred while receiving data from client " << client->getRemoteAddress() << std::endl;
+            }
+            client->setBlocking(false);
+        }
+    }
+    // Si on est un client, on vérifie si un message a été reçu sur la socket du serveur
+    else
+    {
+        char buffer[1024];
+        this->serverSocket->setBlocking(false);
+        std::size_t received;
+        sf::Socket::Status status = this->serverSocket->receive(buffer, sizeof(buffer), received);
+        if (status == sf::Socket::Done)
+        {
+            std::cout << "Received message \"" << buffer << "\" from server" << std::endl;
+            messageReceived = true;
+            return std::string(buffer, received);
+        }
+        else if (status == sf::Socket::Disconnected)
+        {
+            std::cout << "Disconnected from server" << std::endl;
+        }
+        else if (status == sf::Socket::Error)
+        {
+            std::cout << "An error occurred while receiving data from server" << std::endl;
+        }
+        this->serverSocket->setBlocking(true);
+    }
+
+    return "";
+}
+
+void NetworkController::handleMessage(std::string message){
+    if (this->isServer == false) {
+        this->sendMessageToServer(message);
+    } else {
+        this->sendMessageToAllClients(message);
+    }
+}
