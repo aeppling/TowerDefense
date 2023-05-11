@@ -63,6 +63,7 @@ void Menus::loadHome() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(500, 70, true, "Singleplayer", "singleplayer", this->_mainFont);
@@ -126,6 +127,7 @@ void Menus::loadSingleplayer() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, true, "Terra", "planet1", this->_mainFont);
@@ -191,6 +193,7 @@ void Menus::loadMultiplayer() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // BUTTONS SETUP
     MenusButton *host = new MenusButton(400, 600, true, "Host", "singleplayer", this->_mainFont);
@@ -238,6 +241,7 @@ void Menus::loadHostLobby() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -253,6 +257,7 @@ void Menus::loadHost() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to planet choice", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -277,6 +282,7 @@ void Menus::loadJoin() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
     this->_isIpEntering = true;
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
@@ -324,6 +330,7 @@ void Menus::loadJoinTest() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
@@ -349,13 +356,36 @@ void Menus::loadSettings() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
-
     backhome->setPosition(_winSizeX / 2, 900);
-
     this->_visibleButtons.push_back(backhome);
 
+    // VOLUMES SLIDERS
+    sf::RectangleShape *globalVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    globalVolumeSlider->setFillColor(sf::Color::Cyan);
+    sf::Vector2f newOriginVolume1(globalVolumeSlider->getLocalBounds().width / 2.f, globalVolumeSlider->getLocalBounds().height / 2.f);
+    globalVolumeSlider->setOrigin(newOriginVolume1);
+    globalVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 400);
+    this->_visibleRectangle.push_back(globalVolumeSlider);
+
+    sf::RectangleShape *musicVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    musicVolumeSlider->setFillColor(sf::Color::Cyan);
+    sf::Vector2f newOriginVolume2(musicVolumeSlider->getLocalBounds().width / 2.f, musicVolumeSlider->getLocalBounds().height / 2.f);
+    musicVolumeSlider->setOrigin(newOriginVolume2);
+    musicVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 550);
+    this->_visibleRectangle.push_back(musicVolumeSlider);
+
+    sf::RectangleShape *soundVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    soundVolumeSlider->setFillColor(sf::Color::Cyan);
+    sf::Vector2f newOriginVolume3(soundVolumeSlider->getLocalBounds().width / 2.f, soundVolumeSlider->getLocalBounds().height / 2.f);
+    soundVolumeSlider->setOrigin(newOriginVolume3);
+    soundVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 700);
+    this->_visibleRectangle.push_back(soundVolumeSlider);
+
+
+    // BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
@@ -365,6 +395,7 @@ void Menus::loadTutorial() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     MenusButton *backhome = new MenusButton(200, 80, true, "< Back", "home", this->_mainFont);
     backhome->setPosition((this->_winSizeX / 2) - 800, this->_winSizeY - 150);
@@ -387,6 +418,7 @@ void Menus::loadLevelsPlanet1() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -419,6 +451,7 @@ void Menus::loadLevelsPlanet2() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -451,6 +484,7 @@ void Menus::loadLevelsPlanet3() {
     this->_visibleButtons.clear();
     this->_visibleSprites.clear();
     this->_visibleText.clear();
+    this->_visibleRectangle.clear();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -499,6 +533,11 @@ void Menus::drawMenu(sf::RenderWindow &window) {
         window.draw(*this->_visibleText.at(i));
         i++;
     }
+    i = 0;
+    while (i < this->_visibleRectangle.size()) {
+        window.draw(*this->_visibleRectangle.at(i));
+        i++;
+    }
 }
 
 std::string Menus::loadMenuByName(std::string name) {
@@ -516,7 +555,7 @@ std::string Menus::loadMenuByName(std::string name) {
     }
     else if (name == "settings") {
         this->loadSettings();
-        return ("no");
+        return ("settings");
     }
     else if (name == "home") {
         this->loadHome();

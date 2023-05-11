@@ -158,7 +158,8 @@ int main() {
     int         levelToPlay = -1;
     int         planetToLoad = -1;
     bool        gameMode = 0;
-    int gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
+    int         gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
+    bool        isInSettings = false;
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
@@ -172,15 +173,20 @@ int main() {
                 if (clicked != "no") {
                     if (clicked == "exit")
                         return (1);
+                    else if (clicked.find("settings") != std::string::npos) {
+                        isInSettings = true;
+                    }
                     else if (clicked.find("ip:") != std::string::npos) {
                         // LAUNCH CONNEXION TO HOST WITH menu.getIp
+                        isInSettings = false;
                         std::string ipAddressToConnect = clicked.substr(3);
-
                     }
                     else if (clicked.find("hostwait") != std::string::npos) {
+                        isInSettings = false;
                         // LAUNCH HOST WAITING FOR CLIENT
                     }
                     else {
+                        isInSettings = false;
                         selectionInformation = clicked;
                         levelToPlay = extractLevelNumber(selectionInformation);
                         planetToLoad = extractPlanetNumber(selectionInformation);

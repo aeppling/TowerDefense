@@ -16,10 +16,11 @@ private:
     std::string                 _ipAddressField;
     bool                        _isIpEntering;
 
-    std::vector<MenusButton*>   _visibleButtons;
-    std::vector<sf::Sprite*>    _visibleSprites;
-    std::vector<sf::Text*>      _visibleText;
-    sf::Sprite                  _actualBackground;
+    std::vector<MenusButton*>           _visibleButtons;
+    std::vector<sf::Sprite*>            _visibleSprites;
+    std::vector<sf::Text*>              _visibleText;
+    std::vector<sf::RectangleShape*>    _visibleRectangle;
+    sf::Sprite                          _actualBackground;
 
     sf::Texture                 _planet1txt;
     sf::Texture                 _planet2txt;
