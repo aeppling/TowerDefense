@@ -1,11 +1,8 @@
-//
-// Created by adrie on 10/05/2023.
-//
-
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
 #include <mutex>
+#include <cstdlib>
 
 #include "src/TDGraphics/SFMLLoader.hpp"
 #include "src/TDGraphics/SFMLLoaderPlanet1.hpp"
@@ -22,6 +19,8 @@
 #include "src/TDSounds/SFMainSoundPlayer.hpp"
 #include "src/TDGame/NetworkController.hpp"
 #include "src/TDGame/Menus.hpp"
+#include "src/TDGame/NetworkController.hpp"
+
 
 bool isInPathFound(int x, int y, std::vector<MapCell*> path) {
     int i = 0;
@@ -51,6 +50,25 @@ void displayDebugMap(std::vector<std::vector<MapCell>> *map, std::vector<MapCell
     }
     std::cout << "END OF DEBUG DISPLAY" << std::endl << std::endl;
 
+}
+
+int extractPlanetNumber(const std::string& str) {
+    size_t planetPos = str.find("planet");
+    if (planetPos != std::string::npos) {
+        std::string planetNumberStr = str.substr(planetPos + 6);
+        return std::atoi(planetNumberStr.c_str());
+    }
+    return (-1);
+}
+
+int extractLevelNumber(const std::string& str) {
+    size_t levelPos = str.find("level");
+    if (levelPos != std::string::npos) {
+        // Extract the number following "level"
+        std::string levelNumberStr = str.substr(levelPos + 5);
+        return std::atoi(levelNumberStr.c_str());
+    }
+    return (-1);
 }
 
 
@@ -92,7 +110,6 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     settings.depthBits = 24;
     settings.stencilBits = 8;
     settings.antialiasingLevel = 4;
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     window.setActive(true);
     SFMLLoader sfmlLoader;
 
@@ -116,8 +133,6 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
 
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
-
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
     SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
     sfSoundPlayer.stopMenuMusic();
     sfSoundPlayer.playGameMusic1();
@@ -135,12 +150,13 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
           level = atoi(levelstr.c_str());
       }
     }*/
+    std::cout << "level : " << level << std::endl;
     Game currentGame(1, level, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr /*networkController  nullptr si solo */, 1);
     
     try {
         if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
-            return (-1);
+            return;
         }
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;

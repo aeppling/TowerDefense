@@ -68,7 +68,6 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->gameState.numCoins = 5000;
     this->gameState.towerList = &this->towerList;
     this->id = 0;
-    ;
 }
 
 
