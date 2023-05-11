@@ -9,7 +9,7 @@
 
 class Alien : public TDUnit {
 public:
-    Alien(int posX, int posY, SFMLLoader &sfmlLoader) : TDUnit(50, 550, 0, posX, posY, false, 17, sfmlLoader, 1.5, false) {}
+    Alien(int posX, int posY) : TDUnit(50, 550, 0, posX, posY, false, 17, 1.5, false) {}
 
     virtual std::string getTypeName() {
         return "Alien";

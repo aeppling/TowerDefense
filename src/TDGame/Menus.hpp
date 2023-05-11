@@ -11,9 +11,19 @@ class Menus {
 private:
     int                         _winSizeX;
     int                         _winSizeY;
+    int                         _globalVolume;
+    std::string                 _players;
+    std::string                 _ipAddressField;
+    bool                        _isIpEntering;
 
     std::vector<MenusButton*>   _visibleButtons;
+    std::vector<sf::Sprite*>    _visibleSprites;
+    std::vector<sf::Text*>      _visibleText;
     sf::Sprite                  _actualBackground;
+
+    sf::Texture                 _planet1txt;
+    sf::Texture                 _planet2txt;
+    sf::Texture                 _planet3txt;
 
     sf::Texture                 _backgroundStars;
     sf::Texture                 _backgroundHome;
@@ -23,15 +33,27 @@ private:
     sf::Texture                 _backgroundTutorial;
 
     sf::Font                    _mainFont;
+    sf::Font                    _fontTitle;
+
 public:
-    Menus(int winSizeX, int winSizeY);
+    Menus(int winSizeX, int winSizeY, int globalVolume);
     ~Menus() = default;
+
+    // GETTER & SETTER
+    int getGlobalVolume() { return(this->_globalVolume);};
+    void setIpAddressField(std::string ipAddress) { this->_ipAddressField = ipAddress;  };
+    std::string getIpAddressField() { return(this->_ipAddressField); };
+    bool isIpEntering() { return(this->_isIpEntering); };
 
     // MENUS LOADERS
     std::string loadMenuByName(std::string name);
     void loadHome();
     void loadSingleplayer();
     void loadMultiplayer();
+    void loadHost();
+    void loadHostLobby();
+    void loadJoin();
+    void loadJoinTest();
     void loadSettings();
     void loadTutorial();
     void loadLevelsPlanet1();

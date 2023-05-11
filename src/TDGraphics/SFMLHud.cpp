@@ -90,6 +90,20 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     */  
 }
 
+int SFMLHud::checkForPausedClick(sf::RenderWindow &window) {
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    if (this->volumeButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        return (1);
+    }
+    else if (this->pauseButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+            return (2);
+    }
+    else if (this->homeButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
+        return (3);
+    }
+    return (-1);
+}
+
 int SFMLHud::checkForClick(sf::RenderWindow &window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     int i = 0;

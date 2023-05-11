@@ -13,7 +13,7 @@
 
 std::mutex mtx2;
 
-TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial) {
+TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial) {
     this->_health_points = hp;
     this->_isForcing = false;
     this->_max_health = hp;

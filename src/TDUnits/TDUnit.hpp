@@ -56,7 +56,7 @@ public:
 
 
     // CONSTRUCTOR & OVERLOADS
-    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, SFMLLoader &sfmlLoaderUnit, float scale, bool isSemiAerial);
+    TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial);
     ~TDUnit() {
         std::cout << "Unit destructed here : " << this->getTypeName() << std::endl;
     }

@@ -66,6 +66,7 @@ public:
     bool getPaused(){  return isPaused;}
     void setMessage(std::string message){ textMessage.setString(message);}
     int checkForClick(sf::RenderWindow &window);
+    int checkForPausedClick(sf::RenderWindow &window);
     int checkForSellUpgradeClick(sf::RenderWindow &window);
 };
 #endif // UNTITLED1_SFMLHUD_HPP_

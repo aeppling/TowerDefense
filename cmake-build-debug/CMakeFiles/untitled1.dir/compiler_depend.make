@@ -268,6 +268,8 @@ CMakeFiles/untitled1.dir/main.cpp.obj: ../main.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
   ../src/TDGraphics/SFMLLoaderPlanet1.hpp \
   ../src/TDGraphics/SFMLLoader.hpp \
+  ../src/TDGraphics/SFMLLoaderPlanet2.hpp \
+  ../src/TDGraphics/SFMLLoaderPlanet3.hpp \
   ../src/TDMap/mapParser.hpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
@@ -721,6 +723,8 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../include/SFML/Network/UdpSocket.hpp \
   ../src/TDGraphics/SFMLMapReloader.hpp \
   ../src/TDGraphics/SFMLLoaderPlanet1.hpp \
+  ../src/TDGraphics/SFMLLoaderPlanet2.hpp \
+  ../src/TDGraphics/SFMLLoaderPlanet3.hpp \
   ../src/TDTowers/AntiAirTower.hpp \
   ../src/TDTowers/Tower.hpp \
   ../src/TDTowers/BasicTower.hpp \
@@ -10276,6 +10280,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/System/FileInputStream.hpp:
 
+../src/TDGraphics/SFMLLoaderPlanet2.hpp:
+
 ../include/SFML/System/InputStream.hpp:
 
 ../include/SFML/System/Lock.hpp:
@@ -10453,6 +10459,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h:
 
 ../src/TDGraphics/SFMLLoaderPlanet1.hpp:
+
+../src/TDGraphics/SFMLLoaderPlanet3.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h:
 

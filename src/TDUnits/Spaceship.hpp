@@ -9,7 +9,7 @@
 
 class Spaceship : public TDUnit {
 public:
-    Spaceship(int posX, int posY, SFMLLoader &sfmlLoaderUnit) : TDUnit(80, 750, 0, posX, posY, true, 70, sfmlLoaderUnit, 3.5, false) {}
+    Spaceship(int posX, int posY) : TDUnit(80, 750, 0, posX, posY, true, 70, 3.5, false) {}
 
     virtual std::string getTypeName() {
         return "Spaceship";

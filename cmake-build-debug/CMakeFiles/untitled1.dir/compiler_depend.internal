@@ -269,6 +269,8 @@ CMakeFiles/untitled1.dir/main.cpp.obj
  C:/MINGW, GLEW AND SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoader.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet2.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet3.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/mapParser.hpp
  C:/MINGW, GLEW AND SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream
  C:/MINGW, GLEW AND SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h
@@ -725,6 +727,8 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/UdpSocket.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet2.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet3.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.hpp
