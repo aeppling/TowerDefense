@@ -16,6 +16,13 @@ private:
     std::string                 _ipAddressField;
     bool                        _isIpEntering;
 
+    sf::RectangleShape          _globalVolumeSlider;
+    sf::RectangleShape          _musicVolumeSlider;
+    sf::RectangleShape          _soundVolumeSlider;
+    sf::RectangleShape          _globalVolumeSliderBackground;
+    sf::RectangleShape          _musicVolumeSliderBackground;
+    sf::RectangleShape          _soundVolumeSliderBackground;
+
     std::vector<MenusButton*>           _visibleButtons;
     std::vector<sf::Sprite*>            _visibleSprites;
     std::vector<sf::Text*>              _visibleText;
@@ -68,6 +75,7 @@ public:
     void loadJoin();
     void loadJoinTest();
     void loadSettings();
+    void reloadVolume(int newVolume, std::string type);
     void loadTutorial();
     void loadLevelsPlanet1();
     void loadLevelsPlanet2();
@@ -76,6 +84,7 @@ public:
 
     // FUNCTION
     std::string checkForClick(sf::Vector2i mousePos);
+    int checkIfVolumeClicked(sf::Vector2i mousePos);
 };
 
 #endif //UNTITLED1_MENUS_HPP

@@ -166,10 +166,17 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 windowTestMenu.close();
             }
+            if (isInSettings) {
+                if (event.type == sf::Event::MouseButtonReleased)
+                {
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
+                    menu.checkIfVolumeClicked(mousePosition);
+                }
+            }
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
-                std::string clicked = menu.checkForClick(mousePos);
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
+                std::string clicked = menu.checkForClick(mousePosition);
                 if (clicked != "no") {
                     if (clicked == "exit")
                         return (1);

@@ -363,32 +363,76 @@ void Menus::loadSettings() {
     this->_visibleButtons.push_back(backhome);
 
     // VOLUMES SLIDERS
+    sf::RectangleShape *globalVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    globalVolumeSliderBackground->setFillColor(sf::Color::White);
+    sf::Vector2f newOriginVolume1(globalVolumeSliderBackground->getLocalBounds().width / 2.f, globalVolumeSliderBackground->getLocalBounds().height / 2.f);
+    globalVolumeSliderBackground->setOrigin(newOriginVolume1);
+    globalVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 400);
     sf::RectangleShape *globalVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
     globalVolumeSlider->setFillColor(sf::Color::Cyan);
-    sf::Vector2f newOriginVolume1(globalVolumeSlider->getLocalBounds().width / 2.f, globalVolumeSlider->getLocalBounds().height / 2.f);
     globalVolumeSlider->setOrigin(newOriginVolume1);
     globalVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 400);
+    this->_globalVolumeSlider = *globalVolumeSlider;
+    globalVolumeSlider = &this->_globalVolumeSlider;
+    this->_globalVolumeSliderBackground = *globalVolumeSliderBackground;
+    globalVolumeSliderBackground = &this->_globalVolumeSliderBackground;
+    this->_visibleRectangle.push_back(globalVolumeSliderBackground);
     this->_visibleRectangle.push_back(globalVolumeSlider);
 
+    sf::RectangleShape *musicVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    musicVolumeSliderBackground->setFillColor(sf::Color::White);
+    sf::Vector2f newOriginVolume2(musicVolumeSliderBackground->getLocalBounds().width / 2.f, musicVolumeSliderBackground->getLocalBounds().height / 2.f);
+    musicVolumeSliderBackground->setOrigin(newOriginVolume2);
+    musicVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 550);
     sf::RectangleShape *musicVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
     musicVolumeSlider->setFillColor(sf::Color::Cyan);
-    sf::Vector2f newOriginVolume2(musicVolumeSlider->getLocalBounds().width / 2.f, musicVolumeSlider->getLocalBounds().height / 2.f);
     musicVolumeSlider->setOrigin(newOriginVolume2);
     musicVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 550);
+    this->_musicVolumeSlider = *musicVolumeSlider;
+    musicVolumeSlider = &this->_musicVolumeSlider;
+    this->_musicVolumeSliderBackground = *musicVolumeSliderBackground;
+    musicVolumeSliderBackground = &this->_musicVolumeSliderBackground;
+    this->_visibleRectangle.push_back(musicVolumeSliderBackground);
     this->_visibleRectangle.push_back(musicVolumeSlider);
 
+    sf::RectangleShape *soundVolumeSliderBackground = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
+    soundVolumeSliderBackground->setFillColor(sf::Color::White);
+    sf::Vector2f newOriginVolume3(soundVolumeSliderBackground->getLocalBounds().width / 2.f, soundVolumeSliderBackground->getLocalBounds().height / 2.f);
+    soundVolumeSliderBackground->setOrigin(newOriginVolume3);
+    soundVolumeSliderBackground->setPosition((this->_winSizeX / 2) + 300, 700);
     sf::RectangleShape *soundVolumeSlider = new sf::RectangleShape(sf::Vector2f(600.f, 40.f));
     soundVolumeSlider->setFillColor(sf::Color::Cyan);
-    sf::Vector2f newOriginVolume3(soundVolumeSlider->getLocalBounds().width / 2.f, soundVolumeSlider->getLocalBounds().height / 2.f);
     soundVolumeSlider->setOrigin(newOriginVolume3);
     soundVolumeSlider->setPosition((this->_winSizeX / 2) + 300, 700);
+    this->_soundVolumeSlider = *soundVolumeSlider;
+    soundVolumeSlider = &this->_soundVolumeSlider;
+    this->_soundVolumeSliderBackground = *soundVolumeSliderBackground;
+    soundVolumeSliderBackground = &this->_soundVolumeSliderBackground;
+    this->_visibleRectangle.push_back(soundVolumeSliderBackground);
     this->_visibleRectangle.push_back(soundVolumeSlider);
-
 
     // BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
+}
+
+void Menus::reloadVolume(int newVolume, std::string type) {
+
+    if (type == "global") {
+        float newValue = newVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+        this->_globalVolumeSlider.setSize(sf::Vector2f(newValue, this->_globalVolumeSlider.getSize().y));
+    }
+    else if (type == "music") {
+        float newValue = newVolume / 100.f * this->_musicVolumeSliderBackground.getSize().x;
+        this->_musicVolumeSlider.setSize(sf::Vector2f(newValue, this->_musicVolumeSlider.getSize().y));
+    }
+    else if (type == "sound") {
+        float newValue = newVolume / 100.f * this->_soundVolumeSliderBackground.getSize().x;
+        this->_soundVolumeSlider.setSize(sf::Vector2f(newValue, this->_soundVolumeSlider.getSize().y));
+    }
+    else
+        return ;
 }
 
 void Menus::loadTutorial() {
@@ -533,10 +577,15 @@ void Menus::drawMenu(sf::RenderWindow &window) {
         window.draw(*this->_visibleText.at(i));
         i++;
     }
-    i = 0;
-    while (i < this->_visibleRectangle.size()) {
-        window.draw(*this->_visibleRectangle.at(i));
-        i++;
+    if (!this->_visibleRectangle.empty()) {
+        i = 0;
+        while (i < this->_visibleRectangle.size()) {
+            window.draw(*this->_visibleRectangle.at(i));
+            i++;
+        }
+    /*    window.draw(this->_globalVolumeSlider);
+        window.draw(this->_musicVolumeSlider);
+        window.draw(this->_);*/
     }
 }
 
@@ -608,4 +657,30 @@ std::string Menus::checkForClick(sf::Vector2i mousePos) {
         i++;
     }
     return ("no");
+}
+
+int Menus::checkIfVolumeClicked(sf::Vector2i mousePosition) {
+    sf::FloatRect globalSliderBorder = this->_globalVolumeSliderBackground.getGlobalBounds();
+    sf::FloatRect musicSliderBorder = this->_musicVolumeSliderBackground.getGlobalBounds();
+    sf::FloatRect soundSliderBorder = this->_soundVolumeSliderBackground.getGlobalBounds();
+
+    float newVolume;
+    if (globalSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - globalSliderBorder.left) / globalSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        reloadVolume(newVolume, "global");
+    }
+    else if (musicSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - musicSliderBorder.left) / musicSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        reloadVolume(newVolume, "music");
+    }
+    else if (soundSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - soundSliderBorder.left) / soundSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        reloadVolume(newVolume, "sound");
+    }
+    else
+        newVolume = -1;
+    return (newVolume);
 }
