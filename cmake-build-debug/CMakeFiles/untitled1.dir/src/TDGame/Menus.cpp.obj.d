@@ -243,4 +243,5 @@ CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Graphics/Sprite.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Graphics/Text.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Graphics/VertexBuffer.hpp \
- C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\usefullStruct.hpp
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src\TDGame\usefullStruct.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.hpp

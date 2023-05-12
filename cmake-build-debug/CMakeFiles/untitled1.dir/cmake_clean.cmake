@@ -45,6 +45,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj.d"
+  "CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj"
+  "CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj"

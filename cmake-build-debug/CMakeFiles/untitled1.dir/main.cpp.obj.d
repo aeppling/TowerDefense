@@ -360,8 +360,10 @@ CMakeFiles/untitled1.dir/main.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/TcpListener.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/SFML/Network/UdpSocket.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDPlayer/TDPlayer.hpp \
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDPlayer/TDPlayerSave.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDSounds/SFMainSoundLoader.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDSounds/SFMainSoundPlayer.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGame/NetworkController.hpp \
  C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGame/Menus.hpp \
- C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGame/MenusButton.hpp
+ C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\src/TDGame/MenusButton.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.hpp

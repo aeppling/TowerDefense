@@ -6,13 +6,13 @@
 
 #include "Menus.hpp"
 
-Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY),
-                                                                                                _globalVolume(globalVolume), _musicVolume(musicVolume), _soundVolume(soundVolume) {
+Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume, int difficulty) : _winSizeX(winSizeX), _winSizeY(winSizeY),
+                                                                                                _globalVolume(globalVolume), _musicVolume(musicVolume),
+                                                                                                _soundVolume(soundVolume), _difficulty(difficulty) {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
     this->_isInSettings = false;
-    this->_difficulty = 1;
     // PLANETS
     if (!this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
@@ -705,7 +705,7 @@ std::string Menus::checkForClick(sf::Vector2i mousePos) {
     return ("no");
 }
 
-bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, int *globalVolume, int *musicVolume, int *soundVolume) {
+bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, TDPlayerSave &playerSave, std::string saveFile) {
     sf::FloatRect globalSliderBorder = this->_globalVolumeSliderBackground.getGlobalBounds();
     sf::FloatRect musicSliderBorder = this->_musicVolumeSliderBackground.getGlobalBounds();
     sf::FloatRect soundSliderBorder = this->_soundVolumeSliderBackground.getGlobalBounds();
@@ -714,26 +714,28 @@ bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, int *globalVolume, 
     if (globalSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - globalSliderBorder.left) / globalSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
-        *globalVolume = newVolume;
+        playerSave.setGlobalVolume(newVolume);
         this->_globalVolume = newVolume;
         reloadVolume(newVolume, "global");
     }
     else if (musicSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - musicSliderBorder.left) / musicSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
-        *musicVolume = newVolume;
+        playerSave.setMusicVolume(newVolume);
         this->_musicVolume = newVolume;
         reloadVolume(newVolume, "music");
     }
     else if (soundSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - soundSliderBorder.left) / soundSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
-        *soundVolume = newVolume;
+        playerSave.setSoundVolume(newVolume);
         this->_soundVolume = newVolume;
         reloadVolume(newVolume, "sound");
     }
     if (newVolume == -1)
         return (false);
-    else
+    else {
+        playerSave.savePlayerData(saveFile);
         return (true);
+    }
 }

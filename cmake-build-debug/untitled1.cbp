@@ -231,6 +231,12 @@
 		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/mapParser.hpp">
 			<Option target="untitled1"/>
 		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.hpp">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundLoader.cpp">
 			<Option target="untitled1"/>
 		</Unit>

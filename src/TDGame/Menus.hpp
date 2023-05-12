@@ -6,6 +6,7 @@
 #define UNTITLED1_MENUS_HPP
 
 #include "MenusButton.hpp"
+#include "../TDPlayer/TDPlayerSave.hpp"
 
 class Menus {
 private:
@@ -60,7 +61,7 @@ private:
     int                         _nbUnlockedPlanet2 = 7;
     int                         _nbUnlockedPlanet3= 0;
 public:
-    Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume);
+    Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume, int difficulty);
     ~Menus() = default;
 
     // GETTER & SETTER
@@ -128,7 +129,7 @@ public:
     }
     // FUNCTION
     std::string checkForClick(sf::Vector2i mousePos);
-    bool checkIfVolumeClicked(sf::Vector2i mousePos, int *globalVolume, int *musicVolume, int *soundVolume);
+    bool checkIfVolumeClicked(sf::Vector2i mousePos, TDPlayerSave &playerSave, std::string saveFile);
 };
 
 #endif //UNTITLED1_MENUS_HPP

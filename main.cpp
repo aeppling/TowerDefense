@@ -15,6 +15,7 @@
 #include "src/TDGame/SizeRatioCalculator.hpp"
 #include "src/TDGame/Game.hpp"
 #include "src/TDPlayer/TDPlayer.hpp"
+#include "src/TDPlayer/TDPlayerSave.hpp"
 #include "src/TDSounds/SFMainSoundLoader.hpp"
 #include "src/TDSounds/SFMainSoundPlayer.hpp"
 #include "src/TDGame/NetworkController.hpp"
@@ -194,24 +195,28 @@ void launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, in
 }
 
 int main() {
-    // SETTING SOUNDS
-    int musicVolume = 100;
-    int soundVolume = 100;
-    int globalVolume = 50;
+    // RETRIEVE PLAYER SAVE
+    const std::string saveFile = "playerdata.bin";
+    TDPlayerSave playerData(saveFile);
+    // PLAYER DATA RETRIEVE DEBUGGING
+    playerData.debugDisplayPlayerInfos();
+    playerData.unlockPlanet1Level();
+    playerData.savePlayerData(saveFile);
+    //
     SFMainSoundLoader mainSoundLoader;
-    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, globalVolume, musicVolume / 12, soundVolume);
+    SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume, musicVolume, soundVolume);
+    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData.getGlobalVolume(), playerData.getMusicVolume(), playerData.getSoundVolume(), playerData.getDifficulty());
     menu.loadHome();
+    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume(), playerData.getSoundVolume());
+// FOR LOOP LOGIC
     std::string selectionInformation("none");
     int         levelToPlay = -1;
     int         planetToLoad = -1;
     bool        gameMode = 0;
-    int         gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
     bool        isInSettings = false;
-    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
@@ -222,12 +227,14 @@ int main() {
                 if (event.type == sf::Event::MouseButtonReleased)
                 {
                     sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
-                    menu.checkIfVolumeClicked(mousePosition, &globalVolume, &musicVolume, &soundVolume);
-                    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
+                    menu.checkIfVolumeClicked(mousePosition, playerData, saveFile);
+                    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume(), playerData.getSoundVolume());
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                playerData.setDifficulty(menu.getDifficulty());
+                playerData.savePlayerData(saveFile);
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
                 std::string clicked = menu.checkForClick(mousePosition);
                 if (clicked != "no") {
@@ -254,8 +261,8 @@ int main() {
                             std::cout << "planetToLoad : " << planetToLoad << std::endl;
                             
                             
-                            launchMultiplayerGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad, networkController);
-    
+                            launchMultiplayerGame(sfSoundPlayer, playerData.getMusicVolume(), playerData.getSoundVolume(), menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
+
                         }else{
                             std::cout << "failed to connect to server" << std::endl;
                         }
@@ -275,7 +282,7 @@ int main() {
                         std::string str1(selectionInformation);
                         gameMode = extractGameMode(str1);
                         if (gameMode == 0)
-                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad);
+                            launchGame(sfSoundPlayer, playerData.getMusicVolume(), playerData.getSoundVolume(), menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad);
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
                             sf::IpAddress serverAddress = sf::IpAddress::getLocalAddress();
@@ -303,7 +310,7 @@ int main() {
                             
                             networkController->sendMessageToAllClients(std::to_string(levelToPlay));
                             networkController->sendMessageToAllClients(std::to_string(planetToLoad));
-                            launchMultiplayerGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad, networkController);
+                            launchMultiplayerGame(sfSoundPlayer, playerData.getMusicVolume(), playerData.getSoundVolume(), menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                         }
                     }
                 }

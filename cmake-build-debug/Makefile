@@ -680,6 +680,30 @@ src/TDMap/mapParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.s
 .PHONY : src/TDMap/mapParser.cpp.s
 
+src/TDPlayer/TDPlayerSave.obj: src/TDPlayer/TDPlayerSave.cpp.obj
+.PHONY : src/TDPlayer/TDPlayerSave.obj
+
+# target to build an object file
+src/TDPlayer/TDPlayerSave.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj
+.PHONY : src/TDPlayer/TDPlayerSave.cpp.obj
+
+src/TDPlayer/TDPlayerSave.i: src/TDPlayer/TDPlayerSave.cpp.i
+.PHONY : src/TDPlayer/TDPlayerSave.i
+
+# target to preprocess a source file
+src/TDPlayer/TDPlayerSave.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.i
+.PHONY : src/TDPlayer/TDPlayerSave.cpp.i
+
+src/TDPlayer/TDPlayerSave.s: src/TDPlayer/TDPlayerSave.cpp.s
+.PHONY : src/TDPlayer/TDPlayerSave.s
+
+# target to generate assembly for a file
+src/TDPlayer/TDPlayerSave.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.s
+.PHONY : src/TDPlayer/TDPlayerSave.cpp.s
+
 src/TDSounds/SFMainSoundLoader.obj: src/TDSounds/SFMainSoundLoader.cpp.obj
 .PHONY : src/TDSounds/SFMainSoundLoader.obj
 
@@ -1094,6 +1118,9 @@ help:
 	@echo ... src/TDMap/mapParser.obj
 	@echo ... src/TDMap/mapParser.i
 	@echo ... src/TDMap/mapParser.s
+	@echo ... src/TDPlayer/TDPlayerSave.obj
+	@echo ... src/TDPlayer/TDPlayerSave.i
+	@echo ... src/TDPlayer/TDPlayerSave.s
 	@echo ... src/TDSounds/SFMainSoundLoader.obj
 	@echo ... src/TDSounds/SFMainSoundLoader.i
 	@echo ... src/TDSounds/SFMainSoundLoader.s
