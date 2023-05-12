@@ -15,6 +15,7 @@ class SpritesHolder;
 
 class TDMap {
 private:
+    int                                              _planet;
     std::vector<std::vector<MapCell>>                _map;
     int                                              _constructIterator;
     std::vector<std::vector<sf::Sprite>>             _tilesSprites;
@@ -24,7 +25,7 @@ private:
     SFMLDecorationLoader                             &_sfmlDecorationLoader;
 public:
     // (DE)CONSTRUCTOR AND OVERLOADS
-    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder, SFMLDecorationLoader &sfmlDecorationLoader);
+    TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder, SFMLDecorationLoader &sfmlDecorationLoader, int planet);
     ~TDMap();
 
     // MAP CONSTRUCTION

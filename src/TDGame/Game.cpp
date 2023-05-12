@@ -564,8 +564,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
-                                    if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
-                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
+                                    if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
+                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
+                                    }
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }
@@ -749,7 +750,8 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     sf::Listener::setGlobalVolume((float)globalVolume);
     sf::Texture hearthTexture;
     this->player->resetTotalKill();
-    
+
+    this->sfMainSoundPlayer.playGameMusic1();
     // GAME INITIALISATON
     // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
     if (this->enemyList.size() == 0) {
@@ -776,7 +778,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map(mapPath, sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
+    TDMap map(mapPath, sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader, this->planet);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->mapMaxPosX = map.getSizeX();
     this->mapMaxPosY = map.getSizeY();
@@ -998,16 +1000,14 @@ bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
             int newY = y + i;
             int newX = x + j;
             // IS CHECKING NOT OUTSIDE MAP
-            if (newY < 0 || newY > maxY || newX < 0 || newX > maxX) {
-                continue;
-            }
+            if ((newX < 0) || (newX >= map.getSizeX()) || (newY < 0) || (newY >= map.getSizeY()))
+                return (false);
             if (map.getElem(newX, newY)->getType() != 'T') {
-               if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
+                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
                     continue;
                 }
-                else {
-                    return false;
-                }
+                else
+                    return (false);
             }
         }
     }
@@ -1069,14 +1069,14 @@ bool Game::waveEnd(sf::RenderWindow& window){
     //* return true if the current wave is ended , ifnot return else
     if (this->enemiesLeft <= 0) {
         if (this->isWaveEnding == false) {
-            std::cout << "Chrono start" << std::endl;
             this->endWaveTransitionTimer = std::chrono::steady_clock::now();
             this->isWaveEnding = true;
         }
         std::chrono::steady_clock::time_point checkPoint = std::chrono::steady_clock::now();
         int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(checkPoint - this->endWaveTransitionTimer).count();
         if (elapsed >= 2500) {
-            std::cout << "5 seconds have passed!" << std::endl;
+            this->player->addCoin(500-(difficulty*100));
+            this->sfMainSoundPlayer.playGameCoinWon();
             this->deactivateTowers();
             this->sfMainSoundPlayer.playWaveClear();
             this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
@@ -1142,11 +1142,13 @@ void Game::gameWon(){
     //* game won
     std::cout << "Game Won !!!" << std::endl;
     std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
+    this->sfMainSoundPlayer.stopGameMusic();
 }
 
 void Game::gameLost(){
     //* game lost
     std::cout << "Game Lost !!!" << std::endl;
+    this->sfMainSoundPlayer.stopGameMusic();
 }
 
 void Game::activateTowers(){

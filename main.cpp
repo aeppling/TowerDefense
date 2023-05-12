@@ -85,32 +85,43 @@ bool extractGameMode(const std::string& infoString) {
         return (0);
 }
 
-void resultOfEndGameActions(TDPlayerSave &playerData, int exitResult, int levelPlayed, int planetPlayed) {
+int resultOfEndGameActions(TDPlayerSave &playerData, int exitResult, int levelPlayed, int planetPlayed) {
     if (exitResult == -1) {
         std::cout << "Error on game initialisation" << std::endl;
-        return ;
+        return (-1);
     }
     else if (exitResult == 1) {
         std::cout << "Player leaved current game" << std::endl;
-        return ;
+        return (1);
     }
     else if (exitResult == 2) {
         std::cout << "Player won current game" << std::endl;
-        if (planetPlayed == 1)
+        if (planetPlayed == 1 && (playerData.getUnlockedPlanet1() == planetPlayed))
             playerData.unlockPlanet1Level();
-        else if (planetPlayed == 2)
+        else if (planetPlayed == 2 && (playerData.getUnlockedPlanet2() == planetPlayed))
             playerData.unlockPlanet2Level();
-        else if (planetPlayed == 3)
+        else if (planetPlayed == 3 && (playerData.getUnlockedPlanet3() == planetPlayed))
             playerData.unlockPlanet3Level();
-        return ;
+        return (2);
     }
     else if (exitResult == 3) {
         std::cout << "Player lost current game" << std::endl;
-        return ;
+        return (3);
     }
     else {
         std::cout << "Unknow current game exit reason" << std::endl;
+        return (0);
+    }
+}
+
+void displayEndScreen(Menus &menu, int exitResult) {
+    if (exitResult <= 1)
         return ;
+    else if (exitResult == 2) {
+        menu.loadWonScreen();
+    }
+    else if (exitResult == 3) {
+        menu.loadLooseScreen();
     }
 }
 
@@ -146,8 +157,7 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     sfSoundPlayer.stopMenuMusic();
-    sfSoundPlayer.playGameMusic1();
-    
+
     //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
 
 
@@ -206,8 +216,6 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     sfSoundPlayer.stopMenuMusic();
-    sfSoundPlayer.playGameMusic1();
-
     
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, planetToLoad);
 
@@ -257,6 +265,7 @@ int main() {
             }
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                sfSoundPlayer.playMenuClick();
                 playerData.setDifficulty(menu.getDifficulty());
                 playerData.savePlayerData(saveFile);
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
@@ -266,6 +275,10 @@ int main() {
                         return (1);
                     else if (clicked.find("settings") != std::string::npos) {
                         isInSettings = true;
+                    }
+                    else if (clicked.find("resetconfirmed") != std::string::npos) {
+                        isInSettings = false;
+                        playerData.initPlayerData(saveFile);
                     }
                     else if (clicked.find("ip:") != std::string::npos) {
                         // LAUNCH CONNEXION TO HOST WITH menu.getIp
@@ -287,6 +300,8 @@ int main() {
                             
                             int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
+                            playerData.savePlayerData(saveFile);
+                            displayEndScreen(menu, exitResult);
                         }else{
                             std::cout << "failed to connect to server" << std::endl;
                         }
@@ -309,6 +324,8 @@ int main() {
                             int exitResult =launchGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay,
                                        planetToLoad);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
+                            playerData.savePlayerData(saveFile);
+                            displayEndScreen(menu, exitResult);
                         }
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
@@ -339,6 +356,8 @@ int main() {
                             networkController->sendMessageToAllClients(std::to_string(planetToLoad));
                             int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
+                            playerData.savePlayerData(saveFile);
+                            displayEndScreen(menu, exitResult);
                         }
                     }
                 }

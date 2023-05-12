@@ -55,6 +55,10 @@ private:
     sf::Texture                 _backgroundLevels;
     sf::Texture                 _backgroundSettings;
     sf::Texture                 _backgroundTutorial;
+    sf::Texture                 _backgroundTowerManual;
+    sf::Texture                 _backgroundUnitManual;
+    sf::Texture                 _backgroundGameWon;
+    sf::Texture                 _backgroundGameLost;
 
     sf::Font                    _mainFont;
     sf::Font                    _fontTitle;
@@ -86,11 +90,16 @@ public:
     void loadJoin();
     void loadJoinTest();
     void loadSettings();
+    void loadResetSettingsConfirm();
     void reloadVolume(int newVolume, std::string type);
     void loadTutorial();
+    void loadTowerManualScreen();
+    void loadUnitManualScreen();
     void loadLevelsPlanet1();
     void loadLevelsPlanet2();
     void loadLevelsPlanet3();
+    void loadWonScreen();
+    void loadLooseScreen();
     void drawMenu(sf::RenderWindow &window);
     void setIp(std::string ip) { this->_ip = ip; };
 
