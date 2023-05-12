@@ -615,13 +615,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     else {
                         if(this->networkController == nullptr){
-                            std::cout << "Network controller is null" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
                         }else if(this->networkController->getIsServer()){
-                            std::cout << "Network controller is server" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
                         }else{
-                            std::cout << "Network controller is client" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Waiting for server to start next wave.", false);
                         }
                     }
