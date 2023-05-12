@@ -509,7 +509,7 @@ void Menus::loadLevelsPlanet1() {
         std::string shortNameStr("planet1level" + std::to_string(i + 1));
         MenusButton *newLevel;
         if (this->_playerData.getUnlockedPlanet1() < i + 1)
-            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, "locked", this->_mainFont);
         else
             newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
@@ -546,7 +546,7 @@ void Menus::loadLevelsPlanet2() {
         std::string shortNameStr("planet2level" + std::to_string(i + 1));
         MenusButton *newLevel;
         if (this->_playerData.getUnlockedPlanet2() < i + 1)
-            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, "locked", this->_mainFont);
         else
             newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
@@ -583,7 +583,7 @@ void Menus::loadLevelsPlanet3() {
         std::string shortNameStr("planet3level" + std::to_string(i + 1));
         MenusButton *newLevel;
         if (this->_playerData.getUnlockedPlanet3() < i + 1)
-            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, "locked", this->_mainFont);
         else
             newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
