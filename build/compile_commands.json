@@ -220,5 +220,11 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDGame\\Menus.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDGame\\Menus.cpp",
   "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/Menus.cpp",
   "output": "CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj"
+},
+{
+  "directory": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DSFML_STATIC @CMakeFiles/untitled1.dir/includes_CXX.rsp -O3 -DNDEBUG -o CMakeFiles\\untitled1.dir\\src\\TDPlayer\\TDPlayerSave.cpp.obj -c C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\src\\TDPlayer\\TDPlayerSave.cpp",
+  "file": "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDPlayer/TDPlayerSave.cpp",
+  "output": "CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj"
 }
 ]
