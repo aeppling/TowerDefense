@@ -47,7 +47,6 @@ private:
     sf::Texture                 _backgroundStars;
     sf::Texture                 _backgroundHome;
     sf::Texture                 _backgroundSingleplayer;
-    sf::Texture                 _backgroundMultiplayer;
     sf::Texture                 _backgroundLevels;
     sf::Texture                 _backgroundSettings;
     sf::Texture                 _backgroundTutorial;

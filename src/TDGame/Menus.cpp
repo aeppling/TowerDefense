@@ -41,9 +41,7 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int 
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundLevels.loadFromFile("Sprites/Backgrounds/backgroundLevels.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundMultiplayer.loadFromFile("Sprites/Units/CharRed1.png")))
-        std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundSettings.loadFromFile("Sprites/Units/CharRed1.png")))
+    if (!(this->_backgroundSettings.loadFromFile("Sprites/Backgrounds/backgroundSettings.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
@@ -413,16 +411,19 @@ void Menus::loadSettings() {
     this->createSlider(this->_musicVolume, (this->_winSizeX / 2) + 300, 550, "music");
     this->createSlider(this->_soundVolume, (this->_winSizeX / 2) + 300, 700, "sound");
 
+    // DIFFICULTY TEXT
+    this->createText("Difficulty :", this->_mainFont, 34, (this->_winSizeX / 2) - 240, 240);
+    // DISPLAY DIFFICULTY TEXT BUTTON (that will switch itself)
+
     // VOLUME TEXT
     this->createText("Global volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 390);
     this->createText("Music volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 540);
     this->createText("Sound volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 690);
 
-    //
     // BACKGROUND
-    this->_actualBackground.setTexture(this->_backgroundStars);
-    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
-    this->_actualBackground.setScale(0.5, 0.5);
+    this->_actualBackground.setTexture(this->_backgroundSettings);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
 }
 
 void Menus::reloadVolume(int newVolume, std::string type) {
