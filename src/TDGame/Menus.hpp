@@ -14,6 +14,7 @@ private:
     int                         _globalVolume;
     int                         _musicVolume;
     int                         _soundVolume;
+    int                         _difficulty;
     std::string                 _players;
     std::string                 _ipAddressField;
     bool                        _isIpEntering;
@@ -66,7 +67,10 @@ public:
     void setIpAddressField(std::string ipAddress) { this->_ipAddressField = ipAddress;  };
     std::string getIpAddressField() { return(this->_ipAddressField); };
     bool isIpEntering() { return(this->_isIpEntering); };
-
+    void setDifficultyEasy();
+    void setDifficultyNormal();
+    void setDifficultyHard();
+    int getDifficulty() { return(this->_difficulty); };
     // CREATOR
     void createText(std::string text, sf::Font &font, int characterSize, int posX, int posY);
     void createSlider(float value, float posX, float posY, std::string type);

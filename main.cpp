@@ -202,7 +202,7 @@ int main() {
                         std::string str1(selectionInformation);
                         gameMode = extractGameMode(str1);
                         if (gameMode == 0)
-                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
+                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad);
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
                             menu.loadHost();

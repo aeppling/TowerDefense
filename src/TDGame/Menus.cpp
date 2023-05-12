@@ -12,6 +12,7 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int 
     this->_isIpEntering = false;
     this->_ipAddressField = "";
     this->_isInSettings = false;
+    this->_difficulty = 1;
     // PLANETS
     if (!this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
@@ -411,9 +412,17 @@ void Menus::loadSettings() {
     this->createSlider(this->_musicVolume, (this->_winSizeX / 2) + 300, 550, "music");
     this->createSlider(this->_soundVolume, (this->_winSizeX / 2) + 300, 700, "sound");
 
-    // DIFFICULTY TEXT
+    // DIFFICULTY TEXT & Button
     this->createText("Difficulty :", this->_mainFont, 34, (this->_winSizeX / 2) - 240, 240);
-    // DISPLAY DIFFICULTY TEXT BUTTON (that will switch itself)
+    MenusButton *difficultySetter;
+    if (this->_difficulty == 2)
+        difficultySetter = new MenusButton(350, 50, true, "Normal", "set-normal", this->_mainFont);
+    else if (this->_difficulty == 3)
+        difficultySetter = new MenusButton(350, 50, true, "Hard", "set-hard", this->_mainFont);
+    else
+        difficultySetter = new MenusButton(350, 50, true, "Easy", "set-easy", this->_mainFont);
+    difficultySetter->setPosition((this->_winSizeX / 2) + 300, 250);
+    this->_visibleButtons.push_back(difficultySetter);
 
     // VOLUME TEXT
     this->createText("Global volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 390);
@@ -437,6 +446,21 @@ void Menus::reloadVolume(int newVolume, std::string type) {
         this->_soundVolumeSlider.setSize(sf::Vector2f(newValue, this->_soundVolumeSlider.getSize().y));
     else
         return ;
+}
+
+void Menus::setDifficultyEasy() {
+    this->_difficulty = 2;
+    this->loadSettings();
+}
+
+void Menus::setDifficultyNormal() {
+    this->_difficulty = 3;
+    this->loadSettings();
+}
+
+void Menus::setDifficultyHard() {
+    this->_difficulty = 1;
+    this->loadSettings();
 }
 
 void Menus::loadTutorial() {
@@ -613,6 +637,18 @@ std::string Menus::loadMenuByName(std::string name) {
     }
     else if (name == "settings") {
         this->loadSettings();
+        return ("settings");
+    }
+    else if (name == "set-easy") {
+        this->setDifficultyEasy();
+        return ("settings");
+    }
+    else if (name == "set-normal") {
+        this->setDifficultyNormal();
+        return ("settings");
+    }
+    else if (name == "set-hard") {
+        this->setDifficultyHard();
         return ("settings");
     }
     else if (name == "home") {
