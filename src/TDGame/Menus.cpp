@@ -297,7 +297,7 @@ void Menus::loadHostLobby() {
     this->_actualBackground.setScale(0.5, 0.5);
 }
 
-void Menus::loadHost() {
+void Menus::loadHost(std::string hostIpAddress) {
     this->deleteVisibleButtons();
     this->deleteVisibleSprites();
     this->deleteVisibleText();
@@ -307,7 +307,8 @@ void Menus::loadHost() {
     back->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(back);
 
-    std::string title("Waiting for player connection...\n\n Enter this ip : " + this->_ip );
+    this->createText("Waiting for player connection...\n\n Enter this ip : " + hostIpAddress, this->_mainFont, 60, this->_winSizeX / 2, this->_winSizeY / 2.5);
+   /* std::string title("Waiting for player connection...\n\n Enter this ip : " + hostIpAddress );
     sf::Text *mainTitle = new sf::Text;
     mainTitle->setString(title);
     mainTitle->setFont(this->_mainFont);
@@ -315,12 +316,11 @@ void Menus::loadHost() {
     sf::Vector2f newOriginTitle(mainTitle->getLocalBounds().width / 2.f, mainTitle->getLocalBounds().height / 2.f);
     mainTitle->setOrigin(newOriginTitle);
     mainTitle->setPosition(this->_winSizeX / 2, this->_winSizeY / 2.5);
-    this->_visibleText.push_back(mainTitle);
+    this->_visibleText.push_back(mainTitle);*/
 
     this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
     this->_actualBackground.setScale(0.5, 0.5);
-    std::cout << "host menu finished" << std::endl;
 }
 
 void Menus::loadJoin() {
@@ -657,7 +657,7 @@ std::string Menus::loadMenuByName(std::string name) {
         return ("no");
     }
     else if (name == "host") {
-        this->loadHost();
+        this->loadHost("");
         return ("hostwait");
     }
     else if (name == "join") {

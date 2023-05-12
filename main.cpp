@@ -242,7 +242,6 @@ int main() {
                         
                         isInSettings = false;
                         std::string ipAddressToConnect = clicked.substr(3);
-                        std::cout << "ipAddressToConnect : " << ipAddressToConnect << std::endl;
                         NetworkController* networkController = new NetworkController(false);
                         sf::IpAddress serverAddress(ipAddressToConnect);
                         if(networkController->connectToServer(serverAddress)){
@@ -279,21 +278,27 @@ int main() {
                             launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad);
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
-                            std::cout << "host" << std::endl;
                             sf::IpAddress serverAddress = sf::IpAddress::getLocalAddress();
                             menu.setIp(serverAddress.toString());
-                            std::cout << " ip : " << serverAddress.toString() << std::endl;
-                            std::cout << "loading host menu" << std::endl;
-                            menu.loadHost();
-                            std::cout << "host menu loaded" << std::endl;
-                            std::cout << "creating network controller" << std::endl;
+                            menu.loadHost(serverAddress.toString());
+                            windowTestMenu.clear();
+                            menu.drawMenu(windowTestMenu);
+                            windowTestMenu.display();
                             NetworkController* networkController = new NetworkController(true);
                             std::cout << "network controller created" << std::endl;
 
                             levelToPlay = extractLevelNumber(selectionInformation);
                             planetToLoad = extractPlanetNumber(selectionInformation);
                             std::cout << "waiting for connection" << std::endl;
-                            networkController->waitForConnection();
+                            std::thread networkThread(&NetworkController::waitForConnection, std::ref(networkController));
+                            while (networkController->isWaitingScreen()) {
+                                windowTestMenu.clear();
+                                menu.drawMenu(windowTestMenu);
+                                windowTestMenu.display();
+                            }
+                            // NEED TO MAKE A SPECIAL BACK BUTTON TO JOIN THREAD AND STOP WAITING
+                            networkThread.join();
+                           // networkController->waitForConnection();
                             std::cout << "lauching game " << std::endl;
                             
                             networkController->sendMessageToAllClients(std::to_string(levelToPlay));

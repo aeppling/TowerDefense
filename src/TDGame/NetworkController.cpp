@@ -2,6 +2,7 @@
 #include <iostream>
 NetworkController::NetworkController(bool isServer){
     this->isServer = isServer;
+    this->isWaiting = false;
     this->port = 53000;
     this->clients = new std::vector<std::unique_ptr<sf::TcpSocket>>();
 
@@ -25,7 +26,7 @@ bool NetworkController::connectToServer(const sf::IpAddress& serverAddress)
 void NetworkController::waitForConnection()
 {    
     std::cout << "Server is listening to port " << this->port << ", waiting for connections... " << std::endl;
-    
+    this->isWaiting = true;
     // Attend la connexion d'un client
     sf::TcpListener listener;
 
@@ -33,6 +34,7 @@ void NetworkController::waitForConnection()
     if (listener.listen(this->port) != sf::Socket::Done)
     {
         std::cout << "Failed to bind listener to port " << this->port << std::endl;
+        this->isWaiting = false;
         return;
     }
 
@@ -40,6 +42,7 @@ void NetworkController::waitForConnection()
     if (listener.accept(*client) != sf::Socket::Done)
     {
         std::cout << "Failed to accept client's connection" << std::endl;
+        this->isWaiting = false;
         return;
     }
     std::cout << "Client connected: " << client->getRemoteAddress() << std::endl;
@@ -48,6 +51,7 @@ void NetworkController::waitForConnection()
     this->clients->push_back(std::move(client));
     std::cout << "Client added to list" << std::endl;
     std::cout << "Number of clients: " << this->clients->size() << std::endl;
+    this->isWaiting = false;
 }
 
 

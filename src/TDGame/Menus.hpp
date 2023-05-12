@@ -80,7 +80,7 @@ public:
     void loadHome();
     void loadSingleplayer();
     void loadMultiplayer();
-    void loadHost();
+    void loadHost(std::string hostIpAddress);
     void loadHostLobby();
     void loadJoin();
     void loadJoinTest();

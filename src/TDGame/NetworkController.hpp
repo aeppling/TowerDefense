@@ -5,6 +5,12 @@
 #include <vector>
 
 class NetworkController {
+private:
+    bool isServer;
+    bool isWaiting;
+    unsigned short port;
+    sf::TcpSocket* serverSocket;
+    std::vector<std::unique_ptr<sf::TcpSocket>>* clients;
 public:
     NetworkController(bool isServer);
     ~NetworkController();
@@ -20,17 +26,12 @@ public:
     sf::TcpSocket* getServerSocket() { return this->serverSocket; };
     std::string detectMessageReceived();
     void handleMessage(std::string message);
+    bool isWaitingScreen() { return(this->isWaiting);};
     // TODO
     // disconnect client
     // disconnect from server
     // disconnect all clients
 
-
-private:
-    bool isServer;
-    unsigned short port;
-    sf::TcpSocket* serverSocket;
-    std::vector<std::unique_ptr<sf::TcpSocket>>* clients;
 
 };
 

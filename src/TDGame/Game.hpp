@@ -88,8 +88,8 @@ class Game{
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
         ~Game() { this->cleanAll(); };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
-    void initializeTowerStore(sf::RenderWindow &window);
-    void initializeTowerStoreCurrentWave();
+        void initializeTowerStore(sf::RenderWindow &window);
+        void initializeTowerStoreCurrentWave();
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
         int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder);
