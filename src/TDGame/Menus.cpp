@@ -48,6 +48,10 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
+    if (!(this->_backgroundGameWon.loadFromFile("Sprites/Backgrounds/gameWonScreen.png")))
+        std::cout << "Error on loading menus textures..." << std::endl;
+    if (!(this->_backgroundGameLost.loadFromFile("Sprites/Backgrounds/gameLostScreen.png")))
+        std::cout << "Error on loading menus textures..." << std::endl;
     // FONTS
     if (!(this->_mainFont.loadFromFile("Fonts/neuropol.otf")))
         std::cout << "Error on loading menus textures..." << std::endl;
@@ -611,41 +615,34 @@ void Menus::loadLevelsPlanet3() {
     }
 }
 
-void Menus::drawMenu(sf::RenderWindow &window) {
-    sf::Sprite backgroundStarsSpr(this->_backgroundStars);
-    window.draw(backgroundStarsSpr);
-    window.draw(this->_actualBackground);
-    int i = 0;
-    while (i < this->_visibleButtons.size()) {
-        window.draw(*this->_visibleButtons.at(i)->getText());
-        window.draw(*this->_visibleButtons.at(i)->getRectangle());
-        i++;
-    }
-    i = 0;
-    while (i < this->_visibleSprites.size()) {
-        window.draw(*this->_visibleSprites.at(i));
-        i++;
-    }
-    i = 0;
-    while (i < this->_visibleText.size()) {
-        window.draw(*this->_visibleText.at(i));
-        i++;
-    }
-    if (!this->_visibleRectangle.empty()) {
-        i = 0;
-        while (i < this->_visibleRectangle.size()) {
-            window.draw(*this->_visibleRectangle.at(i));
-            i++;
-        }
-    }
-    if (this->_isInSettings) {
-        window.draw(this->_globalVolumeSliderBackground);
-        window.draw(this->_globalVolumeSlider);
-        window.draw(this->_musicVolumeSliderBackground);
-        window.draw(this->_musicVolumeSlider);
-        window.draw(this->_soundVolumeSliderBackground);
-        window.draw(this->_soundVolumeSlider);
-    }
+void Menus::loadLooseScreen() {
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+
+    MenusButton *back = new MenusButton(400, 80, true, "Continue", "singleplayer", this->_mainFont);
+    back->setPosition(_winSizeX / 2, 900);
+    this->_visibleButtons.push_back(back);
+
+    this->_actualBackground.setTexture(this->_backgroundGameLost);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
+}
+
+void Menus::loadWonScreen() {
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+
+    MenusButton *back = new MenusButton(400, 80, true, "Continue", "singleplayer", this->_mainFont);
+    back->setPosition(_winSizeX / 2, 900);
+    this->_visibleButtons.push_back(back);
+
+    this->_actualBackground.setTexture(this->_backgroundGameWon);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
 }
 
 std::string Menus::loadMenuByName(std::string name) {
@@ -708,6 +705,43 @@ std::string Menus::loadMenuByName(std::string name) {
     else
         return (name + this->_players); // COMPACT WITH DIFFICULTY ????
     // ELSE RETURN BECAUSE IT IS A LEVEL & PLANET INFORMATION
+}
+
+void Menus::drawMenu(sf::RenderWindow &window) {
+    sf::Sprite backgroundStarsSpr(this->_backgroundStars);
+    window.draw(backgroundStarsSpr);
+    window.draw(this->_actualBackground);
+    int i = 0;
+    while (i < this->_visibleButtons.size()) {
+        window.draw(*this->_visibleButtons.at(i)->getText());
+        window.draw(*this->_visibleButtons.at(i)->getRectangle());
+        i++;
+    }
+    i = 0;
+    while (i < this->_visibleSprites.size()) {
+        window.draw(*this->_visibleSprites.at(i));
+        i++;
+    }
+    i = 0;
+    while (i < this->_visibleText.size()) {
+        window.draw(*this->_visibleText.at(i));
+        i++;
+    }
+    if (!this->_visibleRectangle.empty()) {
+        i = 0;
+        while (i < this->_visibleRectangle.size()) {
+            window.draw(*this->_visibleRectangle.at(i));
+            i++;
+        }
+    }
+    if (this->_isInSettings) {
+        window.draw(this->_globalVolumeSliderBackground);
+        window.draw(this->_globalVolumeSlider);
+        window.draw(this->_musicVolumeSliderBackground);
+        window.draw(this->_musicVolumeSlider);
+        window.draw(this->_soundVolumeSliderBackground);
+        window.draw(this->_soundVolumeSlider);
+    }
 }
 
 std::string Menus::checkForClick(sf::Vector2i mousePos) {
