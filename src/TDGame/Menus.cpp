@@ -507,7 +507,11 @@ void Menus::loadLevelsPlanet1() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet1level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
+        MenusButton *newLevel;
+        if (this->_playerData.getUnlockedPlanet1() < i + 1)
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+        else
+            newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);
@@ -540,7 +544,11 @@ void Menus::loadLevelsPlanet2() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet2level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
+        MenusButton *newLevel;
+        if (this->_playerData.getUnlockedPlanet2() < i + 1)
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+        else
+            newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);
@@ -573,7 +581,11 @@ void Menus::loadLevelsPlanet3() {
         }
         std::string textDisplayStr("Level " + std::to_string(i + 1));
         std::string shortNameStr("planet3level" + std::to_string(i + 1));
-        MenusButton *newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
+        MenusButton *newLevel;
+        if (this->_playerData.getUnlockedPlanet3() < i + 1)
+            newLevel = new MenusButton(300, 300, false, textDisplayStr, shortNameStr, this->_mainFont);
+        else
+            newLevel = new MenusButton(300, 300, true, textDisplayStr, shortNameStr, this->_mainFont);
         newLevel->setPosition(360 + (horizontal_offset * 300), 350 + vertical_offset);
         horizontal_offset++;
         this->_visibleButtons.push_back(newLevel);

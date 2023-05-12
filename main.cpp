@@ -226,8 +226,6 @@ int main() {
     TDPlayerSave playerData(saveFile);
     // PLAYER DATA RETRIEVE DEBUGGING
     playerData.debugDisplayPlayerInfos();
-    playerData.unlockPlanet1Level();
-    playerData.savePlayerData(saveFile);
     //
     SFMainSoundLoader mainSoundLoader;
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());

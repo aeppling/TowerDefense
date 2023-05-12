@@ -15,9 +15,13 @@ MenusButton::MenusButton(int sizeX, int sizeY, bool isUnlocked, std::string text
     this->_rectangle.setSize(sf::Vector2f(sizeX, sizeY));
     this->_rectangle.setFillColor(sf::Color::Transparent);
     this->_rectangle.setOutlineThickness(3);
-    this->_rectangle.setOutlineColor(sf::Color::White);
-    // SET LOCKED SPRITE
-
+    // SET LOCKED/UNLOCKED SPRITE
+    if (isUnlocked)
+        this->_rectangle.setOutlineColor(sf::Color::White);
+    else {
+        sf::Color greyColor(128, 128, 128);
+        this->_rectangle.setOutlineColor(greyColor);
+    }
     // ERASE BORDERS
     sf::Vector2f newOrigin(this->_rectangle.getLocalBounds().width / 2.f, this->_rectangle.getLocalBounds().height / 2.f);
     this->_rectangle.setOrigin(newOrigin);

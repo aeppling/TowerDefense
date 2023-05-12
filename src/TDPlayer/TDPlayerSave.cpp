@@ -31,6 +31,7 @@ void TDPlayerSave::initPlayerData(const std::string& filename) {
     this->_globalVolume = 100;
     this->_musicVolume = 100;
     this->_soundVolume = 100;
+    this->_difficulty = 1;
     std::ofstream file(filename, std::ios::binary);
     if (file.is_open()) {
         file.write(reinterpret_cast<const char*>(this), sizeof(*this));
