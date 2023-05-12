@@ -12,10 +12,10 @@ class Menus {
 private:
     int                         _winSizeX;
     int                         _winSizeY;
-    int                         _globalVolume;
+  /*  int                         _globalVolume;
     int                         _musicVolume;
     int                         _soundVolume;
-    int                         _difficulty;
+    int                         _difficulty;*/
     std::string                 _players;
     std::string                 _ipAddressField;
     std::string                 _ip;
@@ -38,6 +38,8 @@ private:
     sf::Texture                 _planet1txt;
     sf::Texture                 _planet2txt;
     sf::Texture                 _planet3txt;
+    sf::Texture                 _planet2txtlocked;
+    sf::Texture                 _planet3txtlocked;
 
     sf::Texture                 _singleIcon;
     sf::Texture                 _multiIcon;
@@ -57,22 +59,20 @@ private:
     sf::Font                    _mainFont;
     sf::Font                    _fontTitle;
 
-    int                         _nbUnlockedPlanet1 = 10;
-    int                         _nbUnlockedPlanet2 = 7;
-    int                         _nbUnlockedPlanet3= 0;
+    TDPlayerSave                &_playerData;
 public:
-    Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume, int difficulty);
+    Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData);
     ~Menus() = default;
 
     // GETTER & SETTER
-    int getGlobalVolume() { return(this->_globalVolume);};
+    int getGlobalVolume() { return(this->_playerData.getGlobalVolume());};
     void setIpAddressField(std::string ipAddress) { this->_ipAddressField = ipAddress;  };
     std::string getIpAddressField() { return(this->_ipAddressField); };
     bool isIpEntering() { return(this->_isIpEntering); };
     void setDifficultyEasy();
     void setDifficultyNormal();
     void setDifficultyHard();
-    int getDifficulty() { return(this->_difficulty); };
+    int getDifficulty() { return(this->_playerData.getDifficulty()); };
     // CREATOR
     void createText(std::string text, sf::Font &font, int characterSize, int posX, int posY);
     void createSlider(float value, float posX, float posY, std::string type);

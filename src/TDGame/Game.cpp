@@ -710,12 +710,14 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     window.display();
                 }
                 if (this->player->getLifeNumber() <= 0) {
+                    window.setMouseCursorVisible(true);
                     gameLost();
-                    break;
+                    return (3);
                 }
                 else if (this->currentWaveNumber == this->enemyList.size()) {
+                    window.setMouseCursorVisible(true);
                     gameWon();
-                    break;
+                    return (2);
                 }
                //WAVE ENDED
         }
@@ -785,7 +787,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
     this->baseCell.setPosition((baseCell->getPosX() * cellSize + _GAME_POSITION_X + 3) + (baseCell->getPosX() * 0.3), (baseCell->getPosY() * cellSize + _GAME_POSITION_Y - 5) + (baseCell->getPosY() * 0.3));
     this->baseCell.setScale(1, 1);
-    this->loop(sfmlLoader, window, baseCell, map, spritesHolder);
+     return (this->loop(sfmlLoader, window, baseCell, map, spritesHolder));
 }
 
 void Game::displayTowers(sf::RenderWindow &window, MapCell *baseCell) {

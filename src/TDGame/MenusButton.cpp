@@ -5,8 +5,16 @@
 #include "MenusButton.hpp"
 
 MenusButton::MenusButton(int sizeX, int sizeY, bool isUnlocked, std::string text, std::string shortname, sf::Font &mainFont) : _shortname(shortname) {
+    sf::Color greyColor(128, 128, 128);
     // SET TEXT
-    this->_text.setString(text);
+    if (isUnlocked) {
+        this->_text.setString(text);
+        this->_text.setFillColor(sf::Color::White);
+    }
+    else {
+        this->_text.setString("Locked");
+        this->_text.setFillColor(greyColor);
+    }
     this->_text.setFont(mainFont);
     this->_text.setCharacterSize(24);
     sf::Vector2f newOriginText(this->_text.getLocalBounds().width / 2.f, this->_text.getLocalBounds().height / 2.f);
@@ -15,9 +23,12 @@ MenusButton::MenusButton(int sizeX, int sizeY, bool isUnlocked, std::string text
     this->_rectangle.setSize(sf::Vector2f(sizeX, sizeY));
     this->_rectangle.setFillColor(sf::Color::Transparent);
     this->_rectangle.setOutlineThickness(3);
-    this->_rectangle.setOutlineColor(sf::Color::White);
-    // SET LOCKED SPRITE
-
+    // SET LOCKED/UNLOCKED SPRITE
+    if (isUnlocked)
+        this->_rectangle.setOutlineColor(sf::Color::White);
+    else {
+        this->_rectangle.setOutlineColor(greyColor);
+    }
     // ERASE BORDERS
     sf::Vector2f newOrigin(this->_rectangle.getLocalBounds().width / 2.f, this->_rectangle.getLocalBounds().height / 2.f);
     this->_rectangle.setOrigin(newOrigin);
