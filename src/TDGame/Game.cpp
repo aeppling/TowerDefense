@@ -678,6 +678,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 window.setMouseCursorVisible(true);
                                 this->deactivateTowers();
                                 isWaveRunning = false;
+                                //this->cleanAll();
                                 return (1);
                             }
                         }
@@ -1112,11 +1113,33 @@ bool Game::gameEnd(){
     }
 }
 
+void    Game::cleanAll() {
+    // VECTORS
+    std::cout << "Cleaning level memory..." << std::endl;
+    for (MapCell *element: this->spawnCells) {
+        delete element;
+    }
+    this->spawnCells.clear();
+    this->spawnCellsSprites.clear();
+    this->enemyList.clear();
+    for (Tower *element: this->towerList) {
+        delete element;
+    }
+    this->towerList.clear();
+    this->towerStoreList.clear();
+
+    // SIMPLE PTR
+     delete this->selectedActiveTower;
+     delete this->baseCellObject;
+     delete this->player;
+     delete this->levelRetriever;
+     std::cout << "Cleaning done" << std::endl;
+}
+
 void Game::gameWon(){
     //* game won
     std::cout << "Game Won !!!" << std::endl;
     std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
-
 }
 
 void Game::gameLost(){

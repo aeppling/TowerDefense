@@ -105,15 +105,10 @@ void Menus::loadHome() {
     this->_ipAddressField = "";
     this->_isInSettings = false;
 
-    std::cout << "BEFORE" << std::endl;
     this->deleteVisibleButtons();
-    std::cout << "DESTROY1" << std::endl;
     this->deleteVisibleSprites();
-    std::cout << "DESTROY2" << std::endl;
     this->deleteVisibleText();
-    std::cout << "DESTROY3" << std::endl;
     this->deleteVisibleRectangle();
-    std::cout << "DESTROY4" << std::endl;
 
     // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(500, 70, true, "Singleplayer", "singleplayer", this->_mainFont);
