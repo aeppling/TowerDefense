@@ -567,6 +567,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
                                         window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
                                     }
+                                    else if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0) {
+                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
+                                    }
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }

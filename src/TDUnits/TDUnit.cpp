@@ -109,6 +109,7 @@ void    TDUnit::move() {
             float lerpX = currentPosition.x + t * distanceX;
             float lerpY = currentPosition.y + t * distanceY;
             this->_sprite.setPosition(lerpX, lerpY);
+            this->_armorSprite.setPosition(lerpX, lerpY);
             float rotation = atan2(distanceY, distanceX) * 180 / 3.14159265f; // Convert radians to degrees
             this->_sprite.setRotation(rotation + 90.0f);
             // Check if target position is reached
@@ -172,6 +173,17 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
     this->_freezeSprite.setTextureRect(textureRect2);
     sf::Vector2f newOrigin2(this->_freezeSprite.getLocalBounds().width / 2.f, this->_freezeSprite.getLocalBounds().height / 2.f);
     this->_freezeSprite.setOrigin(newOrigin2);
+    // SET ARMOR SPRITE
+    if (this->_armor > 0) {
+        this->_armorSprite.setTexture(*sfmlLoader.getArmor());
+        sf::IntRect textureRect3(0, 0, this->_armorSprite.getTexture()->getSize().x,
+                                 this->_armorSprite.getTexture()->getSize().y);
+        this->_armorSprite.setScale(scaleFactor * (this->_scale * 1.8), scaleFactor * (this->_scale * 1.8));
+        this->_armorSprite.setTextureRect(textureRect3);
+        sf::Vector2f newOrigin3(this->_armorSprite.getLocalBounds().width / 2.f,
+                                this->_armorSprite.getLocalBounds().height / 2.f);
+        this->_armorSprite.setOrigin(newOrigin3);
+    }
 /*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     sf::Sprite newSprite;
     newSprite.setTexture(*sfmlLoader.getCowards());

@@ -24,6 +24,8 @@ SFMLEnemiesLoader::SFMLEnemiesLoader() {
 
 
     // ARMOR SPRITE
+    if (!(this->_armor.loadFromFile("Sprites/Units/spr_shield.png")))
+        std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_freeze.loadFromFile("Sprites/Units/iceblock.png")))
         std::cout << "Error on loading texture..." << std::endl;
     //this->_pathCell.setSmooth(false);

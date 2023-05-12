@@ -52,6 +52,7 @@ public:
     // SFML
     sf::Sprite          _sprite;
     sf::Sprite          _freezeSprite;
+    sf::Sprite          _armorSprite;
     int                 _unitSize; // SIZE OF UNIT IN MAP CELL
     sf::RectangleShape  _healthBar;
     sf::RectangleShape  _healthMaxBar;
@@ -113,6 +114,7 @@ public:
     sf::RectangleShape getMaxHealthBarSprite();
     int getArmor() { return (this->_armor); };
     sf::Sprite getFreezeSprite() { return (this->_freezeSprite); };
+    sf::Sprite getArmorSprite() { return (this->_armorSprite); };
 };
 /*
 class TestUnit {
