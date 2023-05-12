@@ -424,6 +424,9 @@ void Menus::loadSettings() {
     MenusButton *backhome = new MenusButton(400, 80, true, "Save & Back Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(backhome);
+    MenusButton *resetAccount = new MenusButton(200, 100, true, "  Reset\nAccount", "reset", this->_mainFont);
+    resetAccount->setPosition(_winSizeX - 400, 850);
+    this->_visibleButtons.push_back(resetAccount);
 
     // VOLUMES SLIDERS
     this->createSlider(this->_playerData.getGlobalVolume(), (this->_winSizeX / 2) + 300, 400, "global");
@@ -449,6 +452,30 @@ void Menus::loadSettings() {
 
     // BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundSettings);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
+}
+
+void Menus::loadResetSettingsConfirm() {
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+    this->_isInSettings = false;
+
+    // BACK BUTTON & BACKGROUND
+    MenusButton *back = new MenusButton(400, 80, true, "Back To Settings", "settings", this->_mainFont);
+    back->setPosition(_winSizeX / 2, 800);
+    this->_visibleButtons.push_back(back);
+    MenusButton *confirm = new MenusButton(700, 80, true, "Confirm Account Saves Reset", "resetconfirmed", this->_mainFont);
+    confirm->setPosition(_winSizeX / 2, this->_winSizeY / 2);
+    this->_visibleButtons.push_back(confirm);
+
+    // CONFIRM TEXT
+    this->createText("Do you really want to reset your account ?", this->_mainFont, 60, (this->_winSizeX / 2), this->_winSizeY / 3);
+
+    // BACKGROUND
+    this->_actualBackground.setTexture(this->_backgroundStars);
     this->_actualBackground.setPosition(0, 0);
     this->_actualBackground.setScale(1, 1);
 }
@@ -661,6 +688,14 @@ std::string Menus::loadMenuByName(std::string name) {
     else if (name == "settings") {
         this->loadSettings();
         return ("settings");
+    }
+    else if (name == "reset") {
+        this->loadResetSettingsConfirm();
+        return ("no");
+    }
+    else if (name == "resetconfirmed") {
+        this->loadHome();
+        return ("resetconfirmed");
     }
     else if (name == "set-easy") {
         this->setDifficultyEasy();

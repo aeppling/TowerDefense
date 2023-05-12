@@ -88,6 +88,7 @@ public:
     void loadJoin();
     void loadJoinTest();
     void loadSettings();
+    void loadResetSettingsConfirm();
     void reloadVolume(int newVolume, std::string type);
     void loadTutorial();
     void loadLevelsPlanet1();

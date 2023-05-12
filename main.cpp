@@ -279,6 +279,10 @@ int main() {
                     else if (clicked.find("settings") != std::string::npos) {
                         isInSettings = true;
                     }
+                    else if (clicked.find("resetconfirmed") != std::string::npos) {
+                        isInSettings = false;
+                        playerData.initPlayerData(saveFile);
+                    }
                     else if (clicked.find("ip:") != std::string::npos) {
                         // LAUNCH CONNEXION TO HOST WITH menu.getIp
 
