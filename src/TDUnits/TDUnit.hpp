@@ -33,6 +33,8 @@ public:
     bool _alreadyArrived;
     bool _isKilled; // TO AVOID SEGFAULT ON OTHER MULTIPLE TOWER
     bool _isSlowed;
+    bool _isFreeze;
+    float _freezeTime;
 
     //COORD
     int  _baseCoordX;
@@ -101,6 +103,8 @@ public:
         // SFML
     void setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize);
     void getShot(int damage, int slowValue, int armorPierce);
+    void getFreeze(float time);
+    void unFreeze();
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);

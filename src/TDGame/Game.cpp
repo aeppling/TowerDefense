@@ -749,7 +749,8 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     sf::Listener::setGlobalVolume((float)globalVolume);
     sf::Texture hearthTexture;
     this->player->resetTotalKill();
-    
+
+    this->sfMainSoundPlayer.playGameMusic1();
     // GAME INITIALISATON
     // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
     if (this->enemyList.size() == 0) {
@@ -1142,11 +1143,13 @@ void Game::gameWon(){
     //* game won
     std::cout << "Game Won !!!" << std::endl;
     std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
+    this->sfMainSoundPlayer.stopGameMusic();
 }
 
 void Game::gameLost(){
     //* game lost
     std::cout << "Game Lost !!!" << std::endl;
+    this->sfMainSoundPlayer.stopGameMusic();
 }
 
 void Game::activateTowers(){

@@ -26,6 +26,8 @@ TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, 
     this->_isFlying = isFlying;
     this->_isSemiAerial = isSemiAerial;
     this->_isSlowed = false;
+    this->_isFreeze = false;
+    this->_freezeTime = 0;
     this->_value = value;
     this->_timeOfLastMove = std::chrono::steady_clock::now();
     this->_alreadyCount = false;
@@ -55,8 +57,17 @@ void    TDUnit::live() {
                 if (this->getTypeName() == "RegenerateDrone")
                     this->regenerate();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
-                if (this->_isSlowed)
-                    this->isSlowFinished();
+                if (this->_isFreeze) {
+                    std::chrono::steady_clock::time_point startFreeze = std::chrono::steady_clock::now();
+                    std::chrono::steady_clock::time_point elapsedFreeze = std::chrono::steady_clock::now();
+                    int isFreezeEnded = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedFreeze - startFreeze).count();
+                    while (isFreezeEnded < this->_freezeTime) {
+                        sf::sleep(sf::milliseconds(100));
+                        std::chrono::steady_clock::time_point elapsedFreeze = std::chrono::steady_clock::now();
+                        isFreezeEnded = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedFreeze - startFreeze).count();
+                    }
+                    unFreeze();
+                }
             }
     }
 }
@@ -228,6 +239,16 @@ void    TDUnit::getShot(int damage, int slowValue, int armorPierce) {
     if (real_armor >= damage)
         return;
     this->_health_points = this->_health_points - (damage - real_armor);
+}
+
+void    TDUnit::getFreeze(float time) {
+    this->_isFreeze = true;
+    this->_freezeTime = time;
+}
+
+void    TDUnit::unFreeze() {
+    this->_isFreeze = false;
+    this->_freezeTime = 0;
 }
 
 void    TDUnit::getKill() {

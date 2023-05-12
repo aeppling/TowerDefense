@@ -157,8 +157,7 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     sfSoundPlayer.stopMenuMusic();
-    sfSoundPlayer.playGameMusic1();
-    
+
     //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
 
 
@@ -217,8 +216,6 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     sfSoundPlayer.stopMenuMusic();
-    sfSoundPlayer.playGameMusic1();
-
     
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, planetToLoad);
 
