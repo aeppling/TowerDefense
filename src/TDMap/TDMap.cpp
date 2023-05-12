@@ -8,7 +8,7 @@
 sf::Texture text;
 sf::Sprite spr;
 
-TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder, SFMLDecorationLoader &sfmlDecorationLoader) : _sfmlLoader(sfmlLoader), _spritesHolderPtr(spriteHolder), _sfmlDecorationLoader(sfmlDecorationLoader) {
+TDMap::TDMap(std::string filename, SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, std::shared_ptr<SpritesHolder> &spriteHolder, SFMLDecorationLoader &sfmlDecorationLoader, int planet) : _sfmlLoader(sfmlLoader), _spritesHolderPtr(spriteHolder), _sfmlDecorationLoader(sfmlDecorationLoader), _planet(planet) {
     this->_constructIterator = 0;
     new mapParser(filename, this);
     this->setAllPositions();
@@ -31,7 +31,7 @@ void TDMap::setAllTextures(SFMLLoader &sfmlLoader, int winSizeX, int winSizeY, s
     while (y != this->_map.size()) {
         int x = 0;
         while (x != this->_map.at(y).size()) {
-            spriteHolder->setSpriteFromTypeAndPosition(&this->_map.at(y).at(x), this, sfmlLoader, this->_cellSize, this->_sfmlDecorationLoader);
+            spriteHolder->setSpriteFromTypeAndPosition(&this->_map.at(y).at(x), this, sfmlLoader, this->_cellSize, this->_sfmlDecorationLoader, this->_planet);
             x++;
         }
         y++;

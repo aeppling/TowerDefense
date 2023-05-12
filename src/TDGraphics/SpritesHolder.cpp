@@ -7,7 +7,7 @@
 #include "SFMLDecorationLoader.hpp"
 
 void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map,
-                                                        SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader) {
+                                                        SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader, int planet) {
     SFMLSprite sprite;
     std::shared_ptr<SFMLSprite> newSprite = std::make_shared<SFMLSprite>(sprite);
     int randomNum = std::rand() % 100;
@@ -26,14 +26,20 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
                                        mapCell->getPosY(), mapCell->getType(), 1);
             if ((randomNum >= 0) && (randomNum <= 5)){
                 SFMLSprite spriteDecoration;
-                spriteDecoration.setSprite(sfmlDecorationLoader.getBush2(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                if (planet == 3)
+                    spriteDecoration.setSprite(sfmlDecorationLoader.getAlienBush(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                else
+                    spriteDecoration.setSprite(sfmlDecorationLoader.getBush2(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
                 spriteDecoration.setPosition(cellSize);
                 std::shared_ptr<SFMLSprite> newDecoration = std::make_shared<SFMLSprite>(spriteDecoration);
                 this->_decorationSprite.push_back(newDecoration);
             }
             else if ((randomNum >= 10) && (randomNum <= 11)){
                 SFMLSprite spriteDecoration;
-                spriteDecoration.setSprite(sfmlDecorationLoader.getTree1(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                if (planet == 3)
+                    spriteDecoration.setSprite(sfmlDecorationLoader.getAlienTree2(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
+                else
+                    spriteDecoration.setSprite(sfmlDecorationLoader.getTree1(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1.5);
                 spriteDecoration.setPosition(cellSize);
                 std::shared_ptr<SFMLSprite> newDecoration = std::make_shared<SFMLSprite>(spriteDecoration);
                 this->_decorationSprite.push_back(newDecoration);

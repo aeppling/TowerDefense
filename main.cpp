@@ -268,6 +268,7 @@ int main() {
             }
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                sfSoundPlayer.playMenuClick();
                 playerData.setDifficulty(menu.getDifficulty());
                 playerData.savePlayerData(saveFile);
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);

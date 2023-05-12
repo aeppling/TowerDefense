@@ -776,7 +776,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP
    // SpritesHolder spritesHolder;
    // std::shared_ptr<SpritesHolder> spritesHolderPtr = std::make_shared<SpritesHolder>(spritesHolder);
-    TDMap map(mapPath, sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader);
+    TDMap map(mapPath, sfmlLoader, window.getSize().x, window.getSize().y, this->spritesHolderPtr, this->sfmlDecorationLoader, this->planet);
     // NOW SETTING UP UNIT TEXTURES AND CELL SIZE
     this->mapMaxPosX = map.getSizeX();
     this->mapMaxPosY = map.getSizeY();

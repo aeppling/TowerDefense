@@ -30,7 +30,7 @@ public:
     std::shared_ptr<SFMLSprite>               getSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getNotWalkableSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getWallSpriteFromPosition(int posX, int posY);
-    void                                      setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map, SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader);
+    void                                      setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map, SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader, int planet);
     void                                      displayDebug();
     void                                      displayMap(sf::RenderWindow &window, int cellSize, SFMLLoader &sfmlLoaderMap);
 };
