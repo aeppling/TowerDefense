@@ -18,6 +18,10 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
         std::cout << "Planet sprite not loaded correctly" << std::endl;
     if (!this->_planet3txt.loadFromFile("Sprites/Planets/planet09.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
+    if (!this->_planet2txtlocked.loadFromFile("Sprites/Planets/Planet2_locked.png"))
+        std::cout << "Planet sprite not loaded correctly" << std::endl;
+    if (!this->_planet3txtlocked.loadFromFile("Sprites/Planets/Planet3_locked.png"))
+        std::cout << "Planet sprite not loaded correctly" << std::endl;
     // ICONS
     if (!this->_singleIcon.loadFromFile("Icons/singleIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
@@ -170,8 +174,16 @@ void Menus::loadSingleplayer() {
 
     // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, true, "Terra", "planet1", this->_mainFont);
-    MenusButton *world2 = new MenusButton(400, 600, true, "Frost", "planet2", this->_mainFont);
-    MenusButton *world3 = new MenusButton(400, 600, true, "Quasaros", "planet3", this->_mainFont);
+    MenusButton *world2;
+    MenusButton *world3;
+    if (this->_playerData.getUnlockedPlanet2() > 0)
+        world2 = new MenusButton(400, 600, true, "Frost", "planet2", this->_mainFont);
+    else
+        world2 = new MenusButton(400, 600, false, "Frost", "lcoked", this->_mainFont);
+    if (this->_playerData.getUnlockedPlanet3() > 0)
+        world3 = new MenusButton(400, 600, true, "Quasaros", "planet3", this->_mainFont);
+    else
+        world3 = new MenusButton(400, 600, false, "Quasaros", "locked", this->_mainFont);
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
     world1->getText()->setCharacterSize(40);
     world2->getText()->setCharacterSize(40);
@@ -203,8 +215,14 @@ void Menus::loadSingleplayer() {
     sf::Sprite *planet3Spr = new sf::Sprite;
 
     planet1Spr->setTexture(this->_planet1txt);
-    planet2Spr->setTexture(this->_planet2txt);
-    planet3Spr->setTexture(this->_planet3txt);
+    if (this->_playerData.getUnlockedPlanet2() > 0)
+        planet2Spr->setTexture(this->_planet2txt);
+    else
+        planet2Spr->setTexture(this->_planet2txtlocked);
+    if (this->_playerData.getUnlockedPlanet3() > 0)
+        planet3Spr->setTexture(this->_planet3txt);
+    else
+        planet3Spr->setTexture(this->_planet3txtlocked);
 
     sf::Vector2f newOriginText1(planet1Spr->getLocalBounds().width / 2.f, planet1Spr->getLocalBounds().height / 2.f);
     planet1Spr->setOrigin(newOriginText1);

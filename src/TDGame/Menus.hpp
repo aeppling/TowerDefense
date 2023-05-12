@@ -38,6 +38,8 @@ private:
     sf::Texture                 _planet1txt;
     sf::Texture                 _planet2txt;
     sf::Texture                 _planet3txt;
+    sf::Texture                 _planet2txtlocked;
+    sf::Texture                 _planet3txtlocked;
 
     sf::Texture                 _singleIcon;
     sf::Texture                 _multiIcon;
