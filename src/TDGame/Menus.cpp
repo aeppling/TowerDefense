@@ -6,9 +6,7 @@
 
 #include "Menus.hpp"
 
-Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume, int difficulty) : _winSizeX(winSizeX), _winSizeY(winSizeY),
-                                                                                                _globalVolume(globalVolume), _musicVolume(musicVolume),
-                                                                                                _soundVolume(soundVolume), _difficulty(difficulty) {
+Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(winSizeX), _winSizeY(winSizeY), _playerData(playerData) {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
@@ -51,9 +49,6 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int 
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!this->_fontTitle.loadFromFile("Fonts/ModernWarfare-OV7KP.ttf"))
         std::cout << "Title font not loaded correctly" << std::endl;
-  /*  this->_nbPlanet1Unlocked = 10;
-    this->_nbPlanet2Unlocked = 7;
-    this->_nbPlanet3Unlocked = 0;*/
 }
 
 void Menus::createText(std::string text, sf::Font &font, int characterSize, int posX, int posY) {
@@ -75,11 +70,11 @@ void Menus::createSlider(float value, float posX, float posY, std::string type) 
     background.setOrigin(newOrigin);
     background.setPosition(posX, posY);
     if (type == "global")
-        value = this->_globalVolume / 100.f * background.getSize().x;
+        value = this->_playerData.getGlobalVolume() / 100.f * background.getSize().x;
     else if (type == "music")
-        value = this->_musicVolume / 100.f * background.getSize().x;
+        value = this->_playerData.getMusicVolume() / 100.f * background.getSize().x;
     else if (type == "sound")
-        value = this->_soundVolume / 100.f * background.getSize().x;
+        value = this->_playerData.getSoundVolume() / 100.f * background.getSize().x;
     sf::RectangleShape slider(sf::Vector2f(value, 40.f));
     slider.setFillColor(sf::Color::Cyan);
     slider.setOrigin(newOrigin);
@@ -404,21 +399,21 @@ void Menus::loadSettings() {
     this->deleteVisibleRectangle();
     this->_isInSettings = true;
 
-    MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
+    MenusButton *backhome = new MenusButton(400, 80, true, "Save & Back Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
     this->_visibleButtons.push_back(backhome);
 
     // VOLUMES SLIDERS
-    this->createSlider(this->_globalVolume, (this->_winSizeX / 2) + 300, 400, "global");
-    this->createSlider(this->_musicVolume, (this->_winSizeX / 2) + 300, 550, "music");
-    this->createSlider(this->_soundVolume, (this->_winSizeX / 2) + 300, 700, "sound");
+    this->createSlider(this->_playerData.getGlobalVolume(), (this->_winSizeX / 2) + 300, 400, "global");
+    this->createSlider(this->_playerData.getGlobalVolume(), (this->_winSizeX / 2) + 300, 550, "music");
+    this->createSlider(this->_playerData.getGlobalVolume(), (this->_winSizeX / 2) + 300, 700, "sound");
 
     // DIFFICULTY TEXT & Button
     this->createText("Difficulty :", this->_mainFont, 34, (this->_winSizeX / 2) - 240, 240);
     MenusButton *difficultySetter;
-    if (this->_difficulty == 2)
+    if (this->_playerData.getDifficulty() == 2)
         difficultySetter = new MenusButton(350, 50, true, "Normal", "set-normal", this->_mainFont);
-    else if (this->_difficulty == 3)
+    else if (this->_playerData.getDifficulty() == 3)
         difficultySetter = new MenusButton(350, 50, true, "Hard", "set-hard", this->_mainFont);
     else
         difficultySetter = new MenusButton(350, 50, true, "Easy", "set-easy", this->_mainFont);
@@ -450,17 +445,17 @@ void Menus::reloadVolume(int newVolume, std::string type) {
 }
 
 void Menus::setDifficultyEasy() {
-    this->_difficulty = 2;
+    this->_playerData.setDifficulty(2);
     this->loadSettings();
 }
 
 void Menus::setDifficultyNormal() {
-    this->_difficulty = 3;
+    this->_playerData.setDifficulty(3);
     this->loadSettings();
 }
 
 void Menus::setDifficultyHard() {
-    this->_difficulty = 1;
+    this->_playerData.setDifficulty(1);
     this->loadSettings();
 }
 
@@ -715,21 +710,21 @@ bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, TDPlayerSave &playe
         newVolume = (mousePosition.x - globalSliderBorder.left) / globalSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
         playerSave.setGlobalVolume(newVolume);
-        this->_globalVolume = newVolume;
+        this->_playerData.setGlobalVolume(newVolume);
         reloadVolume(newVolume, "global");
     }
     else if (musicSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - musicSliderBorder.left) / musicSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
         playerSave.setMusicVolume(newVolume);
-        this->_musicVolume = newVolume;
+        this->_playerData.setMusicVolume(newVolume);
         reloadVolume(newVolume, "music");
     }
     else if (soundSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
         newVolume = (mousePosition.x - soundSliderBorder.left) / soundSliderBorder.width * 100.f;
         newVolume = std::max(0.f, std::min(100.f, newVolume));
         playerSave.setSoundVolume(newVolume);
-        this->_soundVolume = newVolume;
+        this->_playerData.setSoundVolume(newVolume);
         reloadVolume(newVolume, "sound");
     }
     if (newVolume == -1)

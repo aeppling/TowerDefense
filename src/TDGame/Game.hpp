@@ -86,7 +86,7 @@ class Game{
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
-        ~Game() { this->cleanAll(); };
+        ~Game() { /*this->cleanAll();*/ };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void initializeTowerStore(sf::RenderWindow &window);
         void initializeTowerStoreCurrentWave();
