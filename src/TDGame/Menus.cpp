@@ -48,6 +48,10 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
+    if (!(this->_backgroundTowerManual.loadFromFile("Sprites/Backgrounds/towerManualScreen.png")))
+        std::cout << "Error on loading menus textures..." << std::endl;
+    if (!(this->_backgroundUnitManual.loadFromFile("Sprites/Backgrounds/towerManualScreen.png")))
+        std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundGameWon.loadFromFile("Sprites/Backgrounds/gameWonScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundGameLost.loadFromFile("Sprites/Backgrounds/gameLostScreen.png")))
@@ -672,6 +676,36 @@ void Menus::loadWonScreen() {
     this->_actualBackground.setScale(1, 1);
 }
 
+void Menus::loadTowerManualScreen() {
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+
+    MenusButton *back = new MenusButton(400, 80, true, "Back", "tutorial", this->_mainFont);
+    back->setPosition(_winSizeX / 4, 900);
+    this->_visibleButtons.push_back(back);
+
+    this->_actualBackground.setTexture(this->_backgroundTowerManual);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
+}
+
+void Menus::loadUnitManualScreen() {
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+
+    MenusButton *back = new MenusButton(400, 80, true, "Back", "tutorial", this->_mainFont);
+    back->setPosition(_winSizeX / 4, 900);
+    this->_visibleButtons.push_back(back);
+
+    this->_actualBackground.setTexture(this->_backgroundUnitManual);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
+}
+
 std::string Menus::loadMenuByName(std::string name) {
     if (name == "singleplayer") {
         this->loadSingleplayer();
@@ -683,6 +717,14 @@ std::string Menus::loadMenuByName(std::string name) {
     }
     else if (name == "tutorial") {
         this->loadTutorial();
+        return ("no");
+    }
+    else if (name == "towermanual") {
+        this->loadTowerManualScreen();
+        return ("no");
+    }
+    else if (name == "unitmanual") {
+        this->loadUnitManualScreen();
         return ("no");
     }
     else if (name == "settings") {
