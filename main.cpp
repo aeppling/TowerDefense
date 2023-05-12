@@ -203,30 +203,44 @@ int main() {
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
-    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume);
+    Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, globalVolume, musicVolume, soundVolume);
     menu.loadHome();
     std::string selectionInformation("none");
     int         levelToPlay = -1;
     int         planetToLoad = -1;
     bool        gameMode = 0;
-    int gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
+    int         gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
+    bool        isInSettings = false;
+    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 windowTestMenu.close();
             }
+            if (isInSettings) {
+                if (event.type == sf::Event::MouseButtonReleased)
+                {
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
+                    menu.checkIfVolumeClicked(mousePosition, &globalVolume, &musicVolume, &soundVolume);
+                    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
+                }
+            }
             if (event.type == sf::Event::MouseButtonPressed &&
                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(windowTestMenu);
-                std::string clicked = menu.checkForClick(mousePos);
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
+                std::string clicked = menu.checkForClick(mousePosition);
                 if (clicked != "no") {
                     if (clicked == "exit")
                         return (1);
+                    else if (clicked.find("settings") != std::string::npos) {
+                        isInSettings = true;
+                    }
                     else if (clicked.find("ip:") != std::string::npos) {
                         // LAUNCH CONNEXION TO HOST WITH menu.getIp
 
                         
+                        isInSettings = false;
                         std::string ipAddressToConnect = clicked.substr(3);
                         std::cout << "ipAddressToConnect : " << ipAddressToConnect << std::endl;
                         NetworkController* networkController = new NetworkController(false);
@@ -246,22 +260,23 @@ int main() {
                         }else{
                             std::cout << "failed to connect to server" << std::endl;
                         }
-
                     }
                     else if (clicked.find("hostwait") != std::string::npos) {
+                        isInSettings = false;
                         // LAUNCH HOST WAITING FOR CLIENT
                         std::cout << "hostwait" << std::endl;
                         
                         
                     }
                     else {
+                        isInSettings = false;
                         selectionInformation = clicked;
                         levelToPlay = extractLevelNumber(selectionInformation);
                         planetToLoad = extractPlanetNumber(selectionInformation);
                         std::string str1(selectionInformation);
                         gameMode = extractGameMode(str1);
                         if (gameMode == 0)
-                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
+                            launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad);
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
                             std::cout << "host" << std::endl;

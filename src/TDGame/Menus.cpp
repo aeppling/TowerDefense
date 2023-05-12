@@ -6,10 +6,13 @@
 
 #include "Menus.hpp"
 
-Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY), _globalVolume(globalVolume) {
+Menus::Menus(int winSizeX, int winSizeY, int globalVolume, int musicVolume, int soundVolume) : _winSizeX(winSizeX), _winSizeY(winSizeY),
+                                                                                                _globalVolume(globalVolume), _musicVolume(musicVolume), _soundVolume(soundVolume) {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
+    this->_isInSettings = false;
+    this->_difficulty = 1;
     // PLANETS
     if (!this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
@@ -26,6 +29,10 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
         std::cout << "Menu icon not loaded correctly" << std::endl;
     if (!this->_settingsIcon.loadFromFile("Icons/settingsIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
+    if (!this->_hostIcon.loadFromFile("Icons/hostIcon.png"))
+        std::cout << "Menu icon not loaded correctly" << std::endl;
+    if (!this->_joinIcon.loadFromFile("Icons/joinIcon.png"))
+        std::cout << "Menu icon not loaded correctly" << std::endl;
     // BACKGROUNDS
     if (!this->_backgroundStars.loadFromFile("Sprites/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
@@ -35,9 +42,7 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundLevels.loadFromFile("Sprites/Backgrounds/backgroundLevels.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundMultiplayer.loadFromFile("Sprites/Units/CharRed1.png")))
-        std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundSettings.loadFromFile("Sprites/Units/CharRed1.png")))
+    if (!(this->_backgroundSettings.loadFromFile("Sprites/Backgrounds/backgroundSettings.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
@@ -51,14 +56,58 @@ Menus::Menus(int winSizeX, int winSizeY, int globalVolume) : _winSizeX(winSizeX)
     this->_nbPlanet3Unlocked = 0;*/
 }
 
+void Menus::createText(std::string text, sf::Font &font, int characterSize, int posX, int posY) {
+    sf::Text *textPtr = new sf::Text;
+    textPtr->setString(text);
+    textPtr->setFont(font);
+    textPtr->setCharacterSize(characterSize);
+    sf::Vector2f newOriginText2(textPtr->getLocalBounds().width / 2.f, textPtr->getLocalBounds().height / 2.f);
+    textPtr->setOrigin(newOriginText2);
+    textPtr->setPosition(posX, posY);
+    this->_visibleText.push_back(textPtr);
+}
+
+void Menus::createSlider(float value, float posX, float posY, std::string type) {
+   // actualVolume = this->_globalVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+    sf::RectangleShape background(sf::Vector2f(600.f, 40.f));
+    background.setFillColor(sf::Color::White);
+    sf::Vector2f newOrigin(background.getLocalBounds().width / 2.f, background.getLocalBounds().height / 2.f);
+    background.setOrigin(newOrigin);
+    background.setPosition(posX, posY);
+    if (type == "global")
+        value = this->_globalVolume / 100.f * background.getSize().x;
+    else if (type == "music")
+        value = this->_musicVolume / 100.f * background.getSize().x;
+    else if (type == "sound")
+        value = this->_soundVolume / 100.f * background.getSize().x;
+    sf::RectangleShape slider(sf::Vector2f(value, 40.f));
+    slider.setFillColor(sf::Color::Cyan);
+    slider.setOrigin(newOrigin);
+    slider.setPosition(posX, posY);
+    if (type == "global") {
+        this->_globalVolumeSliderBackground = background;
+        this->_globalVolumeSlider = slider;
+    }
+    else if (type == "music") {
+        this->_musicVolumeSliderBackground = background;
+        this->_musicVolumeSlider = slider;
+    }
+    else if (type == "sound") {
+        this->_soundVolumeSliderBackground = background;
+        this->_soundVolumeSlider = slider;
+    }
+}
+
 void Menus::loadHome() {
     this->_players = "single";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
+    this->_isInSettings = false;
 
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // SETUP BUTTON
     MenusButton *singleplayerButton = new MenusButton(500, 70, true, "Singleplayer", "singleplayer", this->_mainFont);
@@ -119,9 +168,10 @@ void Menus::loadHome() {
 }
 
 void Menus::loadSingleplayer() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BUTTONS SETUP
     MenusButton *world1 = new MenusButton(400, 600, true, "Terra", "planet1", this->_mainFont);
@@ -184,9 +234,10 @@ void Menus::loadMultiplayer() {
     this->_players = "multi";
     this->_isIpEntering = false;
     this->_ipAddressField = "";
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BUTTONS SETUP
     MenusButton *host = new MenusButton(400, 600, true, "Host", "singleplayer", this->_mainFont);
@@ -206,6 +257,23 @@ void Menus::loadMultiplayer() {
     this->_visibleButtons.push_back(join);
     this->_visibleButtons.push_back(backhome);
 
+    // ICON SETUP
+    sf::Sprite *hostIcon = new sf::Sprite;
+    hostIcon->setTexture(this->_hostIcon);
+    sf::Vector2f newOriginIcon1(hostIcon->getLocalBounds().width / 2.f, hostIcon->getLocalBounds().height / 2.f);
+    hostIcon->setOrigin(newOriginIcon1);
+    hostIcon->setPosition(offset, 450);
+    hostIcon->setScale(0.8, 0.8);
+    this->_visibleSprites.push_back(hostIcon);
+
+    sf::Sprite *joinIcon = new sf::Sprite;
+    joinIcon->setTexture(this->_joinIcon);
+    sf::Vector2f newOriginIcon2(joinIcon->getLocalBounds().width / 2.f, joinIcon->getLocalBounds().height / 2.f);
+    joinIcon->setOrigin(newOriginIcon2);
+    joinIcon->setPosition(offset + 500, 450);
+    joinIcon->setScale(0.8, 0.8);
+    this->_visibleSprites.push_back(joinIcon);
+
     // BACKGROUND SETUP
     this->_actualBackground.setTexture(this->_backgroundSingleplayer);
     this->_actualBackground.setPosition(0, 0);
@@ -214,9 +282,10 @@ void Menus::loadMultiplayer() {
 }
 
 void Menus::loadHostLobby() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -229,10 +298,10 @@ void Menus::loadHostLobby() {
 }
 
 void Menus::loadHost() {
-    std::cout << "LOAD HOST" << std::endl;
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to planet choice", "singleplayer", this->_mainFont);
     back->setPosition(_winSizeX / 2, 900);
@@ -255,9 +324,10 @@ void Menus::loadHost() {
 }
 
 void Menus::loadJoin() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
     this->_isIpEntering = true;
 
     MenusButton *back = new MenusButton(400, 80, true, "Back to host choice", "multiplayer", this->_mainFont);
@@ -302,9 +372,10 @@ void Menus::loadJoin() {
 }
 
 void Menus::loadJoinTest() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
     backhome->setPosition(_winSizeX / 2, 900);
@@ -327,25 +398,77 @@ void Menus::loadJoinTest() {
 }
 
 void Menus::loadSettings() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
+    this->_isInSettings = true;
 
     MenusButton *backhome = new MenusButton(400, 80, true, "Back To Home", "home", this->_mainFont);
-
     backhome->setPosition(_winSizeX / 2, 900);
-
     this->_visibleButtons.push_back(backhome);
 
-    this->_actualBackground.setTexture(this->_backgroundStars);
-    this->_actualBackground.setPosition(this->_winSizeX / 4.2, 0);
-    this->_actualBackground.setScale(0.5, 0.5);
+    // VOLUMES SLIDERS
+    this->createSlider(this->_globalVolume, (this->_winSizeX / 2) + 300, 400, "global");
+    this->createSlider(this->_musicVolume, (this->_winSizeX / 2) + 300, 550, "music");
+    this->createSlider(this->_soundVolume, (this->_winSizeX / 2) + 300, 700, "sound");
+
+    // DIFFICULTY TEXT & Button
+    this->createText("Difficulty :", this->_mainFont, 34, (this->_winSizeX / 2) - 240, 240);
+    MenusButton *difficultySetter;
+    if (this->_difficulty == 2)
+        difficultySetter = new MenusButton(350, 50, true, "Normal", "set-normal", this->_mainFont);
+    else if (this->_difficulty == 3)
+        difficultySetter = new MenusButton(350, 50, true, "Hard", "set-hard", this->_mainFont);
+    else
+        difficultySetter = new MenusButton(350, 50, true, "Easy", "set-easy", this->_mainFont);
+    difficultySetter->setPosition((this->_winSizeX / 2) + 300, 250);
+    this->_visibleButtons.push_back(difficultySetter);
+
+    // VOLUME TEXT
+    this->createText("Global volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 390);
+    this->createText("Music volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 540);
+    this->createText("Sound volume :", this->_mainFont, 34, (this->_winSizeX / 2) - 300, 690);
+
+    // BACKGROUND
+    this->_actualBackground.setTexture(this->_backgroundSettings);
+    this->_actualBackground.setPosition(0, 0);
+    this->_actualBackground.setScale(1, 1);
+}
+
+void Menus::reloadVolume(int newVolume, std::string type) {
+
+    float newValue = newVolume / 100.f * this->_globalVolumeSliderBackground.getSize().x;
+    if (type == "global")
+        this->_globalVolumeSlider.setSize(sf::Vector2f(newValue, this->_globalVolumeSlider.getSize().y));
+    else if (type == "music")
+        this->_musicVolumeSlider.setSize(sf::Vector2f(newValue, this->_musicVolumeSlider.getSize().y));
+    else if (type == "sound")
+        this->_soundVolumeSlider.setSize(sf::Vector2f(newValue, this->_soundVolumeSlider.getSize().y));
+    else
+        return ;
+}
+
+void Menus::setDifficultyEasy() {
+    this->_difficulty = 2;
+    this->loadSettings();
+}
+
+void Menus::setDifficultyNormal() {
+    this->_difficulty = 3;
+    this->loadSettings();
+}
+
+void Menus::setDifficultyHard() {
+    this->_difficulty = 1;
+    this->loadSettings();
 }
 
 void Menus::loadTutorial() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     MenusButton *backhome = new MenusButton(200, 80, true, "< Back", "home", this->_mainFont);
     backhome->setPosition((this->_winSizeX / 2) - 800, this->_winSizeY - 150);
@@ -365,9 +488,10 @@ void Menus::loadTutorial() {
 }
 
 void Menus::loadLevelsPlanet1() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -397,9 +521,10 @@ void Menus::loadLevelsPlanet1() {
 }
 
 void Menus::loadLevelsPlanet2() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -429,9 +554,10 @@ void Menus::loadLevelsPlanet2() {
 }
 
 void Menus::loadLevelsPlanet3() {
-    this->_visibleButtons.clear();
-    this->_visibleSprites.clear();
-    this->_visibleText.clear();
+    this->deleteVisibleButtons();
+    this->deleteVisibleSprites();
+    this->deleteVisibleText();
+    this->deleteVisibleRectangle();
 
     // BACK BUTTON & BACKGROUND
     MenusButton *back = new MenusButton(400, 80, true, "Back To Planets", "singleplayer", this->_mainFont);
@@ -480,6 +606,21 @@ void Menus::drawMenu(sf::RenderWindow &window) {
         window.draw(*this->_visibleText.at(i));
         i++;
     }
+    if (!this->_visibleRectangle.empty()) {
+        i = 0;
+        while (i < this->_visibleRectangle.size()) {
+            window.draw(*this->_visibleRectangle.at(i));
+            i++;
+        }
+    }
+    if (this->_isInSettings) {
+        window.draw(this->_globalVolumeSliderBackground);
+        window.draw(this->_globalVolumeSlider);
+        window.draw(this->_musicVolumeSliderBackground);
+        window.draw(this->_musicVolumeSlider);
+        window.draw(this->_soundVolumeSliderBackground);
+        window.draw(this->_soundVolumeSlider);
+    }
 }
 
 std::string Menus::loadMenuByName(std::string name) {
@@ -497,7 +638,19 @@ std::string Menus::loadMenuByName(std::string name) {
     }
     else if (name == "settings") {
         this->loadSettings();
-        return ("no");
+        return ("settings");
+    }
+    else if (name == "set-easy") {
+        this->setDifficultyEasy();
+        return ("settings");
+    }
+    else if (name == "set-normal") {
+        this->setDifficultyNormal();
+        return ("settings");
+    }
+    else if (name == "set-hard") {
+        this->setDifficultyHard();
+        return ("settings");
     }
     else if (name == "home") {
         this->loadHome();
@@ -550,4 +703,37 @@ std::string Menus::checkForClick(sf::Vector2i mousePos) {
         i++;
     }
     return ("no");
+}
+
+bool Menus::checkIfVolumeClicked(sf::Vector2i mousePosition, int *globalVolume, int *musicVolume, int *soundVolume) {
+    sf::FloatRect globalSliderBorder = this->_globalVolumeSliderBackground.getGlobalBounds();
+    sf::FloatRect musicSliderBorder = this->_musicVolumeSliderBackground.getGlobalBounds();
+    sf::FloatRect soundSliderBorder = this->_soundVolumeSliderBackground.getGlobalBounds();
+
+    float newVolume = -1;
+    if (globalSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - globalSliderBorder.left) / globalSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *globalVolume = newVolume;
+        this->_globalVolume = newVolume;
+        reloadVolume(newVolume, "global");
+    }
+    else if (musicSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - musicSliderBorder.left) / musicSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *musicVolume = newVolume;
+        this->_musicVolume = newVolume;
+        reloadVolume(newVolume, "music");
+    }
+    else if (soundSliderBorder.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+        newVolume = (mousePosition.x - soundSliderBorder.left) / soundSliderBorder.width * 100.f;
+        newVolume = std::max(0.f, std::min(100.f, newVolume));
+        *soundVolume = newVolume;
+        this->_soundVolume = newVolume;
+        reloadVolume(newVolume, "sound");
+    }
+    if (newVolume == -1)
+        return (false);
+    else
+        return (true);
 }

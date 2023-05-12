@@ -36,6 +36,8 @@ public:
     unsigned int getMusicVolume() { return (this->_musicVolume); };
     unsigned int getSoundVolume() { return (this->_soundVolume); };
 
+    // SETTER VOLUME
+    void refreshAllMenuVolume(int globalVolume, int musicVolume, int soundVolume);
     // MUSIC
     void playMenuMusic() { this->_menuMusic.play(); };
     void stopMenuMusic() { this->_menuMusic.stop(); };

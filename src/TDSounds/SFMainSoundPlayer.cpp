@@ -53,3 +53,13 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned in
     this->_gameCoinLoss.setVolume((float)this->_soundVolume);
     this->_gameLifeLoss.setVolume((float)this->_soundVolume / 8);
 }
+
+void SFMainSoundPlayer::refreshAllMenuVolume(int globalVolume, int musicVolume, int soundVolume) {
+    this->_globalVolume = globalVolume;
+    this->_musicVolume = musicVolume;
+    this->_soundVolume = soundVolume;
+    this->_menuMusic.setVolume(musicVolume);
+    this->_menuClick.setVolume(soundVolume);
+    this->_menuClick.play();
+    sf::Listener::setGlobalVolume(globalVolume);
+}
