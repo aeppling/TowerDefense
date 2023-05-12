@@ -1000,16 +1000,14 @@ bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
             int newY = y + i;
             int newX = x + j;
             // IS CHECKING NOT OUTSIDE MAP
-            if (newY < 0 || newY > maxY || newX < 0 || newX > maxX) {
-                continue;
-            }
+            if ((newX < 0) || (newX >= map.getSizeX()) || (newY < 0) || (newY >= map.getSizeY()))
+                return (false);
             if (map.getElem(newX, newY)->getType() != 'T') {
-               if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
+                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
                     continue;
                 }
-                else {
-                    return false;
-                }
+                else
+                    return (false);
             }
         }
     }
