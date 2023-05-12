@@ -50,7 +50,6 @@ void    TDUnit::regenerate() {
 void    TDUnit::live() {
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
-        int res = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - this->_timeOfLastMove).count();
             if (!(this->isAtBase())) {
                 this->setHealthBarSize();
                 this->move();
@@ -63,6 +62,8 @@ void    TDUnit::live() {
                     int isFreezeEnded = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedFreeze - startFreeze).count();
                     while (isFreezeEnded < this->_freezeTime) {
                         sf::sleep(sf::milliseconds(100));
+                        this->_freezeSprite.setPosition(this->_sprite.getPosition().x, this->_sprite.getPosition().y);
+                        this->setHealthBarSize();
                         std::chrono::steady_clock::time_point elapsedFreeze = std::chrono::steady_clock::now();
                         isFreezeEnded = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedFreeze - startFreeze).count();
                     }
@@ -108,7 +109,6 @@ void    TDUnit::move() {
             float lerpX = currentPosition.x + t * distanceX;
             float lerpY = currentPosition.y + t * distanceY;
             this->_sprite.setPosition(lerpX, lerpY);
-            this->_armorSprite.setPosition(lerpX, lerpY);
             float rotation = atan2(distanceY, distanceX) * 180 / 3.14159265f; // Convert radians to degrees
             this->_sprite.setRotation(rotation + 90.0f);
             // Check if target position is reached
@@ -157,7 +157,6 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getRegenerateDrone());
     else if (this->getTypeName() == "ArmoredDrone")
         this->_sprite.setTexture(*sfmlLoader.getArmoredDrone());
-    this->_armorSprite.setTexture(*sfmlLoader.getArmor());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     // SET UNIT SPRITE
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
@@ -166,12 +165,13 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);
     this->_sprite.setPosition((this->_posX * this->_unitSize) + cellSize/2 + _GAME_POSITION_X, (this->_posY * this->_unitSize) + cellSize / 2 + _GAME_POSITION_Y);
-    // SET ARMOR SPRITE
-    sf::IntRect textureRect2(0, 0, this->_armorSprite.getTexture()->getSize().x, this->_armorSprite.getTexture()->getSize().y);
-    this->_armorSprite.setScale(scaleFactor * (this->_scale * 1.8), scaleFactor * (this->_scale * 1.8));
-    this->_armorSprite.setTextureRect(textureRect2);
-    sf::Vector2f newOrigin2(this->_armorSprite.getLocalBounds().width / 2.f, this->_armorSprite.getLocalBounds().height / 2.f);
-    this->_armorSprite.setOrigin(newOrigin2);
+    // SET FREEZE SPRITE
+    this->_freezeSprite.setTexture(*sfmlLoader.getFreeze());
+    sf::IntRect textureRect2(0, 0, this->_freezeSprite.getTexture()->getSize().x, this->_freezeSprite.getTexture()->getSize().y);
+    this->_freezeSprite.setScale(scaleFactor * (this->_scale * 0.5), scaleFactor * (this->_scale * 0.5));
+    this->_freezeSprite.setTextureRect(textureRect2);
+    sf::Vector2f newOrigin2(this->_freezeSprite.getLocalBounds().width / 2.f, this->_freezeSprite.getLocalBounds().height / 2.f);
+    this->_freezeSprite.setOrigin(newOrigin2);
 /*    this->_unitSize = getCellSize(winSizeX, winSizeY, mapSizeX, mapSizeY);
     sf::Sprite newSprite;
     newSprite.setTexture(*sfmlLoader.getCowards());
@@ -249,6 +249,7 @@ void    TDUnit::getFreeze(float time) {
 void    TDUnit::unFreeze() {
     this->_isFreeze = false;
     this->_freezeTime = 0;
+    this->_freezeSprite.setPosition(4000, 4000);
 }
 
 void    TDUnit::getKill() {

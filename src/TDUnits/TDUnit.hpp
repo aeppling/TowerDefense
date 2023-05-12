@@ -51,7 +51,7 @@ public:
     TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite          _sprite;
-    sf::Sprite          _armorSprite;
+    sf::Sprite          _freezeSprite;
     int                 _unitSize; // SIZE OF UNIT IN MAP CELL
     sf::RectangleShape  _healthBar;
     sf::RectangleShape  _healthMaxBar;
@@ -105,13 +105,14 @@ public:
     void getShot(int damage, int slowValue, int armorPierce);
     void getFreeze(float time);
     void unFreeze();
+    bool isFreeze() { return (this->_isFreeze); };
     void getKill();
     sf::Sprite getSprite() {return (this->_sprite); };
     void rotate(float posX, float posY, float destX, float destY);
     sf::RectangleShape getHealthBarSprite();
     sf::RectangleShape getMaxHealthBarSprite();
     int getArmor() { return (this->_armor); };
-    sf::Sprite getArmorSprite() { return (this->_armorSprite); };
+    sf::Sprite getFreezeSprite() { return (this->_freezeSprite); };
 };
 /*
 class TestUnit {

@@ -564,8 +564,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
-                                    if (enemyList.at(this->currentWaveNumber).at(s)->getArmor() > 0)
-                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getArmorSprite());
+                                    if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
+                                        window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
+                                    }
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getMaxHealthBarSprite());
                                     window.draw(enemyList.at(this->currentWaveNumber).at(s)->getHealthBarSprite());
                                 }
@@ -1070,14 +1071,14 @@ bool Game::waveEnd(sf::RenderWindow& window){
     //* return true if the current wave is ended , ifnot return else
     if (this->enemiesLeft <= 0) {
         if (this->isWaveEnding == false) {
-            std::cout << "Chrono start" << std::endl;
             this->endWaveTransitionTimer = std::chrono::steady_clock::now();
             this->isWaveEnding = true;
         }
         std::chrono::steady_clock::time_point checkPoint = std::chrono::steady_clock::now();
         int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(checkPoint - this->endWaveTransitionTimer).count();
         if (elapsed >= 2500) {
-            std::cout << "5 seconds have passed!" << std::endl;
+            this->player->addCoin(500-(difficulty*100));
+            this->sfMainSoundPlayer.playGameCoinWon();
             this->deactivateTowers();
             this->sfMainSoundPlayer.playWaveClear();
             this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);

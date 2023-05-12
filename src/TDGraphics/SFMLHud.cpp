@@ -186,7 +186,10 @@ void SFMLHud::draw() {
         towerNameText.setFont(mainFont);
         towerNameText.setCharacterSize(24);
         towerNameText.setPosition(towerInfoX, towerInfoY);
-        towerNameText.setString(towerStoreList[i].at(0)->getTowerName());
+        if (towerStoreList[i].at(0)->getTowerName() == "SlowTower")
+            towerNameText.setString("FreezeTower");
+        else
+            towerNameText.setString(towerStoreList[i].at(0)->getTowerName());
         _window->draw(towerNameText);
 
         // Afficher le coût de la tour
