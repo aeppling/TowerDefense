@@ -30,7 +30,8 @@ private:
     bool isServer;
     unsigned short port;
     sf::TcpSocket* serverSocket;
-    std::vector<std::unique_ptr<sf::TcpSocket>> clients;
+    std::vector<std::unique_ptr<sf::TcpSocket>>* clients;
+
 };
 
 #endif //UNTITLED1_NETWORKCONTROLLER_HPP_

@@ -18,7 +18,7 @@ private:
     int                 _posY;
     std::string         _shortname;
 public:
-    MenusButton(int sizeX, int sizeY, sf::Texture *iconTexture, std::string text, std::string shortname, sf::Font &mainFont);
+    MenusButton(int sizeX, int sizeY, bool isUnlocked, std::string text, std::string shortname, sf::Font &mainFont);
     ~MenusButton() = default;
 
     // GETTER & SETTER

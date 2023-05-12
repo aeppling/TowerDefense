@@ -71,25 +71,6 @@ int extractLevelNumber(const std::string& str) {
     return (-1);
 }
 
-
-/* UNCOMMENT TO DEBUG PATH FINDING
- std::cout << "START CELL 1 x/y : " << (*nmap)[0][1].getPosX() << " : " << (*nmap)[0][1].getPosY() << std::endl;
- std::cout << "GOAL CELL 1 x/y : " << (*nmap)[10][10].getPosX() << " : " << (*nmap)[10][10].getPosY() << std::endl;
- AStarPathFinding pathFinder((*nmap), (*nmap)[0][1], (*nmap)[20][29]);
- std::vector<MapCell*> path = pathFinder.runPathFinding();
- int i = 0;
- while (i != path.size()) {
-     std::cout << path[i]->getPosX() << " : " << path[i]->getPosY() << " | ";
-     i++;
- }
- std::cout << std::endl;
- displayDebugMap((nmap), path);
- if (path.empty()) {
-     std::cout << "NO PATH FOUND !!!" << std::endl;
- }
-*/
-
-
 bool extractGameMode(const std::string& infoString) {
     size_t singlePos = infoString.find("single");
     size_t multiPos = infoString.find("multi");
@@ -138,7 +119,8 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
     sfSoundPlayer.playGameMusic1();
     
     //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
-    
+
+
     /*if(networkController != nullptr){
       if (networkController->getIsServer() == true) {
           std::string levelstr = "1";
@@ -150,20 +132,65 @@ void launchGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolu
           level = atoi(levelstr.c_str());
       }
     }*/
+
     
-    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr /*networkController  nullptr si solo */, 1);
+    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
     
     try {
         if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
             std::cout << "Error on map initialisation" << std::endl;
-            return;
+            return ;
         }
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
-    // WINDOW LOOP AND MOUSE SETUP
-    // runWindowLevelLoop(window, map, baseCell, enemyList, sfmlLoader);
+}
 
+void launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, int musicVolume, int soundVolume, int globalVolume, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad, NetworkController* networkController) {
+
+    // SETTING WINDOW AND MAP
+    sf::ContextSettings settings;
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 4;
+    window.setActive(true);
+    SFMLLoader sfmlLoader;
+
+    if (planetToLoad == 1) {
+        SFMLLoaderPlanet1 sfmlLoader1;
+        sfmlLoader = sfmlLoader1;
+    }
+    else if (planetToLoad == 2) {
+        SFMLLoaderPlanet2 sfmlLoader2;
+        sfmlLoader = sfmlLoader2;
+    }
+    else if (planetToLoad == 3) {
+        SFMLLoaderPlanet3 sfmlLoader3;
+        sfmlLoader = sfmlLoader3;
+    }
+    else {
+        SFMLLoaderPlanet1 sfmlLoader1;
+        sfmlLoader = sfmlLoader1;
+    }
+
+
+    // CREATE GAME OBJET
+    TDPlayer *playerOne = new TDPlayer("Joueur1");
+    SFTowerSoundLoader sfTowerSoundLoader(musicVolume / 12, soundVolume);
+    sfSoundPlayer.stopMenuMusic();
+    sfSoundPlayer.playGameMusic1();
+
+    
+    Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, planetToLoad);
+    
+    try {
+        if (currentGame.launch(sfmlLoader, window, globalVolume) == -1) {
+            std::cout << "Error on map initialisation" << std::endl;
+            return ;
+        }
+    } catch (const std::out_of_range& ex) {
+        std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
+    }
 }
 
 int main() {
@@ -198,11 +225,34 @@ int main() {
                         return (1);
                     else if (clicked.find("ip:") != std::string::npos) {
                         // LAUNCH CONNEXION TO HOST WITH menu.getIp
+
+                        
                         std::string ipAddressToConnect = clicked.substr(3);
+                        std::cout << "ipAddressToConnect : " << ipAddressToConnect << std::endl;
+                        NetworkController* networkController = new NetworkController(false);
+                        sf::IpAddress serverAddress(ipAddressToConnect);
+                        if(networkController->connectToServer(serverAddress)){
+                            std::cout << "connected to server" << std::endl;
+                            std::string levelstr = networkController->receiveMessage(networkController->getServerSocket());
+                            levelToPlay = atoi(levelstr.c_str());
+                            std::cout << "levelToPlay : " << levelToPlay << std::endl;
+                            std::string planetstr = networkController->receiveMessage(networkController->getServerSocket());
+                            planetToLoad = atoi(planetstr.c_str());
+                            std::cout << "planetToLoad : " << planetToLoad << std::endl;
+                            
+                            
+                            launchMultiplayerGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad, networkController);
+    
+                        }else{
+                            std::cout << "failed to connect to server" << std::endl;
+                        }
 
                     }
                     else if (clicked.find("hostwait") != std::string::npos) {
                         // LAUNCH HOST WAITING FOR CLIENT
+                        std::cout << "hostwait" << std::endl;
+                        
+                        
                     }
                     else {
                         selectionInformation = clicked;
@@ -214,8 +264,26 @@ int main() {
                             launchGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad);
                         else {
                             // OPEN WINDOW WITH HOST INFOS AND WAIT
+                            std::cout << "host" << std::endl;
+                            sf::IpAddress serverAddress = sf::IpAddress::getLocalAddress();
+                            menu.setIp(serverAddress.toString());
+                            std::cout << " ip : " << serverAddress.toString() << std::endl;
+                            std::cout << "loading host menu" << std::endl;
                             menu.loadHost();
-                            // WAIT FOR CONNECTION
+                            std::cout << "host menu loaded" << std::endl;
+                            std::cout << "creating network controller" << std::endl;
+                            NetworkController* networkController = new NetworkController(true);
+                            std::cout << "network controller created" << std::endl;
+
+                            levelToPlay = extractLevelNumber(selectionInformation);
+                            planetToLoad = extractPlanetNumber(selectionInformation);
+                            std::cout << "waiting for connection" << std::endl;
+                            networkController->waitForConnection();
+                            std::cout << "lauching game " << std::endl;
+                            
+                            networkController->sendMessageToAllClients(std::to_string(levelToPlay));
+                            networkController->sendMessageToAllClients(std::to_string(planetToLoad));
+                            launchMultiplayerGame(sfSoundPlayer, musicVolume, soundVolume, menu.getGlobalVolume(), gameDifficulty, windowTestMenu, levelToPlay, planetToLoad, networkController);
                         }
                     }
                 }

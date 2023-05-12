@@ -733,7 +733,82 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../src/TDTowers/SniperTower.hpp \
   ../src/TDTowers/SplashTower.hpp \
   ../src/TDTowers/SpeedAuraTower.hpp \
-  ../src/TDGame/usefullStruct.hpp
+  ../src/TDGame/usefullStruct.hpp \
+  ../include/nlohmann/json.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_function.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/numeric \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_numeric.h \
+  ../include/nlohmann/adl_serializer.hpp \
+  ../include/nlohmann/detail/abi_macros.hpp \
+  ../include/nlohmann/detail/conversions/from_json.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/forward_list \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/unordered_map \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable_policy.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unordered_map.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/valarray \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cmath \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/math.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.tcc \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_before.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/slice_array.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_after.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice_array.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/mask_array.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/indirect_array.h \
+  ../include/nlohmann/detail/exceptions.hpp \
+  ../include/nlohmann/detail/value_t.hpp \
+  ../include/nlohmann/detail/macro_scope.hpp \
+  ../include/nlohmann/detail/meta/detected.hpp \
+  ../include/nlohmann/detail/meta/void_t.hpp \
+  ../include/nlohmann/thirdparty/hedley/hedley.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cassert \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/assert.h \
+  ../include/nlohmann/detail/string_escape.hpp \
+  ../include/nlohmann/detail/input/position_t.hpp \
+  ../include/nlohmann/detail/meta/cpp_future.hpp \
+  ../include/nlohmann/detail/meta/type_traits.hpp \
+  ../include/nlohmann/detail/iterators/iterator_traits.hpp \
+  ../include/nlohmann/detail/meta/call_std/begin.hpp \
+  ../include/nlohmann/detail/meta/call_std/end.hpp \
+  ../include/nlohmann/json_fwd.hpp \
+  ../include/nlohmann/detail/string_concat.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstring \
+  ../include/nlohmann/detail/meta/identity_tag.hpp \
+  ../include/nlohmann/detail/meta/std_fs.hpp \
+  ../include/nlohmann/detail/conversions/to_json.hpp \
+  ../include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  ../include/nlohmann/byte_container_with_subtype.hpp \
+  ../include/nlohmann/detail/hash.hpp \
+  ../include/nlohmann/detail/input/binary_reader.hpp \
+  ../include/nlohmann/detail/input/input_adapters.hpp \
+  ../include/nlohmann/detail/input/json_sax.hpp \
+  ../include/nlohmann/detail/input/lexer.hpp \
+  ../include/nlohmann/detail/meta/is_sax.hpp \
+  ../include/nlohmann/detail/input/parser.hpp \
+  ../include/nlohmann/detail/iterators/internal_iterator.hpp \
+  ../include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  ../include/nlohmann/detail/iterators/iter_impl.hpp \
+  ../include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  ../include/nlohmann/detail/json_pointer.hpp \
+  ../include/nlohmann/detail/json_ref.hpp \
+  ../include/nlohmann/detail/output/binary_writer.hpp \
+  ../include/nlohmann/detail/output/output_adapters.hpp \
+  ../include/nlohmann/detail/output/serializer.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iomanip \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/quoted_string.h \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/sstream \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc \
+  ../include/nlohmann/detail/conversions/to_chars.hpp \
+  ../include/nlohmann/ordered_map.hpp \
+  ../include/nlohmann/detail/macro_unscope.hpp \
+  ../include/nlohmann/thirdparty/hedley/hedley_undef.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj: ../src/TDGame/Menus.cpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/iostream \
@@ -9812,6 +9887,8 @@ CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj: ../src/TDUnits/TDUnit.cpp \
   ../src/TDGame/usefullStruct.hpp
 
 
+../include/nlohmann/detail/meta/is_sax.hpp:
+
 ../main.cpp:
 
 ../include/SFML/Window/WindowStyle.hpp:
@@ -9835,6 +9912,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../include/SFML/Graphics/Texture.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unordered_map.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/new:
 
@@ -9874,6 +9953,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDTowers/MissileLauncher.cpp:
 
+../include/nlohmann/detail/input/input_adapters.hpp:
+
 ../include/SFML/Network/Export.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/thread:
@@ -9910,6 +9991,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/malloc.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/std_abs.h:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.h:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ostream:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/type_traits:
@@ -9944,11 +10027,15 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/stddef.h:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/swprintf.inl:
 
 ../src/TDUnits/RegenerateDrone.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/_mingw_print_pop.h:
+
+../include/nlohmann/detail/value_t.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/locale_conv.h:
 
@@ -9990,9 +10077,13 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algobase.h:
 
+../include/nlohmann/detail/meta/type_traits.hpp:
+
 ../src/TDGraphics/SFMLMapReloader.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/functexcept.h:
+
+../include/nlohmann/detail/string_escape.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_string.h:
 
@@ -10008,6 +10099,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/debug/debug.h:
 
+../include/nlohmann/detail/input/json_sax.hpp:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_uninitialized.h:
 
 ../include/SFML/Window/Clipboard.hpp:
@@ -10021,6 +10114,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../src/TDGraphics/SFMLEnemiesLoader.cpp:
 
 ../src/TDGame/SizeRatioCalculator.cpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h:
 
@@ -10064,11 +10159,15 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_time.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h:
 
+../include/nlohmann/detail/input/lexer.hpp:
+
 ../include/SFML/Network/Socket.hpp:
 
 ../src/TDGraphics/SFMLLoader.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/signal.h:
+
+../include/nlohmann/detail/iterators/iteration_proxy.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/pthread_signal.h:
 
@@ -10079,6 +10178,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/basetsd.h:
 ../include/SFML/Audio/SoundBufferRecorder.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
+
+../include/nlohmann/detail/json_pointer.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_tempbuf.h:
 
@@ -10147,6 +10248,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/system_error:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h:
+
+../include/nlohmann/ordered_map.hpp:
 
 ../include/SFML/Network/Http.hpp:
 
@@ -10294,6 +10397,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/System/Utf.hpp:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_after.h:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_algo.h:
 
 ../include/SFML/System/Vector3.hpp:
@@ -10315,6 +10420,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/unique_ptr.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/sstream:
+
+../include/nlohmann/thirdparty/hedley/hedley.hpp:
 
 ../include/SFML/System/Utf.inl:
 
@@ -10370,6 +10477,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/Graphics/Export.hpp:
 
+../include/nlohmann/detail/abi_macros.hpp:
+
 ../src/TDUnits/TDUnit.hpp:
 
 ../include/SFML/Graphics/CircleShape.hpp:
@@ -10402,6 +10511,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/Graphics/Glyph.hpp:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/forward_list:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/set:
 
 ../src/TDGame/usefullStruct.hpp:
@@ -10414,11 +10525,15 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/aligned_buffer.h:
 
+../include/nlohmann/detail/input/parser.hpp:
+
 ../include/SFML/Audio/OutputSoundFile.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_multimap.h:
 
 ../include/SFML/Graphics/RectangleShape.hpp:
+
+../include/nlohmann/json.hpp:
 
 ../src/TDMap/mapParser.hpp:
 
@@ -10444,6 +10559,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/memory:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_numeric.h:
+
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_raw_storage_iter.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/shared_ptr_base.h:
@@ -10466,7 +10583,11 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/fstream.tcc:
 
+../include/nlohmann/detail/meta/cpp_future.hpp:
+
 ../src/TDMap/TDMap.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.tcc:
 
 ../src/TDGraphics/SFMLSprite.hpp:
 
@@ -10481,6 +10602,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_deque.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/deque.tcc:
+
+../include/nlohmann/detail/string_concat.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_queue.h:
 
@@ -10514,6 +10637,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/Audio/SoundFileWriter.hpp:
 
+../include/nlohmann/detail/output/binary_writer.hpp:
+
 ../src/TDTowers/SlowTower.hpp:
 
 ../src/TDGraphics/SFMLHud.hpp:
@@ -10532,6 +10657,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/Network/TcpSocket.hpp:
 
+../include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+
 ../include/SFML/Network/SocketSelector.hpp:
 
 ../include/SFML/Network/UdpSocket.hpp:
@@ -10542,17 +10669,111 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDGame/AnimationsMaths.hpp:
 
+../include/nlohmann/detail/exceptions.hpp:
+
 ../src/TDGame/Game.cpp:
+
+../include/nlohmann/json_fwd.hpp:
 
 ../src/TDTowers/AntiAirTower.hpp:
 
 ../src/TDTowers/BasicTower.hpp:
 
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cassert:
+
 ../src/TDTowers/AttackSpeedTower.hpp:
 
 ../src/TDTowers/SplashTower.hpp:
 
+../include/nlohmann/detail/conversions/to_json.hpp:
+
 ../src/TDTowers/SpeedAuraTower.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/numeric:
+
+../src/TDGraphics/SFMLMissileLoader.cpp:
+
+../include/nlohmann/adl_serializer.hpp:
+
+../include/nlohmann/detail/conversions/from_json.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/forward_list.tcc:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/unordered_map:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hashtable_policy.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/valarray:
+
+../include/nlohmann/detail/meta/identity_tag.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/math.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_array.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/valarray_before.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/slice_array.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/gslice_array.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/mask_array.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/indirect_array.h:
+
+../include/nlohmann/detail/macro_scope.hpp:
+
+../include/nlohmann/detail/meta/detected.hpp:
+
+../include/nlohmann/detail/meta/void_t.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/assert.h:
+
+../include/nlohmann/detail/input/position_t.hpp:
+
+../include/nlohmann/detail/iterators/iterator_traits.hpp:
+
+../include/nlohmann/detail/meta/call_std/begin.hpp:
+
+../include/nlohmann/detail/json_ref.hpp:
+
+../include/nlohmann/detail/meta/call_std/end.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstring:
+
+../include/nlohmann/detail/meta/std_fs.hpp:
+
+../include/nlohmann/byte_container_with_subtype.hpp:
+
+../include/nlohmann/detail/hash.hpp:
+
+../include/nlohmann/detail/input/binary_reader.hpp:
+
+../include/nlohmann/detail/iterators/internal_iterator.hpp:
+
+../include/nlohmann/detail/iterators/primitive_iterator.hpp:
+
+../include/nlohmann/detail/iterators/iter_impl.hpp:
+
+../include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
+
+../include/nlohmann/detail/output/output_adapters.hpp:
+
+../src/TDTowers/MissileThread.cpp:
+
+../include/nlohmann/detail/output/serializer.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/quoted_string.h:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc:
+
+../include/nlohmann/detail/conversions/to_chars.hpp:
+
+../include/nlohmann/detail/macro_unscope.hpp:
 
 ../src/TDGame/Menus.cpp:
 
@@ -10566,19 +10787,9 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../src/TDUnits/ArmoredDrone.hpp:
 
-C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
-
 ../src/TDGraphics/SFMLDecorationLoader.cpp:
 
-C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/math.h:
-
-C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/sstream.tcc:
-
-C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/quoted_string.h:
-
 ../src/TDGraphics/SFMLMapReloader.cpp:
-
-../src/TDGraphics/SFMLMissileLoader.cpp:
 
 ../src/TDGraphics/SFMLSprite.cpp:
 
@@ -10597,8 +10808,6 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../src/TDTowers/AttackSpeedTower.cpp:
 
 ../src/TDTowers/BasicTower.cpp:
-
-../src/TDTowers/MissileThread.cpp:
 
 ../src/TDTowers/SniperTower.cpp:
 

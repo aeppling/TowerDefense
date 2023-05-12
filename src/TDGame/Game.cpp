@@ -615,10 +615,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     else {
                         if(this->networkController == nullptr){
+                            std::cout << "Network controller is null" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
                         }else if(this->networkController->getIsServer()){
+                            std::cout << "Network controller is server" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
                         }else{
+                            std::cout << "Network controller is client" << std::endl;
                             this->drawInfoBox(window, {900, 150}, "Waiting for server to start next wave.", false);
                         }
                     }
@@ -731,7 +734,8 @@ void Game::setSpawnCellsSprites() {
         newSprite.setOrigin(newOrigin);
         newSprite.setScale(scaleFactor * 3, scaleFactor * 3);
         newSprite.setTextureRect(textureRect);
-        newSprite.setPosition(this->spawnCells.at(i)->getPosX() * cellSize + _GAME_POSITION_X, this->spawnCells.at(i)->getPosY() * cellSize + _GAME_POSITION_Y);
+        newSprite.setPosition((this->spawnCells.at(i)->getPosX() * cellSize + _GAME_POSITION_X) + (this->spawnCells.at(i)->getPosX() * 0.3), (this->spawnCells.at(i)->getPosY() * cellSize + _GAME_POSITION_Y) + (this->spawnCells.at(i)->getPosY() * 0.3));
+//        newSprite.setPosition(this->spawnCells.at(i)->getPosX() * cellSize + _GAME_POSITION_X, this->spawnCells.at(i)->getPosY() * cellSize + _GAME_POSITION_Y);
         this->spawnCellsSprites.push_back(newSprite);
         i++;
     }
@@ -781,7 +785,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     setUnitsTextures(sfmlLoader, this->enemyList, window.getSize().x, window.getSize().y, map.getSizeX(), map.getSizeY());
     this->baseCellObject = baseCell;
     this->baseCell.setTexture(*sfmlLoader.getBaseBuilding());
-    this->baseCell.setPosition(baseCell->getPosX() * cellSize + _GAME_POSITION_X + 3, baseCell->getPosY() * cellSize + _GAME_POSITION_Y + 5);
+    this->baseCell.setPosition((baseCell->getPosX() * cellSize + _GAME_POSITION_X + 3) + (baseCell->getPosX() * 0.3), (baseCell->getPosY() * cellSize + _GAME_POSITION_Y - 5) + (baseCell->getPosY() * 0.3));
     this->baseCell.setScale(1, 1);
     this->loop(sfmlLoader, window, baseCell, map, spritesHolder);
 }
