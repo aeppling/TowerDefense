@@ -160,6 +160,7 @@ int main() {
     bool        gameMode = 0;
     int         gameDifficulty = 1; // SETTINGS DEFAULT DIFFICULTY
     bool        isInSettings = false;
+    sfSoundPlayer.refreshAllMenuVolume(globalVolume, musicVolume, soundVolume);
     while (windowTestMenu.isOpen()) {
         sf::Event event;
         while (windowTestMenu.pollEvent(event)) {
