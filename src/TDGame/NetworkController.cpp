@@ -38,19 +38,22 @@ void NetworkController::waitForConnection()
         return;
     }
 
-    auto client = std::make_unique<sf::TcpSocket>();
-    if (listener.accept(*client) != sf::Socket::Done)
-    {
-        std::cout << "Failed to accept client's connection" << std::endl;
-        this->isWaiting = false;
-        return;
-    }
-    std::cout << "Client connected: " << client->getRemoteAddress() << std::endl;
+    int numClients = 0;
+    while (numClients < 1) {
+        auto client = std::make_unique<sf::TcpSocket>();
+        if (listener.accept(*client) != sf::Socket::Done)
+        {
+            std::cout << "Failed to accept client's connection" << std::endl;
+            continue;
+        }
+        std::cout << "Client connected: " << client->getRemoteAddress() << std::endl;
 
-    // Ajoute le client à la liste
-    this->clients->push_back(std::move(client));
-    std::cout << "Client added to list" << std::endl;
-    std::cout << "Number of clients: " << this->clients->size() << std::endl;
+        // Ajoute le client à la liste
+        this->clients->push_back(std::move(client));
+        std::cout << "Client added to list" << std::endl;
+        numClients++;
+        std::cout << "Number of clients: " << numClients << std::endl;
+    }
     this->isWaiting = false;
 }
 
