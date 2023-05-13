@@ -63,3 +63,13 @@ void SFMainSoundPlayer::refreshAllMenuVolume(int globalVolume, int musicVolume, 
     this->_menuClick.play();
     sf::Listener::setGlobalVolume(globalVolume);
 }
+
+void SFMainSoundPlayer::checkForGameMusicToReplay() {
+    if (this->_gameMusic1.getStatus() == sf::Music::Stopped)
+        this->_gameMusic1.play();
+}
+
+void SFMainSoundPlayer::checkForMenuMusicToReplay() {
+    if (this->_menuMusic.getStatus() == sf::Music::Stopped)
+        this->_menuMusic.play();
+}

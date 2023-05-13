@@ -39,6 +39,8 @@ public:
     // SETTER VOLUME
     void refreshAllMenuVolume(int globalVolume, int musicVolume, int soundVolume);
     // MUSIC
+    void checkForGameMusicToReplay();
+    void checkForMenuMusicToReplay();
     void playMenuMusic() { this->_menuMusic.play(); };
     void stopMenuMusic() { this->_menuMusic.stop(); };
     void playGameMusic1() { this->_gameMusic1.play(); };

@@ -251,6 +251,7 @@ int main() {
     bool        isInSettings = false;
     while (windowTestMenu.isOpen()) {
         sf::Event event;
+        sfSoundPlayer.checkForMenuMusicToReplay();
         while (windowTestMenu.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 windowTestMenu.close();

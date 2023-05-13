@@ -336,6 +336,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfMainSoundPlayer.stopGameMusic();
                     this->sfMainSoundPlayer.playGameMusicFaster();
                 }
+                this->sfMainSoundPlayer.checkForGameMusicToReplay();
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 bool isWaveRunning = false;
                 // CREATE SHARED PTR OF WAVE HERE
