@@ -12,6 +12,7 @@
 #include "../TDUnits/FlyingDrone.hpp"
 #include "../TDUnits/RegenerateDrone.hpp"
 #include "../TDUnits/ArmoredDrone.hpp"
+#include "../TDUnits/ArmoredAlien.hpp"
 #include "../TDUnits/ArmoredFlyingDrone.hpp"
 #include "../TDUnits/ArmoredRegenerateDrone.hpp"
 
@@ -35,6 +36,8 @@ TDUnit *getUnitFromString(std::string enemyType) {
         newUnit = new RegenerateDrone(0, 0);
     else if (enemyType == "ArmoredDrone")
         newUnit = new ArmoredDrone(0, 0);
+    else if (enemyType == "ArmoredAlien")
+        newUnit = new ArmoredAlien(0, 0);
     else if (enemyType == "ArmoredFlyingDrone")
         newUnit = new ArmoredFlyingDrone(0, 0);
     else if (enemyType == "ArmoredRegenerateDrone")

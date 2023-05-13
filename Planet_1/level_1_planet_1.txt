@@ -1,2 +1,3 @@
-RegenerateDrone:1
+ArmoredDrone:1/ArmoredAlien:1
+ArmoredRegenerateDrone:1
 Drone:3

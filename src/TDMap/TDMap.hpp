@@ -18,7 +18,6 @@ private:
     int                                              _planet;
     std::vector<std::vector<MapCell>>                _map;
     int                                              _constructIterator;
-    std::vector<std::vector<sf::Sprite>>             _tilesSprites;
     SFMLLoader                                       &_sfmlLoader;
     std::shared_ptr<SpritesHolder>                   &_spritesHolderPtr;
     int                                              _cellSize;
@@ -33,9 +32,6 @@ public:
     void displayAsciiMap();
 
     // GETTER & SETTER
-    sf::Sprite                          getTileSprite(int countY, int countX) { return (this->_tilesSprites.at(countY).at(countX)); }
-    int                                 getTileMaxSpriteY() { return(this->_tilesSprites.size()); }
-    int                                 getTileMaxSpriteX(int countY) { return(this->_tilesSprites.at(countY).size()); }
     std::vector<std::vector<MapCell>>   *getMapVector() { return(&this->_map); };
     int                                 getSizeY() { return(this->_map.size()); };
     int                                 getSizeX() { return(this->_map[0].size()); };

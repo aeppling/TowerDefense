@@ -20,6 +20,7 @@ private:
     sf::Texture _armoredDrone;
 
     sf::Texture _freeze;
+    sf::Texture _armor;
 public:
     SFMLEnemiesLoader();
     ~SFMLEnemiesLoader();
@@ -34,6 +35,7 @@ public:
     sf::Texture *getArmoredDrone() { return (&this->_armoredDrone); };
 
     sf::Texture *getFreeze() { return (&this->_freeze); };
+    sf::Texture *getArmor() { return (&this->_armor); };
 };
 
 #endif //UNTITLED1_SFMLENEMIESLOADER_HPP

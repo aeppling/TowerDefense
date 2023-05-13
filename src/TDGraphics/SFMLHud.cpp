@@ -4,7 +4,8 @@
 #include <sstream>
 #include <iomanip>
 SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePosY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level) {
-    
+    this->gameInfoOffset = 25;
+    this->towerSelectorOffset = 50;
     _lifeNumber = lifeNumber;
     _waveNumber = waveNumber;
     _maxWaveNumber = maxWaveNumber;
@@ -20,7 +21,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->m_waveText.setFont(this->mainFont);
     this->m_waveText.setCharacterSize(24);
     this->m_moneyText.setFont(this->mainFont);
-    this->m_moneyText.setCharacterSize(28);
+    this->m_moneyText.setCharacterSize(30);
     this->setMessage("Build a tower to kill the enemies !");
     textMessage.setFont(mainFont);
     if (!m_backgroundTexture.loadFromFile("Sprites/stars_texture.png")) {
@@ -47,7 +48,22 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     if(!homeButtonTexture.loadFromFile("Sprites/Buttons/home.png")){
         std::cout << "Error on loading texture..." << std::endl;
     }
-    
+
+    sf::Color fillColor(0,0,0, 140);
+    sf::Color outlineColor(0,255,255, 140);
+
+    this->levelTitleContainer.setSize(sf::Vector2f(500, 200));
+    this->levelTitleContainer.setPosition(30, 25 + this->gameInfoOffset);
+    this->levelTitleContainer.setFillColor(fillColor);
+    this->levelTitleContainer.setOutlineThickness(2);
+    this->levelTitleContainer.setOutlineColor(outlineColor);
+
+    this->gameInfoContainer.setSize(sf::Vector2f(500, 600));
+    this->gameInfoContainer.setPosition(30, 225 + this->gameInfoOffset);
+    this->gameInfoContainer.setFillColor(fillColor);
+    this->gameInfoContainer.setOutlineThickness(2);
+    this->gameInfoContainer.setOutlineColor(outlineColor);
+
     volumeButtonSprite.setTexture(volumeButtonTexture);
     volumeButtonSprite.setPosition(605, 400);
     pauseButtonSprite.setTexture(pauseButtonTexture);
@@ -57,11 +73,11 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     
 
     coinSprite.setTexture(coinTexture);
-    coinSprite.setPosition(50, 265);
+    coinSprite.setPosition(70, 265 + this->gameInfoOffset);
     m_levelText.setFont(mainFont);
     m_levelText.setCharacterSize(56);
     m_levelText.setString("- Level " + std::to_string(_level) + " -");
-    m_levelText.setPosition(95, 20);
+    m_levelText.setPosition(95, 65 + this->gameInfoOffset);
     removeSprite.setTexture(removeTexture);
     removeSprite.setScale(2,2);
     removeSprite.setPosition(1550, 875);
@@ -71,18 +87,19 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     removeRect.setOutlineThickness(2);
     removeRect.setOutlineColor(sf::Color::White);
     wallSprite.setTexture(wallTexture);
-    wallSprite.setPosition(1650, 900);
-    wallSprite.setScale(1.5,1.5);
-    wallRect.setSize(sf::Vector2f(60, 60));
-    wallRect.setPosition(1655, 905);
-    wallRect.setFillColor(sf::Color::Transparent);
-    wallRect.setOutlineThickness(3);
+    wallSprite.setPosition(1400, 900);
+    wallSprite.setScale(1.3,1.3);
+    wallRect.setSize(sf::Vector2f(500, 80));
+    wallRect.setPosition(1387, 890);
+    wallRect.setFillColor(fillColor);
+    wallRect.setOutlineThickness(1);
+    sf::Color outlineColorWall(255 ,255,255, 210);
     wallRect.setOutlineColor(sf::Color::White);
     wallPriceText.setFont(mainFont);
     wallPriceText.setColor(sf::Color::White);
-    wallPriceText.setCharacterSize(28);
-    wallPriceText.setString("5 coins");
-    wallPriceText.setPosition(1725, 915);
+    wallPriceText.setCharacterSize(26);
+    wallPriceText.setString("BUILD WALL : 5 coins");
+    wallPriceText.setPosition(1480, 915);
     /*
     wallPriceImage.setTexture(coinTexture);
     wallPriceImage.setPosition(385, 940);
@@ -136,7 +153,7 @@ int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
 
 void SFMLHud::update() {
     m_waveText.setString("Wave: " + std::to_string(_waveNumber) + "/" + std::to_string(_maxWaveNumber));
-    m_moneyText.setString(std::to_string(_money));
+    m_moneyText.setString(std::to_string(_money) + " $");
 }
 
 void SFMLHud::drawBackground() {
@@ -151,23 +168,25 @@ void SFMLHud::draw() {
     this->towerRectangles.clear();
     int windowHeight = _window->getSize().y;
     int textureHeight = m_backgroundTexture.getSize().y * 2;
+    _window->draw(this->levelTitleContainer);
+    _window->draw(this->gameInfoContainer);
     _window->draw(m_levelText);
     int heartSize = 38;
     int heartSpacing = 12;
     
     for (int i = 0; i < _lifeNumber; i++) {
         sf::Sprite heartSprite(heartTexture);
-        heartSprite.setPosition(50 + (heartSize + heartSpacing) * i, 200);
+        heartSprite.setPosition(80 + (heartSize + heartSpacing) * i, 400 + this->gameInfoOffset);
         heartSprite.setScale(1.4, 1.4);
         _window->draw(heartSprite);
     }
     
     _window->draw(coinSprite);
-    m_moneyText.setPosition(150, 300);
+    m_moneyText.setPosition(170, 290+ this->gameInfoOffset);
     _window->draw(m_moneyText);
-    m_waveText.setPosition(175, 100);
+    m_waveText.setPosition(190, 145+ this->gameInfoOffset);
     _window->draw(m_waveText);
-    textMessage.setPosition(15, 400);
+    textMessage.setPosition(70, 500 + this->gameInfoOffset);
     
     textMessage.setColor(sf::Color::White);
     textMessage.setCharacterSize(16);
@@ -181,11 +200,20 @@ void SFMLHud::draw() {
             std::cout << "towerStoreList is empty" << std::endl;
         }
         for (std::size_t i = 0; i < towerStoreList.size(); ++i) {
-        
+
+            sf::RectangleShape towerInfoRect(sf::Vector2f(500, 100));
+            towerInfoRect.setPosition(towerInfoX - 150, towerInfoY - 20);
+            sf::Color fillColor(0,0,0, 140);
+            sf::Color outlineColor(255,255,255, 210);
+            towerInfoRect.setFillColor(fillColor);
+            towerInfoRect.setOutlineThickness(1);
+            towerInfoRect.setOutlineColor(outlineColor);
+            this->towerRectangles.push_back(towerInfoRect);
+            _window->draw(towerInfoRect);
         sf::Text towerNameText;
         towerNameText.setFont(mainFont);
         towerNameText.setCharacterSize(24);
-        towerNameText.setPosition(towerInfoX, towerInfoY);
+        towerNameText.setPosition(towerInfoX - 40, towerInfoY);
         if (towerStoreList[i].at(0)->getTowerName() == "SlowTower")
             towerNameText.setString("FreezeTower");
         else
@@ -196,22 +224,15 @@ void SFMLHud::draw() {
         sf::Text towerCostText;
         towerCostText.setFont(mainFont);
         towerCostText.setCharacterSize(18);
-        towerCostText.setPosition(towerInfoX, towerInfoY + 30);
+        towerCostText.setPosition(towerInfoX, towerInfoY + 35);
         towerCostText.setString("Cost: " + std::to_string(towerStoreList[i].at(0)->getCost()) + " coins");
         _window->draw(towerCostText);
 
         // Afficher le sprite de la tour
         sf::Sprite towerSprite = towerStoreList[i].at(0)->getTowerSprite();
-        towerSprite.setPosition(towerInfoX - 25, towerInfoY + 30);
-        sf::RectangleShape towerInfoRect(sf::Vector2f(400, 80));
-        towerInfoRect.setPosition(towerInfoX - 50, towerInfoY - 15);
-        towerInfoRect.setFillColor(sf::Color::Transparent);
-        towerInfoRect.setOutlineThickness(2);
-        towerInfoRect.setOutlineColor(sf::Color::White);
-        this->towerRectangles.push_back(towerInfoRect);
-        _window->draw(towerInfoRect);
+        towerSprite.setPosition(towerInfoX - 95, towerInfoY + 30);
         _window->draw(towerSprite);
-        towerInfoY += 100; // Avancer la position Y pour la prochaine tour
+        towerInfoY += 120; // Avancer la position Y pour la prochaine tour
         }
         _window->draw(wallSprite);
         _window->draw(wallRect);
@@ -220,14 +241,16 @@ void SFMLHud::draw() {
         sf::Text towerNameText;
         towerNameText.setFont(mainFont);
         towerNameText.setCharacterSize(24);
-        towerNameText.setPosition(1600, 25);
+        sf::Vector2f newOrigin(towerNameText.getLocalBounds().width / 2.f, towerNameText.getLocalBounds().height / 2.f);
+        towerNameText.setOrigin(newOrigin);
+        towerNameText.setPosition(1550, 15 + this->towerSelectorOffset);
         towerNameText.setString(selectedTower->getTowerName());
         _window->draw(towerNameText);
 
         //tower selected info Menu - upgrade, sell buttons
         sf::Sprite towerSprite = selectedTower->getTowerSprite();
-        towerSprite.setPosition(1700, 150);
-        towerSprite.setScale(1.5, 1.5);
+        towerSprite.setPosition(1650, 150 + this->towerSelectorOffset);
+        towerSprite.setScale(1.3, 1.3);
         
         sf::Text towerLevelText;
         
@@ -240,14 +263,14 @@ void SFMLHud::draw() {
         towerLevelText.setFont(mainFont);
         
         towerLevelText.setCharacterSize(24);
-        towerLevelText.setPosition(1465, 250);
+        towerLevelText.setPosition(1465, 250 + this->towerSelectorOffset);
         
         _window->draw(towerLevelText);
 
         sf::Text towerDamage;
         towerDamage.setFont(mainFont);
         towerDamage.setCharacterSize(24);
-        towerDamage.setPosition(1465, 300);
+        towerDamage.setPosition(1465, 300 + this->towerSelectorOffset);
         std::string valueType("Damage: ");
         if (selectedTower->getTowerName() == "SpeedAuraTower")
             valueType = "Bonus: ";
@@ -260,13 +283,13 @@ void SFMLHud::draw() {
         sf::Text towerRange;
         towerRange.setFont(mainFont);
         towerRange.setCharacterSize(24);
-        towerRange.setPosition(1465, 350);
+        towerRange.setPosition(1465, 350 + this->towerSelectorOffset);
         towerRange.setString("Range: " + std::to_string(selectedTower->getRange()));
         _window->draw(towerRange);
         sf::Text towerSpeed;
         towerSpeed.setFont(mainFont);
         towerSpeed.setCharacterSize(24);
-        towerSpeed.setPosition(1465, 400);
+        towerSpeed.setPosition(1465, 400 + this->towerSelectorOffset);
         std::stringstream stream;
         stream << std::fixed << std::setprecision(1) << 1000/(selectedTower->getTimeBetweenAttack()*1000);
         std::string str = stream.str();
@@ -281,7 +304,7 @@ void SFMLHud::draw() {
         sf::Text towerArmorP;
         towerArmorP.setFont(mainFont);
         towerArmorP.setCharacterSize(24);
-        towerArmorP.setPosition(1465, 450);
+        towerArmorP.setPosition(1465, 450 + this->towerSelectorOffset);
         towerArmorP.setString(stringArmorP);
         if (selectedTower->getTowerName() != "SpeedAuraTower") {
             _window->draw(towerSpeed);
@@ -289,47 +312,47 @@ void SFMLHud::draw() {
         }
         // DISPLAY UPGRADE BUTTON
         if(!selectedTower->isMaxed()){
-            upgradeRect.setSize(sf::Vector2f(190, 70));
-            upgradeRect.setPosition(1585, 495);
+            upgradeRect.setSize(sf::Vector2f(400, 80));
+            upgradeRect.setPosition(1440, 595);
             upgradeRect.setFillColor(sf::Color::Transparent);
-            upgradeRect.setOutlineThickness(3);
-            upgradeRect.setOutlineColor(sf::Color::White);
+            upgradeRect.setOutlineThickness(1);
+            upgradeRect.setOutlineColor(sf::Color::Yellow);
             sf::Text towerUpgradeCost;
             towerUpgradeCost.setString("UPGRADE \n" + std::to_string(selectedTower->getUpgradeCost()) + " coins");
             towerUpgradeCost.setFont(mainFont);
             towerUpgradeCost.setColor(sf::Color::Yellow);
             towerUpgradeCost.setCharacterSize(24);
-            towerUpgradeCost.setPosition(1600, 500);
+            towerUpgradeCost.setPosition(1560, 605);
             _window->draw(upgradeRect);
             _window->draw(towerUpgradeCost);
             
         }
         // DISPLAY ARMOR PIERCE BUY BUTTON
-        this->upgradeArmorRect.setSize(sf::Vector2f(210, 70));
-        this->upgradeArmorRect.setPosition(1575, 695);
+        this->upgradeArmorRect.setSize(sf::Vector2f(400, 80));
+        this->upgradeArmorRect.setPosition(1440, 795);
         this->upgradeArmorRect.setFillColor(sf::Color::Transparent);
-        this->upgradeArmorRect.setOutlineThickness(3);
-        this->upgradeArmorRect.setOutlineColor(sf::Color::White);
+        this->upgradeArmorRect.setOutlineThickness(1);
+        this->upgradeArmorRect.setOutlineColor(sf::Color::Magenta);
         sf::Text armorText;
         armorText.setString("+ 5 Armor p. \n   50 coins");
         armorText.setFont(mainFont);
         armorText.setColor(sf::Color::Magenta);
         armorText.setCharacterSize(24);
-        armorText.setPosition(1585, 700);
+        armorText.setPosition(1545, 805);
         _window->draw(upgradeArmorRect);
         _window->draw(armorText);
         // DISPLAY SELL BUTTON
-        sellRect.setSize(sf::Vector2f(190, 70));
-        sellRect.setPosition(1585, 595);
+        sellRect.setSize(sf::Vector2f(400, 80));
+        sellRect.setPosition(1440, 695);
         sellRect.setFillColor(sf::Color::Transparent);
-        sellRect.setOutlineThickness(3);
-        sellRect.setOutlineColor(sf::Color::White);
+        sellRect.setOutlineThickness(1);
+        sellRect.setOutlineColor(sf::Color::Red);
         sf::Text towerSellCost;
         towerSellCost.setString("    SELL \n" + std::to_string(selectedTower->getCost()/2) + " coins");
         towerSellCost.setFont(mainFont);
         towerSellCost.setColor(sf::Color::Red);
         towerSellCost.setCharacterSize(24);
-        towerSellCost.setPosition(1600, 600);
+        towerSellCost.setPosition(1560, 705);
         _window->draw(sellRect);
         _window->draw(towerSellCost);
         
