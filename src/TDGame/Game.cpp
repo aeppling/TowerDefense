@@ -625,7 +625,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }else{
                             this->drawInfoBox(window, {900, 150}, "Waiting for server to start next wave.", false);
                         }
-                    }
+                        }
                     // DISPLAY COINS
                     this->displayCoins(window);
                     // DISPLAY HIT MARKER
@@ -1553,22 +1553,22 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         std::cout << "wall built by other player" << std::endl;
                         int count_spawn = 0;
                         this->gameState.walls.push_back(wallPosition);
+                        std::cout << spawnCells.size() << std::endl;
                         while (count_spawn < this->spawnCells.size()) {
                             map.getElem(wallPosition.x, wallPosition.y)->setType('W');
-                            
+                            std::cout << map.getElem(wallPosition.x, wallPosition.y)->getType() << std::endl;
+                            std::cout << "Wall built" << std::endl;
                             std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
                             AStarPathFinding pathFinder((*nmap), (*nmap)[this->spawnCells.at(count_spawn)->getPosY()][this->spawnCells.at(count_spawn)->getPosX()],
                                             (*nmap)[this->baseCellObject->getPosY()][this->baseCellObject->getPosX()]);
                             std::vector<std::shared_ptr<MapCell>> pathtofill;
-                            if (pathFinder.runPathFinding(pathtofill, false, false) == false) {
-                                map.getElem(wallPosition.x, wallPosition.y)->setType('X');
-                                return;
-                            }
+                        
                             count_spawn++;
                         }
                         this->looseCoins(5);
                         this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, wallPosition.x, wallPosition.y, 5, false);
-                    
+                        map.refreshTextures(map.getElem(wallPosition.x, wallPosition.y)->getPosX(),
+                            map.getElem(wallPosition.x, wallPosition.y)->getPosY());
                         continue;
                     }
                     
@@ -1591,9 +1591,11 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         this->sfMainSoundPlayer.playGameCoinWon();
                         this->addCoins(2);
                         this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->gameState.walls.at(j).x, this->gameState.walls.at(j).y, 2, true);
-                        this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                        
                         map.refreshTextures(map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosX(),
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosY());
+                        this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                        std::cout << "Wall destroyed" << std::endl;
                         break;
                     }
                 }

@@ -349,15 +349,16 @@ int main() {
                             }
                             // NEED TO MAKE A SPECIAL BACK BUTTON TO JOIN THREAD AND STOP WAITING
                             networkThread.join();
-                           // networkController->waitForConnection();
-                            std::cout << "lauching game " << std::endl;
-                            
+
+                            std::cout << "All clients connected, launching game " << std::endl;
+
                             networkController->sendMessageToAllClients(std::to_string(levelToPlay));
                             networkController->sendMessageToAllClients(std::to_string(planetToLoad));
                             int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
                             playerData.savePlayerData(saveFile);
                             displayEndScreen(menu, exitResult);
+
                         }
                     }
                 }
