@@ -152,7 +152,7 @@ int SFMLHud::checkForSellUpgradeClick(sf::RenderWindow &window) {
 }
 
 void SFMLHud::update() {
-    m_waveText.setString("Wave: " + std::to_string(_waveNumber) + "/" + std::to_string(_maxWaveNumber));
+    m_waveText.setString("Wave: " + std::to_string(_waveNumber + 1) + "/" + std::to_string(_maxWaveNumber));
     m_moneyText.setString(std::to_string(_money) + " $");
 }
 

@@ -4,7 +4,7 @@
 std::mutex slow_mtx;
 
 SlowTower::SlowTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SlowTower",
-                                                                                                                                                                      {2000, 2750, 3500}, {400, 550, 700}, {7, 7, 8}, {5, 5, 5}, 4, false, soundLoader){
+                                                                                                                                                                      {1500, 2250, 3000}, {400, 550, 700}, {7, 7, 8}, {5, 5, 5}, 4, false, soundLoader){
 }
 
 void SlowTower::fire(TDUnit *target){

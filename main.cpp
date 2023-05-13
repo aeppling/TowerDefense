@@ -156,7 +156,7 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
-    sfSoundPlayer.stopMenuMusic();
+  //  sfSoundPlayer.stopMenuMusic();
 
     //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
 
@@ -215,7 +215,7 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
     // CREATE GAME OBJET
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
-    sfSoundPlayer.stopMenuMusic();
+   // sfSoundPlayer.stopMenuMusic();
     
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, networkController, planetToLoad);
 
@@ -242,7 +242,7 @@ int main() {
     sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData);
     menu.loadHome();
-    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume(), playerData.getSoundVolume());
+    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
 // FOR LOOP LOGIC
     std::string selectionInformation("none");
     int         levelToPlay = -1;
@@ -260,7 +260,7 @@ int main() {
                 {
                     sf::Vector2i mousePosition = sf::Mouse::getPosition(windowTestMenu);
                     menu.checkIfVolumeClicked(mousePosition, playerData, saveFile);
-                    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume(), playerData.getSoundVolume());
+                    sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed &&

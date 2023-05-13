@@ -332,6 +332,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             mousePointer.setTextureRect(textureRect);
             bool closing = false;
             while ((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
+                if (this->currentWaveNumber == this->enemyList.size() - 1) {
+                    this->sfMainSoundPlayer.stopGameMusic();
+                    this->sfMainSoundPlayer.playGameMusicFaster();
+                }
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 bool isWaveRunning = false;
                 // CREATE SHARED PTR OF WAVE HERE
@@ -618,10 +622,15 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         this->displayExplosions(window);
                     }
                     else {
+                        std::string message;
+                        if (this->currentWaveNumber + 1 >= this->enemyList.size() - 1)
+                            message = "Press enter for last wave.";
+                        else
+                            message = "Press enter for next wave.";
                         if(this->networkController == nullptr){
-                            this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
+                            this->drawInfoBox(window, {900, 150}, message, false);
                         }else if(this->networkController->getIsServer()){
-                            this->drawInfoBox(window, {900, 150}, "Press enter for next wave.", false);
+                            this->drawInfoBox(window, {900, 150}, message, false);
                         }else{
                             this->drawInfoBox(window, {900, 150}, "Waiting for server to start next wave.", false);
                         }
@@ -682,6 +691,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 window.setMouseCursorVisible(true);
                                 this->deactivateTowers();
                                 isWaveRunning = false;
+                                this->sfMainSoundPlayer.stopGameMusic();
+                                this->sfMainSoundPlayer.playMenuMusic();
                                 //this->cleanAll();
                                 return (1);
                             }
@@ -753,7 +764,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     sf::Listener::setGlobalVolume((float)globalVolume);
     sf::Texture hearthTexture;
     this->player->resetTotalKill();
-
+    this->sfMainSoundPlayer.stopMenuMusic();
     this->sfMainSoundPlayer.playGameMusic1();
     // GAME INITIALISATON
     // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
@@ -1143,15 +1154,14 @@ void    Game::cleanAll() {
 
 void Game::gameWon(){
     //* game won
-    std::cout << "Game Won !!!" << std::endl;
-    std::cout << "Total kills : " << this->player->getTotalKill() << std::endl;
     this->sfMainSoundPlayer.stopGameMusic();
+    this->sfMainSoundPlayer.playMenuMusic();
 }
 
 void Game::gameLost(){
     //* game lost
-    std::cout << "Game Lost !!!" << std::endl;
     this->sfMainSoundPlayer.stopGameMusic();
+    this->sfMainSoundPlayer.playMenuMusic();
 }
 
 void Game::activateTowers(){
@@ -1186,7 +1196,6 @@ bool Game::enemyAtBase(){
     //* test if an enemy is at the base
     for(int i = 0; i<= this->enemyList[this->currentWaveNumber].size(); i++ ){
         //* if an enemy is at the base -> decrease life number and erase the enemy
-        std::cout << "An enemy is a the base" << std::endl;
         if(this->enemyList[this->currentWaveNumber][i]->getPosX() == this->baseCoord.x && this->enemyList[this->currentWaveNumber][i]->getPosY() == this->baseCoord.y){
             this->player->looseLife();
             this->sfmlHud->setMessage("Prevent enemies from reaching your base to win the game");

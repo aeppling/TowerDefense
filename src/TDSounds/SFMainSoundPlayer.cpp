@@ -31,10 +31,10 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned in
     sf::Listener::setGlobalVolume((float)this->_globalVolume);
 
     this->_menuMusic.setVolume((float)this->_musicVolume);
-    this->_gameMusic1.setVolume((float)this->_musicVolume);
-    this->_gameMusic2.setVolume((float)this->_musicVolume);
+    this->_gameMusic1.setVolume((float)this->_musicVolume * 1.2);
+    this->_gameMusic2.setVolume((float)this->_musicVolume * 1.4);
     this->_gameMusicChill.setVolume((float)this->_musicVolume);
-    this->_gameMusicEndWave.setVolume((float)this->_musicVolume);
+    this->_gameMusicEndWave.setVolume((float)this->_musicVolume * 2);
     this->_gameMusicFaster.setVolume((float)this->_musicVolume);
 
     // SOUNDS
