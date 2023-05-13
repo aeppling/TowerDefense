@@ -147,6 +147,10 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
         }
 }
 
+void Tower::sold() {
+    this->activated = false;
+}
+
 void Tower::deactivate(){
     //* Deactivate the tower
   //  if (this->_towerThread.joinable())

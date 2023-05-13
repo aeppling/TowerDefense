@@ -61,6 +61,7 @@ public:
         void rotate(TDUnit *target);
         void animateFiring();
         void fire(TDUnit *target) override;
+        void sold();
         void isInRange() override;
         void upgrade(SFMLTowerLoader &sfmlTowerLoader) override;
         void addArmor();

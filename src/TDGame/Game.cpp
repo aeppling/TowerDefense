@@ -268,7 +268,7 @@ void Game::sellTower(TDMap &map) {
             this->addCoins(cost);
             this->sfMainSoundPlayer.playGameCoinWon();
             this->sfmlCoinAnimation.launchCoinsAnimation(this->cellSize, this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y, cost, true);
-            this->towerList.at(i)->deactivate();
+            this->towerList.at(i)->sold();
             map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
             this->towerList.erase(this->towerList.begin() + i);
             this->selectedActiveTower = nullptr;
@@ -694,7 +694,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 isWaveRunning = false;
                                 this->sfMainSoundPlayer.stopGameMusic();
                                 this->sfMainSoundPlayer.playMenuMusic();
-                                //this->cleanAll();
                                 return (1);
                             }
                         }
@@ -1132,6 +1131,7 @@ bool Game::gameEnd(){
 
 void    Game::cleanAll() {
     // VECTORS
+    // CRASH IF TOWER PLACED AND LEAVE
     std::cout << "Cleaning level memory..." << std::endl;
     for (MapCell *element: this->spawnCells) {
         delete element;
@@ -1139,17 +1139,17 @@ void    Game::cleanAll() {
     this->spawnCells.clear();
     this->spawnCellsSprites.clear();
     this->enemyList.clear();
-    for (Tower *element: this->towerList) {
+  for (Tower *element: this->towerList) {
         delete element;
     }
     this->towerList.clear();
     this->towerStoreList.clear();
 
     // SIMPLE PTR
-     delete this->selectedActiveTower;
-     delete this->baseCellObject;
-     delete this->player;
-     delete this->levelRetriever;
+//     delete this->selectedActiveTower;
+  //   delete this->baseCellObject;
+   //  delete this->player;
+    // delete this->levelRetriever;
      std::cout << "Cleaning done" << std::endl;
 }
 
