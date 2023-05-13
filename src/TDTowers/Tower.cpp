@@ -105,9 +105,9 @@ void Tower::isInRange() {
 
     for (TDUnit *enemy: *(this->enemiesList)) {
         mtx.lock();
-        if ((enemy->getPosX() <= this->coord.x + this->range.at(this->level) + this->getSize() &&
+        if ((enemy->getPosX() <= this->coord.x + this->range.at(this->level) &&
             enemy->getPosX() >= this->coord.x - this->range.at(this->level) &&
-            enemy->getPosY() <= this->coord.y + this->range.at(this->level) + this->getSize() &&
+            enemy->getPosY() <= this->coord.y + this->range.at(this->level) &&
             enemy->getPosY() >= this->coord.y - this->range.at(this->level)) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
             if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
                 this->enemiesInRange.end()) {
