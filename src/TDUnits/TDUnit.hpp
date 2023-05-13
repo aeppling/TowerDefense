@@ -115,6 +115,8 @@ public:
     int getArmor() { return (this->_armor); };
     sf::Sprite getFreezeSprite() { return (this->_freezeSprite); };
     sf::Sprite getArmorSprite() { return (this->_armorSprite); };
+
+    void setSpritePosition(int x, int y) { this->_sprite.setPosition(x, y);};
 };
 /*
 class TestUnit {

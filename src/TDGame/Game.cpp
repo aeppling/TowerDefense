@@ -307,11 +307,12 @@ void Game::upgradeTower() {
 }
 
 void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned int &basePosX,
-              unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount, int spawnCount) {
+              unsigned int &basePosY, unsigned int wave, std::vector<MapCell*> &spawnCells, int unitCount, int spawnCount, int cellSize) {
     // RUN EVERY UNIT THREADS
     std::vector<std::vector<MapCell>> *nmap = map.getMapVector();
     enemyList.at(wave).at(unitCount)->setPosX(spawnCells.at(spawnCount)->getPosX());
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
+    enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
     enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
     enemyList.at(wave).at(unitCount)->run(&map);
 }
@@ -374,7 +375,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             unsigned int basePosY = baseCell->getPosY();
                             runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
                                     std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
-                                    this->spawnCount);
+                                    this->spawnCount, this->cellSize);
                             this->spawnCount++;
                             this->unitCount++;
                             if (this->spawnCount >= this->spawnCells.size())
