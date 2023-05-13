@@ -5,6 +5,7 @@
 #include <iomanip>
 SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePosY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level) {
     this->gameInfoOffset = 25;
+    this->towerSelectorOffset = 50;
     _lifeNumber = lifeNumber;
     _waveNumber = waveNumber;
     _maxWaveNumber = maxWaveNumber;
@@ -240,14 +241,16 @@ void SFMLHud::draw() {
         sf::Text towerNameText;
         towerNameText.setFont(mainFont);
         towerNameText.setCharacterSize(24);
-        towerNameText.setPosition(1600, 25);
+        sf::Vector2f newOrigin(towerNameText.getLocalBounds().width / 2.f, towerNameText.getLocalBounds().height / 2.f);
+        towerNameText.setOrigin(newOrigin);
+        towerNameText.setPosition(1550, 15 + this->towerSelectorOffset);
         towerNameText.setString(selectedTower->getTowerName());
         _window->draw(towerNameText);
 
         //tower selected info Menu - upgrade, sell buttons
         sf::Sprite towerSprite = selectedTower->getTowerSprite();
-        towerSprite.setPosition(1700, 150);
-        towerSprite.setScale(1.5, 1.5);
+        towerSprite.setPosition(1650, 150 + this->towerSelectorOffset);
+        towerSprite.setScale(1.3, 1.3);
         
         sf::Text towerLevelText;
         
@@ -260,14 +263,14 @@ void SFMLHud::draw() {
         towerLevelText.setFont(mainFont);
         
         towerLevelText.setCharacterSize(24);
-        towerLevelText.setPosition(1465, 250);
+        towerLevelText.setPosition(1465, 250 + this->towerSelectorOffset);
         
         _window->draw(towerLevelText);
 
         sf::Text towerDamage;
         towerDamage.setFont(mainFont);
         towerDamage.setCharacterSize(24);
-        towerDamage.setPosition(1465, 300);
+        towerDamage.setPosition(1465, 300 + this->towerSelectorOffset);
         std::string valueType("Damage: ");
         if (selectedTower->getTowerName() == "SpeedAuraTower")
             valueType = "Bonus: ";
@@ -280,13 +283,13 @@ void SFMLHud::draw() {
         sf::Text towerRange;
         towerRange.setFont(mainFont);
         towerRange.setCharacterSize(24);
-        towerRange.setPosition(1465, 350);
+        towerRange.setPosition(1465, 350 + this->towerSelectorOffset);
         towerRange.setString("Range: " + std::to_string(selectedTower->getRange()));
         _window->draw(towerRange);
         sf::Text towerSpeed;
         towerSpeed.setFont(mainFont);
         towerSpeed.setCharacterSize(24);
-        towerSpeed.setPosition(1465, 400);
+        towerSpeed.setPosition(1465, 400 + this->towerSelectorOffset);
         std::stringstream stream;
         stream << std::fixed << std::setprecision(1) << 1000/(selectedTower->getTimeBetweenAttack()*1000);
         std::string str = stream.str();
@@ -301,7 +304,7 @@ void SFMLHud::draw() {
         sf::Text towerArmorP;
         towerArmorP.setFont(mainFont);
         towerArmorP.setCharacterSize(24);
-        towerArmorP.setPosition(1465, 450);
+        towerArmorP.setPosition(1465, 450 + this->towerSelectorOffset);
         towerArmorP.setString(stringArmorP);
         if (selectedTower->getTowerName() != "SpeedAuraTower") {
             _window->draw(towerSpeed);
@@ -309,47 +312,47 @@ void SFMLHud::draw() {
         }
         // DISPLAY UPGRADE BUTTON
         if(!selectedTower->isMaxed()){
-            upgradeRect.setSize(sf::Vector2f(190, 70));
-            upgradeRect.setPosition(1585, 495);
+            upgradeRect.setSize(sf::Vector2f(400, 80));
+            upgradeRect.setPosition(1440, 595);
             upgradeRect.setFillColor(sf::Color::Transparent);
-            upgradeRect.setOutlineThickness(3);
-            upgradeRect.setOutlineColor(sf::Color::White);
+            upgradeRect.setOutlineThickness(1);
+            upgradeRect.setOutlineColor(sf::Color::Yellow);
             sf::Text towerUpgradeCost;
             towerUpgradeCost.setString("UPGRADE \n" + std::to_string(selectedTower->getUpgradeCost()) + " coins");
             towerUpgradeCost.setFont(mainFont);
             towerUpgradeCost.setColor(sf::Color::Yellow);
             towerUpgradeCost.setCharacterSize(24);
-            towerUpgradeCost.setPosition(1600, 500);
+            towerUpgradeCost.setPosition(1560, 605);
             _window->draw(upgradeRect);
             _window->draw(towerUpgradeCost);
             
         }
         // DISPLAY ARMOR PIERCE BUY BUTTON
-        this->upgradeArmorRect.setSize(sf::Vector2f(210, 70));
-        this->upgradeArmorRect.setPosition(1575, 695);
+        this->upgradeArmorRect.setSize(sf::Vector2f(400, 80));
+        this->upgradeArmorRect.setPosition(1440, 795);
         this->upgradeArmorRect.setFillColor(sf::Color::Transparent);
-        this->upgradeArmorRect.setOutlineThickness(3);
-        this->upgradeArmorRect.setOutlineColor(sf::Color::White);
+        this->upgradeArmorRect.setOutlineThickness(1);
+        this->upgradeArmorRect.setOutlineColor(sf::Color::Magenta);
         sf::Text armorText;
         armorText.setString("+ 5 Armor p. \n   50 coins");
         armorText.setFont(mainFont);
         armorText.setColor(sf::Color::Magenta);
         armorText.setCharacterSize(24);
-        armorText.setPosition(1585, 700);
+        armorText.setPosition(1545, 805);
         _window->draw(upgradeArmorRect);
         _window->draw(armorText);
         // DISPLAY SELL BUTTON
-        sellRect.setSize(sf::Vector2f(190, 70));
-        sellRect.setPosition(1585, 595);
+        sellRect.setSize(sf::Vector2f(400, 80));
+        sellRect.setPosition(1440, 695);
         sellRect.setFillColor(sf::Color::Transparent);
-        sellRect.setOutlineThickness(3);
-        sellRect.setOutlineColor(sf::Color::White);
+        sellRect.setOutlineThickness(1);
+        sellRect.setOutlineColor(sf::Color::Red);
         sf::Text towerSellCost;
         towerSellCost.setString("    SELL \n" + std::to_string(selectedTower->getCost()/2) + " coins");
         towerSellCost.setFont(mainFont);
         towerSellCost.setColor(sf::Color::Red);
         towerSellCost.setCharacterSize(24);
-        towerSellCost.setPosition(1600, 600);
+        towerSellCost.setPosition(1560, 705);
         _window->draw(sellRect);
         _window->draw(towerSellCost);
         

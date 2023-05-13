@@ -11,6 +11,7 @@ class Tower;
 class SFMLHud{
 private:
     int gameInfoOffset;
+    int towerSelectorOffset;
     Tower *selectedTower;
     bool isPaused;
     int _lifeNumber;
