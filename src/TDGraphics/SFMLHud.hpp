@@ -10,6 +10,7 @@
 class Tower;
 class SFMLHud{
 private:
+    int gameInfoOffset;
     Tower *selectedTower;
     bool isPaused;
     int _lifeNumber;
@@ -24,6 +25,8 @@ private:
     sf::Text m_lifeText;
     sf::Text m_levelText;
     sf::Text m_enemyLeftText;
+    sf::RectangleShape levelTitleContainer;
+    sf::RectangleShape gameInfoContainer;
     sf::Texture heartTexture;
     sf::Texture coinTexture;
     sf::Texture removeTexture;

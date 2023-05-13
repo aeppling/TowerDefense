@@ -1803,6 +1803,7 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/FlyingDrone.hpp \
   ../src/TDUnits/RegenerateDrone.hpp \
   ../src/TDUnits/ArmoredDrone.hpp \
+  ../src/TDUnits/ArmoredAlien.hpp \
   ../src/TDUnits/ArmoredFlyingDrone.hpp \
   ../src/TDUnits/ArmoredRegenerateDrone.hpp
 
@@ -10179,6 +10180,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_iterator_base_funcs.h:
+
+../src/TDUnits/ArmoredAlien.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/exception_ptr.h:
 
