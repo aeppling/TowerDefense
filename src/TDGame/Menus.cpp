@@ -50,7 +50,7 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundTowerManual.loadFromFile("Sprites/Backgrounds/towerManualScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundUnitManual.loadFromFile("Sprites/Backgrounds/towerManualScreen.png")))
+    if (!(this->_backgroundUnitManual.loadFromFile("Sprites/Backgrounds/unitManualScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     if (!(this->_backgroundGameWon.loadFromFile("Sprites/Backgrounds/gameWonScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
