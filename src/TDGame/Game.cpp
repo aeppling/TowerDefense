@@ -1136,6 +1136,27 @@ void    Game::cleanAll() {
     // CRASH IF TOWER PLACED AND LEAVE
     std::cout << "Cleaning level memory..." << std::endl;
    // OLD UNIT CLEAN HERE
+    if (!this->towerList.empty()) {
+        for (Tower *tower: this->towerList) {
+            tower->deactivate();
+            //  delete tower;
+        }
+    } // WIN NO TOWER YES UNIT OK //  WIN YES TOWER YES UNIT OK // LOOSE LAST UNIT OK // LOOSE UNIT & TOWER KO // LOOSE UNIT KO
+    sf::sleep(sf::seconds(1.2));
+    if (!this->enemyList.empty()) { // CRASH IF HERE AND TOWER
+        for (std::vector<TDUnit*> wave : this->enemyList) {
+            if (!wave.empty()) {
+                for (TDUnit *unit: wave) {
+                    std::cout << "Kill unit" << std::endl;
+                    unit->setAlreadyArrived();
+                    unit->setHealth(0);
+                    //    delete unit;
+                }
+            }
+        }
+    }
+    sf::sleep(sf::seconds(2));
+    std::cout << "units killes" << std::endl;
     for (MapCell *element: this->spawnCells) {
         delete element;
     }
@@ -1148,25 +1169,21 @@ void    Game::cleanAll() {
             //  delete tower;
         }
     }
+    std::cout << "active cleaned" << std::endl;
+
     this->towerStoreList.clear();
     this->towerList.clear();
     if (!this->enemyList.empty()) {
         for (std::vector<TDUnit*> wave : this->enemyList) {
-            for (TDUnit *unit: wave) {
-                unit->setAlreadyArrived();
-                unit->join();
-                //    delete unit;
+            if (!wave.empty()) {
+                for (TDUnit *unit: wave) {
+                    unit->setAlreadyArrived();
+                    unit->join();
+                    //    delete unit;
+                }
             }
         }
     }
-   /* if (!this->enemyList.empty()) {
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            if (!wave.empty()) {
-                for (TDUnit *unit : wave)
-                    unit->join();
-            }
-        }
-    }*/
     // SIMPLE PTR
 //     delete this->selectedActiveTower;
   //   delete this->baseCellObject;

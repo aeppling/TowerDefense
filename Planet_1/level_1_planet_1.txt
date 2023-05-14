@@ -1,1 +1,1 @@
-Drone:3
+Drone:2

@@ -50,7 +50,7 @@ void    TDUnit::regenerate() {
 void    TDUnit::live() {
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
-            if (!(this->isAtBase())) {
+        if (!(this->isAtBase())) {
                 this->setHealthBarSize();
                 this->move();
                 if (this->getTypeName() == "RegenerateDrone")
