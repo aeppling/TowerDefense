@@ -369,6 +369,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
                     if (isWaveRunning) {
+                        // SPAWNING UNITS
                         if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
                                 this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
                             unsigned int basePosX = baseCell->getPosX();
@@ -1134,16 +1135,40 @@ void    Game::cleanAll() {
     // VECTORS
     // CRASH IF TOWER PLACED AND LEAVE
     std::cout << "Cleaning level memory..." << std::endl;
+    if (!this->enemyList.empty()) {
+        for (std::vector<TDUnit*> wave : this->enemyList) {
+            for (TDUnit *unit: wave) {
+                unit->setAlreadyArrived();
+                delete unit;
+            }
+        }
+    }
     for (MapCell *element: this->spawnCells) {
         delete element;
     }
     this->spawnCells.clear();
     this->spawnCellsSprites.clear();
     this->enemyList.clear();
-  for (Tower *element: this->towerList) {
-        delete element;
+    //this->towerList.clear();
+  if (!this->towerList.empty()) {
+        for (Tower *tower: this->towerList) {
+            tower->join();
+            //  delete tower;
+        }
     }
-    this->towerList.clear();
+    std::cout << "done deleting"<< std::endl;
+   /*  if (!this->towerStoreList.empty()) {
+        for (std::vector<Tower*> type : this->towerStoreList) {
+            if (!type.empty()) {
+                for (Tower *tower: type)
+                    delete tower;
+            }
+        }
+    }*/
+    std::cout << "Cleaned store" << std::endl;
+    /*for (Tower *element: this->towerList) {
+        delete element;
+    }*/
     this->towerStoreList.clear();
 
     // SIMPLE PTR

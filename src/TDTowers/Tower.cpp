@@ -166,7 +166,9 @@ bool Tower::isActivated() {
     return (this->activated);
 }
 void Tower::join() {
-    this->_towerThread.join();
+    if (this->_towerThread.joinable()) {
+        this->_towerThread.join();
+    }
    // this->enemiesList.reset();
    // this->enemiesList = nullptr;
 }
