@@ -1135,42 +1135,38 @@ void    Game::cleanAll() {
     // VECTORS
     // CRASH IF TOWER PLACED AND LEAVE
     std::cout << "Cleaning level memory..." << std::endl;
-    if (!this->enemyList.empty()) {
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            for (TDUnit *unit: wave) {
-                unit->setAlreadyArrived();
-                delete unit;
-            }
-        }
-    }
+   // OLD UNIT CLEAN HERE
     for (MapCell *element: this->spawnCells) {
         delete element;
     }
     this->spawnCells.clear();
     this->spawnCellsSprites.clear();
     this->enemyList.clear();
-    //this->towerList.clear();
-  if (!this->towerList.empty()) {
+     if (!this->towerList.empty()) {
         for (Tower *tower: this->towerList) {
             tower->join();
             //  delete tower;
         }
     }
-    std::cout << "done deleting"<< std::endl;
-   /*  if (!this->towerStoreList.empty()) {
-        for (std::vector<Tower*> type : this->towerStoreList) {
-            if (!type.empty()) {
-                for (Tower *tower: type)
-                    delete tower;
+    this->towerStoreList.clear();
+    this->towerList.clear();
+    if (!this->enemyList.empty()) {
+        for (std::vector<TDUnit*> wave : this->enemyList) {
+            for (TDUnit *unit: wave) {
+                unit->setAlreadyArrived();
+                unit->join();
+                //    delete unit;
+            }
+        }
+    }
+   /* if (!this->enemyList.empty()) {
+        for (std::vector<TDUnit*> wave : this->enemyList) {
+            if (!wave.empty()) {
+                for (TDUnit *unit : wave)
+                    unit->join();
             }
         }
     }*/
-    std::cout << "Cleaned store" << std::endl;
-    /*for (Tower *element: this->towerList) {
-        delete element;
-    }*/
-    this->towerStoreList.clear();
-
     // SIMPLE PTR
 //     delete this->selectedActiveTower;
   //   delete this->baseCellObject;

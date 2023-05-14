@@ -305,3 +305,9 @@ sf::RectangleShape    TDUnit::getMaxHealthBarSprite() {
     return (this->_healthMaxBar);
 }
 
+void TDUnit::join() {
+    if (this->_thread.joinable()) {
+        std::cout << "Unit joined" << std::endl;
+        this->_thread.join();
+    }
+}
