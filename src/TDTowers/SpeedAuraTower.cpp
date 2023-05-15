@@ -24,7 +24,7 @@ void SpeedAuraTower::addToTowerInRangeList(Tower *tower){
 void SpeedAuraTower::isInRange() {
     //   this->enemiesInRange.push_back(enemiesList[0]);
     //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-    for (Tower *tower: *(this->_towerList)) {
+   /* for (Tower *tower: *(this->_towerList)) {
         mtx_aura.lock();
         if ((tower->getPosition().x <= this->coord.x + this->range.at(this->level) + this->getSize() &&
                 tower->getPosition().x >= this->coord.x - this->range.at(this->level) &&
@@ -35,11 +35,35 @@ void SpeedAuraTower::isInRange() {
                 addToTowerInRangeList(tower);
             }
         } else {
-            if (std::find(this->_towerInRange.begin(), this->_towerInRange.end(), tower) !=
+            if (std::find(this->_towerInRa  nge.begin(), this->_towerInRange.end(), tower) !=
                     this->_towerInRange.end()) {
                 removeFromTowerInRangeList(tower);
             }
 
+        }
+        mtx_aura.unlock();
+    }*/
+    int towerX = this->coord.x;
+    int towerY = this->coord.y;
+    int radius = this->range.at(this->level) + this->getSize();
+
+    for (Tower* tower : *(this->_towerList)) {
+        mtx_aura.lock();
+        int towerPosX = tower->getPosition().x;
+        int towerPosY = tower->getPosition().y;
+
+        // Calculate the distance between the two towers
+        int distance = std::abs(towerPosX - towerX) + std::abs(towerPosY - towerY);
+
+        // Check if the tower is within the circular range
+        if (distance <= radius) {
+            if (std::find(this->_towerInRange.begin(), this->_towerInRange.end(), tower) == this->_towerInRange.end()) {
+                addToTowerInRangeList(tower);
+            }
+        } else {
+            if (std::find(this->_towerInRange.begin(), this->_towerInRange.end(), tower) != this->_towerInRange.end()) {
+                removeFromTowerInRangeList(tower);
+            }
         }
         mtx_aura.unlock();
     }
