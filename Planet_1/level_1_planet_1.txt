@@ -1,1 +1,3 @@
 Drone:3
+Alien:2
+RegenerateDrone:1

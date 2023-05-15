@@ -83,11 +83,16 @@ class Game{
         std::chrono::steady_clock::time_point endWaveTransitionTimer;
         bool                isWaveEnding;
         GameState           gameState;
+        bool                isLevelWon = false;
         int                 id;
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
-        ~Game() { this->pauseGame(); this->cleanAll(); };
+        ~Game() { if (!this->isLevelWon) {
+            this->pauseGame();
+            }
+         this->cleanAll();
+        };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void initializeTowerStore(sf::RenderWindow &window);
         void initializeTowerStoreCurrentWave();

@@ -754,6 +754,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 }
                 else if (this->currentWaveNumber == this->enemyList.size()) {
                     window.setMouseCursorVisible(true);
+                    this->isLevelWon = true;
                     gameWon();
                     return (2);
                 }
