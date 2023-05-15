@@ -33,6 +33,7 @@ class Tower : public Buildable {
         float speedBuff;
         int armorPierceValue;
         bool activated;
+        bool isPaused;
         std::vector<float> range;
         std::vector<float> timeBetweenAttack;
         bool aerial;
@@ -95,6 +96,8 @@ public:
         void resetSpeedBuff();
         int getId(){return (this->id);};
         void setId(int id){this->id = id;};
+        void setPaused() { this->isPaused = true; };
+        void unsetPaused() { this->isPaused = false; };
 };
 
 #endif

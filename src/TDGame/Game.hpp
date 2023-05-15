@@ -41,6 +41,7 @@ class Game{
         int nb_tower_type = 6;
         int globalVolume;
         int isMuted;
+        bool isPaused;
         Point baseCoord;
         std::vector<MapCell*> spawnCells;
         std::vector<sf::Sprite> spawnCellsSprites;
@@ -86,7 +87,7 @@ class Game{
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
-        ~Game() { this->cleanAll(); };
+        ~Game() { this->pauseGame(); this->cleanAll(); };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void initializeTowerStore(sf::RenderWindow &window);
         void initializeTowerStoreCurrentWave();
@@ -134,6 +135,8 @@ class Game{
         void sendGameStateToClients();
         void handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isWaveRunning);
         void pauseMenu(bool pause);
+        void pauseGame(); // STOP MUSIC/ SEND SIGNAL
+        void resumeGame();
     };
 
 #endif // GAME_HPP_

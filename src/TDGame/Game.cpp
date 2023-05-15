@@ -21,6 +21,7 @@
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
                                                                                         sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
+    this->isPaused = false;
     this->planet = planetToLoad;
     this->isMuted = false;
     SFMLEnemiesLoader sfmlEnemiesLoader;
@@ -370,18 +371,21 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     int waveChronoElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(testTime - waveChronoStart).count();
                     if (isWaveRunning) {
                         // SPAWNING UNITS
-                        if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
-                                this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
-                            unsigned int basePosX = baseCell->getPosX();
-                            unsigned int basePosY = baseCell->getPosY();
-                            runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX), std::ref(basePosY),
-                                    std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
-                                    this->spawnCount, this->cellSize);
-                            this->spawnCount++;
-                            this->unitCount++;
-                            if (this->spawnCount >= this->spawnCells.size())
-                                this->spawnCount = 0;
-                            waveChronoStart = std::chrono::steady_clock::now();
+                        if (!this->isPaused) {
+                            if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
+                                    this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
+                                unsigned int basePosX = baseCell->getPosX();
+                                unsigned int basePosY = baseCell->getPosY();
+                                runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX),
+                                        std::ref(basePosY),
+                                        std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
+                                        this->spawnCount, this->cellSize);
+                                this->spawnCount++;
+                                this->unitCount++;
+                                if (this->spawnCount >= this->spawnCells.size())
+                                    this->spawnCount = 0;
+                                waveChronoStart = std::chrono::steady_clock::now();
+                            }
                         }
                     }
                     // REFRESH WINDOW AND INTERCEPT EVENTS
@@ -417,8 +421,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             ) {
 
                             //Pause Menu
-                           
-                           
+
+
                             pauseMenu(true);
 
                         }
@@ -489,7 +493,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         else {
                             if (event.type == sf::Event::MouseButtonPressed &&
-                                sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
+                                sf::Mouse::isButtonPressed(sf::Mouse::Left)){ // BUILD CURRENT BUILDABLE
                                 this->sfMainSoundPlayer.playMenuClick();
                                 this->isTowerClicked(map, window, mouseCoord);
                                 if (this->selectedActiveTower != nullptr) {
@@ -681,13 +685,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             }
                             else if (whichClicked == 2) {
                                 // PAUSED
-                                if (isWaveRunning) {
+                                if (!isPaused) {
                                     this->deactivateTowers();
-                                    isWaveRunning = false;
+                                   // isWaveRunning = false;
+                                    this->isPaused = true;
+                                    pauseGame();
                                 }
                                 else {
                                     this->activateTowers();
-                                    isWaveRunning = true;
+                                   // isWaveRunning = true;
+                                    this->isPaused = false;
+                                    resumeGame();
                                 }
                             }
                             else if (whichClicked == 3) {
@@ -1676,8 +1684,40 @@ void Game::pauseMenu(bool pause){
         this->sfmlHud->update();
         this->sfmlHud->draw();
     }
-    
+}
 
+void Game::pauseGame() {
+    this->sfMainSoundPlayer.stopGameMusic();
+    int i = 0;
+    // PAUSE UNIT
+    while (i < this->enemyList.at(this->currentWaveNumber).size()) {
+        this->enemyList.at(this->currentWaveNumber).at(i)->setPaused();
+        i++;
+    }
+    // PAUSE TOWERS
+    i = 0;
+    while (i < this->towerList.size()) {
+        this->towerList.at(i)->setPaused();
+        i++;
+    }
+}
 
-
+void Game::resumeGame() {
+    if (this->currentWaveNumber == this->enemyList.size() - 1) {
+        this->sfMainSoundPlayer.playGameMusicFaster();
+    }
+    else
+        this->sfMainSoundPlayer.playGameMusic1();
+    int i = 0;
+    // RESUME UNIT
+    while (i < this->enemyList.at(this->currentWaveNumber).size()) {
+        this->enemyList.at(this->currentWaveNumber).at(i)->unsetPaused();
+        i++;
+    }
+    // RESUME TOWERS
+    i = 0;
+    while (i < this->towerList.size()) {
+        this->towerList.at(i)->unsetPaused();
+        i++;
+    }
 }

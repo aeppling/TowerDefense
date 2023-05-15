@@ -10,6 +10,7 @@ std::mutex mtx;
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
              std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
     this->towerName = towerName;
+    this->isPaused = false;
     if (this->towerName == "BasicTower")
         this->towerSprite.setTexture(*sfmlLoaderTower.getBasic());
     else if (this->towerName == "AntiAirTower")
@@ -132,6 +133,10 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                 break;
             isInRange();
             if (enemiesInRange.size() > 0 && this->damage[this->level] > 0) {
+                if (this->isPaused) {
+                    while (this->isPaused)
+                        sf::sleep(sf::milliseconds(50));
+                }
                 std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
                 int res = std::chrono::duration_cast<std::chrono::milliseconds>(
                         testTime - this->_timeOfLastShot).count();

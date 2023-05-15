@@ -16,6 +16,7 @@ std::mutex mtx2;
 TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial) {
     this->_health_points = hp;
     this->_isForcing = false;
+    this->_isPaused = false;
     this->_max_health = hp;
     this->_speed = speed;
     this->_normalSpeedValue = speed;
@@ -56,6 +57,11 @@ void    TDUnit::live() {
                 if (this->getTypeName() == "RegenerateDrone")
                     this->regenerate();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
+                if (this->_isPaused) {
+                    while (this->_isPaused) {
+                        sf::sleep(sf::milliseconds(50));
+                    }
+                }
                 if (this->_isFreeze) {
                     std::chrono::steady_clock::time_point startFreeze = std::chrono::steady_clock::now();
                     std::chrono::steady_clock::time_point elapsedFreeze = std::chrono::steady_clock::now();

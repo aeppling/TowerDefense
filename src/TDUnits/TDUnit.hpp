@@ -35,6 +35,7 @@ public:
     bool _isSlowed;
     bool _isFreeze;
     float _freezeTime;
+    bool _isPaused;
 
     //COORD
     int  _baseCoordX;
@@ -117,6 +118,8 @@ public:
     sf::Sprite getArmorSprite() { return (this->_armorSprite); };
     void join();
     void setSpritePosition(int x, int y) { this->_sprite.setPosition(x, y);};
+    void setPaused() { this->_isPaused = true; };
+    void unsetPaused() { this->_isPaused = false; };
 };
 /*
 class TestUnit {
