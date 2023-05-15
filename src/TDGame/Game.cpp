@@ -23,6 +23,14 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->level = level;
     this->isPaused = false;
     this->planet = planetToLoad;
+    if (this->planet == 1)
+        nb_tower_type = 4;
+    else if (this->planet == 2)
+        nb_tower_type = 5;
+    else if (this->planet == 3)
+        nb_tower_type = 6;
+    else
+        nb_tower_type = 6;
     this->isMuted = false;
     SFMLEnemiesLoader sfmlEnemiesLoader;
     SFMLTowerLoader sfmlTowerLoader;
@@ -170,22 +178,27 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
                                                       this->sfmlMissileLoader, window, this->sfTowerSoundLoader);
         Tower *buildTowerType3 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                   window, this->sfTowerSoundLoader);
-        Tower *buildTowerType4 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                               window, this->sfTowerSoundLoader);
-        Tower *buildTowerType7 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+        Tower *buildTowerType4 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                 window, this->sfTowerSoundLoader);
+        Tower *buildTowerType5 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                     window, this->sfTowerSoundLoader);
-        Tower *buildTowerType5 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                 window, this->sfTowerSoundLoader);
-        Tower *buildTowerType6 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                 window, this->sfTowerSoundLoader);
+         Tower *buildTowerType6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                   window, this->sfTowerSoundLoader);
+         Tower *buildTowerType7 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+                                                         window, this->sfTowerSoundLoader);
 
         this->towerStoreList.at(0).push_back(buildTowerType1);
         this->towerStoreList.at(1).push_back(buildTowerType2);
         this->towerStoreList.at(2).push_back(buildTowerType3);
         this->towerStoreList.at(3).push_back(buildTowerType4);
-        this->towerStoreList.at(4).push_back(buildTowerType7);
-        this->towerStoreList.at(5).push_back(buildTowerType5);
-        this->towerStoreList.at(6).push_back(buildTowerType6);
+        this->towerStoreList.at(4).push_back(buildTowerType5);
+
+        if (this->planet == 2)
+            this->towerStoreList.at(5).push_back(buildTowerType6);
+        else if (this->planet == 3) {
+            this->towerStoreList.at(5).push_back(buildTowerType6);
+            this->towerStoreList.at(6).push_back(buildTowerType7);
+        }
         i++;
     }
     this->initializeTowerStoreCurrentWave();

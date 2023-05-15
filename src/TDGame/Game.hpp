@@ -38,7 +38,7 @@ class Game{
         int planet;
         int level;
         int towerSelectorIndex;
-        int nb_tower_type = 6;
+        int nb_tower_type;
         int globalVolume;
         int isMuted;
         bool isPaused;
