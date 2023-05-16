@@ -9,7 +9,7 @@
 
 class SFMLLoaderPlanet3 : public SFMLLoader {
 public:
-    SFMLLoaderPlanet3() : SFMLLoader("Sprites/MyTiles/tileSpawnCell.png", "Sprites/MyTiles/tileStone.png",
+    SFMLLoaderPlanet3() : SFMLLoader("Sprites/MyTiles/tileSpawnCell.png", "Sprites/MyTiles/SpawnCellHeight.png",
                                      "Sprites/MyTiles/tileGoo_slope.png", "Sprites/MyTiles/tileGoo.png") {};
 };
 
