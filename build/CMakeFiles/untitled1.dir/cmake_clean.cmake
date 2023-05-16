@@ -75,10 +75,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj.d"
   "CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj"
   "CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj.d"
-  "libuntitled1.dll.a"
-  "untitled1.exe"
-  "untitled1.exe.manifest"
-  "untitled1.pdb"
+  "bin/libuntitled1.dll.a"
+  "bin/untitled1.exe"
+  "bin/untitled1.exe.manifest"
+  "bin/untitled1.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

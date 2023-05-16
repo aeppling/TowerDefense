@@ -62,7 +62,7 @@ CMAKE_BINARY_DIR = C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\T
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/untitled1.dir/all
+all: CMakeFiles/SpaceDefender.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -70,34 +70,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/untitled1.dir/clean
+clean: CMakeFiles/SpaceDefender.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/untitled1.dir
+# Target rules for target CMakeFiles/SpaceDefender.dir
 
 # All Build rule for target.
-CMakeFiles/untitled1.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 "Built target untitled1"
-.PHONY : CMakeFiles/untitled1.dir/all
+CMakeFiles/SpaceDefender.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 "Built target SpaceDefender"
+.PHONY : CMakeFiles/SpaceDefender.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/untitled1.dir/rule: cmake_check_build_system
+CMakeFiles/SpaceDefender.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles 39
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/untitled1.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/SpaceDefender.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles 0
-.PHONY : CMakeFiles/untitled1.dir/rule
+.PHONY : CMakeFiles/SpaceDefender.dir/rule
 
 # Convenience name for target.
-untitled1: CMakeFiles/untitled1.dir/rule
-.PHONY : untitled1
+SpaceDefender: CMakeFiles/SpaceDefender.dir/rule
+.PHONY : SpaceDefender
 
 # clean rule for target.
-CMakeFiles/untitled1.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/clean
-.PHONY : CMakeFiles/untitled1.dir/clean
+CMakeFiles/SpaceDefender.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/clean
+.PHONY : CMakeFiles/SpaceDefender.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

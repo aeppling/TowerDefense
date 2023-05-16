@@ -699,17 +699,22 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             else if (whichClicked == 2) {
                                 // PAUSED
                                 if (!isPaused) {
-                                    this->deactivateTowers();
-                                   // isWaveRunning = false;
-                                    this->isPaused = true;
-                                    pauseGame();
+                                    if(this->networkController == nullptr){
+                                        this->deactivateTowers();
+                                        // isWaveRunning = false;
+                                        this->isPaused = true;
+                                        pauseGame();
+                                    }
+                                    
                                 }
                                 else {
-                                    this->activateTowers();
-                                   // isWaveRunning = true;
-                                    this->isPaused = false;
-                                    resumeGame();
-                                }
+                                    if(this->networkController == nullptr){
+                                        this->activateTowers();
+                                        // isWaveRunning = true;
+                                        this->isPaused = false;
+                                        resumeGame();
+                                    }
+                                }   
                             }
                             else if (whichClicked == 3) {
                                 window.setMouseCursorVisible(true);
@@ -1680,7 +1685,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
 void Game::pauseMenu(bool pause){
     if(pause){
         if(this->networkController != nullptr){
-            this->networkController->handleMessage("pause");
+            //this->networkController->handleMessage("pause");
         }
         
         this->sfmlHud->setPaused(true);
@@ -1690,7 +1695,7 @@ void Game::pauseMenu(bool pause){
         this->sfmlHud->draw();
     }else{
         if(this->networkController != nullptr){
-            this->networkController->handleMessage("unpause");
+            //this->networkController->handleMessage("unpause");
         }
         this->sfmlHud->setPaused(false);
   

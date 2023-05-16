@@ -682,67 +682,75 @@ untitled1_OBJECTS = \
 # External object files for target untitled1
 untitled1_EXTERNAL_OBJECTS =
 
-untitled1.exe: CMakeFiles/untitled1.dir/main.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj
-untitled1.exe: CMakeFiles/untitled1.dir/build.make
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-system-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-window-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-graphics-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-network-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-audio-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-window-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libfreetype.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-system-s.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libopenal32.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbisfile.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbisenc.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbis.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libogg.a
-untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libFLAC.a
-untitled1.exe: CMakeFiles/untitled1.dir/linkLibs.rsp
-untitled1.exe: CMakeFiles/untitled1.dir/objects1.rsp
-untitled1.exe: CMakeFiles/untitled1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Linking CXX executable untitled1.exe"
+bin/untitled1.exe: CMakeFiles/untitled1.dir/main.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj
+bin/untitled1.exe: CMakeFiles/untitled1.dir/build.make
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-system-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-window-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-graphics-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-network-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-audio-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-window-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libfreetype.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libsfml-system-s.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libopenal32.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbisfile.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbisenc.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libvorbis.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libogg.a
+bin/untitled1.exe: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libFLAC.a
+bin/untitled1.exe: CMakeFiles/untitled1.dir/linkLibs.rsp
+bin/untitled1.exe: CMakeFiles/untitled1.dir/objects1.rsp
+bin/untitled1.exe: CMakeFiles/untitled1.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Linking CXX executable bin\untitled1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\untitled1.dir\link.txt --verbose=$(VERBOSE)
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Sounds C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Sounds
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Music C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Music
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Sprites C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Sprites
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Icons C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Icons
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Fonts C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Fonts
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Planet_1 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Planet_1
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Planet_2 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Planet_2
+	D:\CMAKE\bin\cmake.exe -E copy_directory C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/Planet_3 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/build/bin/Planet_3
 
 # Rule to build all files generated by this target.
-CMakeFiles/untitled1.dir/build: untitled1.exe
+CMakeFiles/untitled1.dir/build: bin/untitled1.exe
 .PHONY : CMakeFiles/untitled1.dir/build
 
 CMakeFiles/untitled1.dir/clean:
