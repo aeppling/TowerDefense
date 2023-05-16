@@ -54,7 +54,7 @@ void    TDUnit::live() {
         if (!(this->isAtBase())) {
                 this->setHealthBarSize();
                 this->move();
-                if (this->getTypeName() == "RegenerateDrone")
+                if ((this->getTypeName() == "RegenerateDrone") || (this->getTypeName() == "BossPlanet1"))
                     this->regenerate();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
                 if (this->_isPaused) {
@@ -164,6 +164,12 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getRegenerateDrone());
     else if (this->getTypeName() == "ArmoredDrone")
         this->_sprite.setTexture(*sfmlLoader.getArmoredDrone());
+    else if (this->getTypeName() == "BossPlanet1")
+        this->_sprite.setTexture(*sfmlLoader.getBossPlanet1());
+    else if (this->getTypeName() == "BossPlanet2")
+        this->_sprite.setTexture(*sfmlLoader.getBossPlanet2());
+    else if (this->getTypeName() == "BossPlanet3")
+        this->_sprite.setTexture(*sfmlLoader.getBossPlanet3());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     // SET UNIT SPRITE
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);

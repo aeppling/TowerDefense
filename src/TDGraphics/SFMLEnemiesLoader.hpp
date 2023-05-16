@@ -19,6 +19,10 @@ private:
 
     sf::Texture _armoredDrone;
 
+    sf::Texture _bossPlanet1;
+    sf::Texture _bossPlanet2;
+    sf::Texture _bossPlanet3;
+
     sf::Texture _freeze;
     sf::Texture _armor;
 public:
@@ -33,6 +37,11 @@ public:
     sf::Texture *getRegenerateDrone() { return (&this->_regenerateDrone); };
 
     sf::Texture *getArmoredDrone() { return (&this->_armoredDrone); };
+
+    sf::Texture *getBossPlanet1() { return (&this->_bossPlanet1); };
+    sf::Texture *getBossPlanet2() { return (&this->_bossPlanet2); };
+    sf::Texture *getBossPlanet3() { return (&this->_bossPlanet3); };
+
 
     sf::Texture *getFreeze() { return (&this->_freeze); };
     sf::Texture *getArmor() { return (&this->_armor); };
