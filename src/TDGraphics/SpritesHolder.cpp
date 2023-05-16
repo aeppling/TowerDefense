@@ -12,7 +12,18 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
     std::shared_ptr<SFMLSprite> newSprite = std::make_shared<SFMLSprite>(sprite);
     int randomNum = std::rand() % 100;
     if (mapCell->getType() == 'X') {
-        newSprite->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(), mapCell->getType(), 1);
+        if (mapCell->getPosY() + 1 < map->getSizeY()) {
+            if (map->getElem(mapCell->getPosX(), mapCell->getPosY() + 1)->getType() == 'F')
+                newSprite->setSpriteCutted(sfmlLoader.getPathCellHeight(), cellSize, mapCell->getPosX(),
+                                           mapCell->getPosY(), mapCell->getType(), 1);
+            else
+                newSprite->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
+                                           mapCell->getType(), 1);
+        }
+        else {
+            newSprite->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, mapCell->getPosX(), mapCell->getPosY(),
+                                       mapCell->getType(), 1);
+        }
         newSprite->setPosition(cellSize);
         this->_walkableSprite.push_back(newSprite);
     }

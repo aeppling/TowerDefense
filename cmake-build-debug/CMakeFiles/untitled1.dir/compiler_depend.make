@@ -1805,7 +1805,10 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/ArmoredDrone.hpp \
   ../src/TDUnits/ArmoredAlien.hpp \
   ../src/TDUnits/ArmoredFlyingDrone.hpp \
-  ../src/TDUnits/ArmoredRegenerateDrone.hpp
+  ../src/TDUnits/ArmoredRegenerateDrone.hpp \
+  ../src/TDUnits/BossPlanet1.hpp \
+  ../src/TDUnits/BossPlanet2.hpp \
+  ../src/TDUnits/BossPlanet3.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: ../src/TDGame/SizeRatioCalculator.cpp \
   ../src/TDGame/SizeRatioCalculator.hpp \
@@ -10197,6 +10200,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/hash_bytes.h:
 
+../src/TDUnits/BossPlanet1.hpp:
+
 ../include/SFML/Window/Window.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/predefined_ops.h:
@@ -10530,6 +10535,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../include/SFML/System/Lock.hpp:
 
 ../include/SFML/System/MemoryInputStream.hpp:
+
+../src/TDUnits/BossPlanet3.hpp:
 
 ../include/SFML/System/String.hpp:
 
@@ -10930,6 +10937,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../src/TDUnits/Alien.hpp:
 
 ../src/TDUnits/FlyingDrone.hpp:
+
+../src/TDUnits/BossPlanet2.hpp:
 
 ../src/TDGraphics/SFMLDecorationLoader.cpp:
 

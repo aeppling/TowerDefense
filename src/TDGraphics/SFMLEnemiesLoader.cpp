@@ -21,7 +21,12 @@ SFMLEnemiesLoader::SFMLEnemiesLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_armoredDrone.loadFromFile("Sprites/Units/CharRed1.png")))
         std::cout << "Error on loading texture..." << std::endl;
-
+    if (!(this->_bossPlanet1.loadFromFile("Sprites/Units/bossPlanet1.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_bossPlanet2.loadFromFile("Sprites/Units/bossPlanet2.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_bossPlanet3.loadFromFile("Sprites/Units/bossPlanet3.png")))
+        std::cout << "Error on loading texture..." << std::endl;
 
     // ARMOR SPRITE
     if (!(this->_armor.loadFromFile("Sprites/Units/spr_shield.png")))
