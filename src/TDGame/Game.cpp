@@ -1426,7 +1426,7 @@ void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf
 
 
 
-void Game::sendGameStateToClients(std::string action) {
+void Game::sendGameStateToClients() {
     // Fonction pour envoyer l'état actuel du jeu à tous les clients connectés
     // Serializez l'état du jeu en une chaîne de caractères JSON
     
