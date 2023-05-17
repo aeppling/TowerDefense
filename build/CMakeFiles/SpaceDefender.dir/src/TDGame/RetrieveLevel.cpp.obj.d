@@ -292,4 +292,7 @@ CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.obj: \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredDrone.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredFlyingDrone.hpp \
- C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp \
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet1.hpp \
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet2.hpp \
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet3.hpp

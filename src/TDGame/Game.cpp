@@ -1426,11 +1426,12 @@ void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf
 
 
 
-void Game::sendGameStateToClients() {
+void Game::sendGameStateToClients(std::string action) {
     // Fonction pour envoyer l'état actuel du jeu à tous les clients connectés
     // Serializez l'état du jeu en une chaîne de caractères JSON
+    
     nlohmann::json gameStateJson;
-    gameStateJson["numCoins"] = gameState.numCoins;
+    //gameStateJson["numCoins"] = gameState.numCoins;
     std::cout << "nbr tours gamestate" << gameState.towerList->size() << std::endl;
     std::cout << "nbr tours" << this->towerList.size() << std::endl;
     // Ajouter les informations des tours dans le JSON
@@ -1493,7 +1494,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
             int numCoins = gameStateJson["numCoins"].get<int>();
             //this->player->setCoin(numCoins);
             // std::cout << "Coins : " << numCoins << std::endl;
-
+            
             // Mettre à jour les informations des tours
             int numTowers = gameStateJson["towers"].size();
             auto towersJson = gameStateJson["towers"];

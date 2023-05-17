@@ -1805,7 +1805,10 @@ CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/On
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredDrone.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredAlien.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredFlyingDrone.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet1.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet2.hpp \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet3.hpp
 
 CMakeFiles/SpaceDefender.dir/src/TDGame/SizeRatioCalculator.cpp.obj: C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.cpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.hpp \
@@ -10341,6 +10344,8 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/basic_ios.tc
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h:
 
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet1.hpp:
+
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/SFML/Graphics/VertexArray.hpp:
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/pthread_signal.h:
@@ -10932,6 +10937,10 @@ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/To
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredDrone.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet2.hpp:
+
+C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/BossPlanet3.hpp:
 
 C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp:
 
