@@ -125,7 +125,7 @@ void Tower::isInRange() {
     }*/
     int towerX = this->coord.x;
     int towerY = this->coord.y;
-    int radius = this->range.at(this->level);
+    int radius = this->range.at(this->level) + this->getSize();
 
     for (TDUnit* enemy : *(this->enemiesList)) {
         mtx.lock();
