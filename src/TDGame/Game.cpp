@@ -62,7 +62,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     float coinNb = 500 - (500 * difficultyRatio);
     this->player->setLifeNumber(lifeNb);
     this->player->setCoinNumber(coinNb);
-    this->player->setCoinNumber(999999);
+   // this->player->setCoinNumber(999999);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -975,6 +975,8 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
 
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    if (this->player->getCoinNumber() < 5)
+        return ;
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
         bool check = false;
