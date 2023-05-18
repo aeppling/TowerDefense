@@ -36,7 +36,7 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
     if (!this->_joinIcon.loadFromFile("Icons/joinIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
     // BACKGROUNDS
-    if (!this->_backgroundStars.loadFromFile("Sprites/stars_texture.png"))
+    if (!this->_backgroundStars.loadFromFile("Sprites/Backgrounds/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_backgroundHome.loadFromFile("Sprites/Backgrounds/titleScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;

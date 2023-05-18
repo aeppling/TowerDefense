@@ -57,9 +57,12 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
     this->player = player1;
-    this->player->setLifeNumber(8/difficulty);
-    this->player->setCoinNumber(500-(difficulty*100));
-    this->player->setCoinNumber(5000);
+    float difficultyRatio = ((float)difficulty * 10) / 100;
+    float lifeNb = 8 - (8 * difficultyRatio);
+    float coinNb = 500 - (500 * difficultyRatio);
+    this->player->setLifeNumber(lifeNb);
+    this->player->setCoinNumber(coinNb);
+   // this->player->setCoinNumber(999999);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
@@ -1118,7 +1121,9 @@ bool Game::waveEnd(sf::RenderWindow& window){
         std::chrono::steady_clock::time_point checkPoint = std::chrono::steady_clock::now();
         int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(checkPoint - this->endWaveTransitionTimer).count();
         if (elapsed >= 2500) {
-            this->player->addCoin(500-(difficulty*100));
+            float difficultyRatio = ((float)this->difficulty * 10) / 100;
+            float coinToWon = 250 - (250 * difficultyRatio);
+            this->player->addCoin(coinToWon);
             this->sfMainSoundPlayer.playGameCoinWon();
             this->deactivateTowers();
             this->sfMainSoundPlayer.playWaveClear();

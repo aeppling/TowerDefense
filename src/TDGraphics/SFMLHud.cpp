@@ -24,19 +24,19 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->m_moneyText.setCharacterSize(30);
     this->setMessage("Build a tower to kill the enemies !");
     textMessage.setFont(mainFont);
-    if (!m_backgroundTexture.loadFromFile("Sprites/stars_texture.png")) {
+    if (!m_backgroundTexture.loadFromFile("Sprites/Backgrounds/stars_texture.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!heartTexture.loadFromFile("Sprites/heart.png")) {
+    if (!heartTexture.loadFromFile("Sprites/Hud/heart.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!coinTexture.loadFromFile("Sprites/coin.png")) {
+    if (!coinTexture.loadFromFile("Sprites/Hud/coin.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!removeTexture.loadFromFile("Sprites/remove.png")) {
+    if (!removeTexture.loadFromFile("Sprites/Hud/remove.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!wallTexture.loadFromFile("Sprites/wall.png")) {
+    if (!wallTexture.loadFromFile("Sprites/Hud/wall.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
     if(!pauseButtonTexture.loadFromFile("Sprites/Buttons/play.png")){

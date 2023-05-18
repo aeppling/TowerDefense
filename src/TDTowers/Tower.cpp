@@ -101,28 +101,6 @@ void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
 
 
 void Tower::isInRange() {
-    //   this->enemiesInRange.push_back(enemiesList[0]);
-    //* if enemy is in the tower's range add him to the vector, if he isnt, remove him
-/*
-    for (TDUnit *enemy: *(this->enemiesList)) {
-        mtx.lock();
-        if ((enemy->getPosX() <= this->coord.x + this->range.at(this->level) &&
-            enemy->getPosX() >= this->coord.x - this->range.at(this->level) &&
-            enemy->getPosY() <= this->coord.y + this->range.at(this->level) &&
-            enemy->getPosY() >= this->coord.y - this->range.at(this->level)) && !(((enemy->isFlying() == true) && (this->aerial == false)) || ((enemy->isFlying() == false) && (this->aerial == true)))){
-            if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) ==
-                this->enemiesInRange.end()) {
-                addToEnemiesInRangeList(enemy);
-            }
-        } else {
-            if (std::find(this->enemiesInRange.begin(), this->enemiesInRange.end(), enemy) !=
-                this->enemiesInRange.end()) {
-                removeFromEnemiesInRangeList(enemy);
-            }
-
-        }
-        mtx.unlock();
-    }*/
     int towerX = this->coord.x;
     int towerY = this->coord.y;
     int radius = this->range.at(this->level) + this->getSize();
