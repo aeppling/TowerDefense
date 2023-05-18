@@ -62,7 +62,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     float coinNb = 500 - (500 * difficultyRatio);
     this->player->setLifeNumber(lifeNb);
     this->player->setCoinNumber(coinNb);
-   // this->player->setCoinNumber(999999);
+    this->player->setCoinNumber(999999);
     this->currentWaveNumber = 0;
     std::vector<MapCell> spawnCells;
     this->enemyList = this->levelRetriever->getNextLevel();
