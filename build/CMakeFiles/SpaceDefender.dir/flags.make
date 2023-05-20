@@ -6,5 +6,5 @@ CXX_DEFINES = -DSFML_STATIC
 
 CXX_INCLUDES = @CMakeFiles/SpaceDefender.dir/includes_CXX.rsp
 
-CXX_FLAGS = -O3 -DNDEBUG
+CXX_FLAGS = -static-libgcc -static-libstdc++ -O3 -DNDEBUG
 

@@ -1,2 +1,7 @@
-Drone:3
-Alien:3
+Drone:4
+Drone:2/Alien:2
+Missile:6/Drone:3/Missile:1/Alien:1/Drone:1
+Missile:6/Drone:8/Alien:4
+FlyingDrone:4/RegenerateDrone:2
+RegenerateDrone:4
+Drone:15/Missile:2

@@ -1498,7 +1498,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
         
         try {
             nlohmann::json gameStateJson = nlohmann::json::parse(message);
-            int numCoins = gameStateJson["numCoins"].get<int>();
+            //int numCoins = gameStateJson["numCoins"].get<int>();
             //this->player->setCoin(numCoins);
             // std::cout << "Coins : " << numCoins << std::endl;
             

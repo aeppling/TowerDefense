@@ -1,2 +1,1 @@
-Drone:3
-Alien:3
+ArmoredDrone:1/Drone:1
