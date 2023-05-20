@@ -1,8 +1,7 @@
-Drone:1/Alien:1/Missile:1/FlyingDrone:1/RegenerateDrone:1/Spaceship:1
-Drone:2
-Missile:1/Drone:2
-Drone:2/Alien:2
-Drone:1/Alien:1/Missile:2/Drone:1/Alien:1
-Drone:6
-Alien:4/Drone:1/Missile:1
-Missile:6/Alien:6
+Drone:3
+Drone:3/Alien:2
+Alien:3/Drone:2/Missile:2/Drone:2
+FlyingDrone:2/Drone:1/Alien:1/Drone:1
+Drone:1/ArmoredDrone:1/Drone:1/ArmoredDrone:1/Drone:1/ArmoredDrone:1
+Spaceship:2/Alien:4/Missile:2/Drone:3/FlyingDrone:2/Spaceship:2
+Drone:2/RegenerateDrone:1/Alien:2/Missile:1/Spaceship:2
