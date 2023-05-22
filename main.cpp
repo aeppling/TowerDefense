@@ -297,9 +297,12 @@ int main() {
                             std::string planetstr = networkController->receiveMessage(networkController->getServerSocket());
                             planetToLoad = atoi(planetstr.c_str());
                             std::cout << "planetToLoad : " << planetToLoad << std::endl;
+                            std::string difficultystr = networkController->receiveMessage(networkController->getServerSocket());
+                            int difficulty = atoi(difficultystr.c_str());
+                            std::cout << "difficulty : " << difficulty << std::endl;
                             
                             
-                            int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
+                            int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, difficulty, windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
                             playerData.savePlayerData(saveFile);
                             displayEndScreen(menu, exitResult);
@@ -355,6 +358,7 @@ int main() {
 
                             networkController->sendMessageToAllClients(std::to_string(levelToPlay));
                             networkController->sendMessageToAllClients(std::to_string(planetToLoad));
+                            networkController->sendMessageToAllClients(std::to_string(menu.getDifficulty()));
                             int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
                             playerData.savePlayerData(saveFile);

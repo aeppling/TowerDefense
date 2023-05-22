@@ -1436,6 +1436,7 @@ void Game::setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf
 void Game::sendGameStateToClients() {
     // Fonction pour envoyer l'état actuel du jeu à tous les clients connectés
     // Serializez l'état du jeu en une chaîne de caractères JSON
+    // Appelé après qu'une action ai été effectué par un joueur
     
     nlohmann::json gameStateJson;
     //gameStateJson["numCoins"] = gameState.numCoins;
@@ -1454,8 +1455,6 @@ void Game::sendGameStateToClients() {
     }
     gameStateJson["towers"] = towersJson;
 
-    
-    
     // Envoyer l'état du jeu à tous les clients
     // Ajouter les informations des murs dans le JSON
     nlohmann::json wallsJson = nlohmann::json::array();
@@ -1476,6 +1475,7 @@ void Game::sendGameStateToClients() {
 }
 void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isWaveRunning) {
     // Fonction pour mettre à jour l'état du jeu
+    // Appelé après la reception d'un message
     // Désérialisez l'état du jeu à partir d'une chaîne de caractères JSON
     std::string message = this->networkController->detectMessageReceived();
     if (message == "pause"){
@@ -1498,9 +1498,6 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
         
         try {
             nlohmann::json gameStateJson = nlohmann::json::parse(message);
-            //int numCoins = gameStateJson["numCoins"].get<int>();
-            //this->player->setCoin(numCoins);
-            // std::cout << "Coins : " << numCoins << std::endl;
             
             // Mettre à jour les informations des tours
             int numTowers = gameStateJson["towers"].size();

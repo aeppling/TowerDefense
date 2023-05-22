@@ -27,12 +27,7 @@ public:
     std::string detectMessageReceived();
     void handleMessage(std::string message);
     bool isWaitingScreen() { return(this->isWaiting);};
-    // TODO
-    // disconnect client
-    // disconnect from server
-    // disconnect all clients
-
-
+    
 };
 
 #endif //UNTITLED1_NETWORKCONTROLLER_HPP_
