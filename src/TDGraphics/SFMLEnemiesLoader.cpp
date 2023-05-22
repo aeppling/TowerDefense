@@ -27,7 +27,19 @@ SFMLEnemiesLoader::SFMLEnemiesLoader() {
         std::cout << "Error on loading texture..." << std::endl;
     if (!(this->_bossPlanet3.loadFromFile("Sprites/Units/bossPlanet3.png")))
         std::cout << "Error on loading texture..." << std::endl;
-
+    if (!(this->_transportSpaceship.loadFromFile("Sprites/Units/bigSpaceship.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_fastSpaceship.loadFromFile("Sprites/Units/miniSpaceship.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    // TANKS
+    if (!(this->_tank.loadFromFile("Sprites/Units/basicTank.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_drillTank.loadFromFile("Sprites/Units/miniTank.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_fastTank.loadFromFile("Sprites/Units/crossTank.png")))
+        std::cout << "Error on loading texture..." << std::endl;
+    if (!(this->_crossTank.loadFromFile("Sprites/Units/cannonTank.png")))
+        std::cout << "Error on loading texture..." << std::endl;
     // ARMOR SPRITE
     if (!(this->_armor.loadFromFile("Sprites/Units/spr_shield.png")))
         std::cout << "Error on loading texture..." << std::endl;

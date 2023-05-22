@@ -16,6 +16,13 @@ private:
     sf::Texture _spaceship;
     sf::Texture _flyingDrone;
     sf::Texture _regenerateDrone;
+    sf::Texture _transportSpaceship;
+    sf::Texture _fastSpaceship;
+
+    sf::Texture _tank;
+    sf::Texture _drillTank;
+    sf::Texture _fastTank;
+    sf::Texture _crossTank;
 
     sf::Texture _armoredDrone;
 
@@ -35,6 +42,13 @@ public:
     sf::Texture *getSpaceship() { return (&this->_spaceship); };
     sf::Texture *getFlyingDrone() { return (&this->_flyingDrone); };
     sf::Texture *getRegenerateDrone() { return (&this->_regenerateDrone); };
+    sf::Texture *getTransportSpaceship() { return (&this->_transportSpaceship); };
+    sf::Texture *getFastSpaceship() { return (&this->_fastSpaceship); };
+
+    sf::Texture *getTank() { return (&this->_tank); };
+    sf::Texture *getDrillTank() { return (&this->_drillTank); };
+    sf::Texture *getFastTank() { return (&this->_fastTank); };
+    sf::Texture *getCrossTank() { return (&this->_crossTank); };
 
     sf::Texture *getArmoredDrone() { return (&this->_armoredDrone); };
 

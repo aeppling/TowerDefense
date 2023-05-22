@@ -1808,7 +1808,13 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: ../src/TDGame/Retriev
   ../src/TDUnits/ArmoredRegenerateDrone.hpp \
   ../src/TDUnits/BossPlanet1.hpp \
   ../src/TDUnits/BossPlanet2.hpp \
-  ../src/TDUnits/BossPlanet3.hpp
+  ../src/TDUnits/BossPlanet3.hpp \
+  ../src/TDUnits/TransportSpaceship.hpp \
+  ../src/TDUnits/FastSpaceship.hpp \
+  ../src/TDUnits/Tank.hpp \
+  ../src/TDUnits/DrillTank.hpp \
+  ../src/TDUnits/FastTank.hpp \
+  ../src/TDUnits/CrossTank.hpp
 
 CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj: ../src/TDGame/SizeRatioCalculator.cpp \
   ../src/TDGame/SizeRatioCalculator.hpp \
@@ -10064,6 +10070,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h:
 
+../src/TDUnits/Tank.hpp:
+
 ../src/TDGame/Buildable.cpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ext/type_traits.h:
@@ -10612,6 +10620,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 
 ../include/SFML/Window/Touch.hpp:
 
+../src/TDUnits/CrossTank.hpp:
+
 ../include/SFML/Window/VideoMode.hpp:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_bvector.h:
@@ -10939,6 +10949,14 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../src/TDUnits/FlyingDrone.hpp:
 
 ../src/TDUnits/BossPlanet2.hpp:
+
+../src/TDUnits/TransportSpaceship.hpp:
+
+../src/TDUnits/FastSpaceship.hpp:
+
+../src/TDUnits/DrillTank.hpp:
+
+../src/TDUnits/FastTank.hpp:
 
 ../src/TDGraphics/SFMLDecorationLoader.cpp:
 

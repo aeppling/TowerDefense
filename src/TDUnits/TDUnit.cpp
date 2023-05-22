@@ -170,6 +170,18 @@ void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSi
         this->_sprite.setTexture(*sfmlLoader.getBossPlanet2());
     else if (this->getTypeName() == "BossPlanet3")
         this->_sprite.setTexture(*sfmlLoader.getBossPlanet3());
+    else if (this->getTypeName() == "TransportSpaceship")
+        this->_sprite.setTexture(*sfmlLoader.getTransportSpaceship());
+    else if (this->getTypeName() == "FastSpaceship")
+        this->_sprite.setTexture(*sfmlLoader.getFastSpaceship());
+    else if (this->getTypeName() == "Tank")
+        this->_sprite.setTexture(*sfmlLoader.getTank());
+    else if (this->getTypeName() == "DrillTank")
+        this->_sprite.setTexture(*sfmlLoader.getDrillTank());
+    else if (this->getTypeName() == "FastTank")
+        this->_sprite.setTexture(*sfmlLoader.getFastTank());
+    else if (this->getTypeName() == "CrossTank")
+        this->_sprite.setTexture(*sfmlLoader.getCrossTank());
     float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(this->_sprite.getTexture()->getSize().x);
     // SET UNIT SPRITE
     sf::IntRect textureRect(0, 0, this->_sprite.getTexture()->getSize().x, this->_sprite.getTexture()->getSize().y);
