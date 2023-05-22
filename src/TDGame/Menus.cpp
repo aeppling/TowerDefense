@@ -187,7 +187,7 @@ void Menus::loadSingleplayer() {
     if (this->_playerData.getUnlockedPlanet2() > 0)
         world2 = new MenusButton(400, 600, true, "Frost", "planet2", this->_mainFont);
     else
-        world2 = new MenusButton(400, 600, false, "Frost", "lcoked", this->_mainFont);
+        world2 = new MenusButton(400, 600, false, "Frost", "locked", this->_mainFont);
     if (this->_playerData.getUnlockedPlanet3() > 0)
         world3 = new MenusButton(400, 600, true, "Quasaros", "planet3", this->_mainFont);
     else
@@ -779,6 +779,8 @@ std::string Menus::loadMenuByName(std::string name) {
         this->loadLevelsPlanet3();
         return ("no");
     }
+    else if (name == "locked")
+        return ("no");
     else
         return (name + this->_players); // COMPACT WITH DIFFICULTY ????
     // ELSE RETURN BECAUSE IT IS A LEVEL & PLANET INFORMATION
