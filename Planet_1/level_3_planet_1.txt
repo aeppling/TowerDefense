@@ -5,4 +5,4 @@ RegenerateDrone:1
 Drone:10/Alien:10
 Drone:10/ArmoredDrone:3/Missile:5
 Alien:10/Drone:5/ArmoredDrone:3/Alien:10
-Spaceship:3/Drone:10/Spaceship:3
+Spaceship:2/Drone:10/FastSpaceship:3/Spaceship:2

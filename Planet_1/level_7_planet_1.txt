@@ -6,7 +6,7 @@ Missile:8/ArmoredDrone:4
 FlyingDrone:8
 Spaceship:1
 Drone:20
-Spaceship:4
+FastSpaceship:4
 Drone:40
 Alien:8/Drone:8/ArmoredDrone:4/Missile:4/Drone:8/Alien:4/Drone:4
 RegenerateDrone:4

@@ -1,6 +1,6 @@
 Drone:10
 Alien:5/Drone:7/Missile:3
-FlyingDrone:6/Spaceship:4
+FlyingDrone:6/Spaceship:1
 RegenerateDrone:1/Drone:20
 ArmoredDrone:10/ArmoredAlien:5
-Drone:50/Missile:10
+Drone:50/Missile:10/
