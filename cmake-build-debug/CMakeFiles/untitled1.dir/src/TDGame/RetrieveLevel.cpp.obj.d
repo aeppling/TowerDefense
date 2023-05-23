@@ -295,4 +295,10 @@ CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj: \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/ArmoredRegenerateDrone.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/BossPlanet1.hpp \
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/BossPlanet2.hpp \
- C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/BossPlanet3.hpp
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/BossPlanet3.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/TransportSpaceship.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/FastSpaceship.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/Tank.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/DrillTank.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/FastTank.hpp \
+ C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/CrossTank.hpp

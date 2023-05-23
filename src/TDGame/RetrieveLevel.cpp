@@ -18,6 +18,12 @@
 #include "../TDUnits/BossPlanet1.hpp"
 #include "../TDUnits/BossPlanet2.hpp"
 #include "../TDUnits/BossPlanet3.hpp"
+#include "../TDUnits/TransportSpaceship.hpp"
+#include "../TDUnits/FastSpaceship.hpp"
+#include "../TDUnits/Tank.hpp"
+#include "../TDUnits/DrillTank.hpp"
+#include "../TDUnits/FastTank.hpp"
+#include "../TDUnits/CrossTank.hpp"
 
 RetrieveLevel::RetrieveLevel(int starting_level, int planet) : _actual_level(starting_level), _planet(planet) {
 }
@@ -45,6 +51,18 @@ TDUnit *getUnitFromString(std::string enemyType) {
         newUnit = new ArmoredFlyingDrone(0, 0);
     else if (enemyType == "ArmoredRegenerateDrone")
         newUnit = new ArmoredRegenerateDrone(0, 0);
+    else if (enemyType == "TransportSpaceship")
+        newUnit = new TransportSpaceship(0, 0);
+    else if (enemyType == "FastSpaceship")
+        newUnit = new FastSpaceship(0, 0);
+    else if (enemyType == "Tank")
+        newUnit = new Tank(0, 0);
+    else if (enemyType == "DrillTank")
+        newUnit = new DrillTank(0, 0);
+    else if (enemyType == "FastTank")
+        newUnit = new FastTank(0, 0);
+    else if (enemyType == "CrossTank")
+        newUnit = new CrossTank(0, 0);
    /* else if (enemyType == "BossPlanet1")
         newUnit = new BossPlanet1(0, 0);
     else if (enemyType == "BossPlanet2")
