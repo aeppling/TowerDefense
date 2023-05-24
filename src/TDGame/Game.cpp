@@ -16,6 +16,7 @@
 #include "../TDTowers/SpeedAuraTower.hpp"
 #include "../TDGame/usefullStruct.hpp"
 #include <SFML/Network.hpp>
+#include <sys/stat.h>
 
 #include <nlohmann/json.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
@@ -792,7 +793,7 @@ void Game::setSpawnCellsSprites() {
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume) {
     std::string mapPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
-
+    std::string levelPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + ".txt";
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
     this->globalVolume = globalVolume;
     sf::Listener::setGlobalVolume((float)globalVolume);
@@ -801,11 +802,80 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     this->sfMainSoundPlayer.stopMenuMusic();
     this->sfMainSoundPlayer.playGameMusic1();
     // GAME INITIALISATON
-    // RETRIEVE ENEMY LIST (in consrtuctor for first wave)
-    if (this->enemyList.size() == 0) {
-        std::cout << "Couldn't retrieve level informations, leaving..." << std::endl;
-        return (-1);
+    // verify map and level hasn't been modified since compilation
+    std::string buildTimeString = BUILD_TIME; // Assuming BUILD_TIME is a valid string
+    std::cout << "Build time string: " << buildTimeString << '\n';
+    std::tm buildTimeTm = {};
+    std::istringstream buildTimeIss(buildTimeString);
+    buildTimeIss >> std::get_time(&buildTimeTm, "+%Y-%m-%d %H:%M:%S");
+    if (buildTimeIss.fail()) {
+        std::cout << "Failed to parse build time string." << std::endl;
+        return -1;
+    } else {
+        std::time_t buildTime = std::mktime(&buildTimeTm);
+        
+        struct stat fileInfo;
+        
+
+        if (stat(mapPath.c_str(), &fileInfo) != 0) {
+            std::cout << "Erreur lors de la récupération des informations sur le fichier." << std::endl;
+            return -1;
+        } else {
+            std::time_t fileTime = fileInfo.st_mtime;
+
+            std::tm* buildTimeTmUTC = std::gmtime(&buildTime);
+            std::stringstream buildTimeStream;
+            buildTimeStream << std::put_time(buildTimeTmUTC, "%Y-%m-%d %H:%M:%S");
+            std::string buildTimeFormatted = buildTimeStream.str();
+
+            std::tm* fileTimeTmUTC = std::gmtime(&fileTime);
+            std::stringstream fileTimeStream;
+            fileTimeStream << std::put_time(fileTimeTmUTC, "%Y-%m-%d %H:%M:%S");
+            std::string fileTimeFormatted = fileTimeStream.str();
+            fileTime += 3600; // Ajouter 1 heure (3600 secondes)
+            
+            if((fileTime - buildTime) > 60) {
+                std::cout << "Map has been modified since compilation." << std::endl;
+                return -1;
+            }
+
+        }
+        std::time_t buildTimeFile = std::mktime(&buildTimeTm);
+        
+        struct stat fileInfoFile;
+        
+
+        if (stat(levelPath.c_str(), &fileInfoFile) != 0) {
+            std::cout << "Erreur lors de la récupération des informations sur le fichier." << std::endl;
+            return -1;
+        } else {
+            std::time_t fileTime = fileInfoFile.st_mtime;
+
+            std::tm* buildTimeTmUTC = std::gmtime(&buildTimeFile);
+            std::stringstream buildTimeStream;
+            buildTimeStream << std::put_time(buildTimeTmUTC, "%Y-%m-%d %H:%M:%S");
+            std::string buildTimeFormatted = buildTimeStream.str();
+
+            std::tm* fileTimeTmUTC = std::gmtime(&fileTime);
+            std::stringstream fileTimeStream;
+            fileTimeStream << std::put_time(fileTimeTmUTC, "%Y-%m-%d %H:%M:%S");
+            std::string fileTimeFormatted = fileTimeStream.str();
+            fileTime += 3600; // Ajouter 1 heure (3600 secondes)
+            
+            if((fileTime - buildTime) > 60) {
+                std::cout << "Level has been modified since compilation." << std::endl;
+                return -1;
+            }
+
+        }
     }
+
+
+
+
+
+
+
     // TESTING MAP VALIDITY AND RETRIEVING SPAWN CELLS
     MapCell *baseCell = new MapCell('B', -1, -1);
     std::vector<MapCell*> spawnCells;

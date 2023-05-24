@@ -360,6 +360,7 @@ CMakeFiles/SpaceDefender.dir/src/TDGame/Game.cpp.obj: \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SplashTower.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDTowers/SpeedAuraTower.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
+ C:/msys64/mingw64/x86_64-w64-mingw32/include/sys/stat.h \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include/nlohmann/json.hpp \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional \
