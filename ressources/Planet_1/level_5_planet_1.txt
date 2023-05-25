@@ -1,0 +1,7 @@
+Drone:6
+Alien:4/Drone:8
+FlyingDrone:4/ArmoredDrone:4/Drone:10/Missile:4
+Drone:10/Alien:10
+RegenerateDrone:2/Drone:10
+Drone:10/Missile:6/Drone:10/FlyingDrone:6/Alien:10/RegenerateDrone:2
+Drone:20/Alien:20/ArmoredDrone:10/Missile:10/FlyingDrone:10

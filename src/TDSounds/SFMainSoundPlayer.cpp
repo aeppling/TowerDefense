@@ -11,17 +11,17 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned in
     this->_soundVolume = soundVolume;
     this->_globalVolume = globalVolume;
     // MUSIC
-    if (!(this->_menuMusic.openFromFile("Music/menu_music.ogg")))
+    if (!(this->_menuMusic.openFromFile("ressources/Music/menu_music.ogg")))
         checkError = true;
-    if (!(this->_gameMusic1.openFromFile("Music/game_music1.ogg")))
+    if (!(this->_gameMusic1.openFromFile("ressources/Music/game_music1.ogg")))
         checkError = true;
-    if (!(this->_gameMusic2.openFromFile("Music/game_music2.ogg")))
+    if (!(this->_gameMusic2.openFromFile("ressources/Music/game_music2.ogg")))
         checkError = true;
-    if (!(this->_gameMusicChill.openFromFile("Music/game_music_chill.ogg")))
+    if (!(this->_gameMusicChill.openFromFile("ressources/Music/game_music_chill.ogg")))
         checkError = true;
-    if (!(this->_gameMusicEndWave.openFromFile("Music/game_music_endwave.ogg")))
+    if (!(this->_gameMusicEndWave.openFromFile("ressources/Music/game_music_endwave.ogg")))
         checkError = true;
-    if (!(this->_gameMusicFaster.openFromFile("Music/game_music_faster.ogg")))
+    if (!(this->_gameMusicFaster.openFromFile("ressources/Music/game_music_faster.ogg")))
         checkError = true;
     if (checkError == true) {
         std::cout << "Error on loading main sounds..." << std::endl;

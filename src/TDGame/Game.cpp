@@ -343,7 +343,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             // SETTING UP MOUSE POINTER
             window.setMouseCursorVisible(false);
             sf::Texture mousePointerTexture;
-            mousePointerTexture.loadFromFile("Sprites/Cursors/crosshair043.png");
+            mousePointerTexture.loadFromFile("ressources/Sprites/Cursors/crosshair043.png");
             sf::Sprite mousePointer(mousePointerTexture);
             float scaleFactor = static_cast<float>(cellSize) / static_cast<float>(144);
             sf::IntRect textureRect(0, 0, 144, 144);
@@ -792,8 +792,8 @@ void Game::setSpawnCellsSprites() {
 }
 
 int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume) {
-    std::string mapPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
-    std::string levelPath = "Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + ".txt";
+    std::string mapPath = "ressources/Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + "_map.txt";
+    std::string levelPath = "ressources/Planet_" + std::to_string(this->planet) + "/level_" + std::to_string(this->level) + "_planet_" + std::to_string(this->planet) + ".txt";
     this->sfmlHud = new SFMLHud(&sfmlLoader, &window, _GAME_POSITION_X, _GAME_POSITION_Y, 8/difficulty, currentWaveNumber, 500-(difficulty*100), this->enemyList.size(), this->level);
     this->globalVolume = globalVolume;
     sf::Listener::setGlobalVolume((float)globalVolume);
@@ -890,7 +890,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
          i++;
      }*/
     sf::Font mainFont;
-    mainFont.loadFromFile("Fonts/neuropol.otf");
+    mainFont.loadFromFile("ressources/Fonts/neuropol.otf");
     this->infoBoxDisplay.setFont(mainFont);
     this->spawnCells = spawnCells;
     // MAP TEXTURE ARE SET IN SFMLLOAD WHILE CREATING MAP

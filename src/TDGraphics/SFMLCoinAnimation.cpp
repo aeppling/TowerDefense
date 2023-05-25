@@ -10,9 +10,9 @@
 #include "../TDGame/usefullStruct.hpp"
 
 SFMLCoinAnimation::SFMLCoinAnimation() {
-    if (!(this->_basicCoin.loadFromFile("Sprites/Fx/MonedaD.png")))
+    if (!(this->_basicCoin.loadFromFile("ressources/Sprites/Fx/MonedaD.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_textFont.loadFromFile("Fonts/PixelIntv-OPxd.ttf")))
+    if (!(this->_textFont.loadFromFile("ressources/Fonts/PixelIntv-OPxd.ttf")))
         std::cout << "Error on loading texture..." << std::endl;
 }
 

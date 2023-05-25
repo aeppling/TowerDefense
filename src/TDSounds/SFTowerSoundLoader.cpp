@@ -9,19 +9,19 @@ SFTowerSoundLoader::SFTowerSoundLoader(unsigned int musicVolume, unsigned int so
     bool checkError = false;
     this->_musicVolume = musicVolume;
     this->_soundVolume = soundVolume;
-    if (!(this->_basicShot.loadFromFile("Sounds/SingleShot2.wav")))
+    if (!(this->_basicShot.loadFromFile("ressources/Sounds/SingleShot2.wav")))
         checkError = true;
-    if (!(this->_speedShot.loadFromFile("Sounds/DefiniteShot5.wav")))
+    if (!(this->_speedShot.loadFromFile("ressources/Sounds/DefiniteShot5.wav")))
         checkError = true;
-    if (!(this->_antiAirShot.loadFromFile("Sounds/MissileLaunchMini2.wav")))
+    if (!(this->_antiAirShot.loadFromFile("ressources/Sounds/MissileLaunchMini2.wav")))
         checkError = true;
-    if (!(this->_slowShot.loadFromFile("Sounds/SlowTowerShot.wav")))
+    if (!(this->_slowShot.loadFromFile("ressources/Sounds/SlowTowerShot.wav")))
         checkError = true;
-    if (!(this->_sniperShot.loadFromFile("Sounds/SingleShot.wav")))
+    if (!(this->_sniperShot.loadFromFile("ressources/Sounds/SingleShot.wav")))
         checkError = true;
-    if (!(this->_splashShot.loadFromFile("Sounds/SplashTowerShot.wav")))
+    if (!(this->_splashShot.loadFromFile("ressources/Sounds/SplashTowerShot.wav")))
         checkError = true;
-    if (!(this->_enemyDeath.loadFromFile("Sounds/DestroyMonster2.wav")))
+    if (!(this->_enemyDeath.loadFromFile("ressources/Sounds/DestroyMonster2.wav")))
         checkError = true;
     if (checkError == true) {
         std::cout << "Error on loading tower sounds..." << std::endl;

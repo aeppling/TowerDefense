@@ -6,19 +6,19 @@
 #include "SFMLMissileLoader.hpp"
 
 SFMLMissileLoader::SFMLMissileLoader() {
-    if (!(this->_basic.loadFromFile("Sprites/Missiles/11.png")))
+    if (!(this->_basic.loadFromFile("ressources/Sprites/Missiles/11.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_speed.loadFromFile("Sprites/Missiles/23.png")))
+    if (!(this->_speed.loadFromFile("ressources/Sprites/Missiles/23.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_antiAir.loadFromFile("Sprites/Missiles/48.png")))
+    if (!(this->_antiAir.loadFromFile("ressources/Sprites/Missiles/48.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_slow.loadFromFile("Sprites/Missiles/34.png")))
+    if (!(this->_slow.loadFromFile("ressources/Sprites/Missiles/34.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_sniper.loadFromFile("Sprites/Missiles/55.png")))
+    if (!(this->_sniper.loadFromFile("ressources/Sprites/Missiles/55.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_splash.loadFromFile("Sprites/Missiles/01.png")))
+    if (!(this->_splash.loadFromFile("ressources/Sprites/Missiles/01.png")))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_explosion1.loadFromFile("Sprites/MyTiles/bk_explo_one.png")))
+    if (!(this->_explosion1.loadFromFile("ressources/Sprites/MyTiles/bk_explo_one.png")))
         std::cout << "Error on loading texture..." << std::endl;
 }
 

@@ -230,7 +230,7 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
 
 int main() {
     // RETRIEVE PLAYER SAVE
-    const std::string saveFile = "playerdata.bin";
+    const std::string saveFile = "ressources/playerdata.bin";
     TDPlayerSave playerData(saveFile);
     // PLAYER DATA RETRIEVE DEBUGGING
     playerData.debugDisplayPlayerInfos();

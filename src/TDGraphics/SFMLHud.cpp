@@ -15,7 +15,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->selectedTower = nullptr;
     towerStoreList = std::vector<std::vector<Tower*>>();
     this->_window = window;
-    this->mainFont.loadFromFile("Fonts/neuropol.otf");
+    this->mainFont.loadFromFile("ressources/Fonts/neuropol.otf");
     this->m_lifeText.setFont(this->mainFont);
     this->m_lifeText.setCharacterSize(32);
     this->m_waveText.setFont(this->mainFont);
@@ -24,28 +24,28 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->m_moneyText.setCharacterSize(30);
     this->setMessage("Build a tower to kill the enemies !");
     textMessage.setFont(mainFont);
-    if (!m_backgroundTexture.loadFromFile("Sprites/Backgrounds/stars_texture.png")) {
+    if (!m_backgroundTexture.loadFromFile("ressources/Sprites/Backgrounds/stars_texture.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!heartTexture.loadFromFile("Sprites/Hud/heart.png")) {
+    if (!heartTexture.loadFromFile("ressources/Sprites/Hud/heart.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!coinTexture.loadFromFile("Sprites/Hud/coin.png")) {
+    if (!coinTexture.loadFromFile("ressources/Sprites/Hud/coin.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!removeTexture.loadFromFile("Sprites/Hud/remove.png")) {
+    if (!removeTexture.loadFromFile("ressources/Sprites/Hud/remove.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if (!wallTexture.loadFromFile("Sprites/Hud/wall.png")) {
+    if (!wallTexture.loadFromFile("ressources/Sprites/Hud/wall.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if(!pauseButtonTexture.loadFromFile("Sprites/Buttons/play.png")){
+    if(!pauseButtonTexture.loadFromFile("ressources/Sprites/Buttons/play.png")){
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if(!volumeButtonTexture.loadFromFile("Sprites/Buttons/volume.png")){
+    if(!volumeButtonTexture.loadFromFile("ressources/Sprites/Buttons/volume.png")){
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if(!homeButtonTexture.loadFromFile("Sprites/Buttons/home.png")){
+    if(!homeButtonTexture.loadFromFile("ressources/Sprites/Buttons/home.png")){
         std::cout << "Error on loading texture..." << std::endl;
     }
 

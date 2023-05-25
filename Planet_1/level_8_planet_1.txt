@@ -1,9 +1,0 @@
-Drone:1
-Drone:2
-Drone:4
-Alien:2/Drone:4
-Spaceship:1/FlyingDrone:4
-Missile:20
-RegenerateDrone:1/Drone:10
-Alien:10/Drone:10
-ArmoredDrone:10/Alien:10/ArmoredDrone:5/Missile:10/Drone:10

@@ -12,54 +12,54 @@ Menus::Menus(int winSizeX, int winSizeY, TDPlayerSave &playerData) : _winSizeX(w
     this->_ipAddressField = "";
     this->_isInSettings = false;
     // PLANETS
-    if (!this->_planet1txt.loadFromFile("Sprites/Planets/planet03.png"))
+    if (!this->_planet1txt.loadFromFile("ressources/Sprites/Planets/planet03.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
-    if (!this->_planet2txt.loadFromFile("Sprites/Planets/planet07.png"))
+    if (!this->_planet2txt.loadFromFile("ressources/Sprites/Planets/planet07.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
-    if (!this->_planet3txt.loadFromFile("Sprites/Planets/planet09.png"))
+    if (!this->_planet3txt.loadFromFile("ressources/Sprites/Planets/planet09.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
-    if (!this->_planet2txtlocked.loadFromFile("Sprites/Planets/Planet2_locked.png"))
+    if (!this->_planet2txtlocked.loadFromFile("ressources/Sprites/Planets/Planet2_locked.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
-    if (!this->_planet3txtlocked.loadFromFile("Sprites/Planets/Planet3_locked.png"))
+    if (!this->_planet3txtlocked.loadFromFile("ressources/Sprites/Planets/Planet3_locked.png"))
         std::cout << "Planet sprite not loaded correctly" << std::endl;
     // ICONS
-    if (!this->_singleIcon.loadFromFile("Icons/singleIcon.png"))
+    if (!this->_singleIcon.loadFromFile("ressources/Icons/singleIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
-    if (!this->_multiIcon.loadFromFile("Icons/multiIcon.png"))
+    if (!this->_multiIcon.loadFromFile("ressources/Icons/multiIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
-    if (!this->_tutoIcon.loadFromFile("Icons/tutoIcon.png"))
+    if (!this->_tutoIcon.loadFromFile("ressources/Icons/tutoIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
-    if (!this->_settingsIcon.loadFromFile("Icons/settingsIcon.png"))
+    if (!this->_settingsIcon.loadFromFile("ressources/Icons/settingsIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
-    if (!this->_hostIcon.loadFromFile("Icons/hostIcon.png"))
+    if (!this->_hostIcon.loadFromFile("ressources/Icons/hostIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
-    if (!this->_joinIcon.loadFromFile("Icons/joinIcon.png"))
+    if (!this->_joinIcon.loadFromFile("ressources/Icons/joinIcon.png"))
         std::cout << "Menu icon not loaded correctly" << std::endl;
     // BACKGROUNDS
-    if (!this->_backgroundStars.loadFromFile("Sprites/Backgrounds/stars_texture.png"))
+    if (!this->_backgroundStars.loadFromFile("ressources/Sprites/Backgrounds/stars_texture.png"))
         std::cout << "Error on loading texture..." << std::endl;
-    if (!(this->_backgroundHome.loadFromFile("Sprites/Backgrounds/titleScreen.png")))
+    if (!(this->_backgroundHome.loadFromFile("ressources/Sprites/Backgrounds/titleScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundSingleplayer.loadFromFile("Sprites/Backgrounds/backgroundLevels.png")))
+    if (!(this->_backgroundSingleplayer.loadFromFile("ressources/Sprites/Backgrounds/backgroundLevels.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundLevels.loadFromFile("Sprites/Backgrounds/backgroundLevels.png")))
+    if (!(this->_backgroundLevels.loadFromFile("ressources/Sprites/Backgrounds/backgroundLevels.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundSettings.loadFromFile("Sprites/Backgrounds/backgroundSettings.png")))
+    if (!(this->_backgroundSettings.loadFromFile("ressources/Sprites/Backgrounds/backgroundSettings.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundTutorial.loadFromFile("Sprites/Backgrounds/howToPlayScreen.png")))
+    if (!(this->_backgroundTutorial.loadFromFile("ressources/Sprites/Backgrounds/howToPlayScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundTowerManual.loadFromFile("Sprites/Backgrounds/towerManualScreen.png")))
+    if (!(this->_backgroundTowerManual.loadFromFile("ressources/Sprites/Backgrounds/towerManualScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundUnitManual.loadFromFile("Sprites/Backgrounds/unitManualScreen.png")))
+    if (!(this->_backgroundUnitManual.loadFromFile("ressources/Sprites/Backgrounds/unitManualScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundGameWon.loadFromFile("Sprites/Backgrounds/gameWonScreen.png")))
+    if (!(this->_backgroundGameWon.loadFromFile("ressources/Sprites/Backgrounds/gameWonScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!(this->_backgroundGameLost.loadFromFile("Sprites/Backgrounds/gameLostScreen.png")))
+    if (!(this->_backgroundGameLost.loadFromFile("ressources/Sprites/Backgrounds/gameLostScreen.png")))
         std::cout << "Error on loading menus textures..." << std::endl;
     // FONTS
-    if (!(this->_mainFont.loadFromFile("Fonts/neuropol.otf")))
+    if (!(this->_mainFont.loadFromFile("ressources/Fonts/neuropol.otf")))
         std::cout << "Error on loading menus textures..." << std::endl;
-    if (!this->_fontTitle.loadFromFile("Fonts/ModernWarfare-OV7KP.ttf"))
+    if (!this->_fontTitle.loadFromFile("ressources/Fonts/ModernWarfare-OV7KP.ttf"))
         std::cout << "Title font not loaded correctly" << std::endl;
 }
 
