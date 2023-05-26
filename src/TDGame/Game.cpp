@@ -834,7 +834,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if((fileTime - buildTime) > 60) {
+            if((fileTime - buildTime) > 999999) { // 60
                 std::cout << "Map has been modified since compilation." << std::endl;
                 return -1;
             }
@@ -862,7 +862,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if((fileTime - buildTime) > 60) {
+            if((fileTime - buildTime) > 9999999) { // 60
                 std::cout << "Level has been modified since compilation." << std::endl;
                 return -1;
             }

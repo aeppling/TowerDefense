@@ -20,6 +20,7 @@
 			"find_package",
 			"set_property",
 			"sfml_bind_dependency",
+			"add_definitions",
 			"include_directories"
 		],
 		"files" : 
@@ -37,13 +38,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 16,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 18,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
@@ -187,6 +188,12 @@
 			{
 				"command" : 7,
 				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 0,
 				"line" : 14,
 				"parent" : 0
 			}
@@ -204,6 +211,10 @@
 			"defines" : 
 			[
 				{
+					"backtrace" : 27,
+					"define" : "BUILD_TIME=\"+2023-05-26 11:03:36\""
+				},
+				{
 					"backtrace" : 2,
 					"define" : "SFML_STATIC"
 				}
@@ -211,7 +222,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 27,
+					"backtrace" : 28,
 					"isSystem" : true,
 					"path" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include"
 				}

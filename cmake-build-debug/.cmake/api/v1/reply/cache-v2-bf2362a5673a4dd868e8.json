@@ -1394,6 +1394,42 @@
 			"value" : "SFML_DOC_DIR-NOTFOUND"
 		},
 		{
+			"name" : "SpaceDefender_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"
+		},
+		{
+			"name" : "SpaceDefender_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "SpaceDefender_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense"
+		},
+		{
 			"name" : "VorbisEnc_LIB",
 			"properties" : 
 			[

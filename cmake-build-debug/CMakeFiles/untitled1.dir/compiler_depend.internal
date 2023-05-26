@@ -740,6 +740,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.hpp
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp
+ C:/MINGW, GLEW AND SFML/mingw64/x86_64-w64-mingw32/include/sys/stat.h
  C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include/nlohmann/json.hpp
  C:/MINGW, GLEW AND SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef
  C:/MINGW, GLEW AND SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional

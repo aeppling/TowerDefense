@@ -88,7 +88,7 @@ void    TDUnit::run(TDMap *map) {
 
 void    TDUnit::move() {
     std::shared_ptr<MapCell> nextTo = this->_path[0];
-    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && ((this->getTypeName() != "FlyingDrone") && (this->getTypeName() != "RegenerateDrone"))) {
+    if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && ((this->getTypeName() != "FlyingDrone") && (this->getTypeName() != "RegenerateDrone") && (this->getTypeName() != "ArmoredFlyingDrone"))) {
         if (this->_isForcing == true) {
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());

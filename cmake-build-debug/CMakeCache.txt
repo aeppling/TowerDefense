@@ -259,6 +259,15 @@ OpenAL_LIB:FILEPATH=C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/li
 //Path to a file.
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 
+//Value Computed by CMake
+SpaceDefender_BINARY_DIR:STATIC=C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug
+
+//Value Computed by CMake
+SpaceDefender_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SpaceDefender_SOURCE_DIR:STATIC=C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense
+
 //Path to a library.
 VorbisEnc_LIB:FILEPATH=C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/libvorbisenc.a
 

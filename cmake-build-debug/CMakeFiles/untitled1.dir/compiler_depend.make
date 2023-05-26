@@ -736,6 +736,7 @@ CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj: ../src/TDGame/Game.cpp \
   ../src/TDTowers/SplashTower.hpp \
   ../src/TDTowers/SpeedAuraTower.hpp \
   ../src/TDGame/usefullStruct.hpp \
+  C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/stat.h \
   ../include/nlohmann/json.hpp \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/cstddef \
   C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional \
@@ -10851,6 +10852,8 @@ C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/
 ../include/nlohmann/detail/conversions/to_json.hpp:
 
 ../src/TDTowers/SpeedAuraTower.hpp:
+
+C:/MINGW,\ GLEW\ AND\ SFML/mingw64/x86_64-w64-mingw32/include/sys/stat.h:
 
 C:/MINGW,\ GLEW\ AND\ SFML/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/functional:
 
