@@ -25,9 +25,9 @@ void TDPlayerSave::savePlayerData(const std::string& filename) {
 }
 
 void TDPlayerSave::initPlayerData(const std::string& filename) {
-    this->_unlockedLevelsPlanet1 = 1;
-    this->_unlockedLevelsPlanet2 = 0;
-    this->_unlockedLevelsPlanet3 = 0;
+    this->_unlockedLevelsPlanet1 = 10; //1
+    this->_unlockedLevelsPlanet2 = 10; //0
+    this->_unlockedLevelsPlanet3 = 10; //0
     this->_globalVolume = 100;
     this->_musicVolume = 100;
     this->_soundVolume = 100;

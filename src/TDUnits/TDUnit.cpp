@@ -272,9 +272,9 @@ void    TDUnit::getShot(int damage, int slowValue, int armorPierce) {
     int real_armor = this->_armor - armorPierce;
     if (real_armor < 0)
         real_armor = 0;
-    if (real_armor >= damage)
-        return;
-    this->_health_points = this->_health_points - (damage - real_armor);
+    float dmg = ((float)damage - ((float)damage *  ((float)real_armor/100)));
+   
+    this->_health_points = this->_health_points - dmg;
 }
 
 void    TDUnit::getFreeze(float time) {

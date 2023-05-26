@@ -9,7 +9,7 @@
 
 class ArmoredAlien : public TDUnit {
 public:
-    ArmoredAlien(int posX, int posY) : TDUnit(50, 550, 25, posX, posY, false, 17, 1.5, false) {}
+    ArmoredAlien(int posX, int posY) : TDUnit(50, 550, 50, posX, posY, false, 17, 1.5, false) {}
 
     virtual std::string getTypeName() {
         return "ArmoredAlien";
