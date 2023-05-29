@@ -1,3 +1,4 @@
+ArmoredDrone:1
 Drone:2
 Drone:4
 Drone:8
