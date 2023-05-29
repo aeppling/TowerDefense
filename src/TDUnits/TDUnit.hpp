@@ -81,7 +81,7 @@ public:
     bool alreadyCounted() { return (this->_alreadyCount); };
     void setCounted() { this->_alreadyCount = true;};
     bool alreadyArrived() { return (this->_alreadyArrived); };
-    void setAlreadyArrived() { this->_alreadyArrived = true;};
+    void setAlreadyArrived() { this->_alreadyArrived = true; this->_alreadyCount = true;};
     void setSpeed(float speed) { this->_speed = speed; };
     float getSpeed() { return (this->_speed); };
 

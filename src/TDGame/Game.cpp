@@ -637,6 +637,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                          s)->getPosY())->getType() == 'B')
                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                     this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
+                                    //this->enemyList.at(this->currentWaveNumber).at(s)->setHealth(0);
                                     this->player->looseLife();
                                     this->sfMainSoundPlayer.playLifeLoss();
                                     this->sfmlHud->setMessage("Prevent enemies from reaching \nyour base to win the game");
@@ -1316,7 +1317,7 @@ void    Game::cleanAll() {
             if (!wave.empty()) {
                 for (TDUnit *unit: wave) {
                     unit->setAlreadyArrived();
-                    unit->join();
+                   unit->join();
                 }
             }
         }

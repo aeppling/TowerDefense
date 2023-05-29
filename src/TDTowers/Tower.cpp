@@ -146,8 +146,12 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
                     this->rotate(this->enemiesInRange.at(0));
                 if (res >= (this->timeBetweenAttack.at(this->level) * this->speedBuff) * 1000) {
                     if (!this->enemiesInRange.empty()) {
-                        this->fire(this->enemiesInRange.at(0));
-                        this->_timeOfLastShot = std::chrono::steady_clock::now();
+                        if (this->enemiesInRange.at(0)->alreadyArrived() || this->enemiesInRange.at(0)->alreadyCounted())
+                            this->enemiesInRange.erase(this->enemiesInRange.begin());
+                        if (!this->enemiesInRange.empty()) {
+                            this->fire(this->enemiesInRange.at(0));
+                            this->_timeOfLastShot = std::chrono::steady_clock::now();
+                        }
                     }
                 }
             }
