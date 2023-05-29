@@ -1,5 +1,6 @@
 Drone:3
 Drone:5
+Alien:2/Drone:5
 Drone:3/ArmoredDrone:1
 ArmoredFlyingDrone:1
 FastSpaceship:1/ArmoredDrone:2
