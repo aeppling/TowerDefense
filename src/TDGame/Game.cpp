@@ -1271,37 +1271,37 @@ void    Game::cleanAll() {
     if (!this->towerList.empty()) {
         for (Tower *tower: this->towerList) {
             tower->deactivate();
-            //  delete tower;
         }
     } // WIN NO TOWER YES UNIT OK //  WIN YES TOWER YES UNIT OK // LOOSE LAST UNIT OK // LOOSE UNIT & TOWER KO // LOOSE UNIT KO
+    std::cout << "Cleaned tower" << std::endl;
     sf::sleep(sf::seconds(1.2));
     if (!this->enemyList.empty()) { // CRASH IF HERE AND TOWER
         for (std::vector<TDUnit*> wave : this->enemyList) {
             if (!wave.empty()) {
                 for (TDUnit *unit: wave) {
-                    std::cout << "Kill unit" << std::endl;
                     unit->setAlreadyArrived();
                     unit->setHealth(0);
-                    //    delete unit;
                 }
             }
         }
     }
+    std::cout << "Cleaned enemies" << std::endl;
     sf::sleep(sf::seconds(2));
-    std::cout << "units killes" << std::endl;
     for (MapCell *element: this->spawnCells) {
         delete element;
     }
+    std::cout << "Cleaned cells" << std::endl;
     this->spawnCells.clear();
     this->spawnCellsSprites.clear();
     this->enemyList.clear();
-     if (!this->towerList.empty()) {
+    std::cout << "cleard enemies & cells" << std::endl;
+    // THIS LOOP WAS REMOVED BECAUSE OF LOOSE CRASH WHEN RUNNING UNIT & FOCUSED BY TOWER
+   /* if (!this->towerList.empty()) {
         for (Tower *tower: this->towerList) {
             tower->join();
-            //  delete tower;
         }
-    }
-    std::cout << "active cleaned" << std::endl;
+    }*/
+    std::cout << "tower joined" << std::endl;
 
     this->towerStoreList.clear();
     this->towerList.clear();
@@ -1311,11 +1311,12 @@ void    Game::cleanAll() {
                 for (TDUnit *unit: wave) {
                     unit->setAlreadyArrived();
                     unit->join();
-                    //    delete unit;
                 }
             }
         }
     }
+    std::cout << "enemies joined" << std::endl;
+
     // SIMPLE PTR
 //     delete this->selectedActiveTower;
   //   delete this->baseCellObject;

@@ -160,13 +160,11 @@ void Tower::sold() {
 
 void Tower::deactivate(){
     //* Deactivate the tower
-  //  if (this->_towerThread.joinable())
+    //if (this->_towerThread.joinable())
     //    this->_towerThread.join();
     this->activated = false;
     this->enemiesList->clear();
     this->enemiesInRange.clear();
-    // this->enemiesList = new std::vector<TDUnit *>();
-  // this->enemiesInRange =  new std::vector<TDUnit *>();
 }
 
 bool Tower::isActivated() {
