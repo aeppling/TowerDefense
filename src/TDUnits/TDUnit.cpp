@@ -137,11 +137,14 @@ bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;
     if (this->getTypeName() == "Missile")
         this->_isForcing = true;
-    this->_baseCoordX = baseCoordX;
-    this->_baseCoordY = baseCoordY;
-    AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
-    if (isTesting)
+ //   if (isTesting == false) {
+        this->_baseCoordX = baseCoordX;
+        this->_baseCoordY = baseCoordY;
+   // }
+    AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[this->_baseCoordY][this->_baseCoordX]);
+    if (isTesting == true) {
         retValue = pathFinder.runPathFinding(pathToEmptyFill, this->_isFlying, this->_isSemiAerial);
+    }
     else
         pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isSemiAerial);
     return (retValue);

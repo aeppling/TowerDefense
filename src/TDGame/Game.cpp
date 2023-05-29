@@ -350,6 +350,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
             mousePointer.setTextureRect(textureRect);
             bool closing = false;
+            unsigned int basePosX = baseCell->getPosX();
+            unsigned int basePosY = baseCell->getPosY();
+            baseCoord.x = basePosX;
+            baseCoord.y = basePosY;
             while ((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 if (this->currentWaveNumber == this->enemyList.size() - 1) {
                     this->sfMainSoundPlayer.stopGameMusic();
@@ -391,8 +395,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (!this->isPaused) {
                             if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
                                     this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
-                                unsigned int basePosX = baseCell->getPosX();
-                                unsigned int basePosY = baseCell->getPosY();
                                 runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX),
                                         std::ref(basePosY),
                                         std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
@@ -1062,8 +1064,10 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 int ecount = 0;
                 while (ecount < this->enemyList.at(wcount).size()) {
                     isPathValid = this->enemyList.at(wcount).at(ecount)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
-                    if (isPathValid == false)
-                        break;
+                    if (isPathValid == false) {
+                        map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+                        return;
+                    }
                     ecount++;
                 }
                 if (isPathValid == false)
@@ -1071,8 +1075,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 wcount++;
             }
             if (isPathValid == false) {
-                std::cout << "NOT VALID" << std::endl;
-                map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+             //   map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
                 return;
             }
             // END OF CHECKING UNIT PATH
@@ -1097,7 +1100,6 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             wallPos.x = mouseCoord.posX;
             wallPos.y = mouseCoord.posY;
             this->gameState.walls.push_back(wallPos);
-            std::cout << "wall created at : " << wallPos.x << " " << wallPos.y << std::endl;           
             if(this->networkController != nullptr){
                 this->sendGameStateToClients();
             }
