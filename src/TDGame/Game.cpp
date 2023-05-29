@@ -559,11 +559,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         this->setAllHoveringSprites(map, window, mouseCoord.posX, mouseCoord.posY, true,
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
-                                    else if (this->towerSelectorIndex == -2)
-                                        this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
+                                    else if (this->towerSelectorIndex == -2) {
+                                        if ((mouseCoord.posX > map.getSizeX()) || (mouseCoord.posY > map.getSizeY())
+                                        || (mouseCoord.posX < 0) || (mouseCoord.posY < 0))
+                                            this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, false,
+                                                                     128);
+                                        else
+                                            this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
                                                                  this->isOnPath(
                                                                          map.getElem(mouseCoord.posX, mouseCoord.posY)),
                                                                  128);
+                                    }
                                 }
                             }
                             catch (const std::out_of_range& ex){
@@ -1495,11 +1501,12 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
 }
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
-    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY))
+    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY <= 0) || (posX <= 0))
         return;
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {
             if (i*i + j*j <= radius*radius) {
+                // WALL RADIUS = 0 HERE
                 sf::RectangleShape hoveringSprite(sf::Vector2f(this->cellSize - 3, this->cellSize - 3));
                 if (isBuildable == false) {
                     sf::Color color(255, 0, 0, fade);
