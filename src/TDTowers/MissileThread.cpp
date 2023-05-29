@@ -79,6 +79,7 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
     this->_sprite.setPosition(endPosition);
     // PLAY BOOM
     this->_sprite.setPosition(5000, 5000);
+    this->_sprite.setColor(sf::Color::Transparent);
     this->_explosionSprite.setPosition(endPosition);
     this->animateExplosion();
     this->_isArrived = true;
