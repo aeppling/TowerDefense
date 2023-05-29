@@ -9,7 +9,7 @@
 
 class BossPlanet3 : public TDUnit {
 public:
-    BossPlanet3(int posX, int posY) : TDUnit(500, 1000, 0, posX, posY, false, 70, 1.8, false) {}
+    BossPlanet3(int posX, int posY) : TDUnit(2500, 1000, 70, posX, posY, false, 70, 2.5, false) {}
 
     virtual std::string getTypeName() {
         return "BossPlanet3";

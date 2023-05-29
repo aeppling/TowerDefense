@@ -63,12 +63,12 @@ TDUnit *getUnitFromString(std::string enemyType) {
         newUnit = new FastTank(0, 0);
     else if (enemyType == "CrossTank")
         newUnit = new CrossTank(0, 0);
-   /* else if (enemyType == "BossPlanet1")
+    else if (enemyType == "BossPlanet1")
         newUnit = new BossPlanet1(0, 0);
     else if (enemyType == "BossPlanet2")
         newUnit = new BossPlanet2(0, 0);
     else if (enemyType == "BossPlanet3")
-        newUnit = new BossPlanet3(0, 0);*/
+        newUnit = new BossPlanet3(0, 0);
     else {
         std::cout << "Unknown unit named '" << enemyType << "'" << std::endl;
         return (nullptr);

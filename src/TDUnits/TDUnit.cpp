@@ -49,6 +49,8 @@ void    TDUnit::regenerate() {
 }
 
 void    TDUnit::live() {
+    if ((this->getTypeName() == "BossPlanet1") || (this->getTypeName() == "BossPlanet2") || (this->getTypeName() == "BossPlanet3"))
+        this->_healthBar.setFillColor(sf::Color::Magenta);
     while (!(this->isAtBase()) && this->isAlive() == true) {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         if (!(this->isAtBase())) {
