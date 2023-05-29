@@ -331,7 +331,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->setPosX(spawnCells.at(spawnCount)->getPosX());
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
-    enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
+    enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY, false);
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
@@ -350,6 +350,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
             mousePointer.setScale(scaleFactor * 2, scaleFactor * 2);
             mousePointer.setTextureRect(textureRect);
             bool closing = false;
+            unsigned int basePosX = baseCell->getPosX();
+            unsigned int basePosY = baseCell->getPosY();
+            baseCoord.x = basePosX;
+            baseCoord.y = basePosY;
             while ((this->gameEnd() != true) && window.isOpen()) {  // RUN WHILE GAME IS NOT END OR WINDOW OPEN
                 if (this->currentWaveNumber == this->enemyList.size() - 1) {
                     this->sfMainSoundPlayer.stopGameMusic();
@@ -391,8 +395,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (!this->isPaused) {
                             if ((waveChronoElapsed >= timeBetweenSpawn) && (this->unitCount != this->enemyList.at(
                                     this->currentWaveNumber).size())) { // RUN A UNIT IF ENOUGH TIME ELAPSED
-                                unsigned int basePosX = baseCell->getPosX();
-                                unsigned int basePosY = baseCell->getPosY();
                                 runUnit(std::ref(this->enemyList), std::ref(map), std::ref(basePosX),
                                         std::ref(basePosY),
                                         std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
@@ -1054,6 +1056,30 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         bool check = false;
         // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
+            // CHECKING IF BLOCKING UNIT PATH HERE
+            bool isPathValid = true;
+               int wcount = 0;
+            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+            while (wcount < this->enemyList.size()) {
+                int ecount = 0;
+                while (ecount < this->enemyList.at(wcount).size()) {
+                    isPathValid = this->enemyList.at(wcount).at(ecount)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
+                    if (isPathValid == false) {
+                        map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+                        return;
+                    }
+                    ecount++;
+                }
+                if (isPathValid == false)
+                    break;
+                wcount++;
+            }
+            if (isPathValid == false) {
+             //   map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+                return;
+            }
+            // END OF CHECKING UNIT PATH
+            // CHECKING FOR SPAWN TO BASE PATH
             int count_spawn = 0;
             while (count_spawn < this->spawnCells.size()) {
                 map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
@@ -1069,11 +1095,11 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 }
                 count_spawn++;
             }
+            // END OF CHECKING SPAWN TO BASE PATH
             Point wallPos;
             wallPos.x = mouseCoord.posX;
             wallPos.y = mouseCoord.posY;
             this->gameState.walls.push_back(wallPos);
-            std::cout << "wall created at : " << wallPos.x << " " << wallPos.y << std::endl;           
             if(this->networkController != nullptr){
                 this->sendGameStateToClients();
             }
@@ -1245,37 +1271,37 @@ void    Game::cleanAll() {
     if (!this->towerList.empty()) {
         for (Tower *tower: this->towerList) {
             tower->deactivate();
-            //  delete tower;
         }
     } // WIN NO TOWER YES UNIT OK //  WIN YES TOWER YES UNIT OK // LOOSE LAST UNIT OK // LOOSE UNIT & TOWER KO // LOOSE UNIT KO
+    std::cout << "Cleaned tower" << std::endl;
     sf::sleep(sf::seconds(1.2));
     if (!this->enemyList.empty()) { // CRASH IF HERE AND TOWER
         for (std::vector<TDUnit*> wave : this->enemyList) {
             if (!wave.empty()) {
                 for (TDUnit *unit: wave) {
-                    std::cout << "Kill unit" << std::endl;
                     unit->setAlreadyArrived();
                     unit->setHealth(0);
-                    //    delete unit;
                 }
             }
         }
     }
+    std::cout << "Cleaned enemies" << std::endl;
     sf::sleep(sf::seconds(2));
-    std::cout << "units killes" << std::endl;
     for (MapCell *element: this->spawnCells) {
         delete element;
     }
+    std::cout << "Cleaned cells" << std::endl;
     this->spawnCells.clear();
     this->spawnCellsSprites.clear();
     this->enemyList.clear();
-     if (!this->towerList.empty()) {
+    std::cout << "cleard enemies & cells" << std::endl;
+    // THIS LOOP WAS REMOVED BECAUSE OF LOOSE CRASH WHEN RUNNING UNIT & FOCUSED BY TOWER
+   /* if (!this->towerList.empty()) {
         for (Tower *tower: this->towerList) {
             tower->join();
-            //  delete tower;
         }
-    }
-    std::cout << "active cleaned" << std::endl;
+    }*/
+    std::cout << "tower joined" << std::endl;
 
     this->towerStoreList.clear();
     this->towerList.clear();
@@ -1285,11 +1311,12 @@ void    Game::cleanAll() {
                 for (TDUnit *unit: wave) {
                     unit->setAlreadyArrived();
                     unit->join();
-                    //    delete unit;
                 }
             }
         }
     }
+    std::cout << "enemies joined" << std::endl;
+
     // SIMPLE PTR
 //     delete this->selectedActiveTower;
   //   delete this->baseCellObject;

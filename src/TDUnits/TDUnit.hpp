@@ -88,7 +88,7 @@ public:
     // FUNCTIONS
     void live();
     void run(TDMap *map);
-    void searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY);
+    bool searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting);
     void move();
     void getSlow(int slowValue);
     void regenerate();
