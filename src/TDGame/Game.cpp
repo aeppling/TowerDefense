@@ -331,7 +331,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->setPosX(spawnCells.at(spawnCount)->getPosX());
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
-    enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY);
+    enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY, false);
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
@@ -1054,6 +1054,29 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         bool check = false;
         // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
+            // CHECKING IF BLOCKING UNIT PATH HERE
+            bool isPathValid = true;
+            int wcount = 0;
+            map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
+            while (wcount < this->enemyList.size()) {
+                int ecount = 0;
+                while (ecount < this->enemyList.at(wcount).size()) {
+                    isPathValid = this->enemyList.at(wcount).at(ecount)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
+                    if (isPathValid == false)
+                        break;
+                    ecount++;
+                }
+                if (isPathValid == false)
+                    break;
+                wcount++;
+            }
+            if (isPathValid == false) {
+                std::cout << "NOT VALID" << std::endl;
+                map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+                return;
+            }
+            // END OF CHECKING UNIT PATH
+            // CHECKING FOR SPAWN TO BASE PATH
             int count_spawn = 0;
             while (count_spawn < this->spawnCells.size()) {
                 map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
@@ -1069,6 +1092,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 }
                 count_spawn++;
             }
+            // END OF CHECKING SPAWN TO BASE PATH
             Point wallPos;
             wallPos.x = mouseCoord.posX;
             wallPos.y = mouseCoord.posY;

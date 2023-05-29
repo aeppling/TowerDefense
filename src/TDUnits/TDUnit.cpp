@@ -96,7 +96,7 @@ void    TDUnit::move() {
             this->_sprite.setPosition(-1000, -1000);
         }
         this->_path.clear();
-        this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY);
+        this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY, false);
         this->move();
        //nextTo = this->_path[0];
     }
@@ -132,15 +132,19 @@ void    TDUnit::move() {
     }
 }
 
-//benjamin.labastille@
-
-void    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY) {
+bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting) {
+    bool retValue = false;
+    std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;
     if (this->getTypeName() == "Missile")
         this->_isForcing = true;
     this->_baseCoordX = baseCoordX;
     this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[baseCoordY][baseCoordX]);
-    pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isSemiAerial);
+    if (isTesting)
+        retValue = pathFinder.runPathFinding(pathToEmptyFill, this->_isFlying, this->_isSemiAerial);
+    else
+        pathFinder.runPathFinding(this->_path, this->_isFlying, this->_isSemiAerial);
+    return (retValue);
 }
 
 void    TDUnit::setSprite(SFMLEnemiesLoader &sfmlLoader, int winSizeX, int winSizeY, int mapSizeX, int mapSizeY, int cellSize) {
