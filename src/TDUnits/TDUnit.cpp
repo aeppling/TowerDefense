@@ -137,10 +137,8 @@ bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoor
     std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;
     if (this->getTypeName() == "Missile")
         this->_isForcing = true;
- //   if (isTesting == false) {
-        this->_baseCoordX = baseCoordX;
-        this->_baseCoordY = baseCoordY;
-   // }
+    this->_baseCoordX = baseCoordX;
+    this->_baseCoordY = baseCoordY;
     AStarPathFinding pathFinder((*nmap), (*nmap)[this->_posY][this->_posX], (*nmap)[this->_baseCoordY][this->_baseCoordX]);
     if (isTesting == true) {
         retValue = pathFinder.runPathFinding(pathToEmptyFill, this->_isFlying, this->_isSemiAerial);
@@ -285,6 +283,7 @@ void    TDUnit::getShot(int damage, int slowValue, int armorPierce) {
 }
 
 void    TDUnit::getFreeze(float time) {
+    this->_freezeSprite.setColor(sf::Color::White);
     this->_isFreeze = true;
     this->_freezeTime = time;
 }
@@ -292,6 +291,7 @@ void    TDUnit::getFreeze(float time) {
 void    TDUnit::unFreeze() {
     this->_isFreeze = false;
     this->_freezeTime = 0;
+    this->_freezeSprite.setColor(sf::Color::Transparent);
     this->_freezeSprite.setPosition(4000, 4000);
 }
 
