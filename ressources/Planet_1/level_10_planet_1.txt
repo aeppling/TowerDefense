@@ -10,3 +10,4 @@ Drone:8/Missile:8/Drone:16
 ArmoredDrone:1/Drone:1/Drone:1/ArmoredDrone:1/ArmoredDrone:1/Drone:1/Drone:1/ArmoredDrone:1
 Spaceship:1/FlyingDrone:1/FlyingDrone:1/Spaceship:1/Spaceship:1/FlyingDrone:1/FlyingDrone:1/Spaceship:1
 RegenerateDrone:1/Drone:1/Drone:1/Drone:1/Drone:1/Drone:1/Drone:1/RegenerateDrone:1
+BossPlanet1:1
