@@ -10,5 +10,5 @@ Alien:10/Drone:20
 ArmoredDrone:5/ArmoredAlien:5/Drone:10
 ArmoredDrone:5/Drone:25/Missile:3
 Drone:10/FastSpaceship:2/Drone:10/FastSpaceship:2/Drone:10/FastSpaceship:2/Drone:10/FastSpaceship:2/Drone:10/FastSpaceship:2
-FastSpaceship:3/Spaceship:1/FlyingDrone:5/Spaceship:1/FastSpaceship:3
+FastSpaceship:3/Spaceship:1/FlyingDrone:3/Spaceship:1/FastSpaceship:3
 ArmoredRegenerateDrone:1
