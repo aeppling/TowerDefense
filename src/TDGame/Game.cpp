@@ -1056,7 +1056,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
             // CHECKING IF BLOCKING UNIT PATH HERE
             bool isPathValid = true;
-            int wcount = 0;
+               int wcount = 0;
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('W');
             while (wcount < this->enemyList.size()) {
                 int ecount = 0;
