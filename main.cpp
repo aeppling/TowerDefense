@@ -239,10 +239,17 @@ int main() {
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "SFML Window", sf::Style::Default);
+    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Default);
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData);
     menu.loadHome();
     sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
+    // SETTINGS SPACE DEFENDER LOGO
+    sf::Image image;
+    if (!image.loadFromFile("ressources/Icons/LogoSpaceDefender.png")) {
+        std::cout << "Logo didn't load correctly." << std::endl;
+    }
+    else
+        windowTestMenu.setIcon(image.getSize().x, image.getSize().y, image.getPixelsPtr());
 // FOR LOOP LOGIC
     std::string selectionInformation("none");
     int         levelToPlay = -1;
@@ -391,6 +398,5 @@ int main() {
     }
     sfSoundPlayer.stopMenuMusic();
     //OLD GAME LAUNCH HERE
-
     return (0);
 }
