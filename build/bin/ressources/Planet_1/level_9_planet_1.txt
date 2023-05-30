@@ -7,4 +7,4 @@ ArmoredDrone:3/Alien:2
 FlyingDrone:4
 RegenerateDrone:1
 RegenerateDrone:1/Drone:20
-Drone:20/Missile:10/Alien:10/Drone:10
+ArmoredDrone:5/Drone:20/Missile:10/Alien:10/Drone:10
