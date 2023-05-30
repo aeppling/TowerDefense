@@ -250,7 +250,7 @@ int main() {
     }
     else
         windowTestMenu.setIcon(image.getSize().x, image.getSize().y, image.getPixelsPtr());
-// FOR LOOP LOGIC
+    // FOR LOOP LOGIC
     std::string selectionInformation("none");
     int         levelToPlay = -1;
     int         planetToLoad = -1;

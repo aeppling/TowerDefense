@@ -560,7 +560,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
-                                        if ((mouseCoord.posX > map.getSizeX()) || (mouseCoord.posY > map.getSizeY())
+                                        if ((mouseCoord.posX > 13) || (mouseCoord.posY > 11)
                                         || (mouseCoord.posX < 0) || (mouseCoord.posY < 0))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, false,
                                                                      128);
