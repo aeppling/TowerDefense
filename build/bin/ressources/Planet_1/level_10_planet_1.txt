@@ -3,11 +3,11 @@ Drone:4
 Drone:6
 Drone:8
 Alien:1/Drone:1/Drone:1/Alien:1/Alien:1/Drone:1/Drone:1/Alien:1
-Drone:12
+Drone:16
 Alien:8
 FlyingDrone:1/Drone:1/Drone:1/FlyingDrone:1/Drone:1/Drone:1/FlyingDrone:1
 Drone:8/Missile:8/Drone:16
 ArmoredDrone:1/Drone:1/Drone:1/ArmoredDrone:1/ArmoredDrone:1/Drone:1/Drone:1/ArmoredDrone:1
 Spaceship:1/FlyingDrone:1/FlyingDrone:1/Spaceship:1/Spaceship:1/FlyingDrone:1/FlyingDrone:1/Spaceship:1
-RegenerateDrone:1/ArmoredDrone:1/ArmoredDrone:1/ArmoredDrone:1/ArmoredDrone:1/ArmoredDrone:1/ArmoredDrone:1/RegenerateDrone:1
+RegenerateDrone:1/Drone:1/Drone:1/Drone:1/Drone:1/Drone:1/Drone:1/RegenerateDrone:1
 BossPlanet1:1

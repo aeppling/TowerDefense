@@ -364,11 +364,14 @@ int main() {
                             networkThread.join();
 
                             std::cout << "All clients connected, launching game " << std::endl;
-
-                            networkController->sendMessageToAllClients(std::to_string(levelToPlay));
-                            networkController->sendMessageToAllClients(std::to_string(planetToLoad));
                             
+                            networkController->sendMessageToAllClients(std::to_string(levelToPlay));
+                            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                            networkController->sendMessageToAllClients(std::to_string(planetToLoad));
+                            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                             std::cout << "planetToLoad : " << std::to_string(planetToLoad) << std::endl;
+                            std::cout << "levelToPlay : " << std::to_string(levelToPlay) << std::endl;
+                            std::cout << "difficulty : " << std::to_string(menu.getDifficulty()) << std::endl;
                             networkController->sendMessageToAllClients(std::to_string(menu.getDifficulty()));
                             int exitResult = launchMultiplayerGame(sfSoundPlayer, playerData, menu.getDifficulty(), windowTestMenu, levelToPlay, planetToLoad, networkController);
                             resultOfEndGameActions(playerData, exitResult, levelToPlay, planetToLoad);
