@@ -28,6 +28,7 @@ public:
     bool _isSemiAerial;
     bool _isForcing;
     int  _value;
+    bool _isSpawned;
 
     bool _alreadyCount;
     bool _alreadyArrived;
@@ -120,6 +121,8 @@ public:
     void setSpritePosition(int x, int y) { this->_sprite.setPosition(x, y);};
     void setPaused() { this->_isPaused = true; };
     void unsetPaused() { this->_isPaused = false; };
+    void setSpawned() { this->_isSpawned = true; };
+    bool isSpawned() { return (this->_isSpawned); };
 };
 /*
 class TestUnit {

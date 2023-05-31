@@ -332,6 +332,7 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
     enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY, false);
+    enemyList.at(wave).at(unitCount)->setSpawned();
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
@@ -560,8 +561,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
-                                        if ((mouseCoord.posX > 13) || (mouseCoord.posY > 11)
-                                        || (mouseCoord.posX < 0) || (mouseCoord.posY < 0))
+                                        if ((mouseCoord.posX > (11 * 3)) || (mouseCoord.posY > (13 * 3))
+                                            || (mouseCoord.posX < 0) || (mouseCoord.posY < 0))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, false,
                                                                      128);
                                         else
@@ -1056,6 +1057,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
 
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
+    std::cout << "TRY WALL" << std::endl;
     if (this->player->getCoinNumber() < 5)
         return ;
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
@@ -1070,6 +1072,10 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             while (wcount < this->enemyList.size()) {
                 int ecount = 0;
                 while (ecount < this->enemyList.at(wcount).size()) {
+                    if (this->enemyList.at(wcount).at(ecount)->isSpawned() == false) {
+                        ecount++;
+                        continue;
+                    }
                     isPathValid = this->enemyList.at(wcount).at(ecount)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
                     if (isPathValid == false) {
                         map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
@@ -1502,7 +1508,7 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
 }
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
-    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY <= 0) || (posX <= 0))
+    if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY < 0) || (posX < 0))
         return;
     for (int i = -radius; i <= radius; i++) {
         for (int j = -radius; j <= radius; j++) {

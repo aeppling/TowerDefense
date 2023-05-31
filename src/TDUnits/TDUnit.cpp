@@ -14,6 +14,7 @@
 std::mutex mtx2;
 
 TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial) {
+    this->_isSpawned = false;
     this->_health_points = hp;
     this->_isForcing = false;
     this->_isPaused = false;
