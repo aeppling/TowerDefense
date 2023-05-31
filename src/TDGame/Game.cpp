@@ -561,11 +561,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
-                                        if ((mouseCoord.posX > (11 * 3)) || (mouseCoord.posY > (13 * 3))
-                                            || (mouseCoord.posX < 0) || (mouseCoord.posY < 0))
-                                            this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0, false,
-                                                                     128);
-                                        else
+                                        if (!((mouseCoord.posX >= (11 * 3)) || (mouseCoord.posY >= (13 * 3))
+                                            || (mouseCoord.posX < 0) || (mouseCoord.posY < 0)))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
                                                                  this->isOnPath(
                                                                          map.getElem(mouseCoord.posX, mouseCoord.posY)),
