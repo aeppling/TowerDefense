@@ -590,6 +590,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                                 else if (((enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "FlyingDrone" )
                                 || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "RegenerateDrone")
+                                   || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "ArmoredRegenerateDrone")
+                                      || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "ArmoredFlyingDrone")
                                    || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "TransportSpaceship")
                                       || (enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "FastSpaceship")) && enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     sf::Sprite droneShadow(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
