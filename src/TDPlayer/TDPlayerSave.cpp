@@ -25,13 +25,13 @@ void TDPlayerSave::savePlayerData(const std::string& filename) {
 }
 
 void TDPlayerSave::initPlayerData(const std::string& filename) {
-    this->_unlockedLevelsPlanet1 = 1; //1
+    this->_unlockedLevelsPlanet1 = 3; //1
     this->_unlockedLevelsPlanet2 = 0; //0
     this->_unlockedLevelsPlanet3 = 0; //0
     this->_globalVolume = 100;
     this->_musicVolume = 100;
     this->_soundVolume = 100;
-    this->_difficulty = 1;
+    this->_difficulty = 2;
     std::ofstream file(filename, std::ios::binary);
     if (file.is_open()) {
         file.write(reinterpret_cast<const char*>(this), sizeof(*this));

@@ -9,6 +9,7 @@ std::mutex mtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
              std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
+    this->isPlaced = false;
     this->towerName = towerName;
     this->isPaused = false;
     if (this->towerName == "BasicTower")
@@ -326,6 +327,20 @@ int Tower::getUpgradeDamage(){
     return (this->damage[this->level+1]);
 }
 
+int Tower::getUpgradeRange(){
+    if(this->isMaxed()){
+        return -1;
+    }
+    return (this->range[this->level+1]);
+}
+
+int Tower::getUpgradeAttackSpeed(){
+    if(this->isMaxed()){
+        return -1;
+    }
+    return (this->timeBetweenAttack[this->level+1]);
+}
+
 void Tower::setSpeedBuffValue(int value) {
     this->setSpeedBoosted(true);
     float bonusPercentage = static_cast<float>(value) / 100.0f;
@@ -342,4 +357,12 @@ void Tower::resetSpeedBuff() {
 void Tower::addArmor() {
     if (this->armorPierceValue < 30)
         this->armorPierceValue = this->armorPierceValue + 5;
+}
+
+bool Tower::getIsPlaced () {
+    return (this->isPlaced);
+}
+
+void Tower::setIsPlaced(bool newPlaced) {
+    this->isPlaced = newPlaced;
 }

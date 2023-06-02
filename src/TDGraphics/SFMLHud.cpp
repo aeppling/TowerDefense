@@ -286,7 +286,10 @@ void SFMLHud::draw() {
         towerRange.setFont(mainFont);
         towerRange.setCharacterSize(24);
         towerRange.setPosition(1465, 350 + this->towerSelectorOffset);
-        towerRange.setString("Range: " + std::to_string(selectedTower->getRange()));
+        if(!selectedTower->isMaxed())
+            towerRange.setString("Range: " + std::to_string(selectedTower->getRange()) + " -> " + std::to_string(selectedTower->getUpgradeRange()));
+        else if(selectedTower->getRange() != selectedTower->getUpgradeRange())
+            towerRange.setString("Range: " + std::to_string(selectedTower->getRange()));
         _window->draw(towerRange);
         sf::Text towerSpeed;
         towerSpeed.setFont(mainFont);
@@ -298,10 +301,17 @@ void SFMLHud::draw() {
         if (selectedTower->isSpeedBoosted()) {
             int bonusPercentValue = (1.0f - selectedTower->getSpeedBuff()) * 100.0f;
             std::string bonusPercentString = std::to_string(bonusPercentValue);
-            towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");
+            if(!selectedTower->isMaxed())
+                towerSpeed.setString("Attack Speed: " + str + " -> " + std::to_string(selectedTower->getUpgradeAttackSpeed()) + " +" + bonusPercentString + "%");
+            else if(selectedTower->getTimeBetweenAttack() != selectedTower->getUpgradeAttackSpeed()){
+                towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");}
         }
-        else
-            towerSpeed.setString("Attack Speed: " + str);
+        else{
+            if(selectedTower->isMaxed()){
+            towerSpeed.setString("Attack Speed: " + str);}
+            else if(selectedTower->getTimeBetweenAttack() != selectedTower->getUpgradeAttackSpeed())
+                towerSpeed.setString("Attack Speed: " + str + " -> " + std::to_string(selectedTower->getUpgradeAttackSpeed()));
+        }
         std::string stringArmorP("Armor penetration : " + std::to_string(selectedTower->getArmor()));
         sf::Text towerArmorP;
         towerArmorP.setFont(mainFont);

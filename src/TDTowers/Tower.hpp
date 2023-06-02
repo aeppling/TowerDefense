@@ -21,6 +21,7 @@ class Tower : public Buildable {
     protected:
         //Game gameInstance;
         Point coord;
+        bool isPlaced;
         std::vector<Tower *> towersList;
         std::vector<TDUnit *> enemiesInRange;
         std::string towerName;
@@ -60,6 +61,8 @@ public:
         void activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void deactivate() override;
         void rotate(TDUnit *target);
+        bool getIsPlaced();
+        void setIsPlaced(bool isPlaced);
         void animateFiring();
         void fire(TDUnit *target) override;
         void sold();
@@ -70,6 +73,7 @@ public:
         void setArmor(int armor) { this->armorPierceValue = armor; };
         void setLevel(int level){this->level = level;};
         void setTimeBetweenAttack(float time) override;
+        int getUpgradeAttackSpeed();
         float getTimeBetweenAttack() override;
         int getCost() override;
         int getUpgradeCost();
@@ -82,6 +86,7 @@ public:
         Point getPosition() override;
         bool isActivated();
         int getRange();
+        int getUpgradeRange();
         void join();
         void run(std::shared_ptr<std::vector<TDUnit*>> enemiesList) override;
         void live(std::shared_ptr<std::vector<TDUnit*>> levelEnemyList) override;

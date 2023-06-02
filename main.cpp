@@ -96,11 +96,11 @@ int resultOfEndGameActions(TDPlayerSave &playerData, int exitResult, int levelPl
     }
     else if (exitResult == 2) {
         std::cout << "Player won current game" << std::endl;
-        if (planetPlayed == 1 && (playerData.getUnlockedPlanet1() == planetPlayed))
+        if (planetPlayed == 1 && (playerData.getUnlockedPlanet1() == levelPlayed))
             playerData.unlockPlanet1Level();
-        else if (planetPlayed == 2 && (playerData.getUnlockedPlanet2() == planetPlayed))
+        else if (planetPlayed == 2 && (playerData.getUnlockedPlanet2() == levelPlayed))
             playerData.unlockPlanet2Level();
-        else if (planetPlayed == 3 && (playerData.getUnlockedPlanet3() == planetPlayed))
+        else if (planetPlayed == 3 && (playerData.getUnlockedPlanet3() == levelPlayed))
             playerData.unlockPlanet3Level();
         return (2);
     }

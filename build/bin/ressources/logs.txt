@@ -1,3 +1,35 @@
-Unlocked (P1,P2,P3) : 10,10,10
+Unlocked (P1,P2,P3) : 3,0,0
 Volumes (Global,Music,Sound) : 100,100,100,
-Difficulty : 3
+Difficulty : 2
+Build time string: +2023-06-02 14:52:24
+XSXXXXXXXSX
+TTXXTTTXXTT
+TXXTTTTTXXT
+TXXXXXXXXXT
+TTTTTXTTTTT
+XXXXXXXXXXX
+TTTXTTTXTTT
+TTTXTTTXTTT
+TXXXXXXXXXX
+TXTTTTTTTXT
+TXTTTTTTTXT
+TXXXXXXXXXT
+TTTTTBTTTTT
+Starting wave0/7
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 3 ennemies
+Tower id : 1
+Refresh.
+Tower id : 2
+Refresh.
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Unknow current game exit reason
