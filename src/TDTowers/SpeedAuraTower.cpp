@@ -8,7 +8,7 @@
 std::mutex mtx_aura;
 
 SpeedAuraTower::SpeedAuraTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SpeedAuraTower",
-                                                                                                                                                                                                   {10, 25, 40}, {450, 700, 1000}, {10, 12, 14}, {1.5, 1.3, 1.2}, 5, false, soundLoader){
+                                                                                                                                                                                                   {10, 25, 40}, {400, 650, 900}, {10, 12, 14}, {1.5, 1.3, 1.2}, 5, false, soundLoader){
 }
 
 void SpeedAuraTower::removeFromTowerInRangeList(Tower *tower){

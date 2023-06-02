@@ -229,6 +229,11 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
 }
 
 int main() {
+    std::ofstream logFile("ressources/logs.txt");  // Ouvre le fichier logs.txt en mode écriture
+
+    // Redirige la sortie standard (std::cout) vers le fichier logs.txt
+    std::streambuf* coutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(logFile.rdbuf());
     // RETRIEVE PLAYER SAVE
     const std::string saveFile = "ressources/playerdata.bin";
     TDPlayerSave playerData(saveFile);
@@ -403,6 +408,10 @@ int main() {
         menu.drawMenu(windowTestMenu);
         windowTestMenu.display();
     }
+    // Restaure la sortie standard
+    std::cout.rdbuf(coutBuffer);
+
+    logFile.close();  // Ferme le fichier logs.txt
     sfSoundPlayer.stopMenuMusic();
     //OLD GAME LAUNCH HERE
     return (0);

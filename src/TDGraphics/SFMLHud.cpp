@@ -274,6 +274,8 @@ void SFMLHud::draw() {
         std::string valueType("Damage: ");
         if (selectedTower->getTowerName() == "SpeedAuraTower")
             valueType = "Bonus: ";
+        if(selectedTower->getTowerName() == "SlowTower")
+            valueType = "Slow: ";
         if(!selectedTower->isMaxed()){
             towerDamage.setString(valueType + std::to_string(selectedTower->getDamage()) + " -> " + std::to_string(selectedTower->getUpgradeDamage()));
         }else{
@@ -328,19 +330,21 @@ void SFMLHud::draw() {
             
         }
         // DISPLAY ARMOR PIERCE BUY BUTTON
-        this->upgradeArmorRect.setSize(sf::Vector2f(400, 80));
-        this->upgradeArmorRect.setPosition(1440, 795);
-        this->upgradeArmorRect.setFillColor(sf::Color::Transparent);
-        this->upgradeArmorRect.setOutlineThickness(1);
-        this->upgradeArmorRect.setOutlineColor(sf::Color::Magenta);
-        sf::Text armorText;
-        armorText.setString("+ 5 Armor p. \n   50 coins");
-        armorText.setFont(mainFont);
-        armorText.setColor(sf::Color::Magenta);
-        armorText.setCharacterSize(24);
-        armorText.setPosition(1545, 805);
-        _window->draw(upgradeArmorRect);
-        _window->draw(armorText);
+        if(selectedTower->getTowerName() != "SpeedAuraTower" && selectedTower->getTowerName() != "SlowTower" ){
+            this->upgradeArmorRect.setSize(sf::Vector2f(400, 80));
+            this->upgradeArmorRect.setPosition(1440, 795);
+            this->upgradeArmorRect.setFillColor(sf::Color::Transparent);
+            this->upgradeArmorRect.setOutlineThickness(1);
+            this->upgradeArmorRect.setOutlineColor(sf::Color::Magenta);
+            sf::Text armorText;
+            armorText.setString("+ 5 Armor p. \n   50 coins");
+            armorText.setFont(mainFont);
+            armorText.setColor(sf::Color::Magenta);
+            armorText.setCharacterSize(24);
+            armorText.setPosition(1545, 805);
+            _window->draw(upgradeArmorRect);
+            _window->draw(armorText);
+        }
         // DISPLAY SELL BUTTON
         sellRect.setSize(sf::Vector2f(400, 80));
         sellRect.setPosition(1440, 695);

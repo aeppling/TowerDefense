@@ -561,12 +561,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
+                                        
                                         if (!((mouseCoord.posX >= (11 * 3)) || (mouseCoord.posY >= (13 * 3))
                                             || (mouseCoord.posX < 0) || (mouseCoord.posY < 0)))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
                                                                  this->isOnPath(
                                                                          map.getElem(mouseCoord.posX, mouseCoord.posY)),
-                                                                 128);
+                                                                 128, 5);
                                     }
                                 }
                             }
@@ -752,6 +753,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // SET AND DISPLAY MOUSE
                     if ((isBuilding == true) && !(this->isCursorOutsideMap))
                         mousePointer.setColor(sf::Color::Transparent);
+                        
                     else {
                         if (this->isCursorOutsideMap)
                             mousePointer.setColor(sf::Color::White);
@@ -1489,24 +1491,24 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
         bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
                                                            posY, radius);
         setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48);
+                           isBuildable, 48, towerInfos->getCost());
         setHoveringSprites(window, posX, posY, radius,
-                           isBuildable, 128);
+                           isBuildable, 128, towerInfos->getCost());
     }
     else {
         bool isBuildable = isBuildableAtPosition(map, posX, posY,
                                                  radius);
         setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48 );
+                           isBuildable, 48, towerInfos->getCost());
         setHoveringSprites(window, posX, posY, radius,
-                           isBuildable, 128);
+                           isBuildable, 128, towerInfos->getCost());
 
     }
     if (showBuildable)
         setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
 }
 
-void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade) {
+void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade, int cost) {
     if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY < 0) || (posX < 0))
         return;
     for (int i = -radius; i <= radius; i++) {
@@ -1518,6 +1520,11 @@ void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int 
                     sf::Color color(255, 0, 0, fade);
                     hoveringSprite.setFillColor(color);
                 }
+                else if( cost >= this->player->getCoinNumber()) {
+                    sf::Color color(255, 0, 0, fade);
+                    hoveringSprite.setFillColor(color);
+                }
+                
                 else {
                     sf::Color color(0, 0, 255, fade);
                     hoveringSprite.setFillColor(color);
@@ -1648,15 +1655,20 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         if(tower->getArmor() < towerArmorPierceValue){
                             std::cout << "Tower armor changed by other player" << std::endl;
                             this->looseCoins(50);
-                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
+                            std::cout << "coins" << this->player->getCoinNumber() << std::endl;
+                            std::cout << "animation"  << std::endl;
                             tower->addArmor();
+                            std::cout << "armor" << tower->getArmor() <<  std::endl;
                         }
+                        std::cout << "Tower updated" << std::endl;
                         break;
                     }
+                    
                     // Tower built by other player
 
                     
                 }
+                std::cout << "next" << std::endl;
                 if(!towerFound){
                     std::cout << "Tower not found" << std::endl;
                     std::cout << "Tower built by other player" << std::endl;
