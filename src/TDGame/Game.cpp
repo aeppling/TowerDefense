@@ -1539,7 +1539,7 @@ void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int 
                     hoveringSprite.setFillColor(color);
                 }
             
-                else if( cost >= this->player->getCoinNumber()){
+                else if( cost > this->player->getCoinNumber()){
                     sf::Color color(255, 0, 0, fade);
                     hoveringSprite.setFillColor(color);
                 }
