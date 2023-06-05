@@ -460,10 +460,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
-                                
+                                std::cout << "crash before" << std::endl;
                                 this->selectedActiveTower = nullptr;
                                 this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                       
+                                std::cout << "crash afther" << std::endl;      
                             }
                             else {
                                 this->sfmlHud->setSelectedTower(nullptr);
@@ -477,12 +477,14 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (isBuilding == true) {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
-                                if (this->towerSelectorIndex == -2)
-                                    setObstacleTest(std::ref(map), std::ref(window));
+                                if (this->towerSelectorIndex == -2){
+                                    std::cout << "crash2" << std::endl;
+
+                                    setObstacleTest(std::ref(map), std::ref(window));}
                                 else if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
-                                        
+                                        std::cout << "crash" << std::endl;
                                         this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
                                             isBuilding = false;
@@ -574,6 +576,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
+                                        std::cout << "crash1" << std::endl;
                                         
                                         if (!((mouseCoord.posX >= (11 * 3)) || (mouseCoord.posY >= (13 * 3))
                                             || (mouseCoord.posX < 0) || (mouseCoord.posY < 0)))
@@ -756,9 +759,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         else {
                             whichClicked = this->sfmlHud->checkForClick(window);
+                            
                             if (whichClicked != -1) {
+                                if(whichClicked != -2){
                                 this->sfmlHud->setSelectedTower(this->towerStoreList.at(whichClicked).at(0));
+                                }
                                 this->towerSelectorIndex = whichClicked;
+                                 
                                 if (isBuilding == false)
                                     isBuilding = true;
                             }
@@ -829,7 +836,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     // GAME INITIALISATON
     // verify map and level hasn't been modified since compilation
     std::string buildTimeString = BUILD_TIME; // Assuming BUILD_TIME is a valid string
-    std::cout << "Build time string: " << buildTimeString << '\n';
+    
     std::tm buildTimeTm = {};
     std::istringstream buildTimeIss(buildTimeString);
     buildTimeIss >> std::get_time(&buildTimeTm, "+%Y-%m-%d %H:%M:%S");

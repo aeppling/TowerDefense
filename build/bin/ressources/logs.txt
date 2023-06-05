@@ -20,8 +20,899 @@ Life number : 6
 Coin number : 6
 Wave Started
 Wave contain 3 ennemies
-Tower id : 1
+Wall clicked
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+Wall clicked
+whichClicked : -2
+whichClicked crash before: -2
+whichClicked crash after: -2
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash2
+TRY WALL
 Refresh.
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+whichClicked : -1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
+crash1
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
