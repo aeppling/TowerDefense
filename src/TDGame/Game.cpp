@@ -460,10 +460,13 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
-                                this->sfmlHud->setSelectedTower(nullptr);
+                                
                                 this->selectedActiveTower = nullptr;
+                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
+                                       
                             }
                             else {
+                                this->sfmlHud->setSelectedTower(nullptr);
                                 //toBuild = nullptr;
                                 isBuilding = false;
                                
@@ -479,6 +482,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 else if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
+                                        
+                                        this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
                                             isBuilding = false;
                                             this->initializeTowerStore(window);
@@ -488,21 +493,29 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                             }
                             if (event.type == sf::Event::KeyPressed) {
+                                
                                 if (!this->towerStoreList.empty()) {
                                     if (event.key.code == sf::Keyboard::Right) {
-                                        if (this->towerStoreList.size() <= 1)
+                                        if (this->towerStoreList.size() <= 1){
                                             break;
-                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
+                                        }
+                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1)){
                                             this->towerSelectorIndex = 0;
-                                        else
+                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
+                                        }else{
                                             this->towerSelectorIndex++;
+                                            
+                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
+                                        }
                                     } else if (event.key.code == sf::Keyboard::Left) {
                                         if (this->towerStoreList.size() <= 1)
                                             break;
                                         if (this->towerSelectorIndex == 0) {
                                             this->towerSelectorIndex = this->towerStoreList.size() - 1;
+                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         } else
                                             this->towerSelectorIndex--;
+                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                     }
                                 }
                             }
@@ -744,6 +757,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         else {
                             whichClicked = this->sfmlHud->checkForClick(window);
                             if (whichClicked != -1) {
+                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(whichClicked).at(0));
                                 this->towerSelectorIndex = whichClicked;
                                 if (isBuilding == false)
                                     isBuilding = true;
