@@ -229,6 +229,7 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
 }
 
 int main() {
+    
     std::ofstream logFile("ressources/logs.txt");  // Ouvre le fichier logs.txt en mode écriture
 
     // Redirige la sortie standard (std::cout) vers le fichier logs.txt
@@ -244,7 +245,8 @@ int main() {
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Default);
+    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Titlebar | sf::Style::Close);
+    
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData);
     menu.loadHome();
     sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
