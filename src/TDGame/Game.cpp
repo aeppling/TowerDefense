@@ -460,13 +460,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
-                                std::cout << "crash before" << std::endl;
+                                this->sfmlHud->setSelectedTower(nullptr);
                                 this->selectedActiveTower = nullptr;
-                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                std::cout << "crash afther" << std::endl;      
                             }
                             else {
-                                this->sfmlHud->setSelectedTower(nullptr);
                                 //toBuild = nullptr;
                                 isBuilding = false;
                                
@@ -477,15 +474,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (isBuilding == true) {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
-                                if (this->towerSelectorIndex == -2){
-                                    std::cout << "crash2" << std::endl;
-
-                                    setObstacleTest(std::ref(map), std::ref(window));}
+                                if (this->towerSelectorIndex == -2)
+                                    setObstacleTest(std::ref(map), std::ref(window));
                                 else if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
-                                        std::cout << "crash" << std::endl;
-                                        this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
                                             isBuilding = false;
                                             this->initializeTowerStore(window);
@@ -495,29 +488,21 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                             }
                             if (event.type == sf::Event::KeyPressed) {
-                                
                                 if (!this->towerStoreList.empty()) {
                                     if (event.key.code == sf::Keyboard::Right) {
-                                        if (this->towerStoreList.size() <= 1){
+                                        if (this->towerStoreList.size() <= 1)
                                             break;
-                                        }
-                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1)){
+                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
                                             this->towerSelectorIndex = 0;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                        }else{
+                                        else
                                             this->towerSelectorIndex++;
-                                            
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                        }
                                     } else if (event.key.code == sf::Keyboard::Left) {
                                         if (this->towerStoreList.size() <= 1)
                                             break;
                                         if (this->towerSelectorIndex == 0) {
                                             this->towerSelectorIndex = this->towerStoreList.size() - 1;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         } else
                                             this->towerSelectorIndex--;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                     }
                                 }
                             }
@@ -576,14 +561,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
-                                        std::cout << "crash1" << std::endl;
-                                        
                                         if (!((mouseCoord.posX >= (11 * 3)) || (mouseCoord.posY >= (13 * 3))
                                             || (mouseCoord.posX < 0) || (mouseCoord.posY < 0)))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
                                                                  this->isOnPath(
                                                                          map.getElem(mouseCoord.posX, mouseCoord.posY)),
-                                                                 128, 5);
+                                                                 128,5);
                                     }
                                 }
                             }
@@ -759,13 +742,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         else {
                             whichClicked = this->sfmlHud->checkForClick(window);
-                            
                             if (whichClicked != -1) {
-                                if(whichClicked != -2){
-                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(whichClicked).at(0));
-                                }
                                 this->towerSelectorIndex = whichClicked;
-                                 
                                 if (isBuilding == false)
                                     isBuilding = true;
                             }
@@ -774,7 +752,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // SET AND DISPLAY MOUSE
                     if ((isBuilding == true) && !(this->isCursorOutsideMap))
                         mousePointer.setColor(sf::Color::Transparent);
-                        
                     else {
                         if (this->isCursorOutsideMap)
                             mousePointer.setColor(sf::Color::White);
@@ -836,7 +813,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     // GAME INITIALISATON
     // verify map and level hasn't been modified since compilation
     std::string buildTimeString = BUILD_TIME; // Assuming BUILD_TIME is a valid string
-    
+    std::cout << "Build time string: " << buildTimeString << '\n';
     std::tm buildTimeTm = {};
     std::istringstream buildTimeIss(buildTimeString);
     buildTimeIss >> std::get_time(&buildTimeTm, "+%Y-%m-%d %H:%M:%S");
@@ -1039,7 +1016,6 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 std::cout << "Tower id : " << this->id << std::endl;
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
-                this->towerList[this->towerList.size() - 1]->setIsPlaced(true);
                 this->looseCoins(toBuild->getCost());
                 this->gameState.numCoins = this->player->getCoinNumber();
                 if(this->networkController != nullptr){
@@ -1512,35 +1488,18 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
     if (radius <= 1) {
         bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
                                                            posY, radius);
-
-        if(towerInfos->getIsPlaced()){
-            setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48, 0);
-            setHoveringSprites(window, posX, posY, radius,
-                           isBuildable, 128, 0);
-        }else{
-            setHoveringSprites(window, posX, posY, range,
+        setHoveringSprites(window, posX, posY, range,
                            isBuildable, 48, towerInfos->getCost());
-            setHoveringSprites(window, posX, posY, radius,
+        setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128, towerInfos->getCost());
-
-        }
     }
     else {
         bool isBuildable = isBuildableAtPosition(map, posX, posY,
                                                  radius);
-        if(towerInfos->getIsPlaced()){
-            setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48, 0);
-            setHoveringSprites(window, posX, posY, radius,
-                           isBuildable, 128, 0);
-        }else{
-            setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48, towerInfos->getCost());
-            setHoveringSprites(window, posX, posY, radius,
+        setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48, towerInfos->getCost() );
+        setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128, towerInfos->getCost());
-
-        }
 
     }
     if (showBuildable)
@@ -1695,20 +1654,15 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         if(tower->getArmor() < towerArmorPierceValue){
                             std::cout << "Tower armor changed by other player" << std::endl;
                             this->looseCoins(50);
-                            std::cout << "coins" << this->player->getCoinNumber() << std::endl;
-                            std::cout << "animation"  << std::endl;
+                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
                             tower->addArmor();
-                            std::cout << "armor" << tower->getArmor() <<  std::endl;
                         }
-                        std::cout << "Tower updated" << std::endl;
                         break;
                     }
-                    
                     // Tower built by other player
 
                     
                 }
-                std::cout << "next" << std::endl;
                 if(!towerFound){
                     std::cout << "Tower not found" << std::endl;
                     std::cout << "Tower built by other player" << std::endl;

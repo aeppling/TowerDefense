@@ -9,13 +9,15 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 # set(SFML_STATIC_LIBRARIES TRUE)
 ## Dans la plupart des cas, il est préférable de le définir dans le cache CMake
 set(SFML_STATIC_LIBRARIES TRUE)
-set(CMAKE_CXX_COMPILER "C:/msys64/mingw64/bin/g++.exe")
-set(CMAKE_BUILD_TYPE Release)
-# Définir le répertoire contenant la bibliothèque libwinpthread-1.dll
-set(LIBWINPTHREAD_DIR "lib/")
 
-# Copier libwinpthread-1.dll dans le répertoire de sortie de l'exécutable
-set(CMAKE_CXX_FLAGS "-static-libgcc -static-libstdc++")
+# Compiler spécifique pour Windows
+if(WIN32)
+    set(CMAKE_CXX_COMPILER "C:/msys64/mingw64/bin/g++.exe")
+    set(CMAKE_BUILD_TYPE Release)
+    set(CMAKE_EXE_LINKER_FLAGS "-static")
+    set(CMAKE_CXX_FLAGS "-static-libgcc -static-libstdc++ -mwindows")
+endif()
+
 # Obtenir la date et l'heure de compilation
 
 string(TIMESTAMP BUILD_TIME "+%Y-%m-%d %H:%M:%S")
