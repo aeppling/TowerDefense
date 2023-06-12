@@ -1,4 +1,3 @@
-TransportSpaceship:1
 Tank:1
 Tank:1/CrossTank:2
 FastTank:3

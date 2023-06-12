@@ -9,7 +9,7 @@
 
 class DrillTank : public TDUnit {
 public:
-    DrillTank(int posX, int posY) : TDUnit(40, 650, 0, posX, posY, false, 16, 1.8, false) {}
+    DrillTank(int posX, int posY) : TDUnit(40, 650, 0, posX, posY, false, 16, 1.8, true) {}
 
     virtual std::string getTypeName() {
         return "DrillTank";

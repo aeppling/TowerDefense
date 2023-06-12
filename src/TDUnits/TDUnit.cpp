@@ -90,20 +90,28 @@ void    TDUnit::run(TDMap *map) {
 }
 
 void    TDUnit::move() {
+    std::cout << "move" << std::endl;
     std::shared_ptr<MapCell> nextTo = this->_path[0];
     if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && ((this->getTypeName() != "FlyingDrone") && (this->getTypeName() != "RegenerateDrone") && (this->getTypeName() != "ArmoredRegenerateDrone") && (this->getTypeName() != "ArmoredFlyingDrone"))) {
+        std::cout << "forcing...p" << std::endl;
         if (this->_isForcing == true) {
+            std::cout << "forcing wall" << std::endl;
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
-            this->setHealth(0);
-            this->_sprite.setPosition(-1000, -1000);
+            if (this->getTypeName() == "Missile") {
+                this->setHealth(0);
+                this->_sprite.setPosition(-1000, -1000);
+            }
         }
-        this->_path.clear();
-        this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY, false);
+         if (this->getTypeName() != "DrillTank") {
+            this->_path.clear();
+            this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY, false);
+         }
         this->move();
        //nextTo = this->_path[0];
     }
     else {
+        std::cout << "else" << std::endl;
         sf::Vector2f targetPosition = sf::Vector2f((nextTo->getPosX() * this->_unitSize) + this->_cellSize / 2 + _GAME_POSITION_X,
                                                    (nextTo->getPosY() * this->_unitSize) + this->_cellSize / 2 + _GAME_POSITION_Y);
         sf::Vector2f currentPosition = this->_sprite.getPosition();
@@ -138,7 +146,7 @@ void    TDUnit::move() {
 bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting) {
     bool retValue = false;
     std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;
-    if (this->getTypeName() == "Missile")
+    if (this->getTypeName() == "Missile" || this->getTypeName() == "DrillTank")
         this->_isForcing = true;
     this->_baseCoordX = baseCoordX;
     this->_baseCoordY = baseCoordY;

@@ -1,3 +1,4 @@
+Drone:1
 Drone:3
 ArmoredDrone:1
 Alien:2/Drone:2

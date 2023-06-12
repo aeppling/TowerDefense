@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled1
+# Target rules for targets named SpaceDefender
 
 # Build rule for target.
-untitled1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 untitled1
-.PHONY : untitled1
+SpaceDefender: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SpaceDefender
+.PHONY : SpaceDefender
 
 # fast build rule for target.
-untitled1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/build
-.PHONY : untitled1/fast
+SpaceDefender/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/build
+.PHONY : SpaceDefender/fast
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -141,7 +141,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -149,7 +149,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/TDGame/AnimationsMaths.obj: src/TDGame/AnimationsMaths.cpp.obj
@@ -157,7 +157,7 @@ src/TDGame/AnimationsMaths.obj: src/TDGame/AnimationsMaths.cpp.obj
 
 # target to build an object file
 src/TDGame/AnimationsMaths.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/AnimationsMaths.cpp.obj
 .PHONY : src/TDGame/AnimationsMaths.cpp.obj
 
 src/TDGame/AnimationsMaths.i: src/TDGame/AnimationsMaths.cpp.i
@@ -165,7 +165,7 @@ src/TDGame/AnimationsMaths.i: src/TDGame/AnimationsMaths.cpp.i
 
 # target to preprocess a source file
 src/TDGame/AnimationsMaths.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/AnimationsMaths.cpp.i
 .PHONY : src/TDGame/AnimationsMaths.cpp.i
 
 src/TDGame/AnimationsMaths.s: src/TDGame/AnimationsMaths.cpp.s
@@ -173,7 +173,7 @@ src/TDGame/AnimationsMaths.s: src/TDGame/AnimationsMaths.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/AnimationsMaths.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/AnimationsMaths.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/AnimationsMaths.cpp.s
 .PHONY : src/TDGame/AnimationsMaths.cpp.s
 
 src/TDGame/Buildable.obj: src/TDGame/Buildable.cpp.obj
@@ -181,7 +181,7 @@ src/TDGame/Buildable.obj: src/TDGame/Buildable.cpp.obj
 
 # target to build an object file
 src/TDGame/Buildable.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Buildable.cpp.obj
 .PHONY : src/TDGame/Buildable.cpp.obj
 
 src/TDGame/Buildable.i: src/TDGame/Buildable.cpp.i
@@ -189,7 +189,7 @@ src/TDGame/Buildable.i: src/TDGame/Buildable.cpp.i
 
 # target to preprocess a source file
 src/TDGame/Buildable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Buildable.cpp.i
 .PHONY : src/TDGame/Buildable.cpp.i
 
 src/TDGame/Buildable.s: src/TDGame/Buildable.cpp.s
@@ -197,7 +197,7 @@ src/TDGame/Buildable.s: src/TDGame/Buildable.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/Buildable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Buildable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Buildable.cpp.s
 .PHONY : src/TDGame/Buildable.cpp.s
 
 src/TDGame/Game.obj: src/TDGame/Game.cpp.obj
@@ -205,7 +205,7 @@ src/TDGame/Game.obj: src/TDGame/Game.cpp.obj
 
 # target to build an object file
 src/TDGame/Game.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Game.cpp.obj
 .PHONY : src/TDGame/Game.cpp.obj
 
 src/TDGame/Game.i: src/TDGame/Game.cpp.i
@@ -213,7 +213,7 @@ src/TDGame/Game.i: src/TDGame/Game.cpp.i
 
 # target to preprocess a source file
 src/TDGame/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Game.cpp.i
 .PHONY : src/TDGame/Game.cpp.i
 
 src/TDGame/Game.s: src/TDGame/Game.cpp.s
@@ -221,7 +221,7 @@ src/TDGame/Game.s: src/TDGame/Game.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Game.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Game.cpp.s
 .PHONY : src/TDGame/Game.cpp.s
 
 src/TDGame/Menus.obj: src/TDGame/Menus.cpp.obj
@@ -229,7 +229,7 @@ src/TDGame/Menus.obj: src/TDGame/Menus.cpp.obj
 
 # target to build an object file
 src/TDGame/Menus.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Menus.cpp.obj
 .PHONY : src/TDGame/Menus.cpp.obj
 
 src/TDGame/Menus.i: src/TDGame/Menus.cpp.i
@@ -237,7 +237,7 @@ src/TDGame/Menus.i: src/TDGame/Menus.cpp.i
 
 # target to preprocess a source file
 src/TDGame/Menus.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Menus.cpp.i
 .PHONY : src/TDGame/Menus.cpp.i
 
 src/TDGame/Menus.s: src/TDGame/Menus.cpp.s
@@ -245,7 +245,7 @@ src/TDGame/Menus.s: src/TDGame/Menus.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/Menus.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/Menus.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/Menus.cpp.s
 .PHONY : src/TDGame/Menus.cpp.s
 
 src/TDGame/MenusButton.obj: src/TDGame/MenusButton.cpp.obj
@@ -253,7 +253,7 @@ src/TDGame/MenusButton.obj: src/TDGame/MenusButton.cpp.obj
 
 # target to build an object file
 src/TDGame/MenusButton.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/MenusButton.cpp.obj
 .PHONY : src/TDGame/MenusButton.cpp.obj
 
 src/TDGame/MenusButton.i: src/TDGame/MenusButton.cpp.i
@@ -261,7 +261,7 @@ src/TDGame/MenusButton.i: src/TDGame/MenusButton.cpp.i
 
 # target to preprocess a source file
 src/TDGame/MenusButton.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/MenusButton.cpp.i
 .PHONY : src/TDGame/MenusButton.cpp.i
 
 src/TDGame/MenusButton.s: src/TDGame/MenusButton.cpp.s
@@ -269,7 +269,7 @@ src/TDGame/MenusButton.s: src/TDGame/MenusButton.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/MenusButton.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/MenusButton.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/MenusButton.cpp.s
 .PHONY : src/TDGame/MenusButton.cpp.s
 
 src/TDGame/NetworkController.obj: src/TDGame/NetworkController.cpp.obj
@@ -277,7 +277,7 @@ src/TDGame/NetworkController.obj: src/TDGame/NetworkController.cpp.obj
 
 # target to build an object file
 src/TDGame/NetworkController.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/NetworkController.cpp.obj
 .PHONY : src/TDGame/NetworkController.cpp.obj
 
 src/TDGame/NetworkController.i: src/TDGame/NetworkController.cpp.i
@@ -285,7 +285,7 @@ src/TDGame/NetworkController.i: src/TDGame/NetworkController.cpp.i
 
 # target to preprocess a source file
 src/TDGame/NetworkController.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/NetworkController.cpp.i
 .PHONY : src/TDGame/NetworkController.cpp.i
 
 src/TDGame/NetworkController.s: src/TDGame/NetworkController.cpp.s
@@ -293,7 +293,7 @@ src/TDGame/NetworkController.s: src/TDGame/NetworkController.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/NetworkController.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/NetworkController.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/NetworkController.cpp.s
 .PHONY : src/TDGame/NetworkController.cpp.s
 
 src/TDGame/RetrieveLevel.obj: src/TDGame/RetrieveLevel.cpp.obj
@@ -301,7 +301,7 @@ src/TDGame/RetrieveLevel.obj: src/TDGame/RetrieveLevel.cpp.obj
 
 # target to build an object file
 src/TDGame/RetrieveLevel.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.obj
 .PHONY : src/TDGame/RetrieveLevel.cpp.obj
 
 src/TDGame/RetrieveLevel.i: src/TDGame/RetrieveLevel.cpp.i
@@ -309,7 +309,7 @@ src/TDGame/RetrieveLevel.i: src/TDGame/RetrieveLevel.cpp.i
 
 # target to preprocess a source file
 src/TDGame/RetrieveLevel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.i
 .PHONY : src/TDGame/RetrieveLevel.cpp.i
 
 src/TDGame/RetrieveLevel.s: src/TDGame/RetrieveLevel.cpp.s
@@ -317,7 +317,7 @@ src/TDGame/RetrieveLevel.s: src/TDGame/RetrieveLevel.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/RetrieveLevel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/RetrieveLevel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.s
 .PHONY : src/TDGame/RetrieveLevel.cpp.s
 
 src/TDGame/SizeRatioCalculator.obj: src/TDGame/SizeRatioCalculator.cpp.obj
@@ -325,7 +325,7 @@ src/TDGame/SizeRatioCalculator.obj: src/TDGame/SizeRatioCalculator.cpp.obj
 
 # target to build an object file
 src/TDGame/SizeRatioCalculator.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/SizeRatioCalculator.cpp.obj
 .PHONY : src/TDGame/SizeRatioCalculator.cpp.obj
 
 src/TDGame/SizeRatioCalculator.i: src/TDGame/SizeRatioCalculator.cpp.i
@@ -333,7 +333,7 @@ src/TDGame/SizeRatioCalculator.i: src/TDGame/SizeRatioCalculator.cpp.i
 
 # target to preprocess a source file
 src/TDGame/SizeRatioCalculator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/SizeRatioCalculator.cpp.i
 .PHONY : src/TDGame/SizeRatioCalculator.cpp.i
 
 src/TDGame/SizeRatioCalculator.s: src/TDGame/SizeRatioCalculator.cpp.s
@@ -341,7 +341,7 @@ src/TDGame/SizeRatioCalculator.s: src/TDGame/SizeRatioCalculator.cpp.s
 
 # target to generate assembly for a file
 src/TDGame/SizeRatioCalculator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGame/SizeRatioCalculator.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGame/SizeRatioCalculator.cpp.s
 .PHONY : src/TDGame/SizeRatioCalculator.cpp.s
 
 src/TDGraphics/SFMLCoinAnimation.obj: src/TDGraphics/SFMLCoinAnimation.cpp.obj
@@ -349,7 +349,7 @@ src/TDGraphics/SFMLCoinAnimation.obj: src/TDGraphics/SFMLCoinAnimation.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLCoinAnimation.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLCoinAnimation.cpp.obj
 .PHONY : src/TDGraphics/SFMLCoinAnimation.cpp.obj
 
 src/TDGraphics/SFMLCoinAnimation.i: src/TDGraphics/SFMLCoinAnimation.cpp.i
@@ -357,7 +357,7 @@ src/TDGraphics/SFMLCoinAnimation.i: src/TDGraphics/SFMLCoinAnimation.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLCoinAnimation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLCoinAnimation.cpp.i
 .PHONY : src/TDGraphics/SFMLCoinAnimation.cpp.i
 
 src/TDGraphics/SFMLCoinAnimation.s: src/TDGraphics/SFMLCoinAnimation.cpp.s
@@ -365,7 +365,7 @@ src/TDGraphics/SFMLCoinAnimation.s: src/TDGraphics/SFMLCoinAnimation.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLCoinAnimation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLCoinAnimation.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLCoinAnimation.cpp.s
 .PHONY : src/TDGraphics/SFMLCoinAnimation.cpp.s
 
 src/TDGraphics/SFMLDecorationLoader.obj: src/TDGraphics/SFMLDecorationLoader.cpp.obj
@@ -373,7 +373,7 @@ src/TDGraphics/SFMLDecorationLoader.obj: src/TDGraphics/SFMLDecorationLoader.cpp
 
 # target to build an object file
 src/TDGraphics/SFMLDecorationLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLDecorationLoader.cpp.obj
 .PHONY : src/TDGraphics/SFMLDecorationLoader.cpp.obj
 
 src/TDGraphics/SFMLDecorationLoader.i: src/TDGraphics/SFMLDecorationLoader.cpp.i
@@ -381,7 +381,7 @@ src/TDGraphics/SFMLDecorationLoader.i: src/TDGraphics/SFMLDecorationLoader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLDecorationLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLDecorationLoader.cpp.i
 .PHONY : src/TDGraphics/SFMLDecorationLoader.cpp.i
 
 src/TDGraphics/SFMLDecorationLoader.s: src/TDGraphics/SFMLDecorationLoader.cpp.s
@@ -389,7 +389,7 @@ src/TDGraphics/SFMLDecorationLoader.s: src/TDGraphics/SFMLDecorationLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLDecorationLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLDecorationLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLDecorationLoader.cpp.s
 .PHONY : src/TDGraphics/SFMLDecorationLoader.cpp.s
 
 src/TDGraphics/SFMLEnemiesLoader.obj: src/TDGraphics/SFMLEnemiesLoader.cpp.obj
@@ -397,7 +397,7 @@ src/TDGraphics/SFMLEnemiesLoader.obj: src/TDGraphics/SFMLEnemiesLoader.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLEnemiesLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.obj
 .PHONY : src/TDGraphics/SFMLEnemiesLoader.cpp.obj
 
 src/TDGraphics/SFMLEnemiesLoader.i: src/TDGraphics/SFMLEnemiesLoader.cpp.i
@@ -405,7 +405,7 @@ src/TDGraphics/SFMLEnemiesLoader.i: src/TDGraphics/SFMLEnemiesLoader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLEnemiesLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.i
 .PHONY : src/TDGraphics/SFMLEnemiesLoader.cpp.i
 
 src/TDGraphics/SFMLEnemiesLoader.s: src/TDGraphics/SFMLEnemiesLoader.cpp.s
@@ -413,7 +413,7 @@ src/TDGraphics/SFMLEnemiesLoader.s: src/TDGraphics/SFMLEnemiesLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLEnemiesLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLEnemiesLoader.cpp.s
 .PHONY : src/TDGraphics/SFMLEnemiesLoader.cpp.s
 
 src/TDGraphics/SFMLHud.obj: src/TDGraphics/SFMLHud.cpp.obj
@@ -421,7 +421,7 @@ src/TDGraphics/SFMLHud.obj: src/TDGraphics/SFMLHud.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLHud.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLHud.cpp.obj
 .PHONY : src/TDGraphics/SFMLHud.cpp.obj
 
 src/TDGraphics/SFMLHud.i: src/TDGraphics/SFMLHud.cpp.i
@@ -429,7 +429,7 @@ src/TDGraphics/SFMLHud.i: src/TDGraphics/SFMLHud.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLHud.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLHud.cpp.i
 .PHONY : src/TDGraphics/SFMLHud.cpp.i
 
 src/TDGraphics/SFMLHud.s: src/TDGraphics/SFMLHud.cpp.s
@@ -437,7 +437,7 @@ src/TDGraphics/SFMLHud.s: src/TDGraphics/SFMLHud.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLHud.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLHud.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLHud.cpp.s
 .PHONY : src/TDGraphics/SFMLHud.cpp.s
 
 src/TDGraphics/SFMLLoader.obj: src/TDGraphics/SFMLLoader.cpp.obj
@@ -445,7 +445,7 @@ src/TDGraphics/SFMLLoader.obj: src/TDGraphics/SFMLLoader.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLLoader.cpp.obj
 .PHONY : src/TDGraphics/SFMLLoader.cpp.obj
 
 src/TDGraphics/SFMLLoader.i: src/TDGraphics/SFMLLoader.cpp.i
@@ -453,7 +453,7 @@ src/TDGraphics/SFMLLoader.i: src/TDGraphics/SFMLLoader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLLoader.cpp.i
 .PHONY : src/TDGraphics/SFMLLoader.cpp.i
 
 src/TDGraphics/SFMLLoader.s: src/TDGraphics/SFMLLoader.cpp.s
@@ -461,7 +461,7 @@ src/TDGraphics/SFMLLoader.s: src/TDGraphics/SFMLLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLLoader.cpp.s
 .PHONY : src/TDGraphics/SFMLLoader.cpp.s
 
 src/TDGraphics/SFMLMapReloader.obj: src/TDGraphics/SFMLMapReloader.cpp.obj
@@ -469,7 +469,7 @@ src/TDGraphics/SFMLMapReloader.obj: src/TDGraphics/SFMLMapReloader.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLMapReloader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMapReloader.cpp.obj
 .PHONY : src/TDGraphics/SFMLMapReloader.cpp.obj
 
 src/TDGraphics/SFMLMapReloader.i: src/TDGraphics/SFMLMapReloader.cpp.i
@@ -477,7 +477,7 @@ src/TDGraphics/SFMLMapReloader.i: src/TDGraphics/SFMLMapReloader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLMapReloader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMapReloader.cpp.i
 .PHONY : src/TDGraphics/SFMLMapReloader.cpp.i
 
 src/TDGraphics/SFMLMapReloader.s: src/TDGraphics/SFMLMapReloader.cpp.s
@@ -485,7 +485,7 @@ src/TDGraphics/SFMLMapReloader.s: src/TDGraphics/SFMLMapReloader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLMapReloader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMapReloader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMapReloader.cpp.s
 .PHONY : src/TDGraphics/SFMLMapReloader.cpp.s
 
 src/TDGraphics/SFMLMissileLoader.obj: src/TDGraphics/SFMLMissileLoader.cpp.obj
@@ -493,7 +493,7 @@ src/TDGraphics/SFMLMissileLoader.obj: src/TDGraphics/SFMLMissileLoader.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLMissileLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMissileLoader.cpp.obj
 .PHONY : src/TDGraphics/SFMLMissileLoader.cpp.obj
 
 src/TDGraphics/SFMLMissileLoader.i: src/TDGraphics/SFMLMissileLoader.cpp.i
@@ -501,7 +501,7 @@ src/TDGraphics/SFMLMissileLoader.i: src/TDGraphics/SFMLMissileLoader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLMissileLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMissileLoader.cpp.i
 .PHONY : src/TDGraphics/SFMLMissileLoader.cpp.i
 
 src/TDGraphics/SFMLMissileLoader.s: src/TDGraphics/SFMLMissileLoader.cpp.s
@@ -509,7 +509,7 @@ src/TDGraphics/SFMLMissileLoader.s: src/TDGraphics/SFMLMissileLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLMissileLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLMissileLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLMissileLoader.cpp.s
 .PHONY : src/TDGraphics/SFMLMissileLoader.cpp.s
 
 src/TDGraphics/SFMLSprite.obj: src/TDGraphics/SFMLSprite.cpp.obj
@@ -517,7 +517,7 @@ src/TDGraphics/SFMLSprite.obj: src/TDGraphics/SFMLSprite.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLSprite.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLSprite.cpp.obj
 .PHONY : src/TDGraphics/SFMLSprite.cpp.obj
 
 src/TDGraphics/SFMLSprite.i: src/TDGraphics/SFMLSprite.cpp.i
@@ -525,7 +525,7 @@ src/TDGraphics/SFMLSprite.i: src/TDGraphics/SFMLSprite.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLSprite.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLSprite.cpp.i
 .PHONY : src/TDGraphics/SFMLSprite.cpp.i
 
 src/TDGraphics/SFMLSprite.s: src/TDGraphics/SFMLSprite.cpp.s
@@ -533,7 +533,7 @@ src/TDGraphics/SFMLSprite.s: src/TDGraphics/SFMLSprite.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLSprite.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLSprite.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLSprite.cpp.s
 .PHONY : src/TDGraphics/SFMLSprite.cpp.s
 
 src/TDGraphics/SFMLTowerLoader.obj: src/TDGraphics/SFMLTowerLoader.cpp.obj
@@ -541,7 +541,7 @@ src/TDGraphics/SFMLTowerLoader.obj: src/TDGraphics/SFMLTowerLoader.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SFMLTowerLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLTowerLoader.cpp.obj
 .PHONY : src/TDGraphics/SFMLTowerLoader.cpp.obj
 
 src/TDGraphics/SFMLTowerLoader.i: src/TDGraphics/SFMLTowerLoader.cpp.i
@@ -549,7 +549,7 @@ src/TDGraphics/SFMLTowerLoader.i: src/TDGraphics/SFMLTowerLoader.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SFMLTowerLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLTowerLoader.cpp.i
 .PHONY : src/TDGraphics/SFMLTowerLoader.cpp.i
 
 src/TDGraphics/SFMLTowerLoader.s: src/TDGraphics/SFMLTowerLoader.cpp.s
@@ -557,7 +557,7 @@ src/TDGraphics/SFMLTowerLoader.s: src/TDGraphics/SFMLTowerLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SFMLTowerLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SFMLTowerLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLTowerLoader.cpp.s
 .PHONY : src/TDGraphics/SFMLTowerLoader.cpp.s
 
 src/TDGraphics/SpritesHolder.obj: src/TDGraphics/SpritesHolder.cpp.obj
@@ -565,7 +565,7 @@ src/TDGraphics/SpritesHolder.obj: src/TDGraphics/SpritesHolder.cpp.obj
 
 # target to build an object file
 src/TDGraphics/SpritesHolder.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SpritesHolder.cpp.obj
 .PHONY : src/TDGraphics/SpritesHolder.cpp.obj
 
 src/TDGraphics/SpritesHolder.i: src/TDGraphics/SpritesHolder.cpp.i
@@ -573,7 +573,7 @@ src/TDGraphics/SpritesHolder.i: src/TDGraphics/SpritesHolder.cpp.i
 
 # target to preprocess a source file
 src/TDGraphics/SpritesHolder.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SpritesHolder.cpp.i
 .PHONY : src/TDGraphics/SpritesHolder.cpp.i
 
 src/TDGraphics/SpritesHolder.s: src/TDGraphics/SpritesHolder.cpp.s
@@ -581,7 +581,7 @@ src/TDGraphics/SpritesHolder.s: src/TDGraphics/SpritesHolder.cpp.s
 
 # target to generate assembly for a file
 src/TDGraphics/SpritesHolder.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDGraphics/SpritesHolder.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDGraphics/SpritesHolder.cpp.s
 .PHONY : src/TDGraphics/SpritesHolder.cpp.s
 
 src/TDMap/AStarPathFinding.obj: src/TDMap/AStarPathFinding.cpp.obj
@@ -589,7 +589,7 @@ src/TDMap/AStarPathFinding.obj: src/TDMap/AStarPathFinding.cpp.obj
 
 # target to build an object file
 src/TDMap/AStarPathFinding.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/AStarPathFinding.cpp.obj
 .PHONY : src/TDMap/AStarPathFinding.cpp.obj
 
 src/TDMap/AStarPathFinding.i: src/TDMap/AStarPathFinding.cpp.i
@@ -597,7 +597,7 @@ src/TDMap/AStarPathFinding.i: src/TDMap/AStarPathFinding.cpp.i
 
 # target to preprocess a source file
 src/TDMap/AStarPathFinding.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/AStarPathFinding.cpp.i
 .PHONY : src/TDMap/AStarPathFinding.cpp.i
 
 src/TDMap/AStarPathFinding.s: src/TDMap/AStarPathFinding.cpp.s
@@ -605,7 +605,7 @@ src/TDMap/AStarPathFinding.s: src/TDMap/AStarPathFinding.cpp.s
 
 # target to generate assembly for a file
 src/TDMap/AStarPathFinding.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/AStarPathFinding.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/AStarPathFinding.cpp.s
 .PHONY : src/TDMap/AStarPathFinding.cpp.s
 
 src/TDMap/MapCell.obj: src/TDMap/MapCell.cpp.obj
@@ -613,7 +613,7 @@ src/TDMap/MapCell.obj: src/TDMap/MapCell.cpp.obj
 
 # target to build an object file
 src/TDMap/MapCell.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/MapCell.cpp.obj
 .PHONY : src/TDMap/MapCell.cpp.obj
 
 src/TDMap/MapCell.i: src/TDMap/MapCell.cpp.i
@@ -621,7 +621,7 @@ src/TDMap/MapCell.i: src/TDMap/MapCell.cpp.i
 
 # target to preprocess a source file
 src/TDMap/MapCell.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/MapCell.cpp.i
 .PHONY : src/TDMap/MapCell.cpp.i
 
 src/TDMap/MapCell.s: src/TDMap/MapCell.cpp.s
@@ -629,7 +629,7 @@ src/TDMap/MapCell.s: src/TDMap/MapCell.cpp.s
 
 # target to generate assembly for a file
 src/TDMap/MapCell.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/MapCell.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/MapCell.cpp.s
 .PHONY : src/TDMap/MapCell.cpp.s
 
 src/TDMap/TDMap.obj: src/TDMap/TDMap.cpp.obj
@@ -637,7 +637,7 @@ src/TDMap/TDMap.obj: src/TDMap/TDMap.cpp.obj
 
 # target to build an object file
 src/TDMap/TDMap.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/TDMap.cpp.obj
 .PHONY : src/TDMap/TDMap.cpp.obj
 
 src/TDMap/TDMap.i: src/TDMap/TDMap.cpp.i
@@ -645,7 +645,7 @@ src/TDMap/TDMap.i: src/TDMap/TDMap.cpp.i
 
 # target to preprocess a source file
 src/TDMap/TDMap.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/TDMap.cpp.i
 .PHONY : src/TDMap/TDMap.cpp.i
 
 src/TDMap/TDMap.s: src/TDMap/TDMap.cpp.s
@@ -653,7 +653,7 @@ src/TDMap/TDMap.s: src/TDMap/TDMap.cpp.s
 
 # target to generate assembly for a file
 src/TDMap/TDMap.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/TDMap.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/TDMap.cpp.s
 .PHONY : src/TDMap/TDMap.cpp.s
 
 src/TDMap/mapParser.obj: src/TDMap/mapParser.cpp.obj
@@ -661,7 +661,7 @@ src/TDMap/mapParser.obj: src/TDMap/mapParser.cpp.obj
 
 # target to build an object file
 src/TDMap/mapParser.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/mapParser.cpp.obj
 .PHONY : src/TDMap/mapParser.cpp.obj
 
 src/TDMap/mapParser.i: src/TDMap/mapParser.cpp.i
@@ -669,7 +669,7 @@ src/TDMap/mapParser.i: src/TDMap/mapParser.cpp.i
 
 # target to preprocess a source file
 src/TDMap/mapParser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/mapParser.cpp.i
 .PHONY : src/TDMap/mapParser.cpp.i
 
 src/TDMap/mapParser.s: src/TDMap/mapParser.cpp.s
@@ -677,7 +677,7 @@ src/TDMap/mapParser.s: src/TDMap/mapParser.cpp.s
 
 # target to generate assembly for a file
 src/TDMap/mapParser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDMap/mapParser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDMap/mapParser.cpp.s
 .PHONY : src/TDMap/mapParser.cpp.s
 
 src/TDPlayer/TDPlayerSave.obj: src/TDPlayer/TDPlayerSave.cpp.obj
@@ -685,7 +685,7 @@ src/TDPlayer/TDPlayerSave.obj: src/TDPlayer/TDPlayerSave.cpp.obj
 
 # target to build an object file
 src/TDPlayer/TDPlayerSave.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDPlayer/TDPlayerSave.cpp.obj
 .PHONY : src/TDPlayer/TDPlayerSave.cpp.obj
 
 src/TDPlayer/TDPlayerSave.i: src/TDPlayer/TDPlayerSave.cpp.i
@@ -693,7 +693,7 @@ src/TDPlayer/TDPlayerSave.i: src/TDPlayer/TDPlayerSave.cpp.i
 
 # target to preprocess a source file
 src/TDPlayer/TDPlayerSave.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDPlayer/TDPlayerSave.cpp.i
 .PHONY : src/TDPlayer/TDPlayerSave.cpp.i
 
 src/TDPlayer/TDPlayerSave.s: src/TDPlayer/TDPlayerSave.cpp.s
@@ -701,7 +701,7 @@ src/TDPlayer/TDPlayerSave.s: src/TDPlayer/TDPlayerSave.cpp.s
 
 # target to generate assembly for a file
 src/TDPlayer/TDPlayerSave.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDPlayer/TDPlayerSave.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDPlayer/TDPlayerSave.cpp.s
 .PHONY : src/TDPlayer/TDPlayerSave.cpp.s
 
 src/TDSounds/SFMainSoundLoader.obj: src/TDSounds/SFMainSoundLoader.cpp.obj
@@ -709,7 +709,7 @@ src/TDSounds/SFMainSoundLoader.obj: src/TDSounds/SFMainSoundLoader.cpp.obj
 
 # target to build an object file
 src/TDSounds/SFMainSoundLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundLoader.cpp.obj
 .PHONY : src/TDSounds/SFMainSoundLoader.cpp.obj
 
 src/TDSounds/SFMainSoundLoader.i: src/TDSounds/SFMainSoundLoader.cpp.i
@@ -717,7 +717,7 @@ src/TDSounds/SFMainSoundLoader.i: src/TDSounds/SFMainSoundLoader.cpp.i
 
 # target to preprocess a source file
 src/TDSounds/SFMainSoundLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundLoader.cpp.i
 .PHONY : src/TDSounds/SFMainSoundLoader.cpp.i
 
 src/TDSounds/SFMainSoundLoader.s: src/TDSounds/SFMainSoundLoader.cpp.s
@@ -725,7 +725,7 @@ src/TDSounds/SFMainSoundLoader.s: src/TDSounds/SFMainSoundLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDSounds/SFMainSoundLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundLoader.cpp.s
 .PHONY : src/TDSounds/SFMainSoundLoader.cpp.s
 
 src/TDSounds/SFMainSoundPlayer.obj: src/TDSounds/SFMainSoundPlayer.cpp.obj
@@ -733,7 +733,7 @@ src/TDSounds/SFMainSoundPlayer.obj: src/TDSounds/SFMainSoundPlayer.cpp.obj
 
 # target to build an object file
 src/TDSounds/SFMainSoundPlayer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundPlayer.cpp.obj
 .PHONY : src/TDSounds/SFMainSoundPlayer.cpp.obj
 
 src/TDSounds/SFMainSoundPlayer.i: src/TDSounds/SFMainSoundPlayer.cpp.i
@@ -741,7 +741,7 @@ src/TDSounds/SFMainSoundPlayer.i: src/TDSounds/SFMainSoundPlayer.cpp.i
 
 # target to preprocess a source file
 src/TDSounds/SFMainSoundPlayer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundPlayer.cpp.i
 .PHONY : src/TDSounds/SFMainSoundPlayer.cpp.i
 
 src/TDSounds/SFMainSoundPlayer.s: src/TDSounds/SFMainSoundPlayer.cpp.s
@@ -749,7 +749,7 @@ src/TDSounds/SFMainSoundPlayer.s: src/TDSounds/SFMainSoundPlayer.cpp.s
 
 # target to generate assembly for a file
 src/TDSounds/SFMainSoundPlayer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFMainSoundPlayer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFMainSoundPlayer.cpp.s
 .PHONY : src/TDSounds/SFMainSoundPlayer.cpp.s
 
 src/TDSounds/SFTowerSoundLoader.obj: src/TDSounds/SFTowerSoundLoader.cpp.obj
@@ -757,7 +757,7 @@ src/TDSounds/SFTowerSoundLoader.obj: src/TDSounds/SFTowerSoundLoader.cpp.obj
 
 # target to build an object file
 src/TDSounds/SFTowerSoundLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFTowerSoundLoader.cpp.obj
 .PHONY : src/TDSounds/SFTowerSoundLoader.cpp.obj
 
 src/TDSounds/SFTowerSoundLoader.i: src/TDSounds/SFTowerSoundLoader.cpp.i
@@ -765,7 +765,7 @@ src/TDSounds/SFTowerSoundLoader.i: src/TDSounds/SFTowerSoundLoader.cpp.i
 
 # target to preprocess a source file
 src/TDSounds/SFTowerSoundLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFTowerSoundLoader.cpp.i
 .PHONY : src/TDSounds/SFTowerSoundLoader.cpp.i
 
 src/TDSounds/SFTowerSoundLoader.s: src/TDSounds/SFTowerSoundLoader.cpp.s
@@ -773,7 +773,7 @@ src/TDSounds/SFTowerSoundLoader.s: src/TDSounds/SFTowerSoundLoader.cpp.s
 
 # target to generate assembly for a file
 src/TDSounds/SFTowerSoundLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDSounds/SFTowerSoundLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDSounds/SFTowerSoundLoader.cpp.s
 .PHONY : src/TDSounds/SFTowerSoundLoader.cpp.s
 
 src/TDTowers/AntiAirTower.obj: src/TDTowers/AntiAirTower.cpp.obj
@@ -781,7 +781,7 @@ src/TDTowers/AntiAirTower.obj: src/TDTowers/AntiAirTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/AntiAirTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AntiAirTower.cpp.obj
 .PHONY : src/TDTowers/AntiAirTower.cpp.obj
 
 src/TDTowers/AntiAirTower.i: src/TDTowers/AntiAirTower.cpp.i
@@ -789,7 +789,7 @@ src/TDTowers/AntiAirTower.i: src/TDTowers/AntiAirTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/AntiAirTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AntiAirTower.cpp.i
 .PHONY : src/TDTowers/AntiAirTower.cpp.i
 
 src/TDTowers/AntiAirTower.s: src/TDTowers/AntiAirTower.cpp.s
@@ -797,7 +797,7 @@ src/TDTowers/AntiAirTower.s: src/TDTowers/AntiAirTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/AntiAirTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AntiAirTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AntiAirTower.cpp.s
 .PHONY : src/TDTowers/AntiAirTower.cpp.s
 
 src/TDTowers/AttackSpeedTower.obj: src/TDTowers/AttackSpeedTower.cpp.obj
@@ -805,7 +805,7 @@ src/TDTowers/AttackSpeedTower.obj: src/TDTowers/AttackSpeedTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/AttackSpeedTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AttackSpeedTower.cpp.obj
 .PHONY : src/TDTowers/AttackSpeedTower.cpp.obj
 
 src/TDTowers/AttackSpeedTower.i: src/TDTowers/AttackSpeedTower.cpp.i
@@ -813,7 +813,7 @@ src/TDTowers/AttackSpeedTower.i: src/TDTowers/AttackSpeedTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/AttackSpeedTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AttackSpeedTower.cpp.i
 .PHONY : src/TDTowers/AttackSpeedTower.cpp.i
 
 src/TDTowers/AttackSpeedTower.s: src/TDTowers/AttackSpeedTower.cpp.s
@@ -821,7 +821,7 @@ src/TDTowers/AttackSpeedTower.s: src/TDTowers/AttackSpeedTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/AttackSpeedTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/AttackSpeedTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/AttackSpeedTower.cpp.s
 .PHONY : src/TDTowers/AttackSpeedTower.cpp.s
 
 src/TDTowers/BasicTower.obj: src/TDTowers/BasicTower.cpp.obj
@@ -829,7 +829,7 @@ src/TDTowers/BasicTower.obj: src/TDTowers/BasicTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/BasicTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/BasicTower.cpp.obj
 .PHONY : src/TDTowers/BasicTower.cpp.obj
 
 src/TDTowers/BasicTower.i: src/TDTowers/BasicTower.cpp.i
@@ -837,7 +837,7 @@ src/TDTowers/BasicTower.i: src/TDTowers/BasicTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/BasicTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/BasicTower.cpp.i
 .PHONY : src/TDTowers/BasicTower.cpp.i
 
 src/TDTowers/BasicTower.s: src/TDTowers/BasicTower.cpp.s
@@ -845,7 +845,7 @@ src/TDTowers/BasicTower.s: src/TDTowers/BasicTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/BasicTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/BasicTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/BasicTower.cpp.s
 .PHONY : src/TDTowers/BasicTower.cpp.s
 
 src/TDTowers/MissileLauncher.obj: src/TDTowers/MissileLauncher.cpp.obj
@@ -853,7 +853,7 @@ src/TDTowers/MissileLauncher.obj: src/TDTowers/MissileLauncher.cpp.obj
 
 # target to build an object file
 src/TDTowers/MissileLauncher.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileLauncher.cpp.obj
 .PHONY : src/TDTowers/MissileLauncher.cpp.obj
 
 src/TDTowers/MissileLauncher.i: src/TDTowers/MissileLauncher.cpp.i
@@ -861,7 +861,7 @@ src/TDTowers/MissileLauncher.i: src/TDTowers/MissileLauncher.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/MissileLauncher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileLauncher.cpp.i
 .PHONY : src/TDTowers/MissileLauncher.cpp.i
 
 src/TDTowers/MissileLauncher.s: src/TDTowers/MissileLauncher.cpp.s
@@ -869,7 +869,7 @@ src/TDTowers/MissileLauncher.s: src/TDTowers/MissileLauncher.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/MissileLauncher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileLauncher.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileLauncher.cpp.s
 .PHONY : src/TDTowers/MissileLauncher.cpp.s
 
 src/TDTowers/MissileThread.obj: src/TDTowers/MissileThread.cpp.obj
@@ -877,7 +877,7 @@ src/TDTowers/MissileThread.obj: src/TDTowers/MissileThread.cpp.obj
 
 # target to build an object file
 src/TDTowers/MissileThread.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileThread.cpp.obj
 .PHONY : src/TDTowers/MissileThread.cpp.obj
 
 src/TDTowers/MissileThread.i: src/TDTowers/MissileThread.cpp.i
@@ -885,7 +885,7 @@ src/TDTowers/MissileThread.i: src/TDTowers/MissileThread.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/MissileThread.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileThread.cpp.i
 .PHONY : src/TDTowers/MissileThread.cpp.i
 
 src/TDTowers/MissileThread.s: src/TDTowers/MissileThread.cpp.s
@@ -893,7 +893,7 @@ src/TDTowers/MissileThread.s: src/TDTowers/MissileThread.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/MissileThread.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/MissileThread.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileThread.cpp.s
 .PHONY : src/TDTowers/MissileThread.cpp.s
 
 src/TDTowers/SlowTower.obj: src/TDTowers/SlowTower.cpp.obj
@@ -901,7 +901,7 @@ src/TDTowers/SlowTower.obj: src/TDTowers/SlowTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/SlowTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SlowTower.cpp.obj
 .PHONY : src/TDTowers/SlowTower.cpp.obj
 
 src/TDTowers/SlowTower.i: src/TDTowers/SlowTower.cpp.i
@@ -909,7 +909,7 @@ src/TDTowers/SlowTower.i: src/TDTowers/SlowTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/SlowTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SlowTower.cpp.i
 .PHONY : src/TDTowers/SlowTower.cpp.i
 
 src/TDTowers/SlowTower.s: src/TDTowers/SlowTower.cpp.s
@@ -917,7 +917,7 @@ src/TDTowers/SlowTower.s: src/TDTowers/SlowTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/SlowTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SlowTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SlowTower.cpp.s
 .PHONY : src/TDTowers/SlowTower.cpp.s
 
 src/TDTowers/SniperTower.obj: src/TDTowers/SniperTower.cpp.obj
@@ -925,7 +925,7 @@ src/TDTowers/SniperTower.obj: src/TDTowers/SniperTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/SniperTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SniperTower.cpp.obj
 .PHONY : src/TDTowers/SniperTower.cpp.obj
 
 src/TDTowers/SniperTower.i: src/TDTowers/SniperTower.cpp.i
@@ -933,7 +933,7 @@ src/TDTowers/SniperTower.i: src/TDTowers/SniperTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/SniperTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SniperTower.cpp.i
 .PHONY : src/TDTowers/SniperTower.cpp.i
 
 src/TDTowers/SniperTower.s: src/TDTowers/SniperTower.cpp.s
@@ -941,7 +941,7 @@ src/TDTowers/SniperTower.s: src/TDTowers/SniperTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/SniperTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SniperTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SniperTower.cpp.s
 .PHONY : src/TDTowers/SniperTower.cpp.s
 
 src/TDTowers/SpeedAuraTower.obj: src/TDTowers/SpeedAuraTower.cpp.obj
@@ -949,7 +949,7 @@ src/TDTowers/SpeedAuraTower.obj: src/TDTowers/SpeedAuraTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/SpeedAuraTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SpeedAuraTower.cpp.obj
 .PHONY : src/TDTowers/SpeedAuraTower.cpp.obj
 
 src/TDTowers/SpeedAuraTower.i: src/TDTowers/SpeedAuraTower.cpp.i
@@ -957,7 +957,7 @@ src/TDTowers/SpeedAuraTower.i: src/TDTowers/SpeedAuraTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/SpeedAuraTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SpeedAuraTower.cpp.i
 .PHONY : src/TDTowers/SpeedAuraTower.cpp.i
 
 src/TDTowers/SpeedAuraTower.s: src/TDTowers/SpeedAuraTower.cpp.s
@@ -965,7 +965,7 @@ src/TDTowers/SpeedAuraTower.s: src/TDTowers/SpeedAuraTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/SpeedAuraTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SpeedAuraTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SpeedAuraTower.cpp.s
 .PHONY : src/TDTowers/SpeedAuraTower.cpp.s
 
 src/TDTowers/SplashTower.obj: src/TDTowers/SplashTower.cpp.obj
@@ -973,7 +973,7 @@ src/TDTowers/SplashTower.obj: src/TDTowers/SplashTower.cpp.obj
 
 # target to build an object file
 src/TDTowers/SplashTower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SplashTower.cpp.obj
 .PHONY : src/TDTowers/SplashTower.cpp.obj
 
 src/TDTowers/SplashTower.i: src/TDTowers/SplashTower.cpp.i
@@ -981,7 +981,7 @@ src/TDTowers/SplashTower.i: src/TDTowers/SplashTower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/SplashTower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SplashTower.cpp.i
 .PHONY : src/TDTowers/SplashTower.cpp.i
 
 src/TDTowers/SplashTower.s: src/TDTowers/SplashTower.cpp.s
@@ -989,7 +989,7 @@ src/TDTowers/SplashTower.s: src/TDTowers/SplashTower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/SplashTower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/SplashTower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/SplashTower.cpp.s
 .PHONY : src/TDTowers/SplashTower.cpp.s
 
 src/TDTowers/Tower.obj: src/TDTowers/Tower.cpp.obj
@@ -997,7 +997,7 @@ src/TDTowers/Tower.obj: src/TDTowers/Tower.cpp.obj
 
 # target to build an object file
 src/TDTowers/Tower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/Tower.cpp.obj
 .PHONY : src/TDTowers/Tower.cpp.obj
 
 src/TDTowers/Tower.i: src/TDTowers/Tower.cpp.i
@@ -1005,7 +1005,7 @@ src/TDTowers/Tower.i: src/TDTowers/Tower.cpp.i
 
 # target to preprocess a source file
 src/TDTowers/Tower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/Tower.cpp.i
 .PHONY : src/TDTowers/Tower.cpp.i
 
 src/TDTowers/Tower.s: src/TDTowers/Tower.cpp.s
@@ -1013,7 +1013,7 @@ src/TDTowers/Tower.s: src/TDTowers/Tower.cpp.s
 
 # target to generate assembly for a file
 src/TDTowers/Tower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDTowers/Tower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDTowers/Tower.cpp.s
 .PHONY : src/TDTowers/Tower.cpp.s
 
 src/TDUnits/TDUnit.obj: src/TDUnits/TDUnit.cpp.obj
@@ -1021,7 +1021,7 @@ src/TDUnits/TDUnit.obj: src/TDUnits/TDUnit.cpp.obj
 
 # target to build an object file
 src/TDUnits/TDUnit.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDUnits/TDUnit.cpp.obj
 .PHONY : src/TDUnits/TDUnit.cpp.obj
 
 src/TDUnits/TDUnit.i: src/TDUnits/TDUnit.cpp.i
@@ -1029,7 +1029,7 @@ src/TDUnits/TDUnit.i: src/TDUnits/TDUnit.cpp.i
 
 # target to preprocess a source file
 src/TDUnits/TDUnit.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDUnits/TDUnit.cpp.i
 .PHONY : src/TDUnits/TDUnit.cpp.i
 
 src/TDUnits/TDUnit.s: src/TDUnits/TDUnit.cpp.s
@@ -1037,7 +1037,7 @@ src/TDUnits/TDUnit.s: src/TDUnits/TDUnit.cpp.s
 
 # target to generate assembly for a file
 src/TDUnits/TDUnit.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/TDUnits/TDUnit.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SpaceDefender.dir\build.make CMakeFiles/SpaceDefender.dir/src/TDUnits/TDUnit.cpp.s
 .PHONY : src/TDUnits/TDUnit.cpp.s
 
 # Help Target
@@ -1048,7 +1048,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... untitled1
+	@echo ... SpaceDefender
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

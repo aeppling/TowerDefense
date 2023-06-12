@@ -132,7 +132,7 @@ int SFMLHud::checkForClick(sf::RenderWindow &window) {
         i++;
     }
     if (this->wallRect.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
-        std::cout << "Wall clicked" << std::endl;
+        
         return (-2);
     }
     return (-1);
@@ -303,7 +303,7 @@ void SFMLHud::draw() {
         stream << std::fixed << std::setprecision(1) << 1000/(selectedTower->getTimeBetweenAttack()*1000);
         std::string str = stream.str();
         if (selectedTower->isSpeedBoosted()) {
-            std::cout << "speedBoosted" << std::endl;
+            
             int bonusPercentValue = (1.0f - selectedTower->getSpeedBuff()) * 100.0f;
             std::string bonusPercentString = std::to_string(bonusPercentValue);
             if(!selectedTower->isMaxed() && selectedTower->getIsPlaced())
@@ -312,7 +312,7 @@ void SFMLHud::draw() {
                 towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");}
         }
         else{
-            std::cout << "Not speedBoosted" << std::endl;
+            
             if(!selectedTower->isMaxed() && selectedTower->getIsPlaced()){
                 
                 towerSpeed.setString("Attack Speed: " + str + " -> " + std::to_string(selectedTower->getUpgradeAttackSpeed()));
@@ -326,7 +326,7 @@ void SFMLHud::draw() {
         towerArmorP.setCharacterSize(24);
         towerArmorP.setPosition(1465, 450 + this->towerSelectorOffset);
         towerArmorP.setString(stringArmorP);
-        if (selectedTower->getTowerName() != "SpeedAuraTower") {
+        if (selectedTower->getTowerName() != "SpeedAuraTower" && selectedTower->getTowerName() != "SlowTower") {
             _window->draw(towerSpeed);
             _window->draw(towerArmorP);
         }
