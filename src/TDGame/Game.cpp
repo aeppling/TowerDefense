@@ -20,7 +20,7 @@
 
 #include <nlohmann/json.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
-                                                                                        sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
+                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
     this->isPaused = false;
     this->planet = planetToLoad;
@@ -289,6 +289,7 @@ void Game::sellTower(TDMap &map) {
             this->towerList.at(i)->sold();
             map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
             this->towerList.erase(this->towerList.begin() + i);
+            
             this->selectedActiveTower = nullptr;
             this->sfmlHud->setSelectedTower(nullptr);
             if(this->networkController != nullptr){
@@ -601,6 +602,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     window.draw(droneShadow);
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                                enemyList.at(this->currentWaveNumber).at(s)->setWalls(this->gameState.walls);
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
                                         window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
@@ -1122,8 +1124,22 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+            std::cout << "refresh path finding" << std::endl;
+            for( int i = 0; i < this->enemyList.size(); i++)
+            {
+                for(int k = 0; k < this->enemyList.at(i).size(); k++)
+                {
+                    if(this->enemyList.at(i).at(k)->isSpawned() == false)
+                        continue;
+                    
+                    this->enemyList.at(i).at(k)->clearPath();
+
+                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
+                }
+            }
             this->sfMainSoundPlayer.playGameCoinWon();
             this->addCoins(2);
+            
             for(int j = 0; j < this->gameState.walls.size(); j++)
             {
                 if(this->gameState.walls.at(j).x == mouseCoord.posX && this->gameState.walls.at(j).y == mouseCoord.posY)
@@ -1806,6 +1822,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                     }
                     if(!found){
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->setType('X');
+                        
                         this->sfMainSoundPlayer.playGameCoinWon();
                         this->addCoins(2);
                         this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->gameState.walls.at(j).x, this->gameState.walls.at(j).y, 2, true);
@@ -1813,6 +1830,7 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         map.refreshTextures(map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosX(),
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosY());
                         this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                        
                         std::cout << "Wall destroyed" << std::endl;
                         break;
                     }

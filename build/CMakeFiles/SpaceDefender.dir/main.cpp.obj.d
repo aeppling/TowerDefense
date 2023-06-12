@@ -291,6 +291,7 @@ CMakeFiles/SpaceDefender.dir/main.cpp.obj: \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_queue.h \
  C:\Users\leori\OneDrive\Documents\cours_2eme_annee\2PROJ\TD\TowerDefense-main\TowerDefense\src/TDUnits/TDUnit.hpp \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/thread \
+ C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.hpp \
  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp \

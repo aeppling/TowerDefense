@@ -7,6 +7,7 @@
 
 #include <chrono>
 #include <thread>
+#include "../TDGame/usefullStruct.hpp"
 #include "../TDMap/AStarPathFinding.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
@@ -17,6 +18,7 @@
 class TDUnit {
 public:
     // BASICS STATS
+    int wallSize = -1;
     int _max_health;
     int _health_points;
     int _armor;
@@ -49,6 +51,7 @@ public:
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::chrono::steady_clock::time_point _slowChrono;
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
+    std::vector<Point> _walls;
     std::thread                           _thread;
     TDMap                                 *_mapCopy;
     // SFML
@@ -74,6 +77,7 @@ public:
     int getPosY() { return(this->_posY); }
     void setPosX(int posX) { this->_posX = posX; };
     void setPosY(int posY) { this->_posY = posY; };
+    void clearPath() { this->_path.clear(); };
     void setPath(std::vector<MapCell*> path);
     bool isFlying() { return (this->_isFlying); };
     int  getHealth() { return (this->_health_points); };
@@ -85,6 +89,12 @@ public:
     void setAlreadyArrived() { this->_alreadyArrived = true; this->_alreadyCount = true;};
     void setSpeed(float speed) { this->_speed = speed; };
     float getSpeed() { return (this->_speed); };
+    std::vector<Point> getWalls() { return (this->_walls); };
+    void setWalls(std::vector<Point>& walls) {
+        _walls = walls;
+        this->wallSize = walls.size();
+    }
+    void setWallSize(int size) { this->wallSize = size; };
 
     // FUNCTIONS
     void live();

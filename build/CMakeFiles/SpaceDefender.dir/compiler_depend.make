@@ -293,6 +293,7 @@ CMakeFiles/SpaceDefender.dir/main.cpp.obj: C:/Users/leori/OneDrive/Documents/cou
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/stl_queue.h \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDUnits/TDUnit.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/thread \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLLoader.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp \
@@ -546,6 +547,7 @@ CMakeFiles/SpaceDefender.dir/src/TDGame/Game.cpp.obj: C:/Users/leori/OneDrive/Do
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -1681,6 +1683,7 @@ CMakeFiles/SpaceDefender.dir/src/TDGame/RetrieveLevel.cpp.obj: C:/Users/leori/On
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -2987,6 +2990,7 @@ CMakeFiles/SpaceDefender.dir/src/TDGraphics/SFMLHud.cpp.obj: C:/Users/leori/OneD
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -6591,6 +6595,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/AntiAirTower.cpp.obj: C:/Users/leori/O
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -6928,6 +6933,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/AttackSpeedTower.cpp.obj: C:/Users/leo
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -7270,6 +7276,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/BasicTower.cpp.obj: C:/Users/leori/One
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -7611,6 +7618,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/MissileLauncher.cpp.obj: C:/Users/leor
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -8165,6 +8173,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/SlowTower.cpp.obj: C:/Users/leori/OneD
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -8505,6 +8514,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/SniperTower.cpp.obj: C:/Users/leori/On
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -8847,6 +8857,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/SpeedAuraTower.cpp.obj: C:/Users/leori
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -9191,6 +9202,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/SplashTower.cpp.obj: C:/Users/leori/On
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -9546,6 +9558,7 @@ CMakeFiles/SpaceDefender.dir/src/TDTowers/Tower.cpp.obj: C:/Users/leori/OneDrive
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -9911,6 +9924,7 @@ CMakeFiles/SpaceDefender.dir/src/TDUnits/TDUnit.cpp.obj: C:/Users/leori/OneDrive
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_base.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/atomic_lockfree_defines.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward/auto_ptr.h \
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/AStarPathFinding.hpp \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/stdbool.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/queue \
@@ -10031,8 +10045,7 @@ CMakeFiles/SpaceDefender.dir/src/TDUnits/TDUnit.cpp.obj: C:/Users/leori/OneDrive
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/SizeRatioCalculator.hpp \
   C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDMap/TDMap.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.hpp \
-  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/usefullStruct.hpp
+  C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/src/TDGame/AnimationsMaths.hpp
 
 
 C:/msys64/mingw64/x86_64-w64-mingw32/include/_mingw_print_push.h:

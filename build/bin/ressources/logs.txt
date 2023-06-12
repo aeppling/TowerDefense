@@ -1,166 +1,27 @@
 Unlocked (P1,P2,P3) : 10,10,10
 Volumes (Global,Music,Sound) : 100,100,100,
 Difficulty : 2
-Build time string: +2023-06-12 11:48:13
-TSTFTSTFTST
-TXTFTXTFTXT
-TXTXXXXXTXT
-XXXXTTTXXXX
-TTXXFFFXXTT
-TTXXFFFXXTT
-TTXXFFFXXTT
+Build time string: +2023-06-12 17:49:58
+XSXXXXXXXSX
+TTXXTTTXXTT
+TXXTTTTTXXT
 TXXXXXXXXXT
+TTTTTXTTTTT
 XXXXXXXXXXX
-XXXTTTTTXXX
-XXXXTTTXXXX
-TTTXXXXXTTT
-TTTXXBXXTTT
-Starting wave0/1
+TTTXTTTXTTT
+TTTXTTTXTTT
+TXXXXXXXXXX
+TXTTTTTTTXT
+TXTTTTTTTXT
+TXXXXXXXXXT
+TTTTTBTTTTT
+Starting wave0/7
 Life number : 6
 Coin number : 6
 Wave Started
-Wave contain 1 ennemies
-TRY WALL
+Wave contain 3 ennemies
+Tower id : 1
 Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-TRY WALL
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-forcing...p
-forcing wall
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-TRY WALL
-Refresh.
-move
-else
-TRY WALL
-Refresh.
-move
-else
-TRY WALL
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-TRY WALL
-Refresh.
-move
-else
-TRY WALL
-Refresh.
-move
-else
-TRY WALL
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-move
-forcing...p
-forcing wall
-Refresh.
-move
-else
-move
-forcing...p
-forcing wall
-Refresh.
-move
-else
-move
-forcing...p
-forcing wall
-Refresh.
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-move
-else
-TDTowers deactivation
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
@@ -169,4 +30,4 @@ cleard enemies & cells
 tower joined
 enemies joined
 Cleaning done
-Player won current game
+Unknow current game exit reason
