@@ -307,7 +307,7 @@ void SFMLHud::draw() {
             int bonusPercentValue = (1.0f - selectedTower->getSpeedBuff()) * 100.0f;
             std::string bonusPercentString = std::to_string(bonusPercentValue);
             if(!selectedTower->isMaxed() && selectedTower->getIsPlaced())
-                towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%"" -> " + std::to_string(selectedTower->getUpgradeAttackSpeed()) + " +" + bonusPercentString + "%");
+                towerSpeed.setString("Attack Speed: " + str + " -> " + std::to_string(selectedTower->getUpgradeAttackSpeed()) + "( +" + bonusPercentString + "% )");
             else if(selectedTower->getTimeBetweenAttack() != selectedTower->getUpgradeAttackSpeed() || !selectedTower->getIsPlaced()){
                 towerSpeed.setString("Attack Speed: " + str + " +" + bonusPercentString + "%");}
         }
