@@ -1,0 +1,13 @@
+Drone:3
+Drone:5
+Alien:2/Drone:5
+Drone:3/ArmoredDrone:1
+ArmoredFlyingDrone:1
+FastSpaceship:1/ArmoredDrone:2
+Drone:10
+Drone:4/Alien:5/Missile:5
+RegenerateDrone:1/FastSpaceship:2
+FlyingDrone:4/Alien:6/ArmoredDrone:2
+Drone:4/Alien:5/Missile:3/Drone:4/Alien:5
+Drone:5/ArmoredDrone:3/Alien:5/Missile:5
+Spaceship:2/RegenerateDrone:1/Drone:5/Alien:5/ArmoredDrone:5/Missile:6

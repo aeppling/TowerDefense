@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="untitled1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\cmake\;CMake Files\lib\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled1">
+				<Option output="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/untitled1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILD_TIME=&quot;+2023-05-29 21:59:51&quot;"/>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled1"/>
+					<CompileFile command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled1/fast">
+				<Option output="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/untitled1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILD_TIME=&quot;+2023-05-29 21:59:51&quot;"/>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/include"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/MINGW, GLEW AND SFML/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled1/fast"/>
+					<CompileFile command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MINGW_~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/main.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/AnimationsMaths.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/AnimationsMaths.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Buildable.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Buildable.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Game.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Game.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Menus.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/Menus.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/MenusButton.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/MenusButton.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/NetworkController.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/NetworkController.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/RetrieveLevel.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/RetrieveLevel.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/SizeRatioCalculator.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/SizeRatioCalculator.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGame/usefullStruct.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLCoinAnimation.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLCoinAnimation.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLDecorationLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLDecorationLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLEnemiesLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLHud.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLHud.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet1.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet2.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLLoaderPlanet3.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMapReloader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMissileLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLMissileLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLSprite.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLSprite.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLTowerLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SFMLTowerLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SpritesHolder.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDGraphics/SpritesHolder.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/AStarPathFinding.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/AStarPathFinding.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/MapCell.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/MapCell.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/TDMap.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/TDMap.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/mapParser.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDMap/mapParser.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDPlayer/TDPlayerSave.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundPlayer.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFMainSoundPlayer.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFTowerSoundLoader.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDSounds/SFTowerSoundLoader.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AntiAirTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AttackSpeedTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/AttackSpeedTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/BasicTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileLauncher.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileLauncher.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileThread.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/MissileThread.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SlowTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SlowTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SniperTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SpeedAuraTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/SplashTower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDTowers/Tower.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/Drone.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/FlyingDrone.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/Missile.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/RegenerateDrone.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/TDUnit.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/src/TDUnits/TDUnit.hpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLStaticTargets-debug.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLStaticTargets-release.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML/SFMLStaticTargets.cmake">
+			<Option virtualFolder="CMake Files\lib\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
