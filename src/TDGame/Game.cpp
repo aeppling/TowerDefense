@@ -843,7 +843,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if(true || (fileTime - buildTime) > 999999) { // 60
+            if(false /*|| (fileTime - buildTime) > 999999*/) { // 60
                 std::cout << "Map has been modified since compilation." << std::endl;
                 return -1;
             }
@@ -871,7 +871,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if( true || (fileTime - buildTime) > 9999999) { // 60
+            if( false /*fileTime - buildTime) > 9999999*/) { // 60
                 std::cout << "Level has been modified since compilation." << std::endl;
                 return -1;
             }
@@ -1016,6 +1016,7 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 std::cout << "Tower id : " << this->id << std::endl;
                 this->towerList.push_back(toAdd);
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
+                this->towerList[this->towerList.size() - 1]->setIsPlaced(true);
                 this->looseCoins(toBuild->getCost());
                 this->gameState.numCoins = this->player->getCoinNumber();
                 if(this->networkController != nullptr){
@@ -1488,23 +1489,41 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
     if (radius <= 1) {
         bool isBuildable = isBuildableAtPositionForSmaller(map, posX,
                                                            posY, radius);
-        setHoveringSprites(window, posX, posY, range,
+
+        if(towerInfos->getIsPlaced()){
+            setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48, 0);
+            setHoveringSprites(window, posX, posY, radius,
+                           isBuildable, 128, 0);
+        }else{
+            setHoveringSprites(window, posX, posY, range,
                            isBuildable, 48, towerInfos->getCost());
-        setHoveringSprites(window, posX, posY, radius,
+            setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128, towerInfos->getCost());
+
+        }
     }
     else {
         bool isBuildable = isBuildableAtPosition(map, posX, posY,
                                                  radius);
-        setHoveringSprites(window, posX, posY, range,
-                           isBuildable, 48, towerInfos->getCost() );
-        setHoveringSprites(window, posX, posY, radius,
+        if(towerInfos->getIsPlaced()){
+            setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48, 0);
+            setHoveringSprites(window, posX, posY, radius,
+                           isBuildable, 128, 0);
+        }else{
+            setHoveringSprites(window, posX, posY, range,
+                           isBuildable, 48, towerInfos->getCost());
+            setHoveringSprites(window, posX, posY, radius,
                            isBuildable, 128, towerInfos->getCost());
+
+        }
 
     }
     if (showBuildable)
         setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
 }
+
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade, int cost) {
     if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY < 0) || (posX < 0))

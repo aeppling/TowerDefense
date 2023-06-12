@@ -245,7 +245,7 @@ int main() {
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Titlebar | sf::Style::Close); // emepecher le plein ecran
     
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData);
     menu.loadHome();
