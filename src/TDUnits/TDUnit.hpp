@@ -80,7 +80,7 @@ public:
     void setPosX(int posX) { this->_posX = posX; };
     void setPosY(int posY) { this->_posY = posY; };
     void clearPath() { this->_path.clear(); };
-    void setPath(std::vector<MapCell*> path);
+    
     bool isFlying() { return (this->_isFlying); };
     int  getHealth() { return (this->_health_points); };
     void setHealth(int health) { this->_health_points = health; };

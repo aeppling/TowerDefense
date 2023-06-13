@@ -94,8 +94,6 @@ public:
         sf::Sprite getMissileSprite(int index);
         sf::Sprite getExplosionSprite(int index);
         int getTotalMissiles();
-        void slowTarget(TDUnit *target);
-        void resetSlowTarget(TDUnit *target);
         void setSpeedBuffValue(int value);
         float getSpeedBuff() { return (this->speedBuff);};
         void resetSpeedBuff();

@@ -108,6 +108,7 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
         while (i != this->_walkableSprite.size()) {
             if ((this->_walkableSprite.at(i)->getPosX()) == posX && (this->_walkableSprite.at(i)->getPosY() == posY)) {
                     this->_walkableSprite.at(i)->setSprite(sfmlLoader.getWallCell(), cellSize, posX, posY, newType, 1);
+                    
                     auto it = this->_walkableSprite.begin() + i;
                     std::shared_ptr<SFMLSprite> removed_element = *it;
                     this->_walkableSprite.erase(it);
@@ -142,6 +143,7 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
         int i = 0;
         while (i != this->_wallSprite.size()) {
             if ((this->_wallSprite.at(i)->getPosX()) == posX && (this->_wallSprite.at(i)->getPosY() == posY)) {
+                
                 this->_wallSprite.at(i)->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, posX, posY, newType, 1);
                 auto it = this->_wallSprite.begin() + i;
                 std::shared_ptr<SFMLSprite> removed_element = *it;
