@@ -55,7 +55,6 @@ private:
     std::vector<sf::RectangleShape> towerRectangles;
 public:
     SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX, int gamePoxY, int lifeNumber, int waveNumber, int money, int maxWaveNumber, int level);
-    ~SFMLHud();
     
     void update();
     void draw();

@@ -187,21 +187,31 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
                                                  window, this->sfTowerSoundLoader);
         Tower *buildTowerType5 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                     window, this->sfTowerSoundLoader);
-         Tower *buildTowerType6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+        Tower *buildTowerType6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                    window, this->sfTowerSoundLoader);
-         Tower *buildTowerType7 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
+        Tower *buildTowerType7 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
                                                          window, this->sfTowerSoundLoader);
 
         this->towerStoreList.at(0).push_back(buildTowerType1);
         this->towerStoreList.at(1).push_back(buildTowerType2);
-        this->towerStoreList.at(2).push_back(buildTowerType3);
-        this->towerStoreList.at(3).push_back(buildTowerType4);
-        this->towerStoreList.at(4).push_back(buildTowerType5);
+        
 
-        if (this->planet == 2)
-            this->towerStoreList.at(5).push_back(buildTowerType6);
-        else if (this->planet == 3) {
-            this->towerStoreList.at(5).push_back(buildTowerType6);
+        if(this->planet == 1){
+        this->towerStoreList.at(2).push_back(buildTowerType3);
+        this->towerStoreList.at(3).push_back(buildTowerType5);
+        this->towerStoreList.at(4).push_back(buildTowerType4);
+       
+        }else if (this->planet == 2){
+        this->towerStoreList.at(2).push_back(buildTowerType6);
+        this->towerStoreList.at(3).push_back(buildTowerType3);
+        this->towerStoreList.at(4).push_back(buildTowerType5);
+        this->towerStoreList.at(5).push_back(buildTowerType4);
+        }else if (this->planet == 3) {
+
+            this->towerStoreList.at(2).push_back(buildTowerType6);
+            this->towerStoreList.at(3).push_back(buildTowerType3);
+            this->towerStoreList.at(4).push_back(buildTowerType5);
+            this->towerStoreList.at(5).push_back(buildTowerType4);
             this->towerStoreList.at(6).push_back(buildTowerType7);
         }
         i++;

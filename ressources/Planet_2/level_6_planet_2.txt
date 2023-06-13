@@ -6,3 +6,7 @@ FlyingDrone:4
 CrossTank:6/DrillTank:2
 Missile:10/FastTank:8
 ArmoredAlien:5/ArmoredDrone:5
+Tank:15/FastTank:5
+RegenerateDrone:1
+ArmoredDrone:10/FlyingDrone:5/Drone:20
+
