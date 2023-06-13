@@ -16,20 +16,10 @@ TXTTTTTTTXT
 TXXXXXXXXXT
 TTTTTBTTTTT
 Starting wave0/7
-Life number : 6
-Coin number : 6
+Life number : 5
+Coin number : 5
 Wave Started
 Wave contain 3 ennemies
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies

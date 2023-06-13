@@ -11,9 +11,6 @@ class BasicTower : public Tower {
 
 public :
     BasicTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader);
-    BasicTower(Game gameInstance, int xPos, int yPos);
-    //! override
-    void isInRange(std::vector<TDUnit *> enemiesList);
 
 };
 

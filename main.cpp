@@ -157,23 +157,6 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
   //  sfSoundPlayer.stopMenuMusic();
-
-    //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
-
-
-    /*if(networkController != nullptr){
-      if (networkController->getIsServer() == true) {
-          std::string levelstr = "1";
-          networkController->sendMessageToAllClients(levelstr);
-          level = atoi(levelstr.c_str());
-
-      } else {
-          std::string levelstr = networkController->receiveMessage(networkController->getServerSocket());
-          level = atoi(levelstr.c_str());
-      }
-    }*/
-
-    
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
     int exitResult = 0;
     try {

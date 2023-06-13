@@ -100,8 +100,6 @@ class Game{
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
         int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder);
         int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume);
-        void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
-                            std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
         void setObstacleTest(TDMap &map, sf::RenderWindow &window);
         bool setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
@@ -125,7 +123,6 @@ class Game{
         void setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade, int cost);
         void setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite);
-        void display();
         void displayCoins(sf::RenderWindow &window);
         void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
         void displayExplosions(sf::RenderWindow &window);

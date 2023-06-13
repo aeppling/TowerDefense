@@ -12,10 +12,6 @@ class Menus {
 private:
     int                         _winSizeX;
     int                         _winSizeY;
-  /*  int                         _globalVolume;
-    int                         _musicVolume;
-    int                         _soundVolume;
-    int                         _difficulty;*/
     std::string                 _players;
     std::string                 _ipAddressField;
     std::string                 _ip;
