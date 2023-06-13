@@ -57,9 +57,8 @@ void    TDUnit::live() {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         if (!(this->isAtBase())) {
                 this->setHealthBarSize();
-                std::cout << "wall comparaison: " << _walls->size() << " and " << wallSize << std::endl;
-                if (_walls->size() != wallSize) {
-                    std::cout << "update path: " << getTypeName() << std::endl;
+                 if (_walls->size() != wallSize) {
+                    
 
                     _path.clear();
                     searchPath(_mapCopy->getMapVector(), _baseCoordX, _baseCoordY, false);
@@ -116,9 +115,9 @@ void    TDUnit::move() {
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
             for (int j = 0; j < _walls->size(); j++) {
                 if ((*_walls)[j].x == nextTo->getPosX() && (*_walls)[j].y == nextTo->getPosY()) {
+                    
                     _walls->erase(_walls->begin() + j);
-                    std::cout << "destroyed wall from _walls" << std::endl;
-                    std::cout << "new size : " << _walls->size() << std::endl;
+                    
                     break;
                 }
             }
@@ -169,7 +168,7 @@ void    TDUnit::move() {
 
 bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting) {
     
-    std::cout << "wall size " << this->wallSize << std::endl;
+    
     bool retValue = false;
     std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;
     if (this->getTypeName() == "Missile" || this->getTypeName() == "DrillTank")

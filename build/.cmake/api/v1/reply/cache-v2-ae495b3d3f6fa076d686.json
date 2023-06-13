@@ -891,7 +891,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "untitled1"
+			"value" : "SpaceDefender"
 		},
 		{
 			"name" : "CMAKE_RANLIB",

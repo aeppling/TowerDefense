@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "untitled1",
+					"name" : "SpaceDefender",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "untitled1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled1-Release-28a6529d3a8bd72a7ff1.json",
-					"name" : "untitled1",
+					"id" : "SpaceDefender::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SpaceDefender-Release-83c50d7fb21cbf8086c3.json",
+					"name" : "SpaceDefender",
 					"projectIndex" : 0
 				}
 			]

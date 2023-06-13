@@ -51,7 +51,7 @@ public:
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::chrono::steady_clock::time_point _slowChrono;
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
-    //std::vector<Point> _walls;
+    
     std::shared_ptr<std::vector<Point>> _walls;
     
     std::thread                           _thread;
@@ -94,11 +94,13 @@ public:
     std::shared_ptr<std::vector<Point>> getWalls() { return _walls; }
 
     void setWalls(const std::shared_ptr<std::vector<Point>>& walls) {
+       
+        
         _walls = walls;
     }
 
     void setWallSize(int size) { 
-        std::cout << "WALL SIZE SET" << std::endl;
+        
         this->wallSize = size; };
 
     // FUNCTIONS

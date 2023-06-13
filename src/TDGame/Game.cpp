@@ -372,9 +372,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->currentWave.reset();
                 this->currentWave = nullptr;
                 this->currentWave = std::make_shared<std::vector<TDUnit*>>(this->enemyList[this->currentWaveNumber]);
-
+                
                 std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
-
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
                 std::cout << "Wave Started" << std::endl;
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
@@ -408,7 +407,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         std::ref(basePosY),
                                         std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
                                         this->spawnCount, this->cellSize);
-                                    enemyList.at(this->currentWaveNumber).at(this->unitCount)->setWalls(std::make_shared<std::vector<Point>>(this->gameState.walls));
+                                        
+                                    
+
 
                                 this->spawnCount++;
                                 this->unitCount++;
@@ -1124,6 +1125,14 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             wallPos.x = mouseCoord.posX;
             wallPos.y = mouseCoord.posY;
             this->gameState.walls.push_back(wallPos);
+            
+            std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+            
+            for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+
+                enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                
+            }
             if(this->networkController != nullptr){
                 this->sendGameStateToClients();
             }
@@ -1154,6 +1163,12 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                 if(this->gameState.walls.at(j).x == mouseCoord.posX && this->gameState.walls.at(j).y == mouseCoord.posY)
                 {
                     this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                    std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                    for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                        
+                        enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                    }
                     break;
                 }
             }
@@ -1796,6 +1811,12 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         std::cout << "wall built by other player" << std::endl;
                         int count_spawn = 0;
                         this->gameState.walls.push_back(wallPosition);
+                        std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                        for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                            
+                            enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                        }
                         std::cout << spawnCells.size() << std::endl;
                         while (count_spawn < this->spawnCells.size()) {
                             map.getElem(wallPosition.x, wallPosition.y)->setType('W');
@@ -1850,8 +1871,13 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         map.refreshTextures(map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosX(),
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosY());
                         this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                        std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                        for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                            
+                            enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                        }
                         
-                        std::cout << "Wall destroyed" << std::endl;
                         break;
                     }
                 }
