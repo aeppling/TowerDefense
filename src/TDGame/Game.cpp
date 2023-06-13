@@ -660,7 +660,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                     this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
                                     int lifeToLose = 1;
-                                    if(this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "RegenerateDrone" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "ArmoredRegenerateDrone"){
+                                    if(this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "RegenerateDrone" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "ArmoredRegenerateDrone" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "TransportSpaceship"){
                                         lifeToLose  = 3;
                                     }else if(this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet1" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet2" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet3"){
                                         lifeToLose  = 5;

@@ -1,54 +1,69 @@
 Unlocked (P1,P2,P3) : 10,10,10
-Volumes (Global,Music,Sound) : 60,100,100,
-Difficulty : 3
-Build time string: +2023-06-13 11:10:19
-SXTTTTTTTXS
+Volumes (Global,Music,Sound) : 100,100,100,
+Difficulty : 2
+Build time string: +2023-06-12 11:48:13
+TSTFTSTFTST
+TXTFTXTFTXT
+TXTXXXXXTXT
+XXXXTTTXXXX
+TTXXFFFXXTT
+TTXXFFFXXTT
+TTXXFFFXXTT
 TXXXXXXXXXT
-TTXXTTTXXTT
-TTTXXTXXTTT
-TTTTXTXTTTT
-TTTXXTXXTTT
-TTXXTTTXXTT
-TXXTTTTTXXT
-XXTXXXXXTXX
-XTXXTXTXXTX
-XXXTTXTTXXX
-TTTTTXTTTTT
-TTTTTBTTTTT
+XXXXXXXXXXX
+XXXTTTTTXXX
+XXXXTTTXXXX
+TTTXXXXXTTT
+TTTXXBXXTTT
 Starting wave0/1
-Life number : 5
-Coin number : 5
+Life number : 6
+Coin number : 6
 Wave Started
 Wave contain 1 ennemies
-TDTowers deactivation
-Cleaning level memory...
-Cleaned tower
-Cleaned enemies
-Cleaned cells
-cleard enemies & cells
-tower joined
-enemies joined
-Cleaning done
-Player leaved current game
-Build time string: +2023-06-13 11:10:19
-TTTTTTTTTTT
-TXXXXXTTXSX
-TXTTTXXTXTX
-TXXXXTXXXTX
-TTTTXXTTTXX
-TTTXXTTTTXT
-TTXXTTTTTXT
-TXXXXXXXXXT
-TXTTTTTXTTT
-TXTTBTTXXTT
-TXTTXTTTXXT
-TXXXXTTTTXT
-TTTTTTSXXXT
-Starting wave0/1
-Life number : 5
-Coin number : 5
-Wave Started
-Wave contain 2 ennemies
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
 TRY WALL
 Refresh.
 TRY WALL
@@ -63,4 +78,4 @@ cleard enemies & cells
 tower joined
 enemies joined
 Cleaning done
-Player lost current game
+Unknow current game exit reason
