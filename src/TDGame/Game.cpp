@@ -670,7 +670,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     else {
                         std::string message;
-                        if (this->currentWaveNumber + 1 >= this->enemyList.size() - 1)
+                        if (this->currentWaveNumber >= this->enemyList.size() - 1)
                             message = "Press enter for last wave.";
                         else
                             message = "Press enter for next wave.";
@@ -1131,6 +1131,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
 
                 enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
                 
             }
             if(this->networkController != nullptr){
@@ -1168,6 +1169,8 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                     for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
                         
                         enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                        enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
                     }
                     break;
                 }
@@ -1816,6 +1819,8 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
                             
                             enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                            enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
                         }
                         std::cout << spawnCells.size() << std::endl;
                         while (count_spawn < this->spawnCells.size()) {
@@ -1876,6 +1881,8 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
                             
                             enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                            enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
                         }
                         
                         break;

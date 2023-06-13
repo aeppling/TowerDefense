@@ -15,37 +15,28 @@ XXXTTTTTXXX
 XXXXTTTXXXX
 TTTXXXXXTTT
 TTTXXBXXTTT
-Starting wave0/1
+Starting wave0/3
 Life number : 6
 Coin number : 6
 Wave Started
-Wave contain 6 ennemies
-TRY WALL
+Wave contain 1 ennemies
+Tower id : 1
 Refresh.
-TRY WALL
+Tower id : 2
 Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-Refresh.
-Refresh.
+TDTowers deactivation
+Starting wave1/3
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 1 ennemies
+TDTowers deactivation
+Starting wave2/3
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 1 ennemies
+TDTowers deactivation
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
@@ -54,4 +45,49 @@ cleard enemies & cells
 tower joined
 enemies joined
 Cleaning done
-Unknow current game exit reason
+Player leaved current game
+Build time string: +2023-06-13 11:10:19
+TSTFTSTFTST
+TXTFTXTFTXT
+TXTXXXXXTXT
+XXXXTTTXXXX
+TTXXFFFXXTT
+TTXXFFFXXTT
+TTXXFFFXXTT
+TXXXXXXXXXT
+XXXXXXXXXXX
+XXXTTTTTXXX
+XXXXTTTXXXX
+TTTXXXXXTTT
+TTTXXBXXTTT
+Starting wave0/3
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 1 ennemies
+Tower id : 1
+Refresh.
+Tower id : 2
+Refresh.
+TDTowers deactivation
+Starting wave1/3
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 1 ennemies
+TDTowers deactivation
+Starting wave2/3
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 1 ennemies
+TDTowers deactivation
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Player won current game

@@ -1,1 +1,3 @@
-DrillTank:1/Drone:5
+Drone:1
+Drone:1
+Drone:1

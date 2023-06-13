@@ -147,6 +147,7 @@ std::vector<sf::TcpSocket*> NetworkController::getClients() {
 
 NetworkController::~NetworkController() {
     delete this->serverSocket;
+    delete this->clients;
 }
 
 std::string NetworkController::detectMessageReceived()
