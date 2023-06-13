@@ -51,7 +51,9 @@ public:
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::chrono::steady_clock::time_point _slowChrono;
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
-    std::vector<Point> _walls;
+    //std::vector<Point> _walls;
+    std::shared_ptr<std::vector<Point>> _walls;
+    
     std::thread                           _thread;
     TDMap                                 *_mapCopy;
     // SFML
@@ -89,12 +91,15 @@ public:
     void setAlreadyArrived() { this->_alreadyArrived = true; this->_alreadyCount = true;};
     void setSpeed(float speed) { this->_speed = speed; };
     float getSpeed() { return (this->_speed); };
-    std::vector<Point> getWalls() { return (this->_walls); };
-    void setWalls(std::vector<Point>& walls) {
+    std::shared_ptr<std::vector<Point>> getWalls() { return _walls; }
+
+    void setWalls(const std::shared_ptr<std::vector<Point>>& walls) {
         _walls = walls;
-        this->wallSize = walls.size();
     }
-    void setWallSize(int size) { this->wallSize = size; };
+
+    void setWallSize(int size) { 
+        std::cout << "WALL SIZE SET" << std::endl;
+        this->wallSize = size; };
 
     // FUNCTIONS
     void live();

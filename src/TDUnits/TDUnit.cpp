@@ -42,6 +42,7 @@ TDUnit::TDUnit(int hp, int speed, int armor, int posX, int posY, bool isFlying, 
     float percentHealth = (float)this->_health_points / (float)this->_max_health * 100;
     this->_healthBar.setSize(sf::Vector2f(percentHealth / 2, 5));
     this->_healthBar.setFillColor(sf::Color::Green);
+    _walls = std::make_shared<std::vector<Point>>();
 }
 
 void    TDUnit::regenerate() {
@@ -56,6 +57,15 @@ void    TDUnit::live() {
         std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
         if (!(this->isAtBase())) {
                 this->setHealthBarSize();
+                std::cout << "wall comparaison: " << _walls->size() << " and " << wallSize << std::endl;
+                if (_walls->size() != wallSize) {
+                    std::cout << "update path: " << getTypeName() << std::endl;
+
+                    _path.clear();
+                    searchPath(_mapCopy->getMapVector(), _baseCoordX, _baseCoordY, false);
+                    wallSize = _walls->size();
+                }
+
                 this->move();
                 if ((this->getTypeName() == "RegenerateDrone") || (this->getTypeName() == "BossPlanet1"))
                     this->regenerate();
@@ -91,7 +101,7 @@ void    TDUnit::run(TDMap *map) {
 
 void    TDUnit::move() {
     //detect other td unit destoryed a wall
-   
+    
     
     
     std::shared_ptr<MapCell> nextTo = this->_path[0];
@@ -101,13 +111,14 @@ void    TDUnit::move() {
             
         
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
+
             
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
-            for(int j = 0; j < this->_walls.size(); j++)
-            {
-                if(this->_walls.at(j).x == nextTo->getPosX() && this->_walls.at(j).y == nextTo->getPosY())
-                {
-                    this->_walls.erase(this->_walls.begin() + j);
+            for (int j = 0; j < _walls->size(); j++) {
+                if ((*_walls)[j].x == nextTo->getPosX() && (*_walls)[j].y == nextTo->getPosY()) {
+                    _walls->erase(_walls->begin() + j);
+                    std::cout << "destroyed wall from _walls" << std::endl;
+                    std::cout << "new size : " << _walls->size() << std::endl;
                     break;
                 }
             }
@@ -157,7 +168,7 @@ void    TDUnit::move() {
 }
 
 bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting) {
-    this->wallSize = _walls.size();
+    
     std::cout << "wall size " << this->wallSize << std::endl;
     bool retValue = false;
     std::vector<std::shared_ptr<MapCell>> pathToEmptyFill;

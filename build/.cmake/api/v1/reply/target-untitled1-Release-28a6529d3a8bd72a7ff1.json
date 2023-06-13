@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "bin/SpaceDefender.exe"
+			"path" : "untitled1.exe"
 		},
 		{
-			"path" : "bin/SpaceDefender.pdb"
+			"path" : "untitled1.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -20,7 +20,8 @@
 			"find_package",
 			"set_property",
 			"sfml_bind_dependency",
-			"add_definitions"
+			"add_definitions",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -37,19 +38,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 32,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 35,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 30,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
@@ -187,7 +188,13 @@
 			{
 				"command" : 7,
 				"file" : 0,
-				"line" : 23,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 14,
 				"parent" : 0
 			}
 		]
@@ -198,14 +205,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-static-libgcc -static-libstdc++ -O3 -DNDEBUG"
+					"fragment" : "-O3 -DNDEBUG"
 				}
 			],
 			"defines" : 
 			[
 				{
 					"backtrace" : 27,
-					"define" : "BUILD_TIME=\"+2023-06-12 17:49:58\""
+					"define" : "BUILD_TIME=\"+2023-06-13 10:11:59\""
 				},
 				{
 					"backtrace" : 2,
@@ -215,7 +222,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 2,
+					"backtrace" : 28,
 					"isSystem" : true,
 					"path" : "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/include"
 				}
@@ -272,17 +279,17 @@
 			]
 		}
 	],
-	"id" : "SpaceDefender::@6890427a1f51a3e7e1df",
+	"id" : "untitled1::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-static-libgcc -static-libstdc++ -O3 -DNDEBUG",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-static -mwindows",
+				"fragment" : "",
 				"role" : "flags"
 			},
 			{
@@ -308,16 +315,6 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "C:\\Users\\leori\\OneDrive\\Documents\\cours_2eme_annee\\2PROJ\\TD\\TowerDefense-main\\TowerDefense\\lib\\libsfml-audio-s.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-static-libgcc",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-static-libstdc++",
 				"role" : "libraries"
 			},
 			{
@@ -392,8 +389,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "SpaceDefender",
-	"nameOnDisk" : "SpaceDefender.exe",
+	"name" : "untitled1",
+	"nameOnDisk" : "untitled1.exe",
 	"paths" : 
 	{
 		"build" : ".",

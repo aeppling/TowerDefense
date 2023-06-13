@@ -81,6 +81,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->gameState.numCoins = 5000;
     this->gameState.towerList = &this->towerList;
     this->id = 0;
+    std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
 }
 
 
@@ -333,7 +334,9 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
     enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY, false);
+    
     enemyList.at(wave).at(unitCount)->setSpawned();
+    
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
@@ -369,6 +372,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->currentWave.reset();
                 this->currentWave = nullptr;
                 this->currentWave = std::make_shared<std::vector<TDUnit*>>(this->enemyList[this->currentWaveNumber]);
+
+                std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
                 std::cout << "Wave Started" << std::endl;
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
@@ -388,6 +394,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->initializeTowerStore(window);
                 //
                 this->sfmlHud->setTowerStoreList(this->towerStoreList);
+                
                 usleep(3000);
                 while (!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -401,6 +408,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         std::ref(basePosY),
                                         std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
                                         this->spawnCount, this->cellSize);
+                                    enemyList.at(this->currentWaveNumber).at(this->unitCount)->setWalls(std::make_shared<std::vector<Point>>(this->gameState.walls));
+
                                 this->spawnCount++;
                                 this->unitCount++;
                                 if (this->spawnCount >= this->spawnCells.size())
@@ -602,7 +611,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     window.draw(droneShadow);
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
-                                enemyList.at(this->currentWaveNumber).at(s)->setWalls(this->gameState.walls);
+                                
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
                                         window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
@@ -1124,7 +1133,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
-            std::cout << "refresh path finding" << std::endl;
+            
             for( int i = 0; i < this->enemyList.size(); i++)
             {
                 for(int k = 0; k < this->enemyList.at(i).size(); k++)
@@ -1134,7 +1143,7 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
                     
                     this->enemyList.at(i).at(k)->clearPath();
 
-                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, true);
+                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, false);
                 }
             }
             this->sfMainSoundPlayer.playGameCoinWon();
@@ -1822,7 +1831,18 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                     }
                     if(!found){
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->setType('X');
-                        
+                        for( int i = 0; i < this->enemyList.size(); i++)
+            {
+                for(int k = 0; k < this->enemyList.at(i).size(); k++)
+                {
+                    if(this->enemyList.at(i).at(k)->isSpawned() == false)
+                        continue;
+                    
+                    this->enemyList.at(i).at(k)->clearPath();
+
+                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, false);
+                }
+            }
                         this->sfMainSoundPlayer.playGameCoinWon();
                         this->addCoins(2);
                         this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->gameState.walls.at(j).x, this->gameState.walls.at(j).y, 2, true);
