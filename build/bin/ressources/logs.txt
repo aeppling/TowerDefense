@@ -1,6 +1,6 @@
 Unlocked (P1,P2,P3) : 10,10,10
-Volumes (Global,Music,Sound) : 100,100,100,
-Difficulty : 2
+Volumes (Global,Music,Sound) : 60,100,100,
+Difficulty : 3
 Build time string: +2023-06-13 11:10:19
 SXTTTTTTTXS
 TXXXXXXXXXT
@@ -15,11 +15,12 @@ XTXXTXTXXTX
 XXXTTXTTXXX
 TTTTTXTTTTT
 TTTTTBTTTTT
-Starting wave0/12
-Life number : 6
-Coin number : 6
+Starting wave0/1
+Life number : 5
+Coin number : 5
 Wave Started
 Wave contain 1 ennemies
+TDTowers deactivation
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
@@ -28,4 +29,38 @@ cleard enemies & cells
 tower joined
 enemies joined
 Cleaning done
-Unknow current game exit reason
+Player leaved current game
+Build time string: +2023-06-13 11:10:19
+TTTTTTTTTTT
+TXXXXXTTXSX
+TXTTTXXTXTX
+TXXXXTXXXTX
+TTTTXXTTTXX
+TTTXXTTTTXT
+TTXXTTTTTXT
+TXXXXXXXXXT
+TXTTTTTXTTT
+TXTTBTTXXTT
+TXTTXTTTXXT
+TXXXXTTTTXT
+TTTTTTSXXXT
+Starting wave0/1
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 2 ennemies
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Player lost current game
