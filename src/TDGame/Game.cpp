@@ -1190,31 +1190,33 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     }
 }
 
-bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
+bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int range) {
     int maxY = map.getSizeY() - 1;
     int maxX = map.getSizeX() - 1;
 
-    for (int i = -size; i <= size; i++) {
-        for (int j = -size; j <= size; j++) {
-            if (i == 0 && j == 0) { // CENTER ALREADY CHECKED
-                continue;
-            }
+    for (int i = -range; i <= range; i++) {
+        for (int j = -range; j <= range; j++) {
             int newY = y + i;
             int newX = x + j;
-            // IS CHECKING NOT OUTSIDE MAP
-            if ((newX < 0) || (newX >= map.getSizeX()) || (newY < 0) || (newY >= map.getSizeY()))
-                return (false);
-            if (map.getElem(newX, newY)->getType() != 'T') {
-                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
-                    continue;
+            
+            // Vérifier si la position est à l'intérieur du cercle de carré
+            if (i*i + j*j <= range*range) {
+                // Vérifier si la position est en dehors de la carte
+                if (newX < 0 || newX >= map.getSizeX() || newY < 0 || newY >= map.getSizeY()) {
+                    return false;
                 }
-                else
-                    return (false);
+                
+                // Vérifier si la position est valide pour la construction
+                if (map.getElem(newX, newY)->getType() != 'T') {
+                    return false;
+                }
             }
         }
     }
+    
     return true;
 }
+
 
 bool Game::isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size) {
     bool isBuildable = false;

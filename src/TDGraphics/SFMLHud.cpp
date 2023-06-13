@@ -58,7 +58,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->levelTitleContainer.setOutlineThickness(2);
     this->levelTitleContainer.setOutlineColor(outlineColor);
 
-    this->gameInfoContainer.setSize(sf::Vector2f(500, 600));
+    this->gameInfoContainer.setSize(sf::Vector2f(500, 750));
     this->gameInfoContainer.setPosition(30, 225 + this->gameInfoOffset);
     this->gameInfoContainer.setFillColor(fillColor);
     this->gameInfoContainer.setOutlineThickness(2);
@@ -87,10 +87,10 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     removeRect.setOutlineThickness(2);
     removeRect.setOutlineColor(sf::Color::White);
     wallSprite.setTexture(wallTexture);
-    wallSprite.setPosition(1400, 900);
+    wallSprite.setPosition(1400, 925);
     wallSprite.setScale(1.3,1.3);
     wallRect.setSize(sf::Vector2f(500, 80));
-    wallRect.setPosition(1387, 890);
+    wallRect.setPosition(1387, 915);
     wallRect.setFillColor(fillColor);
     wallRect.setOutlineThickness(1);
     sf::Color outlineColorWall(255 ,255,255, 210);
@@ -99,7 +99,7 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     wallPriceText.setColor(sf::Color::White);
     wallPriceText.setCharacterSize(26);
     wallPriceText.setString("BUILD WALL : 5 coins");
-    wallPriceText.setPosition(1480, 915);
+    wallPriceText.setPosition(1480, 935);
     /*
     wallPriceImage.setTexture(coinTexture);
     wallPriceImage.setPosition(385, 940);
