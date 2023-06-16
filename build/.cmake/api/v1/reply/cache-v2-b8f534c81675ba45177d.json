@@ -1334,6 +1334,18 @@
 			"value" : "C:/Users/leori/OneDrive/Documents/cours_2eme_annee/2PROJ/TD/TowerDefense-main/TowerDefense/lib/libopenal32.a"
 		},
 		{
+			"name" : "SFML_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for SFML."
+				}
+			],
+			"type" : "PATH",
+			"value" : "SFML_DIR-NOTFOUND"
+		},
+		{
 			"name" : "SFML_DOC_DIR",
 			"properties" : 
 			[

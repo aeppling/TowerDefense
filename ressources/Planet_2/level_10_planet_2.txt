@@ -1,3 +1,10 @@
-Drone:1
-Drone:1
-Drone:1
+Drone:3
+Tank:1/CrossTank:1/Tank:1
+Alien:3/Drone:3/FastTank:3
+Tank:1/ArmoredDrone:1/Tank:1/FlyingDrone:3
+Tank:9/Missile:3
+FastSpaceship:1/ArmoredFlyingDrone:1/FastSpaceship:1/Tank:9/FastTank:1/Spaceship:1/FastTank:1
+CrossTank:3/DrillTank:3/FastTank:12/FastSpaceship:3
+ArmoredFLyingDrone:3/FlyingDrone:6/Tank:3/FastTank:6
+FastSpaceship:3/Drone:3/Alien:3/FlyingDrone:3/Tank:3/FastTank:3/CrossTank:3/DrillTank:3/Spaceship:3
+BossPlanet2:1

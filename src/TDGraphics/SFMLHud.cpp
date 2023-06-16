@@ -246,11 +246,11 @@ void SFMLHud::draw() {
         sf::Vector2f newOrigin(towerNameText.getLocalBounds().width / 2.f, towerNameText.getLocalBounds().height / 2.f);
         towerNameText.setOrigin(newOrigin);
         towerNameText.setPosition(1550, 15 + this->towerSelectorOffset);
-        if (selectedTower->getTowerName() == "SlowTower")
+        if (selectedTower->getTowerName() == "SlowTower"){
             towerNameText.setString("FreezeTower");
-        else
+        }else{
             towerNameText.setString(selectedTower->getTowerName());
-
+        }
         _window->draw(towerNameText);
 
         //tower selected info Menu - upgrade, sell buttons
@@ -326,6 +326,7 @@ void SFMLHud::draw() {
             else{
                 towerSpeed.setString("Attack Speed: " + str);
             }
+        }
         std::string stringArmorP("Armor penetration : " + std::to_string(selectedTower->getArmor()));
         sf::Text towerArmorP;
         towerArmorP.setFont(mainFont);
@@ -412,5 +413,5 @@ void SFMLHud::draw() {
         _window->draw(pauseButtonSprite);
     
     }
-}
+
 }

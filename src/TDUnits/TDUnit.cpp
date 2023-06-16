@@ -58,7 +58,7 @@ void    TDUnit::live() {
         if (!(this->isAtBase())) {
                 this->setHealthBarSize();
                  if (_walls->size() != wallSize) {
-                    
+                    std::cout << "WALLS CHANGED" << std::endl;
 
                     _path.clear();
                     searchPath(_mapCopy->getMapVector(), _baseCoordX, _baseCoordY, false);
@@ -117,6 +117,7 @@ void    TDUnit::move() {
                 if ((*_walls)[j].x == nextTo->getPosX() && (*_walls)[j].y == nextTo->getPosY()) {
                     
                     _walls->erase(_walls->begin() + j);
+                    std::cout << "wall destroyed" << std::endl;
                     
                     break;
                 }

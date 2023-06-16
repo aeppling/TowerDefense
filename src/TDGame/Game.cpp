@@ -1089,13 +1089,13 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     std::cout << "TRY WALL" << std::endl;
-    if (this->player->getCoinNumber() < 5)
-        return ;
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
         bool check = false;
         // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
+            if (this->player->getCoinNumber() < 5)
+                return ;
             // CHECKING IF BLOCKING UNIT PATH HERE
             bool isPathValid = true;
                int wcount = 0;

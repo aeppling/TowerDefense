@@ -1,27 +1,107 @@
 Unlocked (P1,P2,P3) : 10,10,10
 Volumes (Global,Music,Sound) : 100,100,100,
 Difficulty : 2
-Build time string: +2023-06-16 11:37:51
-TTXXXXTTTTT
-TTXTTXTTTTT
-TTXTTXTXXXT
-XXXTTXXXXXX
-XTTTTXTTXTT
-BTTTTXTTXTT
-TTTTTXTTXTT
-TTTTTXTTXTT
-TTTTTSTTXTT
-TTTTTTTTXTT
-TTTTTTTTXTT
-TTSXXXXXXTT
-TTTTTTTTTTT
-Starting wave0/9
+Build time string: +2023-06-16 18:32:24
+SXXXXXXXXXS
+XTTXTFTXTTX
+XTTXTFTXTTX
+XTTXFFFXTTX
+XTTXTTTXTTX
+XTTXTTTXTTX
+XTTXXXXXTTX
+XTTXFFFXTTX
+XTTXFFFXTTX
+XTTXTFTXTTX
+XXXXTFTXXXX
+TTTXTFTXTTT
+TTTXXBXXTTT
+Starting wave0/1
 Life number : 6
 Coin number : 6
 Wave Started
-Wave contain 3 ennemies
-Tower id : 1
+Wave contain 4 ennemies
+TRY WALL
+Running pathfinding
+Running pathfinding
 Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+TRY WALL
+Running pathfinding
+Running pathfinding
+Refresh.
+Running pathfinding
+path size : 52
+Running pathfinding
+path size : 78
+Running pathfinding
+path size : 52
+Running pathfinding
+path size : 50
+Refresh.
+wall destroyed
+size afther11
+WALLS CHANGED
+Path before45
+Running pathfinding
+path size : 46
+Path afther refresh46
+size afther11
+WALLS CHANGED
+Path before38
+Running pathfinding
+path size : 39
+Path afther refresh39
+size afther11
+WALLS CHANGED
+Path before67
+Running pathfinding
+path size : 68
+Path afther refresh68
+size afther11
+WALLS CHANGED
+Path before46
+Running pathfinding
+path size : 47
+Path afther refresh47
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
