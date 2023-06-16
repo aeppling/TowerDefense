@@ -1,2 +1,15 @@
 CrossTank:2/Missile:1
 Tank:2/DrillTank:4
+Tank:1/FlyingDrone:1/Tank:1/FlyingDrone:1/Tank:1/FlyingDrone:1
+ArmoredDrone:1/Drone:9
+FlyingDrone:1/FastSpaceship:1/FlyingDrone:1/FastSpaceship:1/FlyingDrone:1/FastSpaceship:1
+CrossTank:1/FastTank:1/CrossTank:1/FastTank:1/CrossTank:1/FastTank:1/CrossTank:1/FastTank:1/FlyingDrone:1
+ArmoredFlyingDrone:4/CrossTank:4/DrillTank:2/FastTank:4
+Drone:20/RegenerateDrone:1
+FastTank:10/Missile:2/CrossTank:4/ArmoredAlien:4/Tank:6
+
+
+
+
+
+

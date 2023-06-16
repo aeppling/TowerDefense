@@ -1,74 +1,26 @@
 Unlocked (P1,P2,P3) : 10,10,10
 Volumes (Global,Music,Sound) : 100,100,100,
 Difficulty : 2
-Build time string: +2023-06-12 11:48:13
-TSTFTSTFTST
-TXTFTXTFTXT
-TXTXXXXXTXT
-XXXXTTTXXXX
-TTXXFFFXXTT
-TTXXFFFXXTT
-TTXXFFFXXTT
-TXXXXXXXXXT
-XXXXXXXXXXX
-XXXTTTTTXXX
-XXXXTTTXXXX
-TTTXXXXXTTT
-TTTXXBXXTTT
-Starting wave0/1
+Build time string: +2023-06-16 11:37:51
+TTXXXXTTTTT
+TTXTTXTTTTT
+TTXTTXTXXXT
+XXXTTXXXXXX
+XTTTTXTTXTT
+BTTTTXTTXTT
+TTTTTXTTXTT
+TTTTTXTTXTT
+TTTTTSTTXTT
+TTTTTTTTXTT
+TTTTTTTTXTT
+TTSXXXXXXTT
+TTTTTTTTTTT
+Starting wave0/9
 Life number : 6
 Coin number : 6
 Wave Started
-Wave contain 1 ennemies
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-Wall clicked
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
-Refresh.
-TRY WALL
+Wave contain 3 ennemies
+Tower id : 1
 Refresh.
 Cleaning level memory...
 Cleaned tower
