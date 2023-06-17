@@ -1,107 +1,48 @@
 Unlocked (P1,P2,P3) : 10,10,10
 Volumes (Global,Music,Sound) : 100,100,100,
 Difficulty : 2
-Build time string: +2023-06-16 18:32:24
-SXXXXXXXXXS
-XTTXTFTXTTX
-XTTXTFTXTTX
-XTTXFFFXTTX
-XTTXTTTXTTX
-XTTXTTTXTTX
-XTTXXXXXTTX
-XTTXFFFXTTX
-XTTXFFFXTTX
-XTTXTFTXTTX
-XXXXTFTXXXX
-TTTXTFTXTTT
-TTTXXBXXTTT
-Starting wave0/1
+Build time string: +2023-06-17 13:45:07
+XSXFXSXFXSX
+XXXXXXXXXXX
+XFFFFFFFFFX
+XFTTTFTTTFX
+XFTTTFTTTFX
+XFFFFFFFFFX
+XFFFTTTFFFX
+XFFFTTTFFFX
+XTTFTTTFTTX
+XTTFFFFFTTX
+XTTFFFFFTTX
+XXTTTBTTTXX
+XXXXXXXXXXX
+Starting wave0/5
 Life number : 6
 Coin number : 6
 Wave Started
-Wave contain 4 ennemies
-TRY WALL
-Running pathfinding
-Running pathfinding
+Wave contain 2 ennemies
+Tower id : 1
 Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-TRY WALL
-Running pathfinding
-Running pathfinding
-Refresh.
-Running pathfinding
-path size : 52
-Running pathfinding
-path size : 78
-Running pathfinding
-path size : 52
-Running pathfinding
-path size : 50
-Refresh.
-wall destroyed
-size afther11
 WALLS CHANGED
-Path before45
-Running pathfinding
-path size : 46
-Path afther refresh46
-size afther11
 WALLS CHANGED
-Path before38
-Running pathfinding
-path size : 39
-Path afther refresh39
-size afther11
+TDTowers deactivation
+Starting wave1/5
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 1 ennemies
+Tower id : 2
+Refresh.
 WALLS CHANGED
-Path before67
-Running pathfinding
-path size : 68
-Path afther refresh68
-size afther11
+TDTowers deactivation
+Starting wave2/5
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 3 ennemies
 WALLS CHANGED
-Path before46
-Running pathfinding
-path size : 47
-Path afther refresh47
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
 Cleaning level memory...
 Cleaned tower
 Cleaned enemies
@@ -110,4 +51,182 @@ cleard enemies & cells
 tower joined
 enemies joined
 Cleaning done
-Unknow current game exit reason
+Player leaved current game
+Build time string: +2023-06-17 13:45:07
+XSXFXSXFXSX
+XXXXXXXXXXX
+XFFFFFFFFFX
+XFTTTFTTTFX
+XFTTTFTTTFX
+XFFFFFFFFFX
+XFFFTTTFFFX
+XFFFTTTFFFX
+XTTFTTTFTTX
+XTTFFFFFTTX
+XTTFFFFFTTX
+XXTTTBTTTXX
+XXXXXXXXXXX
+Starting wave0/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 2 ennemies
+WALLS CHANGED
+WALLS CHANGED
+Tower id : 1
+Refresh.
+TDTowers deactivation
+Starting wave1/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 1 ennemies
+WALLS CHANGED
+TDTowers deactivation
+Starting wave2/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 3 ennemies
+Tower id : 2
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Starting wave3/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 5 ennemies
+Tower id : 3
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Starting wave4/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 6 ennemies
+Tower id : 4
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Player won current game
+Build time string: +2023-06-17 13:45:07
+XSXFXSXFXSX
+XXXXXXXXXXX
+XFFFFFFFFFX
+XFTTTFTTTFX
+XFTTTFTTTFX
+XFFFFFFFFFX
+XFFFTTTFFFX
+XFFFTTTFFFX
+XTTFTTTFTTX
+XTTFFFFFTTX
+XTTFFFFFTTX
+XXTTTBTTTXX
+XXXXXXXXXXX
+Starting wave0/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 2 ennemies
+Tower id : 1
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Starting wave1/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 1 ennemies
+WALLS CHANGED
+TDTowers deactivation
+Starting wave2/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 3 ennemies
+Tower id : 2
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Starting wave3/5
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 5 ennemies
+Tower id : 3
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Starting wave4/5
+Life number : 4
+Coin number : 4
+Wave Started
+Wave contain 9 ennemies
+Tower id : 4
+Refresh.
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+WALLS CHANGED
+TDTowers deactivation
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Player won current game
+Build time string: +2023-06-17 13:45:07
+XSXFXSXFXSX
+XXXXXXXXXXX
+XFFFFFFFFFX
+XFTTTFTTTFX
+XFTTTFTTTFX
+XFFFFFFFFFX
+XFFFTTTFFFX
+XFFFTTTFFFX
+XTTFTTTFTTX
+XTTFFFFFTTX
+XTTFFFFFTTX
+XXTTTBTTTXX
+XXXXXXXXXXX
+Starting wave0/6
+Life number : 5
+Coin number : 5
+Wave Started
+Wave contain 2 ennemies

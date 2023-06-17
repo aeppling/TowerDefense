@@ -9,4 +9,5 @@ ArmoredAlien:5/ArmoredDrone:5
 Tank:15/FastTank:5
 RegenerateDrone:1
 ArmoredDrone:10/FlyingDrone:5/Drone:20
+ArmoredGenerateDrone:1
 
