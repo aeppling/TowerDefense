@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\untitled1.dir/objects.a
-C:\MINGW_~1\mingw64\bin\ar.exe qc CMakeFiles\untitled1.dir/objects.a @CMakeFiles\untitled1.dir\objects1.rsp
-C:\MINGW_~1\mingw64\bin\G__~1.EXE -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\untitled1.dir/objects.a -Wl,--no-whole-archive -o untitled1.exe -Wl,--out-implib,libuntitled1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\untitled1.dir\linklibs.rsp

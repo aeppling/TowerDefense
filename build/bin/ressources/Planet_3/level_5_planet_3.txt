@@ -4,3 +4,7 @@ FastSpaceship:3
 FastSpaceship:1/Spaceship:1/FastSpaceship:1/FastSpaceship:1
 FastSpaceship:9
 TransportSpaceship:1
+FastSpaceship:3/TransportSpaceship:1/FastSpaceship:3
+TransportSpaceship:1/Spaceship:1/TransportSpaceship:1
+FastSpaceship:18
+Spaceship:3/FastSpaceship:3/Spaceship:3/FastSpaceship:3/Spaceship:3/FastSpaceship:3/TransportSPaceship:1
