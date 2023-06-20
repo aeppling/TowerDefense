@@ -1,6 +1,3 @@
 Unlocked (P1,P2,P3) : 1,0,0
 Volumes (Global,Music,Sound) : 100,100,100,
 Difficulty : 2
-network controller created
-waiting for connection
-Server is listening to port 53000, waiting for connections... 
