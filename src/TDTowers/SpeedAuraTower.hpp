@@ -13,8 +13,6 @@ private:
     std::vector<Tower *> _towerInRange;
 public:
     SpeedAuraTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader);
-    //! override
-    //void isInRange(std::vector<TDUnit *> enemiesList);
     void isInRange() override;
     void activate(std::vector<Tower*> *towerList);
     void deactivate() override;

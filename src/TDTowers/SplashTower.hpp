@@ -8,6 +8,4 @@ class SplashTower : public Tower {
         ~SplashTower() {};
 
         void fire(TDUnit *target) override;
-        //! override
-       // void fire(TDUnit *target);
 };

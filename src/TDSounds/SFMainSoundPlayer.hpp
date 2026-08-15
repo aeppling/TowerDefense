@@ -39,6 +39,7 @@ public:
     // SETTER VOLUME
     void refreshAllMenuVolume(int globalVolume, int musicVolume, int soundVolume);
     // MUSIC
+    bool isAnyGameMusicPlaying();
     void checkForGameMusicToReplay();
     void checkForMenuMusicToReplay();
     void playMenuMusic() { this->_menuMusic.play(); };
@@ -50,6 +51,11 @@ public:
     void playGameMusicFaster() { this->_gameMusicFaster.play(); };
     void stopGameMusic() { this->_gameMusic1.stop(); this->_gameMusic2.stop(); this->_gameMusicChill.stop();
         this->_gameMusicEndWave.stop(); this->_gameMusicFaster.stop();};
+    // Pause/resume keep the playback position, unlike stop() which rewinds.
+    // The Paused status is what remembers which track was running, so there is
+    // nothing else to store.
+    void pauseGameMusic();
+    void resumeGameMusic();
 
     // SOUNDS
     void playMenuClick() { this->_menuClick.play(); };

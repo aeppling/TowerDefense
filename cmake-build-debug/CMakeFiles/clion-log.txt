@@ -1,6 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense -B C:\Users\adrie\OneDrive\Documents\GitHub\TowerDefense\cmake-build-debug
--- Found SFML 2.5.1 in C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/lib/cmake/SFML
-Build time: +2023-05-29 21:59:51
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/adrie/OneDrive/Documents/GitHub/TowerDefense/cmake-build-debug

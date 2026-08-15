@@ -157,23 +157,6 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     TDPlayer *playerOne = new TDPlayer("Joueur1");
     SFTowerSoundLoader sfTowerSoundLoader(playerData.getMusicVolume() / 12, playerData.getSoundVolume());
   //  sfSoundPlayer.stopMenuMusic();
-
-    //NetworkController* networkController = new NetworkController(false); // commenter pour tester solo
-
-
-    /*if(networkController != nullptr){
-      if (networkController->getIsServer() == true) {
-          std::string levelstr = "1";
-          networkController->sendMessageToAllClients(levelstr);
-          level = atoi(levelstr.c_str());
-
-      } else {
-          std::string levelstr = networkController->receiveMessage(networkController->getServerSocket());
-          level = atoi(levelstr.c_str());
-      }
-    }*/
-
-    
     Game currentGame(gameDifficulty, levelToPlay, playerOne, sfSoundPlayer, sfTowerSoundLoader, nullptr, planetToLoad);
     int exitResult = 0;
     try {
@@ -182,6 +165,9 @@ int launchGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int g
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
+    // After catching, this fell off the end and returned an indeterminate int
+    // that the caller reads as a win/loss code. -1 is "error on initialisation".
+    return (-1);
 }
 
 int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &playerData, int gameDifficulty, sf::RenderWindow &window, int levelToPlay, int planetToLoad, NetworkController* networkController) {
@@ -226,6 +212,9 @@ int launchMultiplayerGame(SFMainSoundPlayer &sfSoundPlayer, TDPlayerSave &player
     } catch (const std::out_of_range& ex) {
         std::cout << "Exception at line : " << __LINE__ << " in file : "<< __FILE__<< " : " << ex.what() << std::endl;
     }
+    // After catching, this fell off the end and returned an indeterminate int
+    // that the caller reads as a win/loss code. -1 is "error on initialisation".
+    return (-1);
 }
 
 int main() {
@@ -245,8 +234,18 @@ int main() {
     SFMainSoundPlayer sfSoundPlayer(mainSoundLoader, playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
     // LAUNCHING MENU
     sfSoundPlayer.playMenuMusic();
-    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Titlebar | sf::Style::Close);
-    
+    sf::RenderWindow windowTestMenu(sf::VideoMode(1920, 1080), "Space Defender", sf::Style::Fullscreen); // emepecher le plein ecran
+
+    // Paint the window before loading anything. The Menus constructor below
+    // reads ~20 textures and two fonts, and nothing was drawn until the event
+    // loop further down, so the window sat on screen showing uninitialised GPU
+    // memory -- which appeared as a white block. Twice, because the surface is
+    // double buffered and display() swaps: one clear per buffer.
+    for (int i = 0; i < 2; i++) {
+        windowTestMenu.clear(sf::Color::Black);
+        windowTestMenu.display();
+    }
+
     Menus menu(windowTestMenu.getSize().x, windowTestMenu.getSize().y, playerData);
     menu.loadHome();
     sfSoundPlayer.refreshAllMenuVolume(playerData.getGlobalVolume(), playerData.getMusicVolume() / 12, playerData.getSoundVolume());
@@ -361,7 +360,7 @@ int main() {
                             levelToPlay = extractLevelNumber(selectionInformation);
                             planetToLoad = extractPlanetNumber(selectionInformation);
                             std::cout << "waiting for connection" << std::endl;
-                            std::thread networkThread(&NetworkController::waitForConnection, std::ref(networkController));
+                            std::thread networkThread(&NetworkController::waitForConnection, networkController);
                             while (networkController->isWaitingScreen()) {
                                 windowTestMenu.clear();
                                 menu.drawMenu(windowTestMenu);

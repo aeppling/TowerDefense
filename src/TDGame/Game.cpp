@@ -20,7 +20,7 @@
 
 #include <nlohmann/json.hpp>
 Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad) : sfMainSoundPlayer(sfMainSoundPlayer1),
-                                                                                        sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
+                                                                                   sfTowerSoundLoader(towerSoundLoader),networkController(networkController) {
     this->level = level;
     this->isPaused = false;
     this->planet = planetToLoad;
@@ -42,18 +42,18 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     SFMLLoaderPlanet3 sfmlLoader3;
     SFMLDecorationLoader decorationLoader;
     this->sfmlDecorationLoader = decorationLoader;
-    if (this->planet == 1)
-        this->sfmlLoaderMap = sfmlLoader1;
+    // These were independent `if`s with a single trailing `else`, so the else
+    // bound only to the planet==3 test: planet 2 was assigned sfmlLoader2 and
+    // then immediately overwritten with sfmlLoader1, loading planet 1 tiles.
     if (this->planet == 2)
         this->sfmlLoaderMap = sfmlLoader2;
-    if (this->planet == 3)
+    else if (this->planet == 3)
         this->sfmlLoaderMap = sfmlLoader3;
     else
         this->sfmlLoaderMap = sfmlLoader1;
-    this->sfmlMissileLoader = sfmlMissileLoader;
-    this->sfmlEnemiesLoader = sfmlEnemiesLoader;
-    this->sfmlTowerLoader = sfmlTowerLoader;
-    this->sfmlCoinAnimation = sfmlCoinAnimation;
+    // The four assignments that stood here were self-assignments: there are no
+    // constructor parameters by those names, so each member was assigned to
+    // itself. Removed (SFMLCoinAnimation is no longer copyable either).
     this->levelRetriever = new RetrieveLevel(this->level, this->planet);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
@@ -81,6 +81,7 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     this->gameState.numCoins = 5000;
     this->gameState.towerList = &this->towerList;
     this->id = 0;
+    std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
 }
 
 
@@ -164,10 +165,67 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
         std::cout << "Unable to open file" << std::endl;
     }
     file.close();
+    // Falling off the end of a bool function returns an indeterminate value,
+    // and callers branch on it to decide whether the map is playable.
+    return (false);
+}
+
+void Game::clearTowerStore() {
+    // Plain clear() dropped these pointers without freeing them, and the store
+    // is rebuilt at the start of every wave. Towers already bought have been
+    // erased from the store and now live in towerList, so they are not here.
+    for (std::vector<Tower *> &column : this->towerStoreList) {
+        for (Tower *tower : column)
+            delete tower;
+    }
+    this->towerStoreList.clear();
+}
+
+Tower *Game::createTowerForColumn(int column, sf::RenderWindow &window) {
+    // The store's column layout depends on the planet. It lived inline in
+    // initializeTowerStore(); it is centralised here so a column that runs out
+    // can be restocked with the right type.
+    if (column == 0)
+        return (new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 1)
+        return (new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (this->planet == 1) {
+        if (column == 2)
+            return (new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        if (column == 3)
+            return (new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        if (column == 4)
+            return (new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        return (nullptr);
+    }
+    // Planets 2 and 3 share the same layout; only planet 3 has column 6.
+    if (column == 2)
+        return (new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 3)
+        return (new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 4)
+        return (new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 5)
+        return (new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 6)
+        return (new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    return (nullptr);
+}
+
+void Game::refillTowerStoreColumn(int column, sf::RenderWindow &window) {
+    // Buying a tower erases it from its column. Only two of each type were ever
+    // stocked per wave, so buying the second one left the column empty -- and
+    // several places index it with .at(0) every frame, which threw
+    // std::out_of_range and aborted the process. Keep the column stocked.
+    if ((column < 0) || (column >= (int)this->towerStoreList.size()))
+        return;
+    Tower *tower = this->createTowerForColumn(column, window);
+    if (tower != nullptr)
+        this->towerStoreList.at(column).push_back(tower);
 }
 
 void Game::initializeTowerStore(sf::RenderWindow &window) {
-    this->towerStoreList.clear();
+    this->clearTowerStore();
     int y = 0;
     while (y <= this->nb_tower_type) {
         std::vector<Tower *> newVector;
@@ -176,36 +234,18 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
     }
     int i = 0;
     while (i <= 1) {
-        Tower *buildTowerType1 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                window, this->sfTowerSoundLoader);
-        Tower *buildTowerType2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader,
-                                                      this->sfmlMissileLoader, window, this->sfTowerSoundLoader);
-        Tower *buildTowerType3 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                  window, this->sfTowerSoundLoader);
-        Tower *buildTowerType4 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                 window, this->sfTowerSoundLoader);
-        Tower *buildTowerType5 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                    window, this->sfTowerSoundLoader);
-         Tower *buildTowerType6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                   window, this->sfTowerSoundLoader);
-         Tower *buildTowerType7 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                         window, this->sfTowerSoundLoader);
-
-        this->towerStoreList.at(0).push_back(buildTowerType1);
-        this->towerStoreList.at(1).push_back(buildTowerType2);
-        this->towerStoreList.at(2).push_back(buildTowerType3);
-        this->towerStoreList.at(3).push_back(buildTowerType4);
-        this->towerStoreList.at(4).push_back(buildTowerType5);
-
-        if (this->planet == 2)
-            this->towerStoreList.at(5).push_back(buildTowerType6);
-        else if (this->planet == 3) {
-            this->towerStoreList.at(5).push_back(buildTowerType6);
-            this->towerStoreList.at(6).push_back(buildTowerType7);
-        }
+        for (int column = 0; column <= this->nb_tower_type; column++)
+            this->refillTowerStoreColumn(column, window);
         i++;
     }
     this->initializeTowerStoreCurrentWave();
+    // SFMLHud keeps its *own copy* of this pointer table and only ever got it
+    // refreshed at the start of a wave. Since clearTowerStore() now actually
+    // frees the old towers, any caller that rebuilt the store mid-wave (placing
+    // a tower does, via loop()) left the HUD drawing freed memory. Refresh it
+    // here so no caller can get that wrong.
+    if (this->sfmlHud != nullptr)
+        this->sfmlHud->setTowerStoreList(this->towerStoreList);
 }
 
 void Game::initializeTowerStoreCurrentWave() {
@@ -280,6 +320,9 @@ bool Game::checkCursorOutsideMap(int posX, int posY, TDMap &map) {
 
 void Game::sellTower(TDMap &map) {
     int i = 0;
+    // A SpeedAuraTower thread walks towerList continuously; erasing from it
+    // unguarded invalidated that walk.
+    std::lock_guard<std::mutex> lock(towerListMtx);
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getCost() / 2;
@@ -289,6 +332,7 @@ void Game::sellTower(TDMap &map) {
             this->towerList.at(i)->sold();
             map.getElem(this->towerList.at(i)->getPosition().x, this->towerList.at(i)->getPosition().y)->setType('T');
             this->towerList.erase(this->towerList.begin() + i);
+            
             this->selectedActiveTower = nullptr;
             this->sfmlHud->setSelectedTower(nullptr);
             if(this->networkController != nullptr){
@@ -303,6 +347,9 @@ void Game::sellTower(TDMap &map) {
 void Game::upgradeTower() {
     int i = 0;
 
+    // selectedActiveTower is cleared on sell / deselect, so it can be null here.
+    if (this->selectedActiveTower == nullptr)
+        return ;
     if (this->selectedActiveTower->getUpgradeCost() > this->player->getCoinNumber())
         return ;
     while (i < this->towerList.size()) {
@@ -332,7 +379,9 @@ void runUnit(std::vector<std::vector<TDUnit*>> &enemyList, TDMap &map, unsigned 
     enemyList.at(wave).at(unitCount)->setPosY(spawnCells.at(spawnCount)->getPosY());
     enemyList.at(wave).at(unitCount)->setSpritePosition((spawnCells.at(spawnCount)->getPosX() * cellSize) + cellSize/2 + _GAME_POSITION_X, (spawnCells.at(spawnCount)->getPosY() * cellSize) + cellSize / 2 + _GAME_POSITION_Y);
     enemyList.at(wave).at(unitCount)->searchPath(nmap, basePosX, basePosY, false);
+    
     enemyList.at(wave).at(unitCount)->setSpawned();
+    
     enemyList.at(wave).at(unitCount)->run(&map);
 }
 
@@ -364,10 +413,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 bool isWaveRunning = false;
                 // CREATE SHARED PTR OF WAVE HERE
-                this->towerStoreList.clear();
+                this->clearTowerStore();
                 this->currentWave.reset();
                 this->currentWave = nullptr;
                 this->currentWave = std::make_shared<std::vector<TDUnit*>>(this->enemyList[this->currentWaveNumber]);
+                
+                std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
                 this->startWave(map, baseCell, spawnCells); // RUN UNITS & TOWERS
                 std::cout << "Wave Started" << std::endl;
                 this->unitCount = 0; // UNIT & SPAWN COUNTER FOR SPAWNING
@@ -387,6 +438,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 this->initializeTowerStore(window);
                 //
                 this->sfmlHud->setTowerStoreList(this->towerStoreList);
+                
                 usleep(3000);
                 while (!this->waveEnd(window)) { // RUN WHILE WAVE IS NOT FINISHED
                     std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now(); // SET CURRENT ELAPSED TIME ON WAVE
@@ -400,6 +452,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                         std::ref(basePosY),
                                         std::ref(this->currentWaveNumber), this->spawnCells, this->unitCount,
                                         this->spawnCount, this->cellSize);
+                                        
+                                    
+
+
                                 this->spawnCount++;
                                 this->unitCount++;
                                 if (this->spawnCount >= this->spawnCells.size())
@@ -414,7 +470,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
 
 
-                    sf::Event event;
+                    // Value-initialised: sf::Event is a plain union-backed
+                    // struct, so a bare declaration leaves type indeterminate.
+                    // On a frame where pollEvent() returns nothing, the stale
+                    // read further down would then test garbage. Zero gives
+                    // type == Closed, which is only acted on inside the loop.
+                    sf::Event event = sf::Event();
                     window.clear(sf::Color::Black);
                     this->sfmlHud->drawBackground();
                     while (window.pollEvent(event)) {
@@ -423,8 +484,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             closing = true;
                             break;
                         }
+                        // Sits above the Escape handlers, so it is not covered by
+                        // the pause guard further down: check explicitly, or the
+                        // player could start a wave from the pause menu.
                         if ((event.type == sf::Event::KeyPressed &&
-                            event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)) {
+                            event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)
+                            && (this->sfmlHud->getPaused() == false)) {
                             //Start Wave
                             if(this->networkController != nullptr && this->networkController->getIsServer()){
                                 this->networkController->handleMessage("startWave");
@@ -453,20 +518,25 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             //UNPause Menu
                          
                             pauseMenu(false);
-                            
+
 
                         }
+                        // Everything below is gameplay input: build mode, tower
+                        // placement, selling, upgrading. None of it checked the
+                        // pause state, so a tower selected before pausing could
+                        // still be placed through the pause overlay. Escape is
+                        // handled above, and the pause menu's own buttons are
+                        // read outside this loop, so both still work.
+                        if (this->sfmlHud->getPaused())
+                            continue;
                         if (event.type == sf::Event::MouseButtonPressed &&
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
                                 isBuilding = true;
-                                std::cout << "crash before" << std::endl;
+                                this->sfmlHud->setSelectedTower(nullptr);
                                 this->selectedActiveTower = nullptr;
-                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                std::cout << "crash afther" << std::endl;      
                             }
                             else {
-                                this->sfmlHud->setSelectedTower(nullptr);
                                 //toBuild = nullptr;
                                 isBuilding = false;
                                
@@ -477,15 +547,11 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         if (isBuilding == true) {
                             if (event.type == sf::Event::MouseButtonPressed &&
                                 sf::Mouse::isButtonPressed(sf::Mouse::Left)) { // BUILD CURRENT BUILDABLE
-                                if (this->towerSelectorIndex == -2){
-                                    std::cout << "crash2" << std::endl;
-
-                                    setObstacleTest(std::ref(map), std::ref(window));}
+                                if (this->towerSelectorIndex == -2)
+                                    setObstacleTest(std::ref(map), std::ref(window));
                                 else if (!this->towerStoreList.empty()) {
                                     if (this->towerSelectorIndex >= 0) {
                                         toBuild = this->towerStoreList.at(this->towerSelectorIndex).at(0);
-                                        std::cout << "crash" << std::endl;
-                                        this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         if (setTowerTest(std::ref(map), std::ref(window), toBuild, isWaveRunning)) {
                                             isBuilding = false;
                                             this->initializeTowerStore(window);
@@ -495,29 +561,21 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                 }
                             }
                             if (event.type == sf::Event::KeyPressed) {
-                                
                                 if (!this->towerStoreList.empty()) {
                                     if (event.key.code == sf::Keyboard::Right) {
-                                        if (this->towerStoreList.size() <= 1){
+                                        if (this->towerStoreList.size() <= 1)
                                             break;
-                                        }
-                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1)){
+                                        if (this->towerSelectorIndex >= (this->towerStoreList.size() - 1))
                                             this->towerSelectorIndex = 0;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                        }else{
+                                        else
                                             this->towerSelectorIndex++;
-                                            
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
-                                        }
                                     } else if (event.key.code == sf::Keyboard::Left) {
                                         if (this->towerStoreList.size() <= 1)
                                             break;
                                         if (this->towerSelectorIndex == 0) {
                                             this->towerSelectorIndex = this->towerStoreList.size() - 1;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                         } else
                                             this->towerSelectorIndex--;
-                                            this->sfmlHud->setSelectedTower(this->towerStoreList.at(this->towerSelectorIndex).at(0));
                                     }
                                 }
                             }
@@ -576,14 +634,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                                     this->towerStoreList.at(
                                                                             this->towerSelectorIndex).at(0));
                                     else if (this->towerSelectorIndex == -2) {
-                                        std::cout << "crash1" << std::endl;
-                                        
                                         if (!((mouseCoord.posX >= (11 * 3)) || (mouseCoord.posY >= (13 * 3))
                                             || (mouseCoord.posX < 0) || (mouseCoord.posY < 0)))
                                             this->setHoveringSprites(window, mouseCoord.posX, mouseCoord.posY, 0,
                                                                  this->isOnPath(
                                                                          map.getElem(mouseCoord.posX, mouseCoord.posY)),
-                                                                 128, 5);
+                                                                 128,5);
                                     }
                                 }
                             }
@@ -618,6 +674,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     window.draw(droneShadow);
                                 }
                                 window.draw(enemyList.at(this->currentWaveNumber).at(s)->getSprite());
+                                
                                 if (enemyList.at(this->currentWaveNumber).at(s)->getHealth() > 0) {
                                     if (enemyList.at(this->currentWaveNumber).at(s)->isFreeze()) {
                                         window.draw(enemyList.at(this->currentWaveNumber).at(s)->getFreezeSprite());
@@ -654,8 +711,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                                          s)->getPosY())->getType() == 'B')
                                     && this->enemyList.at(this->currentWaveNumber).at(s)->alreadyArrived() == false) {
                                     this->enemyList.at(this->currentWaveNumber).at(s)->setAlreadyArrived();
-                                    //this->enemyList.at(this->currentWaveNumber).at(s)->setHealth(0);
-                                    this->player->looseLife();
+                                    int lifeToLose = 1;
+                                    if(this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "RegenerateDrone" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "ArmoredRegenerateDrone" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "TransportSpaceship"){
+                                        lifeToLose  = 3;
+                                    }else if(this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet1" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet2" || this->enemyList.at(this->currentWaveNumber).at(s)->getTypeName() == "BossPlanet3"){
+                                        lifeToLose  = 5;
+                                        
+                                    }
+                                    for(int i = 0; i < lifeToLose; i++){
+                                        this->player->looseLife();
+                                    }
+
                                     this->sfMainSoundPlayer.playLifeLoss();
                                     this->sfmlHud->setMessage("Prevent enemies from reaching \nyour base to win the game");
 
@@ -675,7 +741,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
                     else {
                         std::string message;
-                        if (this->currentWaveNumber + 1 >= this->enemyList.size() - 1)
+                        if (this->currentWaveNumber >= this->enemyList.size() - 1)
                             message = "Press enter for last wave.";
                         else
                             message = "Press enter for next wave.";
@@ -715,6 +781,14 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfmlHud->draw();
                     if (event.type == sf::Event::MouseButtonPressed &&
                         sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        // Consume the event. This block is the only one that
+                        // reads `event` OUTSIDE the pollEvent loop above, so it
+                        // runs once per frame off a stale event, while
+                        // isButtonPressed() polls the button live. Holding the
+                        // click therefore re-entered here every frame and
+                        // toggled pause on and off over and over -- the play
+                        // button appeared to resume, then pause itself again.
+                        event.type = sf::Event::MouseButtonReleased;
                         int whichClicked;
                         if (this->sfmlHud->getPaused()) {
                             whichClicked = this->sfmlHud->checkForPausedClick(window);
@@ -728,26 +802,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     this->isMuted = true;
                                 }
                             }
-                            else if (whichClicked == 2) {
-                                // PAUSED
-                                if (!isPaused) {
-                                    if(this->networkController == nullptr){
-                                        this->deactivateTowers();
-                                        // isWaveRunning = false;
-                                        this->isPaused = true;
-                                        pauseGame();
-                                    }
-                                    
-                                }
-                                else {
-                                    if(this->networkController == nullptr){
-                                        this->activateTowers();
-                                        // isWaveRunning = true;
-                                        this->isPaused = false;
-                                        resumeGame();
-                                    }
-                                }   
-                            }
+                            // whichClicked == 2 was the play/pause button.
+                            // Removed: Escape handles pause/resume now, via
+                            // pauseMenu().
                             else if (whichClicked == 3) {
                                 window.setMouseCursorVisible(true);
                                 this->deactivateTowers();
@@ -759,13 +816,8 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                         }
                         else {
                             whichClicked = this->sfmlHud->checkForClick(window);
-                            
                             if (whichClicked != -1) {
-                                if(whichClicked != -2){
-                                this->sfmlHud->setSelectedTower(this->towerStoreList.at(whichClicked).at(0));
-                                }
                                 this->towerSelectorIndex = whichClicked;
-                                 
                                 if (isBuilding == false)
                                     isBuilding = true;
                             }
@@ -774,7 +826,6 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     // SET AND DISPLAY MOUSE
                     if ((isBuilding == true) && !(this->isCursorOutsideMap))
                         mousePointer.setColor(sf::Color::Transparent);
-                        
                     else {
                         if (this->isCursorOutsideMap)
                             mousePointer.setColor(sf::Color::White);
@@ -803,6 +854,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 }
                //WAVE ENDED
         }
+    // Reached when the window is closed or the player leaves: 1 is the "player
+    // leaved current game" code. Falling off the end returned an indeterminate
+    // int, which could read as 2 ("won") and unlock the next level for free.
+    return (1);
 }
 
 void Game::setSpawnCellsSprites() {
@@ -836,7 +891,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
     // GAME INITIALISATON
     // verify map and level hasn't been modified since compilation
     std::string buildTimeString = BUILD_TIME; // Assuming BUILD_TIME is a valid string
-    
+    std::cout << "Build time string: " << buildTimeString << '\n';
     std::tm buildTimeTm = {};
     std::istringstream buildTimeIss(buildTimeString);
     buildTimeIss >> std::get_time(&buildTimeTm, "+%Y-%m-%d %H:%M:%S");
@@ -866,7 +921,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if((fileTime - buildTime) > 999999) { // 60
+            if(false /*|| (fileTime - buildTime) > 999999*/) { // 60
                 std::cout << "Map has been modified since compilation." << std::endl;
                 return -1;
             }
@@ -894,7 +949,7 @@ int Game::launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVol
             std::string fileTimeFormatted = fileTimeStream.str();
             fileTime += 3600; // Ajouter 1 heure (3600 secondes)
             
-            if((fileTime - buildTime) > 9999999) { // 60
+            if( false /*fileTime - buildTime) > 9999999*/) { // 60
                 std::cout << "Level has been modified since compilation." << std::endl;
                 return -1;
             }
@@ -1037,7 +1092,10 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 id++;
                 toAdd->setId(this->id);
                 std::cout << "Tower id : " << this->id << std::endl;
-                this->towerList.push_back(toAdd);
+                {   // guarded: a SpeedAuraTower thread may be walking towerList
+                    std::lock_guard<std::mutex> lock(towerListMtx);
+                    this->towerList.push_back(toAdd);
+                }
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->towerList[this->towerList.size() - 1]->setIsPlaced(true);
                 this->looseCoins(toBuild->getCost());
@@ -1060,8 +1118,11 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                     //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 }
                 map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
-//                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
+                // Restock, then hand the HUD the new table: it keeps its own
+                // copy and was still pointing at the tower we just placed.
+                this->refillTowerStoreColumn(this->towerSelectorIndex, window);
+                this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 return (true);
             }
             else {
@@ -1081,13 +1142,13 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
 void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     mouseCoordinates mouseCoord = getMouseCellCoordinate(map, window);
     std::cout << "TRY WALL" << std::endl;
-    if (this->player->getCoinNumber() < 5)
-        return ;
     if (mouseCoord.posY >= 0 && mouseCoord.posY < map.getSizeY() && mouseCoord.posX >= 0 && mouseCoord.posX < map.getSizeX())
     {
         bool check = false;
         // SET WALL (WILL BE TOWER & WALL LATER)
         if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'X') {
+            if (this->player->getCoinNumber() < 5)
+                return ;
             // CHECKING IF BLOCKING UNIT PATH HERE
             bool isPathValid = true;
                int wcount = 0;
@@ -1136,6 +1197,15 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
             wallPos.x = mouseCoord.posX;
             wallPos.y = mouseCoord.posY;
             this->gameState.walls.push_back(wallPos);
+            
+            std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+            
+            for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+
+                enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
+            }
             if(this->networkController != nullptr){
                 this->sendGameStateToClients();
             }
@@ -1145,13 +1215,35 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
         }
         else if (map.getElem(mouseCoord.posX, mouseCoord.posY)->getType() == 'W') {
             map.getElem(mouseCoord.posX, mouseCoord.posY)->setType('X');
+            
+            for( int i = 0; i < this->enemyList.size(); i++)
+            {
+                for(int k = 0; k < this->enemyList.at(i).size(); k++)
+                {
+                    if(this->enemyList.at(i).at(k)->isSpawned() == false)
+                        continue;
+                    
+                    this->enemyList.at(i).at(k)->clearPath();
+
+                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, false);
+                }
+            }
             this->sfMainSoundPlayer.playGameCoinWon();
             this->addCoins(2);
+            
             for(int j = 0; j < this->gameState.walls.size(); j++)
             {
                 if(this->gameState.walls.at(j).x == mouseCoord.posX && this->gameState.walls.at(j).y == mouseCoord.posY)
                 {
                     this->gameState.walls.erase(this->gameState.walls.begin() + j);
+                    std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                    for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                        
+                        enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                        enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
+                    }
                     break;
                 }
             }
@@ -1170,31 +1262,33 @@ void Game::setObstacleTest(TDMap &map, sf::RenderWindow &window) {
     }
 }
 
-bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int size) {
+bool Game::isBuildableAtPosition(TDMap &map, int x, int y, int range) {
     int maxY = map.getSizeY() - 1;
     int maxX = map.getSizeX() - 1;
 
-    for (int i = -size; i <= size; i++) {
-        for (int j = -size; j <= size; j++) {
-            if (i == 0 && j == 0) { // CENTER ALREADY CHECKED
-                continue;
-            }
+    for (int i = -range; i <= range; i++) {
+        for (int j = -range; j <= range; j++) {
             int newY = y + i;
             int newX = x + j;
-            // IS CHECKING NOT OUTSIDE MAP
-            if ((newX < 0) || (newX >= map.getSizeX()) || (newY < 0) || (newY >= map.getSizeY()))
-                return (false);
-            if (map.getElem(newX, newY)->getType() != 'T') {
-                if ((size == 1) && (i == -1 || i == 1 || j == -1 || j == 1)) { // 1 RADIUS IS DIFFERENT FROM OTHERS
-                    continue;
+            
+            // Vérifier si la position est à l'intérieur du cercle de carré
+            if (i*i + j*j <= range*range) {
+                // Vérifier si la position est en dehors de la carte
+                if (newX < 0 || newX >= map.getSizeX() || newY < 0 || newY >= map.getSizeY()) {
+                    return false;
                 }
-                else
-                    return (false);
+                
+                // Vérifier si la position est valide pour la construction
+                if (map.getElem(newX, newY)->getType() != 'T') {
+                    return false;
+                }
             }
         }
     }
+    
     return true;
 }
+
 
 bool Game::isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size) {
     bool isBuildable = false;
@@ -1265,6 +1359,13 @@ bool Game::waveEnd(sf::RenderWindow& window){
             this->sfMainSoundPlayer.playWaveClear();
             this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
             sf::sleep(sf::milliseconds(1500));
+            // Towers were deactivated and joined just above, so nothing can be
+            // holding these units any more. They used to be joined and then
+            // simply dropped, leaking the whole wave.
+            for (auto* unit : this->enemyList.at(currentWaveNumber)) { if (unit) unit->join(); }
+            // Drop the shared copy first: currentWave holds the same pointers.
+            this->currentWave.reset();
+            for (auto* unit : this->enemyList.at(currentWaveNumber)) { delete unit; }
             this->enemyList.at(currentWaveNumber).clear();
             //    this->sfmlCoinAnimation.clear();
             this->currentWaveNumber++;
@@ -1288,7 +1389,7 @@ bool Game::gameEnd(){
      //   this->deactivateTowers();
        // this->gameLost();
         return true;
-    } else if (this->enemyList[this->enemyList.size()-1].size() == 0){
+    } else if (this->enemyList.empty() || this->enemyList.back().size() == 0){
         std::cout << "ending level" << std::endl;
         //* if all enemies form the last wave are dead  = game won
        // this->deactivateTowers();
@@ -1300,65 +1401,62 @@ bool Game::gameEnd(){
 }
 
 void    Game::cleanAll() {
-    // VECTORS
-    // CRASH IF TOWER PLACED AND LEAVE
+    // Order matters: every thread that can touch an object must be stopped
+    // before that object is freed. The old version slept 1.2s + 2s hoping the
+    // threads would finish on their own, cleared enemyList *before* the join
+    // loop below it (making that loop dead code), and freed nothing.
     std::cout << "Cleaning level memory..." << std::endl;
-   // OLD UNIT CLEAN HERE
-    if (!this->towerList.empty()) {
-        for (Tower *tower: this->towerList) {
-            tower->deactivate();
-        }
-    } // WIN NO TOWER YES UNIT OK //  WIN YES TOWER YES UNIT OK // LOOSE LAST UNIT OK // LOOSE UNIT & TOWER KO // LOOSE UNIT KO
-    std::cout << "Cleaned tower" << std::endl;
-    sf::sleep(sf::seconds(1.2));
-    if (!this->enemyList.empty()) { // CRASH IF HERE AND TOWER
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            if (!wave.empty()) {
-                for (TDUnit *unit: wave) {
-                    unit->setAlreadyArrived();
-                    unit->setHealth(0);
-                }
-            }
-        }
-    }
-    std::cout << "Cleaned enemies" << std::endl;
-    sf::sleep(sf::seconds(2));
-    for (MapCell *element: this->spawnCells) {
-        delete element;
-    }
-    std::cout << "Cleaned cells" << std::endl;
-    this->spawnCells.clear();
-    this->spawnCellsSprites.clear();
-    this->enemyList.clear();
-    std::cout << "cleard enemies & cells" << std::endl;
-    // THIS LOOP WAS REMOVED BECAUSE OF LOOSE CRASH WHEN RUNNING UNIT & FOCUSED BY TOWER
-   /* if (!this->towerList.empty()) {
-        for (Tower *tower: this->towerList) {
-            tower->join();
-        }
-    }*/
-    std::cout << "tower joined" << std::endl;
 
-    this->towerStoreList.clear();
-    this->towerList.clear();
-    if (!this->enemyList.empty()) {
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            if (!wave.empty()) {
-                for (TDUnit *unit: wave) {
-                    unit->setAlreadyArrived();
-                   unit->join();
-                }
-            }
+    // 1. Stop the tower threads. They hold raw pointers into the unit list.
+    for (Tower *tower : this->towerList) {
+        if (tower == nullptr)
+            continue;
+        tower->unsetPaused();
+        tower->deactivate();
+        tower->join();
+    }
+    std::cout << "Cleaned tower" << std::endl;
+
+    // 2. No tower can target anything now: wind the units down, then join them.
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave) {
+            if (unit == nullptr)
+                continue;
+            unit->unsetPaused();
+            unit->setAlreadyArrived();
+            unit->setHealth(0);
+        }
+    }
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave) {
+            if (unit != nullptr)
+                unit->join();
         }
     }
     std::cout << "enemies joined" << std::endl;
 
-    // SIMPLE PTR
-//     delete this->selectedActiveTower;
-  //   delete this->baseCellObject;
-   //  delete this->player;
-    // delete this->levelRetriever;
-     std::cout << "Cleaning done" << std::endl;
+    // 3. Everything is idle, so it is safe to free.
+    this->selectedActiveTower = nullptr;
+    for (Tower *tower : this->towerList)
+        delete tower;
+    this->towerList.clear();
+    this->clearTowerStore();
+
+    this->currentWave.reset();
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave)
+            delete unit;
+    }
+    this->enemyList.clear();
+
+    for (MapCell *element : this->spawnCells)
+        delete element;
+    this->spawnCells.clear();
+    this->spawnCellsSprites.clear();
+
+    delete this->levelRetriever;
+    this->levelRetriever = nullptr;
+    std::cout << "Cleaning done" << std::endl;
 }
 
 void Game::gameWon(){
@@ -1400,93 +1498,6 @@ void Game::deactivateTowers(){
     }
 }
 
-bool Game::enemyAtBase(){
-
-    //* test if an enemy is at the base
-    for(int i = 0; i<= this->enemyList[this->currentWaveNumber].size(); i++ ){
-        //* if an enemy is at the base -> decrease life number and erase the enemy
-        if(this->enemyList[this->currentWaveNumber][i]->getPosX() == this->baseCoord.x && this->enemyList[this->currentWaveNumber][i]->getPosY() == this->baseCoord.y){
-            this->player->looseLife();
-            this->sfmlHud->setMessage("Prevent enemies from reaching your base to win the game");
-
-            this->enemyList[this->currentWaveNumber].erase(std::remove(enemyList[this->currentWaveNumber].begin(), enemyList[this->currentWaveNumber].end(), enemyList[this->currentWaveNumber][i]), enemyList[this->currentWaveNumber].end());
-            return true;
-        }else{
-            return false;
-        }
-    }
-}
-
-void Game::createTower(){
-    //* Tower choice
-    std::cout << "Enter the integer corresponding to the type of tower you want to build :" << std::endl;
-    std::cout << "1/ Basic Tower" << std::endl;
-    std::cout << "2/ Sniper Tower" << std::endl;
-    std::cout << "3/ Anti Air Tower" << std::endl;
-    std::cout << "4/ Splash Tower" << std::endl;
-    std::cout << "5/ Slow Tower" << std::endl;
-    std::cout << "6/ Attack Speed Tower" << std::endl;
-    std::string towerType;
-    std::getline(std::cin, towerType);
-    Tower *newTower;
-    switch(stoi(towerType)){
-        case 1:
-           // newTower = new Tower(this, 2, this->currentWave, this->cellSize);
-            break;
-        case 2:
-          //  SniperTower newTower = new SniperTower(this);
-            break;
-        case 3:
-            //AntiAirTower newTower = new AntiAirTower(this);
-            break;
-        case 4:
-           // SplashTower newTower = new SplashTower(this);
-            break;
-        case 5:
-            //SlowTower newTower = new SlowTower(this);
-            break;
-        case 6:
-            //AttackSpeedTower newTower = new AttackSpeedTower(this, this->towerList);
-            break;
-        default:
-            break;
-    }
-    if(canBuy(*newTower, 0)){
-        //* test if the player has enough coin to buy the tower
-        //* ask tower coord
-        std::cout << "posX : " << std::endl;
-        std::string newTowerPosX;
-        std::getline(std::cin, newTowerPosX);
-        std::cout << "posY : " << std::endl;
-        std::string newTowerPosY;
-        std::getline(std::cin, newTowerPosY);  
-        if(canPlace(*newTower, stoi(newTowerPosX), stoi(newTowerPosY))){
-            newTower->setPosition(stoi(newTowerPosX), stoi(newTowerPosY), this->cellSize);
-            this->addCoins(newTower->getCost());
-            
-            
-            this->towerList.push_back(newTower);
-            newTower->run(this->currentWave);
-            std::cout << "Tower succesfully created " << std::endl;
-            std::cout << "coin number : " << this->player->getCoinNumber() << std::endl;
-        }else{
-            std::cout << "Coords not valid " << std::endl;
-        }
-    }else{
-        delete newTower;
-    }
-}
-
-bool Game::canBuy(Tower &tower, int level){
-    //* test if the player has enough coin to buy the tower
-    if(this->player->getCoinNumber() >= tower.getCost()){
-        std::cout << "You have enough coins !" << std::endl;
-        return true;
-    }else{
-        std::cout << "You don't have enough coins !" << std::endl;
-        return false;
-    }
-}
 
 void Game::addCoins(int number) {
     this->player->addCoin(number);
@@ -1497,12 +1508,6 @@ void Game::looseCoins(int number) {
     this->player->looseCoin(number);
     }
 
-void Game::startLevel(){
-    std::cout << "Starting level ..." << std::endl;
-    //* start level
-    //*this->enemyList = retrieveLevel.getNextLevel();
-    
-}
 
 void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos) {
     int radius = towerInfos->getSize() - 1;
@@ -1543,9 +1548,16 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
         }
 
     }
-    if (showBuildable)
+    if (showBuildable) {
+        // Runs every frame while hovering: check rather than rely on the
+        // caller's try/catch, which would throw once per frame if it ever hit.
+        if ((this->towerSelectorIndex < 0) || (this->towerSelectorIndex >= (int)this->towerStoreList.size())
+            || this->towerStoreList.at(this->towerSelectorIndex).empty())
+            return;
         setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
+    }
 }
+
 
 void Game::setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade, int cost) {
     if ((posX > this->mapMaxPosX) || (posY > this->mapMaxPosY) || (posY < 0) || (posX < 0))
@@ -1695,20 +1707,15 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         if(tower->getArmor() < towerArmorPierceValue){
                             std::cout << "Tower armor changed by other player" << std::endl;
                             this->looseCoins(50);
-                            std::cout << "coins" << this->player->getCoinNumber() << std::endl;
-                            std::cout << "animation"  << std::endl;
+                            this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->selectedActiveTower->getPosition().x,this->selectedActiveTower->getPosition().y, 50, false);
                             tower->addArmor();
-                            std::cout << "armor" << tower->getArmor() <<  std::endl;
                         }
-                        std::cout << "Tower updated" << std::endl;
                         break;
                     }
-                    
                     // Tower built by other player
 
                     
                 }
-                std::cout << "next" << std::endl;
                 if(!towerFound){
                     std::cout << "Tower not found" << std::endl;
                     std::cout << "Tower built by other player" << std::endl;
@@ -1726,7 +1733,10 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
                         return;
                     }
-                    this->towerList.push_back(toAdd);
+                    {   // guarded: a SpeedAuraTower thread may be walking towerList
+                        std::lock_guard<std::mutex> lock(towerListMtx);
+                        this->towerList.push_back(toAdd);
+                    }
                     this->id++;
                     toAdd->setId(this->id);
                     std::cout << "Tower added to towerList" << std::endl;
@@ -1752,8 +1762,9 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                     //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                     }
                     map.refreshTextures(towerPosition.x, towerPosition.y);
-//                  this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                     this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
+                    this->refillTowerStoreColumn(this->towerSelectorIndex, window);
+                    this->sfmlHud->setTowerStoreList(this->towerStoreList);
                     std::cout << "Tower built" << std::endl;
                 }
             }
@@ -1770,7 +1781,11 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                             break;
                         }
                     }
-                    if(!found){
+                    // `i` is bounded by gameState.towerList->size(), but it is
+                    // used to index this->towerList, a different vector: at()
+                    // would throw and abort. Skip instead.
+                    if(!found && (i < (int)this->towerList.size())){
+                        std::lock_guard<std::mutex> lock(towerListMtx);
                         int cost = this->towerList.at(i)->getCost() / 2;
                         this->addCoins(cost);
                         this->gameState.numCoins = this->player->getCoinNumber();
@@ -1798,6 +1813,14 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         std::cout << "wall built by other player" << std::endl;
                         int count_spawn = 0;
                         this->gameState.walls.push_back(wallPosition);
+                        std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                        for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                            
+                            enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                            enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
+                        }
                         std::cout << spawnCells.size() << std::endl;
                         while (count_spawn < this->spawnCells.size()) {
                             map.getElem(wallPosition.x, wallPosition.y)->setType('W');
@@ -1833,6 +1856,18 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                     }
                     if(!found){
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->setType('X');
+                        for( int i = 0; i < this->enemyList.size(); i++)
+            {
+                for(int k = 0; k < this->enemyList.at(i).size(); k++)
+                {
+                    if(this->enemyList.at(i).at(k)->isSpawned() == false)
+                        continue;
+                    
+                    this->enemyList.at(i).at(k)->clearPath();
+
+                    this->enemyList.at(i).at(k)->searchPath(map.getMapVector(), baseCoord.x, baseCoord.y, false);
+                }
+            }
                         this->sfMainSoundPlayer.playGameCoinWon();
                         this->addCoins(2);
                         this->sfmlCoinAnimation.launchCoinsAnimation(cellSize, this->gameState.walls.at(j).x, this->gameState.walls.at(j).y, 2, true);
@@ -1840,7 +1875,15 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         map.refreshTextures(map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosX(),
                         map.getElem(this->gameState.walls.at(j).x, this->gameState.walls.at(j).y)->getPosY());
                         this->gameState.walls.erase(this->gameState.walls.begin() + j);
-                        std::cout << "Wall destroyed" << std::endl;
+                        std::shared_ptr<std::vector<Point>> sharedWallPtr = std::make_shared<std::vector<Point>>(this->gameState.walls);
+                
+                        for(int i = 0; i < this->enemyList.at(this->currentWaveNumber).size(); i++){
+                            
+                            enemyList.at(this->currentWaveNumber).at(i)->setWalls(sharedWallPtr);
+                            enemyList.at(this->currentWaveNumber).at(i)->setWallSize(this->gameState.walls.size());
+                
+                        }
+                        
                         break;
                     }
                 }
@@ -1852,31 +1895,44 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
 }
 
 void Game::pauseMenu(bool pause){
+    // Escape now drives the simulation as well as the overlay. These used to be
+    // separate: Escape only opened the menu, and a play/pause button inside it
+    // froze the game. The button is gone, so the two are tied together here.
+    // Multiplayer is deliberately left running -- one player must not be able
+    // to freeze the other's game.
     if(pause){
-        if(this->networkController != nullptr){
-            //this->networkController->handleMessage("pause");
-        }
-        
         this->sfmlHud->setPaused(true);
-     
-        
+        // Guard on isPaused: pressing Escape twice quickly would otherwise call
+        // activateTowers() on towers whose threads are still running, and
+        // assigning over a joinable std::thread calls std::terminate().
+        if ((this->networkController == nullptr) && (this->isPaused == false)) {
+            this->deactivateTowers();
+            this->isPaused = true;
+            this->pauseGame();
+        }
         this->sfmlHud->update();
         this->sfmlHud->draw();
     }else{
-        if(this->networkController != nullptr){
-            //this->networkController->handleMessage("unpause");
-        }
         this->sfmlHud->setPaused(false);
-  
-        
+        if ((this->networkController == nullptr) && (this->isPaused == true)) {
+            this->activateTowers();
+            this->isPaused = false;
+            this->resumeGame();
+        }
         this->sfmlHud->update();
         this->sfmlHud->draw();
     }
 }
 
 void Game::pauseGame() {
-    this->sfMainSoundPlayer.stopGameMusic();
+    // pause, not stop: stop() rewinds, so the track restarted from the top
+    // every time the player closed the pause menu.
+    this->sfMainSoundPlayer.pauseGameMusic();
     int i = 0;
+    // Called from ~Game(), where currentWaveNumber can already be past the last
+    // wave: at() would throw out of a destructor and abort the process.
+    if (this->currentWaveNumber >= (int)this->enemyList.size())
+        return;
     // PAUSE UNIT
     while (i < this->enemyList.at(this->currentWaveNumber).size()) {
         this->enemyList.at(this->currentWaveNumber).at(i)->setPaused();
@@ -1891,11 +1947,15 @@ void Game::pauseGame() {
 }
 
 void Game::resumeGame() {
-    if (this->currentWaveNumber == this->enemyList.size() - 1) {
-        this->sfMainSoundPlayer.playGameMusicFaster();
+    this->sfMainSoundPlayer.resumeGameMusic();
+    // Fallback: if nothing was paused (the track had ended, or the pause came
+    // from somewhere that stopped it), start the right one from the beginning.
+    if (!this->sfMainSoundPlayer.isAnyGameMusicPlaying()) {
+        if (this->currentWaveNumber == this->enemyList.size() - 1)
+            this->sfMainSoundPlayer.playGameMusicFaster();
+        else
+            this->sfMainSoundPlayer.playGameMusic1();
     }
-    else
-        this->sfMainSoundPlayer.playGameMusic1();
     int i = 0;
     // RESUME UNIT
     while (i < this->enemyList.at(this->currentWaveNumber).size()) {

@@ -98,6 +98,10 @@ sf::Texture *SFMLTowerLoader::getTextureFromName(std::string name, int lvl) {
         else if (lvl == 2)
             return (&this->_aura3);
     }
+    // All seven names and levels 1-2 are covered above, but an unmatched
+    // name/level fell off the end and returned an indeterminate pointer that
+    // Tower::upgrade() dereferences straight away.
+    return (&this->_basic);
 }
 
 SFMLTowerLoader::~SFMLTowerLoader() {

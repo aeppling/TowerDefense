@@ -4,16 +4,17 @@
 std::mutex mtx_tow;
 
 SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfmlTowerLoader, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, SFTowerSoundLoader &soundLoader): Tower(gameInstance, 3, cellSize, sfmlTowerLoader, sfmlMissileLoader, window, "SplashTower",
-                                                                                                                                                                              {15, 25, 35}, {650, 800, 1000}, {10, 12, 14}, {3, 2.5, 2}, 6.5, false, soundLoader){
+                                                                                                                                                                              {15, 25, 35}, {500, 700, 1000}, {10, 12, 14}, {3, 2.5, 2}, 6.5, false, soundLoader){
 }
 
 void SplashTower::fire(TDUnit *target){
-    //* remove target health
-    // target->setHealth(target->getHealth()-this->damage[this->level]);
-    // Get the position of the tower and the target
     if (this->enemiesInRange.size() >= 3) {
+        std::vector<TDUnit*> killed;
         try {
-            mtx_tow.lock();
+            // Use the shared tower mutex, not a private one: this erases from
+            // the same enemiesList that Tower::isInRange() walks under `mtx`,
+            // so guarding it with mtx_tow gave no mutual exclusion at all.
+            std::lock_guard<std::mutex> lock(mtx);
             this->_shotSound.play();
             int i = 0;
             while (i < this->enemiesInRange.size()) {
@@ -28,34 +29,22 @@ void SplashTower::fire(TDUnit *target){
                     //  this->gameInstance.addCoins(target->getValue());
                     this->_killSound.play();
                     removeFromEnemiesInRangeList(target);
-                    this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target),
-                                             this->enemiesList->end());
-                    target->getKill();
+                    if (this->enemiesList != nullptr)
+                        this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target),
+                                                 this->enemiesList->end());
+                    killed.push_back(target);
 
                 }
                 i++;
             }
-            mtx_tow.unlock();
         } catch (const std::system_error &ex) {
             std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
             // Additional error handling or recovery logic
         }
+        // Death animations outside the lock: this tower can kill several units
+        // per shot, so it held the shared mutex for 500ms per victim.
+        for (TDUnit *victim : killed)
+            victim->getKill();
         this->missileLauncher->endFinishedThreads();
     }
 }
-
-/*void SplashTower::fire(TDUnit *target){
-    //* remove target health and all enemies around the target
-    for each(Enemy hit in this->enemiesInRange){  
-        if(hit.getXPos() <= target.getXPos() + this->area && hit.getXPos() >= target.getXPos() - this->area && hit.getYPos() <= target.getYPos() + this->area && hit.getYPos() >= target.getYPos() - this->area){
-            hit.setHealth(hit.getHealth()-this->damage[this->level]);
-            if(hit.GetHealth() <= 0){
-                std::cout << "enemy killed" << std::endl;
-                this->gameInstance.addCoins(hit.getValue());
-                removeFromEnemiesInRangeList(hit);
-                this->enemiesList.erase(std::remove(this->enemiesList.begin(), this->enemiesList.end(), target), this->enemiesList.end());
-            
-            }
-        }
-    }
-}*/

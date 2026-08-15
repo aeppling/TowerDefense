@@ -22,11 +22,18 @@ private:
     std::vector<std::shared_ptr<SFMLSprite>>  _decorationSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _baseSprite;
     std::vector<std::shared_ptr<SFMLSprite>>  _spawnSprite;
+    // Tiles overlap their neighbours by a few pixels, so draw order is what
+    // hides the seams. Sprites must stay sorted row by row (posY, then posX).
+    static void                               insertSorted(std::vector<std::shared_ptr<SFMLSprite>> &list,
+                                                           const std::shared_ptr<SFMLSprite> &sprite);
 public:
     SpritesHolder() {};
     ~SpritesHolder() {};
+    // useHeightTile mirrors the choice made when the map was first built: an
+    // 'X' cell sitting on top of an 'F' cell uses the taller path tile.
     void                                      updateSpriteFromTypeAndPosition(char type, int posX, int posY,
-                                                              SFMLLoader &sfmlLoader, int cellSize, char newType);
+                                                              SFMLLoader &sfmlLoader, int cellSize, char newType,
+                                                              bool useHeightTile = false);
     std::shared_ptr<SFMLSprite>               getSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getNotWalkableSpriteFromPosition(int posX, int posY);
     std::shared_ptr<SFMLSprite>               getWallSpriteFromPosition(int posX, int posY);

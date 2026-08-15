@@ -6,7 +6,9 @@
 #define UNTITLED1_TDUNIT_HPP
 
 #include <chrono>
+#include <mutex>
 #include <thread>
+#include "../TDGame/usefullStruct.hpp"
 #include "../TDMap/AStarPathFinding.hpp"
 #include "../TDGraphics/SFMLLoader.hpp"
 #include "../TDGraphics/SFMLEnemiesLoader.hpp"
@@ -17,6 +19,7 @@
 class TDUnit {
 public:
     // BASICS STATS
+    int wallSize = -1;
     int _max_health;
     int _health_points;
     int _armor;
@@ -49,7 +52,13 @@ public:
     std::chrono::steady_clock::time_point _timeOfLastMove; // SET WITH time(NULL) and reset at every move
     std::chrono::steady_clock::time_point _slowChrono;
     std::vector<std::shared_ptr<MapCell>> _path; // PATH TO TAKE
+    
+    std::shared_ptr<std::vector<Point>> _walls;
+    
     std::thread                           _thread;
+    // getKill() (tower thread) and Game::waveEnd()/cleanAll() (main thread)
+    // both join this unit; joinable() alone does not make that safe.
+    std::mutex                            _joinMutex;
     TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite          _sprite;
@@ -62,8 +71,13 @@ public:
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial);
-    ~TDUnit() {
-        std::cout << "Unit destructed here : " << this->getTypeName() << std::endl;
+    virtual ~TDUnit() {
+        // ~std::thread calls std::terminate() if the thread is still joinable,
+        // so a unit could never be deleted safely. Wind it down and join first.
+        this->_isPaused = false;
+        this->_health_points = 0;
+        this->_alreadyArrived = true;
+        this->join();
     }
     virtual std::string getTypeName() {
         return "Enemy";
@@ -74,7 +88,8 @@ public:
     int getPosY() { return(this->_posY); }
     void setPosX(int posX) { this->_posX = posX; };
     void setPosY(int posY) { this->_posY = posY; };
-    void setPath(std::vector<MapCell*> path);
+    void clearPath() { this->_path.clear(); };
+    
     bool isFlying() { return (this->_isFlying); };
     int  getHealth() { return (this->_health_points); };
     void setHealth(int health) { this->_health_points = health; };
@@ -85,6 +100,17 @@ public:
     void setAlreadyArrived() { this->_alreadyArrived = true; this->_alreadyCount = true;};
     void setSpeed(float speed) { this->_speed = speed; };
     float getSpeed() { return (this->_speed); };
+    std::shared_ptr<std::vector<Point>> getWalls() { return _walls; }
+
+    void setWalls(const std::shared_ptr<std::vector<Point>>& walls) {
+       
+        
+        _walls = walls;
+    }
+
+    void setWallSize(int size) { 
+        
+        this->wallSize = size; };
 
     // FUNCTIONS
     void live();

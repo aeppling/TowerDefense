@@ -6,6 +6,20 @@
 #include "SpritesHolder.hpp"
 #include "SFMLDecorationLoader.hpp"
 
+void        SpritesHolder::insertSorted(std::vector<std::shared_ptr<SFMLSprite>> &list,
+                                        const std::shared_ptr<SFMLSprite> &sprite) {
+    // Keep the row-major order the map was originally built with: a tile must
+    // be drawn before the neighbours that overlap it from the right and below.
+    std::size_t i = 0;
+    while (i < list.size()) {
+        if ((list.at(i)->getPosY() > sprite->getPosY()) ||
+            ((list.at(i)->getPosY() == sprite->getPosY()) && (list.at(i)->getPosX() > sprite->getPosX())))
+            break;
+        i++;
+    }
+    list.insert(list.begin() + i, sprite);
+}
+
 void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap *map,
                                                         SFMLLoader &sfmlLoader, int cellSize, SFMLDecorationLoader &sfmlDecorationLoader, int planet) {
     SFMLSprite sprite;
@@ -102,17 +116,18 @@ void        SpritesHolder::setSpriteFromTypeAndPosition(MapCell *mapCell, TDMap 
 }
 
 void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, int posY,
-                                                          SFMLLoader &sfmlLoader, int cellSize, char newType) {
+                                                          SFMLLoader &sfmlLoader, int cellSize, char newType,
+                                                          bool useHeightTile) {
     if (type == 'X') {
         int i = 0;
         while (i != this->_walkableSprite.size()) {
             if ((this->_walkableSprite.at(i)->getPosX()) == posX && (this->_walkableSprite.at(i)->getPosY() == posY)) {
                     this->_walkableSprite.at(i)->setSprite(sfmlLoader.getWallCell(), cellSize, posX, posY, newType, 1);
+                    
                     auto it = this->_walkableSprite.begin() + i;
                     std::shared_ptr<SFMLSprite> removed_element = *it;
                     this->_walkableSprite.erase(it);
-                    this->_wallSprite.insert(this->_wallSprite.begin(), removed_element);
-                    this->_wallSprite.at(0)->getSprite().setColor(sf::Color::Black);
+                    insertSorted(this->_wallSprite, removed_element);
                 return;
             }
             i++;
@@ -142,12 +157,17 @@ void       SpritesHolder::updateSpriteFromTypeAndPosition(char type, int posX, i
         int i = 0;
         while (i != this->_wallSprite.size()) {
             if ((this->_wallSprite.at(i)->getPosX()) == posX && (this->_wallSprite.at(i)->getPosY() == posY)) {
-                this->_wallSprite.at(i)->setSpriteCutted(sfmlLoader.getPathCell(), cellSize, posX, posY, newType, 1);
+                
+                // Restore the same tile the cell had before the wall was built:
+                // always using getPathCell() here left the wrong texture on
+                // cells that sit above an 'F' cell.
+                this->_wallSprite.at(i)->setSpriteCutted(
+                        useHeightTile ? sfmlLoader.getPathCellHeight() : sfmlLoader.getPathCell(),
+                        cellSize, posX, posY, newType, 1);
                 auto it = this->_wallSprite.begin() + i;
                 std::shared_ptr<SFMLSprite> removed_element = *it;
                 this->_wallSprite.erase(it);
-                this->_walkableSprite.insert(this->_walkableSprite.begin(), removed_element);
-                this->_walkableSprite.at(0)->getSprite().setColor(sf::Color::Green);
+                insertSorted(this->_walkableSprite, removed_element);
                 return;
             }
             i++;

@@ -67,7 +67,10 @@ class Game{
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
         SFMLLoader          sfmlLoaderMap;
-        SFMLHud*            sfmlHud;
+        // Assigned well after construction, but read before that (the null
+        // check in initializeTowerStore); an uninitialised raw pointer here is
+        // indeterminate, not conveniently null.
+        SFMLHud*            sfmlHud = nullptr;
         SFMLDecorationLoader sfmlDecorationLoader;
         SFMainSoundPlayer   &sfMainSoundPlayer;
         SFTowerSoundLoader  &sfTowerSoundLoader;
@@ -88,20 +91,25 @@ class Game{
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
-        ~Game() { if (!this->isLevelWon) {
-            this->pauseGame();
+        ~Game() {
+            if (!this->isLevelWon) {
+                this->pauseGame();
             }
-         this->cleanAll();
+            // pauseGame() only suspends the music now, so stop it explicitly:
+            // the level is over and SFMainSoundPlayer outlives this object.
+            this->sfMainSoundPlayer.stopGameMusic();
+            this->cleanAll();
         };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void initializeTowerStore(sf::RenderWindow &window);
+        void clearTowerStore();
+        Tower *createTowerForColumn(int column, sf::RenderWindow &window);
+        void refillTowerStoreColumn(int column, sf::RenderWindow &window);
         void initializeTowerStoreCurrentWave();
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);
         int loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCell, TDMap &map, SpritesHolder &spritesHolder);
         int launch(SFMLLoader &sfmlLoader, sf::RenderWindow &window, int globalVolume);
-        void runWindowLevelLoop(sf::RenderWindow &window, TDMap &map, MapCell *baseCell,
-                            std::vector<std::vector<TDUnit *>> &enemyList, SFMLLoader &sfmlLoader);
         void setObstacleTest(TDMap &map, sf::RenderWindow &window);
         bool setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild, bool isWaveRunning);
         bool gameEnd();
@@ -112,10 +120,8 @@ class Game{
         int  getCurrentWaveNumber() { return (this->currentWaveNumber); };
         void activateTowers();
         void deactivateTowers();
-        void createTower();
         bool isBuildableAtPosition(TDMap &map, int x, int y, int size);
         bool isBuildableAtPositionForSmaller(TDMap &map, int x, int y, int size);
-        bool canBuy(Tower &tower, int level);
         bool canPlace(Tower &tower, int xPos, int yPos);
         void addCoins(int number);
         void looseCoins(int number);
@@ -125,7 +131,6 @@ class Game{
         void setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX, int posY, bool showBuildable, Tower *towerInfos);
         void setHoveringSprites(sf::RenderWindow &window, int posX, int posY, int radius, bool isBuildable, int fade, int cost);
         void setHoveringBuildable(sf::RenderWindow &window, int posX, int posY, sf::Sprite *buildableSprite);
-        void display();
         void displayCoins(sf::RenderWindow &window);
         void displayTowers(sf::RenderWindow &window, MapCell *baseCell);
         void displayExplosions(sf::RenderWindow &window);

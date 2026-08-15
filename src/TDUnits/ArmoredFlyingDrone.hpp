@@ -9,7 +9,7 @@
 
 class ArmoredFlyingDrone : public TDUnit {
 public:
-    ArmoredFlyingDrone(int posX, int posY) : TDUnit(200, 800, 80, posX, posY, false, 70, 1.8, true) {}
+    ArmoredFlyingDrone(int posX, int posY) : TDUnit(200, 800, 66, posX, posY, false, 70, 1.8, true) {}
 
     virtual std::string getTypeName() {
         return "ArmoredFlyingDrone";

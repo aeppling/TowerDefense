@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\SpaceDefender.dir/objects.a
-C:\MINGW_~1\mingw64\bin\ar.exe qc CMakeFiles\SpaceDefender.dir/objects.a @CMakeFiles\SpaceDefender.dir\objects1.rsp
-C:\msys64\mingw64\bin\g++.exe -static-libgcc -static-libstdc++ -O3 -DNDEBUG -static -Wl,--whole-archive CMakeFiles\SpaceDefender.dir/objects.a -Wl,--no-whole-archive -o bin\SpaceDefender.exe -Wl,--out-implib,bin\libSpaceDefender.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\SpaceDefender.dir\linklibs.rsp

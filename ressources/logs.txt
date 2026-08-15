@@ -1,0 +1,81 @@
+Unlocked (P1,P2,P3) : 10,10,10
+Volumes (Global,Music,Sound) : 100,100,100,
+Difficulty : 2
+Build time string: +2023-06-12 11:48:13
+TSTFTSTFTST
+TXTFTXTFTXT
+TXTXXXXXTXT
+XXXXTTTXXXX
+TTXXFFFXXTT
+TTXXFFFXXTT
+TTXXFFFXXTT
+TXXXXXXXXXT
+XXXXXXXXXXX
+XXXTTTTTXXX
+XXXXTTTXXXX
+TTTXXXXXTTT
+TTTXXBXXTTT
+Starting wave0/1
+Life number : 6
+Coin number : 6
+Wave Started
+Wave contain 1 ennemies
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+Wall clicked
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+TRY WALL
+Refresh.
+Cleaning level memory...
+Cleaned tower
+Cleaned enemies
+Cleaned cells
+cleard enemies & cells
+tower joined
+enemies joined
+Cleaning done
+Unknow current game exit reason

@@ -168,6 +168,22 @@ void Menus::loadHome() {
     settingsIcon->setScale(0.23, 0.23);
     this->_visibleSprites.push_back(settingsIcon);
 
+    // SETUP CREDITS (bottom right corner)
+    sf::Text *credits = new sf::Text;
+    // fromUtf8 so the accent in "Léo" is decoded as UTF-8 rather than being
+    // reinterpreted byte by byte through the current locale.
+    std::string creditsText = "made by Léo RICHEZ and Adrien EPPLING";
+    credits->setString(sf::String::fromUtf8(creditsText.begin(), creditsText.end()));
+    credits->setFont(this->_mainFont);
+    credits->setCharacterSize(18);
+    credits->setFillColor(sf::Color(255, 255, 255, 160));
+    // Anchor the origin on the text's own bottom-right corner so it stays
+    // pinned to the window corner whatever the string's width.
+    sf::FloatRect creditsBounds = credits->getLocalBounds();
+    credits->setOrigin(creditsBounds.left + creditsBounds.width, creditsBounds.top + creditsBounds.height);
+    credits->setPosition(this->_winSizeX - 20, this->_winSizeY - 20);
+    this->_visibleText.push_back(credits);
+
     // SETUP BACKGROUND
     this->_actualBackground.setTexture(this->_backgroundHome);
     this->_actualBackground.setPosition(0, 0);

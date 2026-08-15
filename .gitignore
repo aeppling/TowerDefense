@@ -1,0 +1,83 @@
+# ===========================================================================
+# SpaceDefender
+# ===========================================================================
+# Note on ordering: for any given path, the LAST matching pattern wins. The
+# re-inclusion of build/bin/ therefore has to stay ahead of anything that could
+# match the files inside it, and no pattern below is allowed to match *.exe or
+# *.dll globally -- that would re-exclude the shipped executable.
+
+# ---------------------------------------------------------------------------
+# Build output
+# ---------------------------------------------------------------------------
+# build/bin/ is deliberately kept in the repository: it holds the distributable
+# (SpaceDefender.exe, openal32.dll and ressources/) that the README tells
+# players to run. Everything else under build/ is CMake and compiler scratch,
+# regenerated on every configure, and is what makes `git diff` unreadable.
+/build/*
+!/build/bin/
+
+# Other build trees
+/build_test/
+/cmake-build-*/
+/out/
+/Debug/
+/Release/
+
+# ---------------------------------------------------------------------------
+# Compiler artefacts outside the build tree
+# ---------------------------------------------------------------------------
+*.o
+*.obj
+*.d
+*.gch
+*.pch
+*.res
+
+# Static/shared libraries are only ever expected under lib/, which is tracked
+# on purpose (bundled SFML), so nothing is ignored by extension here.
+
+# ---------------------------------------------------------------------------
+# CMake scratch outside the build tree
+# ---------------------------------------------------------------------------
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+_deps/
+
+# ---------------------------------------------------------------------------
+# Editors and IDEs
+# ---------------------------------------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+.cache/
+.clangd/
+compile_flags.txt
+
+# ---------------------------------------------------------------------------
+# OS noise
+# ---------------------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ---------------------------------------------------------------------------
+# Runtime state written by the game
+# ---------------------------------------------------------------------------
+# Per-machine progress and debug output, not source. The game recreates the save
+# file with default values when it is missing (TDPlayerSave::initPlayerData).
+playerdata.bin
+logs.txt

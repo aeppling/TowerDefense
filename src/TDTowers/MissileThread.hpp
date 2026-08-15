@@ -7,12 +7,14 @@
 
 #include "../TDGraphics/SFMLMissileLoader.hpp"
 #include <SFML/Graphics.hpp>
+#include <atomic>
 #include <iostream>
 #include <thread>
 
 class MissileThread {
 private:
-    bool        _isArrived;
+    // Written by the missile thread, read by the render thread.
+    std::atomic<bool> _isArrived;
     sf::Sprite  _sprite;
     std::thread _thread;
     std::string _style;
@@ -25,8 +27,10 @@ public:
     void startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f& startPosition, const sf::Vector2f& endPosition,
                      int cellSize, float speed, std::string style);
 
+    // cellSize/speed are taken by value: the thread outlives startThread()'s
+    // frame, so binding references to its parameters would dangle.
     void shootMissile(SFMLMissileLoader &sfmlMissileLoader,
-                      const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int &cellSize, float &speed);
+                      const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, int cellSize, float speed);
     sf::Sprite getSprite();
     sf::Sprite getExplosionSprite();
     bool joinThread() {
