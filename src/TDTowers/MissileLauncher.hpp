@@ -10,12 +10,17 @@
 #include "SFML/Graphics.hpp"
 #include "../TDTowers/MissileThread.hpp"
 
+#include <mutex>
+
 class MissileLauncher {
 private:
     int                              _cellSize;
     SFMLMissileLoader                &_sfmlMissileLoader;
     std::string                      _typeName;
     std::vector<MissileThread*>       _missiles;
+    // _missiles is written by the tower thread (shoot / endFinishedThreads)
+    // and read by the render thread (getTotalMissiles / getSpriteByIndex).
+    mutable std::mutex               _missilesMutex;
 public:
     MissileLauncher(SFMLMissileLoader &sfmlMissileLoader, int cellSize, std::string typeName);
     ~MissileLauncher();

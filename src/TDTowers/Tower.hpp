@@ -12,7 +12,15 @@
 
 #include <vector>
 #include <thread>
-#include <algorithm> 
+#include <mutex>
+#include <algorithm>
+
+// Guards the wave enemy list shared by all tower threads (defined in Tower.cpp).
+extern std::mutex mtx;
+// Guards Game::towerList, which the main thread mutates (build / sell) while
+// a SpeedAuraTower thread walks it. Kept separate from `mtx` so selling a
+// tower never waits on a tower that is busy firing.
+extern std::mutex towerListMtx;
 
 class Game;
 
@@ -51,7 +59,14 @@ class Tower : public Buildable {
 public:
         Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
               std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader);
-        ~Tower() override { this->_towerThread.join(); };
+        ~Tower() override {
+            // Signal the tower loop to exit before joining, otherwise the
+            // destructor blocks forever on a still-running thread.
+            this->activated = false;
+            this->isPaused = false;
+            if (this->_towerThread.joinable())
+                this->_towerThread.join();
+        };
         std::string getTowerName();
         sf::Sprite getTowerSprite() { return (this->towerSprite); };
         sf::Sprite *getTowerSpritePtr() { return (&this->towerSprite); };

@@ -1,5 +1,6 @@
 #include "NetworkController.hpp"
 #include <iostream>
+#include <memory>
 NetworkController::NetworkController(bool isServer){
     // Crée un objet NetworkController client ou serveur
     this->isServer = isServer;

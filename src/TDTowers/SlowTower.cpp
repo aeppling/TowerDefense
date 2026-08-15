@@ -14,7 +14,10 @@ void SlowTower::fire(TDUnit *target){
     }
     this->rotate(target);
     try  {
-        slow_mtx.lock();
+        // Shared tower mutex + lock_guard: enemiesInRange is also touched by
+        // isInRange() and deactivate() under `mtx`, so slow_mtx excluded
+        // nothing, and the unlock after the catch leaked on other exceptions.
+        std::lock_guard<std::mutex> lock(mtx);
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
         this->_shotSound.play();
@@ -27,5 +30,4 @@ void SlowTower::fire(TDUnit *target){
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
     }
     this->missileLauncher->endFinishedThreads();
-    slow_mtx.unlock();
 }

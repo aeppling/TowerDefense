@@ -67,7 +67,10 @@ class Game{
         SFMLMissileLoader   sfmlMissileLoader;
         SFMLCoinAnimation   sfmlCoinAnimation;
         SFMLLoader          sfmlLoaderMap;
-        SFMLHud*            sfmlHud;
+        // Assigned well after construction, but read before that (the null
+        // check in initializeTowerStore); an uninitialised raw pointer here is
+        // indeterminate, not conveniently null.
+        SFMLHud*            sfmlHud = nullptr;
         SFMLDecorationLoader sfmlDecorationLoader;
         SFMainSoundPlayer   &sfMainSoundPlayer;
         SFTowerSoundLoader  &sfTowerSoundLoader;
@@ -88,13 +91,20 @@ class Game{
 
     public :
         Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMainSoundPlayer1, SFTowerSoundLoader &towerSoundLoader, NetworkController* networkController, int planetToLoad);
-        ~Game() { if (!this->isLevelWon) {
-            this->pauseGame();
+        ~Game() {
+            if (!this->isLevelWon) {
+                this->pauseGame();
             }
-         this->cleanAll();
+            // pauseGame() only suspends the music now, so stop it explicitly:
+            // the level is over and SFMainSoundPlayer outlives this object.
+            this->sfMainSoundPlayer.stopGameMusic();
+            this->cleanAll();
         };
         bool testMap(std::string path, MapCell *baseCell, std::vector<MapCell*> &spawnCells);
         void initializeTowerStore(sf::RenderWindow &window);
+        void clearTowerStore();
+        Tower *createTowerForColumn(int column, sf::RenderWindow &window);
+        void refillTowerStoreColumn(int column, sf::RenderWindow &window);
         void initializeTowerStoreCurrentWave();
         void setUnitsTextures(SFMLLoader &sfmlLoader, std::vector<std::vector<TDUnit*>> &enemyList,
                               int winSizeX, int winSizeY, int mapSizeX, int mapSizeY);

@@ -42,18 +42,18 @@ Game::Game(int difficulty, int level, TDPlayer *player1, SFMainSoundPlayer &sfMa
     SFMLLoaderPlanet3 sfmlLoader3;
     SFMLDecorationLoader decorationLoader;
     this->sfmlDecorationLoader = decorationLoader;
-    if (this->planet == 1)
-        this->sfmlLoaderMap = sfmlLoader1;
+    // These were independent `if`s with a single trailing `else`, so the else
+    // bound only to the planet==3 test: planet 2 was assigned sfmlLoader2 and
+    // then immediately overwritten with sfmlLoader1, loading planet 1 tiles.
     if (this->planet == 2)
         this->sfmlLoaderMap = sfmlLoader2;
-    if (this->planet == 3)
+    else if (this->planet == 3)
         this->sfmlLoaderMap = sfmlLoader3;
     else
         this->sfmlLoaderMap = sfmlLoader1;
-    this->sfmlMissileLoader = sfmlMissileLoader;
-    this->sfmlEnemiesLoader = sfmlEnemiesLoader;
-    this->sfmlTowerLoader = sfmlTowerLoader;
-    this->sfmlCoinAnimation = sfmlCoinAnimation;
+    // The four assignments that stood here were self-assignments: there are no
+    // constructor parameters by those names, so each member was assigned to
+    // itself. Removed (SFMLCoinAnimation is no longer copyable either).
     this->levelRetriever = new RetrieveLevel(this->level, this->planet);
     this->difficulty = difficulty;
     this->baseCoord = {0,0};
@@ -165,10 +165,67 @@ bool    Game::testMap(std::string path, MapCell *baseCell, std::vector<MapCell*>
         std::cout << "Unable to open file" << std::endl;
     }
     file.close();
+    // Falling off the end of a bool function returns an indeterminate value,
+    // and callers branch on it to decide whether the map is playable.
+    return (false);
+}
+
+void Game::clearTowerStore() {
+    // Plain clear() dropped these pointers without freeing them, and the store
+    // is rebuilt at the start of every wave. Towers already bought have been
+    // erased from the store and now live in towerList, so they are not here.
+    for (std::vector<Tower *> &column : this->towerStoreList) {
+        for (Tower *tower : column)
+            delete tower;
+    }
+    this->towerStoreList.clear();
+}
+
+Tower *Game::createTowerForColumn(int column, sf::RenderWindow &window) {
+    // The store's column layout depends on the planet. It lived inline in
+    // initializeTowerStore(); it is centralised here so a column that runs out
+    // can be restocked with the right type.
+    if (column == 0)
+        return (new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 1)
+        return (new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (this->planet == 1) {
+        if (column == 2)
+            return (new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        if (column == 3)
+            return (new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        if (column == 4)
+            return (new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+        return (nullptr);
+    }
+    // Planets 2 and 3 share the same layout; only planet 3 has column 6.
+    if (column == 2)
+        return (new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 3)
+        return (new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 4)
+        return (new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 5)
+        return (new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    if (column == 6)
+        return (new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader, window, this->sfTowerSoundLoader));
+    return (nullptr);
+}
+
+void Game::refillTowerStoreColumn(int column, sf::RenderWindow &window) {
+    // Buying a tower erases it from its column. Only two of each type were ever
+    // stocked per wave, so buying the second one left the column empty -- and
+    // several places index it with .at(0) every frame, which threw
+    // std::out_of_range and aborted the process. Keep the column stocked.
+    if ((column < 0) || (column >= (int)this->towerStoreList.size()))
+        return;
+    Tower *tower = this->createTowerForColumn(column, window);
+    if (tower != nullptr)
+        this->towerStoreList.at(column).push_back(tower);
 }
 
 void Game::initializeTowerStore(sf::RenderWindow &window) {
-    this->towerStoreList.clear();
+    this->clearTowerStore();
     int y = 0;
     while (y <= this->nb_tower_type) {
         std::vector<Tower *> newVector;
@@ -177,46 +234,18 @@ void Game::initializeTowerStore(sf::RenderWindow &window) {
     }
     int i = 0;
     while (i <= 1) {
-        Tower *buildTowerType1 = new BasicTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                window, this->sfTowerSoundLoader);
-        Tower *buildTowerType2 = new AttackSpeedTower(this, this->cellSize, this->sfmlTowerLoader,
-                                                      this->sfmlMissileLoader, window, this->sfTowerSoundLoader);
-        Tower *buildTowerType3 = new AntiAirTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                  window, this->sfTowerSoundLoader);
-        Tower *buildTowerType4 = new SniperTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                 window, this->sfTowerSoundLoader);
-        Tower *buildTowerType5 = new SpeedAuraTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                    window, this->sfTowerSoundLoader);
-        Tower *buildTowerType6 = new SlowTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                   window, this->sfTowerSoundLoader);
-        Tower *buildTowerType7 = new SplashTower(this, this->cellSize, this->sfmlTowerLoader, this->sfmlMissileLoader,
-                                                         window, this->sfTowerSoundLoader);
-
-        this->towerStoreList.at(0).push_back(buildTowerType1);
-        this->towerStoreList.at(1).push_back(buildTowerType2);
-        
-
-        if(this->planet == 1){
-        this->towerStoreList.at(2).push_back(buildTowerType3);
-        this->towerStoreList.at(3).push_back(buildTowerType5);
-        this->towerStoreList.at(4).push_back(buildTowerType4);
-       
-        }else if (this->planet == 2){
-        this->towerStoreList.at(2).push_back(buildTowerType6);
-        this->towerStoreList.at(3).push_back(buildTowerType3);
-        this->towerStoreList.at(4).push_back(buildTowerType5);
-        this->towerStoreList.at(5).push_back(buildTowerType4);
-        }else if (this->planet == 3) {
-
-            this->towerStoreList.at(2).push_back(buildTowerType6);
-            this->towerStoreList.at(3).push_back(buildTowerType3);
-            this->towerStoreList.at(4).push_back(buildTowerType5);
-            this->towerStoreList.at(5).push_back(buildTowerType4);
-            this->towerStoreList.at(6).push_back(buildTowerType7);
-        }
+        for (int column = 0; column <= this->nb_tower_type; column++)
+            this->refillTowerStoreColumn(column, window);
         i++;
     }
     this->initializeTowerStoreCurrentWave();
+    // SFMLHud keeps its *own copy* of this pointer table and only ever got it
+    // refreshed at the start of a wave. Since clearTowerStore() now actually
+    // frees the old towers, any caller that rebuilt the store mid-wave (placing
+    // a tower does, via loop()) left the HUD drawing freed memory. Refresh it
+    // here so no caller can get that wrong.
+    if (this->sfmlHud != nullptr)
+        this->sfmlHud->setTowerStoreList(this->towerStoreList);
 }
 
 void Game::initializeTowerStoreCurrentWave() {
@@ -291,6 +320,9 @@ bool Game::checkCursorOutsideMap(int posX, int posY, TDMap &map) {
 
 void Game::sellTower(TDMap &map) {
     int i = 0;
+    // A SpeedAuraTower thread walks towerList continuously; erasing from it
+    // unguarded invalidated that walk.
+    std::lock_guard<std::mutex> lock(towerListMtx);
     while (i < this->towerList.size()) {
         if (this->selectedActiveTower == this->towerList.at(i)) {
             int cost = this->towerList.at(i)->getCost() / 2;
@@ -315,6 +347,9 @@ void Game::sellTower(TDMap &map) {
 void Game::upgradeTower() {
     int i = 0;
 
+    // selectedActiveTower is cleared on sell / deselect, so it can be null here.
+    if (this->selectedActiveTower == nullptr)
+        return ;
     if (this->selectedActiveTower->getUpgradeCost() > this->player->getCoinNumber())
         return ;
     while (i < this->towerList.size()) {
@@ -378,7 +413,7 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 std::chrono::steady_clock::time_point waveChronoStart = std::chrono::steady_clock::now();
                 bool isWaveRunning = false;
                 // CREATE SHARED PTR OF WAVE HERE
-                this->towerStoreList.clear();
+                this->clearTowerStore();
                 this->currentWave.reset();
                 this->currentWave = nullptr;
                 this->currentWave = std::make_shared<std::vector<TDUnit*>>(this->enemyList[this->currentWaveNumber]);
@@ -811,6 +846,10 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                 }
                //WAVE ENDED
         }
+    // Reached when the window is closed or the player leaves: 1 is the "player
+    // leaved current game" code. Falling off the end returned an indeterminate
+    // int, which could read as 2 ("won") and unlock the next level for free.
+    return (1);
 }
 
 void Game::setSpawnCellsSprites() {
@@ -1045,7 +1084,10 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                 id++;
                 toAdd->setId(this->id);
                 std::cout << "Tower id : " << this->id << std::endl;
-                this->towerList.push_back(toAdd);
+                {   // guarded: a SpeedAuraTower thread may be walking towerList
+                    std::lock_guard<std::mutex> lock(towerListMtx);
+                    this->towerList.push_back(toAdd);
+                }
                 this->towerList[this->towerList.size() - 1]->setPosition(mouseCoord.posX, mouseCoord.posY, this->cellSize);
                 this->towerList[this->towerList.size() - 1]->setIsPlaced(true);
                 this->looseCoins(toBuild->getCost());
@@ -1068,8 +1110,11 @@ bool Game::setTowerTest(TDMap &map, sf::RenderWindow &window, Buildable *toBuild
                     //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                 }
                 map.refreshTextures(mouseCoord.posX, mouseCoord.posY);
-//                this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                 this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
+                // Restock, then hand the HUD the new table: it keeps its own
+                // copy and was still pointing at the tower we just placed.
+                this->refillTowerStoreColumn(this->towerSelectorIndex, window);
+                this->sfmlHud->setTowerStoreList(this->towerStoreList);
                 return (true);
             }
             else {
@@ -1306,6 +1351,13 @@ bool Game::waveEnd(sf::RenderWindow& window){
             this->sfMainSoundPlayer.playWaveClear();
             this->drawInfoBox(window, {400, 150}, "Wave cleared !", true);
             sf::sleep(sf::milliseconds(1500));
+            // Towers were deactivated and joined just above, so nothing can be
+            // holding these units any more. They used to be joined and then
+            // simply dropped, leaking the whole wave.
+            for (auto* unit : this->enemyList.at(currentWaveNumber)) { if (unit) unit->join(); }
+            // Drop the shared copy first: currentWave holds the same pointers.
+            this->currentWave.reset();
+            for (auto* unit : this->enemyList.at(currentWaveNumber)) { delete unit; }
             this->enemyList.at(currentWaveNumber).clear();
             //    this->sfmlCoinAnimation.clear();
             this->currentWaveNumber++;
@@ -1329,7 +1381,7 @@ bool Game::gameEnd(){
      //   this->deactivateTowers();
        // this->gameLost();
         return true;
-    } else if (this->enemyList[this->enemyList.size()-1].size() == 0){
+    } else if (this->enemyList.empty() || this->enemyList.back().size() == 0){
         std::cout << "ending level" << std::endl;
         //* if all enemies form the last wave are dead  = game won
        // this->deactivateTowers();
@@ -1341,65 +1393,62 @@ bool Game::gameEnd(){
 }
 
 void    Game::cleanAll() {
-    // VECTORS
-    // CRASH IF TOWER PLACED AND LEAVE
+    // Order matters: every thread that can touch an object must be stopped
+    // before that object is freed. The old version slept 1.2s + 2s hoping the
+    // threads would finish on their own, cleared enemyList *before* the join
+    // loop below it (making that loop dead code), and freed nothing.
     std::cout << "Cleaning level memory..." << std::endl;
-   // OLD UNIT CLEAN HERE
-    if (!this->towerList.empty()) {
-        for (Tower *tower: this->towerList) {
-            tower->deactivate();
-        }
-    } // WIN NO TOWER YES UNIT OK //  WIN YES TOWER YES UNIT OK // LOOSE LAST UNIT OK // LOOSE UNIT & TOWER KO // LOOSE UNIT KO
-    std::cout << "Cleaned tower" << std::endl;
-    sf::sleep(sf::seconds(1.2));
-    if (!this->enemyList.empty()) { // CRASH IF HERE AND TOWER
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            if (!wave.empty()) {
-                for (TDUnit *unit: wave) {
-                    unit->setAlreadyArrived();
-                    unit->setHealth(0);
-                }
-            }
-        }
-    }
-    std::cout << "Cleaned enemies" << std::endl;
-    sf::sleep(sf::seconds(2));
-    for (MapCell *element: this->spawnCells) {
-        delete element;
-    }
-    std::cout << "Cleaned cells" << std::endl;
-    this->spawnCells.clear();
-    this->spawnCellsSprites.clear();
-    this->enemyList.clear();
-    std::cout << "cleard enemies & cells" << std::endl;
-    // THIS LOOP WAS REMOVED BECAUSE OF LOOSE CRASH WHEN RUNNING UNIT & FOCUSED BY TOWER
-   /* if (!this->towerList.empty()) {
-        for (Tower *tower: this->towerList) {
-            tower->join();
-        }
-    }*/
-    std::cout << "tower joined" << std::endl;
 
-    this->towerStoreList.clear();
-    this->towerList.clear();
-    if (!this->enemyList.empty()) {
-        for (std::vector<TDUnit*> wave : this->enemyList) {
-            if (!wave.empty()) {
-                for (TDUnit *unit: wave) {
-                    unit->setAlreadyArrived();
-                   unit->join();
-                }
-            }
+    // 1. Stop the tower threads. They hold raw pointers into the unit list.
+    for (Tower *tower : this->towerList) {
+        if (tower == nullptr)
+            continue;
+        tower->unsetPaused();
+        tower->deactivate();
+        tower->join();
+    }
+    std::cout << "Cleaned tower" << std::endl;
+
+    // 2. No tower can target anything now: wind the units down, then join them.
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave) {
+            if (unit == nullptr)
+                continue;
+            unit->unsetPaused();
+            unit->setAlreadyArrived();
+            unit->setHealth(0);
+        }
+    }
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave) {
+            if (unit != nullptr)
+                unit->join();
         }
     }
     std::cout << "enemies joined" << std::endl;
 
-    // SIMPLE PTR
-//     delete this->selectedActiveTower;
-  //   delete this->baseCellObject;
-   //  delete this->player;
-    // delete this->levelRetriever;
-     std::cout << "Cleaning done" << std::endl;
+    // 3. Everything is idle, so it is safe to free.
+    this->selectedActiveTower = nullptr;
+    for (Tower *tower : this->towerList)
+        delete tower;
+    this->towerList.clear();
+    this->clearTowerStore();
+
+    this->currentWave.reset();
+    for (std::vector<TDUnit*> &wave : this->enemyList) {
+        for (TDUnit *unit : wave)
+            delete unit;
+    }
+    this->enemyList.clear();
+
+    for (MapCell *element : this->spawnCells)
+        delete element;
+    this->spawnCells.clear();
+    this->spawnCellsSprites.clear();
+
+    delete this->levelRetriever;
+    this->levelRetriever = nullptr;
+    std::cout << "Cleaning done" << std::endl;
 }
 
 void Game::gameWon(){
@@ -1491,8 +1540,14 @@ void Game::setAllHoveringSprites(TDMap &map, sf::RenderWindow &window, int posX,
         }
 
     }
-    if (showBuildable)
+    if (showBuildable) {
+        // Runs every frame while hovering: check rather than rely on the
+        // caller's try/catch, which would throw once per frame if it ever hit.
+        if ((this->towerSelectorIndex < 0) || (this->towerSelectorIndex >= (int)this->towerStoreList.size())
+            || this->towerStoreList.at(this->towerSelectorIndex).empty())
+            return;
         setHoveringBuildable(window, posX, posY, this->towerStoreList.at(this->towerSelectorIndex).at(0)->getTowerSpritePtr());
+    }
 }
 
 
@@ -1670,7 +1725,10 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                         std::cout << "Dynamic cast failed from Buidlable to Tower" << std::endl;
                         return;
                     }
-                    this->towerList.push_back(toAdd);
+                    {   // guarded: a SpeedAuraTower thread may be walking towerList
+                        std::lock_guard<std::mutex> lock(towerListMtx);
+                        this->towerList.push_back(toAdd);
+                    }
                     this->id++;
                     toAdd->setId(this->id);
                     std::cout << "Tower added to towerList" << std::endl;
@@ -1696,8 +1754,9 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                     //this->towerList[this->towerList.size() - 1]->run(this->currentWave);
                     }
                     map.refreshTextures(towerPosition.x, towerPosition.y);
-//                  this->towerStoreList.erase(this->towerStoreList.begin() + this->towerSelectorIndex);
                     this->towerStoreList.at(this->towerSelectorIndex).erase(this->towerStoreList.at(this->towerSelectorIndex).begin());
+                    this->refillTowerStoreColumn(this->towerSelectorIndex, window);
+                    this->sfmlHud->setTowerStoreList(this->towerStoreList);
                     std::cout << "Tower built" << std::endl;
                 }
             }
@@ -1714,7 +1773,11 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
                             break;
                         }
                     }
-                    if(!found){
+                    // `i` is bounded by gameState.towerList->size(), but it is
+                    // used to index this->towerList, a different vector: at()
+                    // would throw and abort. Skip instead.
+                    if(!found && (i < (int)this->towerList.size())){
+                        std::lock_guard<std::mutex> lock(towerListMtx);
                         int cost = this->towerList.at(i)->getCost() / 2;
                         this->addCoins(cost);
                         this->gameState.numCoins = this->player->getCoinNumber();
@@ -1847,8 +1910,14 @@ void Game::pauseMenu(bool pause){
 }
 
 void Game::pauseGame() {
-    this->sfMainSoundPlayer.stopGameMusic();
+    // pause, not stop: stop() rewinds, so the track restarted from the top
+    // every time the player closed the pause menu.
+    this->sfMainSoundPlayer.pauseGameMusic();
     int i = 0;
+    // Called from ~Game(), where currentWaveNumber can already be past the last
+    // wave: at() would throw out of a destructor and abort the process.
+    if (this->currentWaveNumber >= (int)this->enemyList.size())
+        return;
     // PAUSE UNIT
     while (i < this->enemyList.at(this->currentWaveNumber).size()) {
         this->enemyList.at(this->currentWaveNumber).at(i)->setPaused();
@@ -1863,11 +1932,15 @@ void Game::pauseGame() {
 }
 
 void Game::resumeGame() {
-    if (this->currentWaveNumber == this->enemyList.size() - 1) {
-        this->sfMainSoundPlayer.playGameMusicFaster();
+    this->sfMainSoundPlayer.resumeGameMusic();
+    // Fallback: if nothing was paused (the track had ended, or the pause came
+    // from somewhere that stopped it), start the right one from the beginning.
+    if (!this->sfMainSoundPlayer.isAnyGameMusicPlaying()) {
+        if (this->currentWaveNumber == this->enemyList.size() - 1)
+            this->sfMainSoundPlayer.playGameMusicFaster();
+        else
+            this->sfMainSoundPlayer.playGameMusic1();
     }
-    else
-        this->sfMainSoundPlayer.playGameMusic1();
     int i = 0;
     // RESUME UNIT
     while (i < this->enemyList.at(this->currentWaveNumber).size()) {

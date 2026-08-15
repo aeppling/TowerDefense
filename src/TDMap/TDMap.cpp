@@ -45,9 +45,14 @@ void TDMap::refreshTextures(int posX, int posY) {
         return ;
     }
     else if (this->_map.at(posY).at(posX).getType() != this->_spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType()) {
+            // Same rule as setSpriteFromTypeAndPosition() used when building
+            // the map, so a restored cell gets its original tile back.
+            bool useHeightTile = (posY + 1 < (int)this->_map.size())
+                                 && (this->_map.at(posY + 1).at(posX).getType() == 'F');
             this->_spritesHolderPtr->updateSpriteFromTypeAndPosition(
                     this->_spritesHolderPtr->getSpriteFromPosition(posX, posY)->getType(),
-                    posX, posY, this->_sfmlLoader, this->_cellSize, this->_map.at(posY).at(posX).getType());
+                    posX, posY, this->_sfmlLoader, this->_cellSize, this->_map.at(posY).at(posX).getType(),
+                    useHeightTile);
     }
 }
 

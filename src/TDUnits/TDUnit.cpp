@@ -70,15 +70,22 @@ void    TDUnit::live() {
                     this->regenerate();
                 this->_timeOfLastMove = std::chrono::steady_clock::now();
                 if (this->_isPaused) {
-                    while (this->_isPaused) {
+                    // Watch isAlive() too: a unit killed while the game is
+                    // paused used to spin here forever, so join() never
+                    // returned and quitting the level hung.
+                    while (this->_isPaused && this->isAlive()) {
                         sf::sleep(sf::milliseconds(50));
                     }
+                    if (!this->isAlive())
+                        break;
                 }
                 if (this->_isFreeze) {
                     std::chrono::steady_clock::time_point startFreeze = std::chrono::steady_clock::now();
                     std::chrono::steady_clock::time_point elapsedFreeze = std::chrono::steady_clock::now();
                     int isFreezeEnded = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedFreeze - startFreeze).count();
-                    while (isFreezeEnded < this->_freezeTime) {
+                    // isAlive() guard: freeze lasts up to 3s, and a unit killed
+                    // while frozen used to keep its thread alive that long.
+                    while ((isFreezeEnded < this->_freezeTime) && this->isAlive()) {
                         sf::sleep(sf::milliseconds(100));
                         this->_freezeSprite.setPosition(this->_sprite.getPosition().x, this->_sprite.getPosition().y);
                         this->setHealthBarSize();
@@ -98,44 +105,57 @@ void    TDUnit::run(TDMap *map) {
     this->_thread = std::thread(&TDUnit::live, this);
 }
 
+// A blocked unit re-runs the pathfinder and retries. This used to recurse into
+// move() with no limit, overflowing the stack when a unit stayed blocked; it is
+// now a bounded loop.
+#define MAX_MOVE_RETRIES 16
+
 void    TDUnit::move() {
     //detect other td unit destoryed a wall
-    
-    
-    
+    for (int attempt = 0; attempt < MAX_MOVE_RETRIES; attempt++) {
+    // The pathfinder can return an empty path (no route to the base); _path[0]
+    // was read unconditionally and walked off the end of the vector.
+    if (this->_path.empty())
+        return;
     std::shared_ptr<MapCell> nextTo = this->_path[0];
     if ((isBlocked(nextTo->getPosX(), nextTo->getPosY())) && (this->_isFlying == false) && ((this->getTypeName() != "FlyingDrone") && (this->getTypeName() != "RegenerateDrone") && (this->getTypeName() != "ArmoredRegenerateDrone") && (this->getTypeName() != "ArmoredFlyingDrone"))) {
-        
+
         if (this->_isForcing == true) {
-            
-        
+
+
             this->_mapCopy->getElem(nextTo->getPosX(), nextTo->getPosY())->setType('X');
 
-            
+
             this->_mapCopy->refreshTextures(nextTo->getPosX(), nextTo->getPosY());
             for (int j = 0; j < _walls->size(); j++) {
                 if ((*_walls)[j].x == nextTo->getPosX() && (*_walls)[j].y == nextTo->getPosY()) {
-                    
+
                     _walls->erase(_walls->begin() + j);
                     std::cout << "wall destroyed" << std::endl;
-                    
+
                     break;
                 }
             }
             if (this->getTypeName() == "Missile") {
+                // The missile is consumed destroying the wall. Stop here: the
+                // code below used to re-path and then lerp the sprite from
+                // (-1000,-1000) back onto the map, so a dead missile flew in
+                // across the top-left corner and froze there when live() ended.
                 this->setHealth(0);
                 this->_sprite.setPosition(-1000, -1000);
+                this->_sprite.setColor(sf::Color::Transparent);
+                this->_path.clear();
+                return;
             }
         }
          if (this->getTypeName() != "DrillTank") {
             this->_path.clear();
             this->searchPath(this->_mapCopy->getMapVector(), this->_baseCoordX, this->_baseCoordY, false);
          }
-        this->move();
-       //nextTo = this->_path[0];
+        continue;
     }
     else {
-        
+
         sf::Vector2f targetPosition = sf::Vector2f((nextTo->getPosX() * this->_unitSize) + this->_cellSize / 2 + _GAME_POSITION_X,
                                                    (nextTo->getPosY() * this->_unitSize) + this->_cellSize / 2 + _GAME_POSITION_Y);
         sf::Vector2f currentPosition = this->_sprite.getPosition();
@@ -164,7 +184,9 @@ void    TDUnit::move() {
         this->_posX = nextTo->getPosX();
         this->_posY = nextTo->getPosY();
         this->_path.erase(this->_path.begin());
+        return;
     }
+    } // retry loop
 }
 
 bool    TDUnit::searchPath(std::vector<std::vector<MapCell>> *nmap, int baseCoordX, int baseCoordY, bool isTesting) {
@@ -344,7 +366,10 @@ void    TDUnit::getKill() {
     this->_sprite.setColor(sf::Color::Red);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     this->_sprite.setColor(sf::Color::Transparent);
-    this->_thread.join();
+    // No join() here. This runs on the *tower* thread, and joining blocked it
+    // for up to one full move step on top of the flash above. The unit's own
+    // loop already exits once its health hits 0, and waveEnd()/cleanAll() join
+    // it from the main thread.
     this->_isKilled = true;
 }
 
@@ -374,6 +399,7 @@ sf::RectangleShape    TDUnit::getMaxHealthBarSprite() {
 }
 
 void TDUnit::join() {
+    std::lock_guard<std::mutex> lock(this->_joinMutex);
     if (this->_thread.joinable()) {
         std::cout << "Unit joined" << std::endl;
         this->_thread.join();

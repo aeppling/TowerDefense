@@ -5,7 +5,11 @@
 #include "../TDGraphics/SFMLMissileLoader.hpp"
 #include "../TDGame/usefullStruct.hpp"
 
+// Single mutex guarding the wave enemy list shared by every tower.
+// SplashTower used to guard the same vector with its own `mtx_tow`, which
+// provided no mutual exclusion against this one.
 std::mutex mtx;
+std::mutex towerListMtx;
 
 Tower::Tower(Game *gameInstance, int size, int cellSize, SFMLTowerLoader &sfmlLoaderTower, SFMLMissileLoader &sfmlMissileLoader, sf::RenderWindow &window, std::string towerName,
              std::vector<int> damage, std::vector<int> cost, std::vector<float> range, std::vector<float> timeBetweenAttack, float missileSpeed, bool isAerial, SFTowerSoundLoader &soundLoader) : window(window), Buildable(size, "Tower") {
@@ -102,12 +106,18 @@ void Tower::setCurrentWave(std::shared_ptr<std::vector<TDUnit *>> enemiesList) {
 
 
 void Tower::isInRange() {
+    // A tower placed between two waves has no wave list yet.
+    if (this->enemiesList == nullptr)
+        return;
     int towerX = this->coord.x;
     int towerY = this->coord.y;
     int radius = this->range.at(this->level) + this->getSize();
 
+    // Hold the lock across the whole walk: another tower's fire() erases from
+    // this very vector, which invalidated the range-for iterators. Locking
+    // once per element (as before) left the iteration itself unguarded.
+    std::lock_guard<std::mutex> lock(mtx);
     for (TDUnit* enemy : *(this->enemiesList)) {
-        mtx.lock();
         int enemyX = enemy->getPosX();
         int enemyY = enemy->getPosY();
 
@@ -124,7 +134,6 @@ void Tower::isInRange() {
                 removeFromEnemiesInRangeList(enemy);
             }
         }
-        mtx.unlock();
     }
 }
 
@@ -134,11 +143,19 @@ void Tower::activate(std::shared_ptr<std::vector<TDUnit*>> enemiesList){
         while (this->activated) {
             if (this->activated == false)
                 break;
+            // Yield between scans. Without this the loop spun at full speed on
+            // a core per tower and hammered the shared mutex; 10ms is well
+            // below the fastest fire rate so targeting is unaffected.
+            sf::sleep(sf::milliseconds(10));
             isInRange();
             if (enemiesInRange.size() > 0 && this->damage[this->level] > 0) {
                 if (this->isPaused) {
-                    while (this->isPaused)
+                    // Also watch `activated` so deactivate()/~Tower() can break
+                    // us out of a pause instead of deadlocking on the join.
+                    while (this->isPaused && this->activated)
                         sf::sleep(sf::milliseconds(50));
+                    if (!this->activated)
+                        break;
                 }
                 std::chrono::steady_clock::time_point testTime = std::chrono::steady_clock::now();
                 int res = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -165,10 +182,15 @@ void Tower::sold() {
 
 void Tower::deactivate(){
     //* Deactivate the tower
-    //if (this->_towerThread.joinable())
-    //    this->_towerThread.join();
     this->activated = false;
-    this->enemiesList->clear();
+    this->isPaused = false;
+    // Do NOT clear enemiesList here. It is the wave list SHARED by every tower
+    // and it may be null (a tower placed between waves, or a SpeedAuraTower,
+    // never receives one) -- dereferencing it segfaulted at end of wave.
+    // Clearing it also invalidated the iterators of the other tower threads
+    // still walking it in isInRange(). The wave list is rebuilt from scratch
+    // at the start of each wave, so there is nothing to release here.
+    std::lock_guard<std::mutex> lock(mtx);
     this->enemiesInRange.clear();
 }
 
@@ -219,8 +241,12 @@ void Tower::fire(TDUnit *target){
         return ;
     }
     this->rotate(target);
+    bool killed = false;
     try  {
-        mtx.lock();
+        // lock_guard, so an exception on any path below still releases the
+        // mutex. The old code unlocked after the catch, so anything other than
+        // a system_error left it locked forever and froze every tower thread.
+        std::lock_guard<std::mutex> lock(mtx);
         std::thread animationThread(&Tower::animateFiring, this);
         animationThread.detach();
         this->_shotSound.play();
@@ -233,17 +259,24 @@ void Tower::fire(TDUnit *target){
         if (target->getHealth() <= 0) {
             this->_killSound.play();
             removeFromEnemiesInRangeList(target);
-           this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
-            target->getKill();
+            if (this->enemiesList != nullptr)
+                this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target), this->enemiesList->end());
+            killed = true;
         }
     } catch (const std::system_error& ex) {
         std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
     }
+    // Run the death animation AFTER releasing the mutex: it sleeps ~500ms and
+    // was holding every other tower thread hostage on each kill.
+    if (killed)
+        target->getKill();
     this->missileLauncher->endFinishedThreads();
-    mtx.unlock();
 }
 
 void Tower::upgrade(SFMLTowerLoader &sfmlTowerLoader){
+    // Called from the main thread while this tower's own thread indexes
+    // damage[level] / range.at(level) / timeBetweenAttack.at(level) under mtx.
+    std::lock_guard<std::mutex> lock(mtx);
     if(!this->isMaxed()){
         this->level++;
         this->towerSprite.setTexture(*sfmlTowerLoader.getTextureFromName(this->towerName, this->level));

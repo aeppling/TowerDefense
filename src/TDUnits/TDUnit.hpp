@@ -6,6 +6,7 @@
 #define UNTITLED1_TDUNIT_HPP
 
 #include <chrono>
+#include <mutex>
 #include <thread>
 #include "../TDGame/usefullStruct.hpp"
 #include "../TDMap/AStarPathFinding.hpp"
@@ -55,6 +56,9 @@ public:
     std::shared_ptr<std::vector<Point>> _walls;
     
     std::thread                           _thread;
+    // getKill() (tower thread) and Game::waveEnd()/cleanAll() (main thread)
+    // both join this unit; joinable() alone does not make that safe.
+    std::mutex                            _joinMutex;
     TDMap                                 *_mapCopy;
     // SFML
     sf::Sprite          _sprite;
@@ -67,8 +71,13 @@ public:
 
     // CONSTRUCTOR & OVERLOADS
     TDUnit(int hp, int speed, int resistance, int posX, int posY, bool isFlying, int value, float scale, bool isSemiAerial);
-    ~TDUnit() {
-        std::cout << "Unit destructed here : " << this->getTypeName() << std::endl;
+    virtual ~TDUnit() {
+        // ~std::thread calls std::terminate() if the thread is still joinable,
+        // so a unit could never be deleted safely. Wind it down and join first.
+        this->_isPaused = false;
+        this->_health_points = 0;
+        this->_alreadyArrived = true;
+        this->join();
     }
     virtual std::string getTypeName() {
         return "Enemy";

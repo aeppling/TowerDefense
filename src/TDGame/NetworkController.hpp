@@ -2,6 +2,8 @@
 #define UNTITLED1_NETWORKCONTROLLER_HPP_
 
 #include <SFML/Network.hpp>
+#include <memory>
+#include <memory>
 #include <vector>
 
 class NetworkController {

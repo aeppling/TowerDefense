@@ -9,8 +9,12 @@ SplashTower::SplashTower(Game *gameInstance, int cellSize, SFMLTowerLoader &sfml
 
 void SplashTower::fire(TDUnit *target){
     if (this->enemiesInRange.size() >= 3) {
+        std::vector<TDUnit*> killed;
         try {
-            mtx_tow.lock();
+            // Use the shared tower mutex, not a private one: this erases from
+            // the same enemiesList that Tower::isInRange() walks under `mtx`,
+            // so guarding it with mtx_tow gave no mutual exclusion at all.
+            std::lock_guard<std::mutex> lock(mtx);
             this->_shotSound.play();
             int i = 0;
             while (i < this->enemiesInRange.size()) {
@@ -25,18 +29,22 @@ void SplashTower::fire(TDUnit *target){
                     //  this->gameInstance.addCoins(target->getValue());
                     this->_killSound.play();
                     removeFromEnemiesInRangeList(target);
-                    this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target),
-                                             this->enemiesList->end());
-                    target->getKill();
+                    if (this->enemiesList != nullptr)
+                        this->enemiesList->erase(std::remove(this->enemiesList->begin(), this->enemiesList->end(), target),
+                                                 this->enemiesList->end());
+                    killed.push_back(target);
 
                 }
                 i++;
             }
-            mtx_tow.unlock();
         } catch (const std::system_error &ex) {
             std::cerr << "Caught std::system_error exception: " << ex.what() << std::endl;
             // Additional error handling or recovery logic
         }
+        // Death animations outside the lock: this tower can kill several units
+        // per shot, so it held the shared mutex for 500ms per victim.
+        for (TDUnit *victim : killed)
+            victim->getKill();
         this->missileLauncher->endFinishedThreads();
     }
 }

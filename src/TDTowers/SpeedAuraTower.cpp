@@ -47,8 +47,12 @@ void SpeedAuraTower::isInRange() {
     int towerY = this->coord.y;
     int radius = this->range.at(this->level) + this->getSize();
 
+    if (this->_towerList == nullptr)
+        return;
+    // Hold towerListMtx for the whole walk: the main thread builds and sells
+    // towers into this very vector, which invalidated these iterators.
+    std::lock_guard<std::mutex> lock(towerListMtx);
     for (Tower* tower : *(this->_towerList)) {
-        mtx_aura.lock();
         int towerPosX = tower->getPosition().x;
         int towerPosY = tower->getPosition().y;
 
@@ -65,7 +69,6 @@ void SpeedAuraTower::isInRange() {
                 removeFromTowerInRangeList(tower);
             }
         }
-        mtx_aura.unlock();
     }
 }
 
@@ -94,12 +97,13 @@ void SpeedAuraTower::activate(std::vector<Tower*> *towerList){
     }
 }
 void SpeedAuraTower::deactivate(){
-    //  if (this->_towerThread.joinable())
-    //    this->_towerThread.join();
     this->resetAllBuff();
     this->activated = false;
+    this->isPaused = false;
     this->_towerInRange.clear();
-    this->enemiesList->clear();
+    // enemiesList is always null for this tower: it is started with
+    // run(&towerList), never run(currentWave). Clearing it segfaulted.
+    std::lock_guard<std::mutex> lock(mtx);
     this->enemiesInRange.clear();
 }
 

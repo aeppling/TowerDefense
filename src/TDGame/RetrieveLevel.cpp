@@ -118,7 +118,8 @@ std::vector<std::vector<TDUnit*>> RetrieveLevel::getNextLevel() {
     std::vector<std::vector<TDUnit*>> enemyLevel;
     int i = 1;
 
-    enemyLevel.empty();
+    // (was `enemyLevel.empty();` -- a no-op on a vector just declared above;
+    //  empty() queries, it does not clear)
     levelFile.open(path_to_open);
     if (levelFile.is_open()) {
         while (levelFile) {

@@ -30,6 +30,16 @@ SFMainSoundPlayer::SFMainSoundPlayer(SFMainSoundLoader &soundLoader, unsigned in
 
     sf::Listener::setGlobalVolume((float)this->_globalVolume);
 
+    // Loop every track. Nothing in the project called setLoop(), so each piece
+    // played through once and then stopped for good -- the game music only got
+    // a chance to restart between two waves, leaving long silences mid-wave.
+    this->_menuMusic.setLoop(true);
+    this->_gameMusic1.setLoop(true);
+    this->_gameMusic2.setLoop(true);
+    this->_gameMusicChill.setLoop(true);
+    this->_gameMusicEndWave.setLoop(true);
+    this->_gameMusicFaster.setLoop(true);
+
     this->_menuMusic.setVolume((float)this->_musicVolume);
     this->_gameMusic1.setVolume((float)this->_musicVolume * 1.2);
     this->_gameMusic2.setVolume((float)this->_musicVolume * 1.4);
@@ -60,12 +70,54 @@ void SFMainSoundPlayer::refreshAllMenuVolume(int globalVolume, int musicVolume, 
     this->_soundVolume = soundVolume;
     this->_menuMusic.setVolume(musicVolume);
     this->_menuClick.setVolume(soundVolume);
-    this->_menuClick.play();
+    // No play() here. This is a volume setter, and main.cpp already plays the
+    // click on MouseButtonPressed; this ran on MouseButtonReleased, so every
+    // single click inside the settings menu was heard twice. It also fired once
+    // at start-up, clicking on its own before the player touched anything.
     sf::Listener::setGlobalVolume(globalVolume);
 }
 
+void SFMainSoundPlayer::pauseGameMusic() {
+    if (this->_gameMusic1.getStatus() == sf::Music::Playing)
+        this->_gameMusic1.pause();
+    if (this->_gameMusic2.getStatus() == sf::Music::Playing)
+        this->_gameMusic2.pause();
+    if (this->_gameMusicChill.getStatus() == sf::Music::Playing)
+        this->_gameMusicChill.pause();
+    if (this->_gameMusicEndWave.getStatus() == sf::Music::Playing)
+        this->_gameMusicEndWave.pause();
+    if (this->_gameMusicFaster.getStatus() == sf::Music::Playing)
+        this->_gameMusicFaster.pause();
+}
+
+void SFMainSoundPlayer::resumeGameMusic() {
+    // play() on a paused stream resumes from where it stopped; on a stopped one
+    // it would restart from the beginning, so only touch the paused tracks.
+    if (this->_gameMusic1.getStatus() == sf::Music::Paused)
+        this->_gameMusic1.play();
+    if (this->_gameMusic2.getStatus() == sf::Music::Paused)
+        this->_gameMusic2.play();
+    if (this->_gameMusicChill.getStatus() == sf::Music::Paused)
+        this->_gameMusicChill.play();
+    if (this->_gameMusicEndWave.getStatus() == sf::Music::Paused)
+        this->_gameMusicEndWave.play();
+    if (this->_gameMusicFaster.getStatus() == sf::Music::Paused)
+        this->_gameMusicFaster.play();
+}
+
+bool SFMainSoundPlayer::isAnyGameMusicPlaying() {
+    return ((this->_gameMusic1.getStatus() == sf::Music::Playing)
+            || (this->_gameMusic2.getStatus() == sf::Music::Playing)
+            || (this->_gameMusicChill.getStatus() == sf::Music::Playing)
+            || (this->_gameMusicEndWave.getStatus() == sf::Music::Playing)
+            || (this->_gameMusicFaster.getStatus() == sf::Music::Playing));
+}
+
 void SFMainSoundPlayer::checkForGameMusicToReplay() {
-    if (this->_gameMusic1.getStatus() == sf::Music::Stopped)
+    // Only look at _gameMusic1 before, so on the final wave -- where the caller
+    // stops everything and starts _gameMusicFaster -- this saw _gameMusic1
+    // stopped and layered it on top, playing two tracks at once.
+    if (!this->isAnyGameMusicPlaying())
         this->_gameMusic1.play();
 }
 

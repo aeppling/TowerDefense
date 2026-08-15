@@ -32,7 +32,7 @@ void MissileThread::animateExplosion() {
 }
 
 void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf::Vector2f &startPosition,
-                                 const sf::Vector2f &endPosition, int &cellSize, float &speed) {
+                                 const sf::Vector2f &endPosition, int cellSize, float speed) {
     speed = speed / 1000;
     if (this->_style == "BasicTower")
         this->_sprite.setTexture(*sfmlMissileLoader.getBasic());
@@ -57,9 +57,12 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
     this->_sprite.setTextureRect(textureRect);
     sf::Vector2f newOrigin(this->_sprite.getLocalBounds().width / 2.f, this->_sprite.getLocalBounds().height / 2.f);
     this->_sprite.setOrigin(newOrigin);
-    std::unique_lock<std::mutex> lock(mutexSprite);
-    this->_sprite.setPosition(startPosition);
-    mutexSprite.unlock();
+    {
+        // Scoped lock: the previous code unlocked the mutex behind the
+        // unique_lock's back, so its destructor unlocked a second time.
+        std::lock_guard<std::mutex> lock(mutexSprite);
+        this->_sprite.setPosition(startPosition);
+    }
     sf::Vector2f direction = endPosition - startPosition;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
     sf::Vector2f unitDirection = direction / distance;
@@ -68,13 +71,24 @@ void MissileThread::shootMissile(SFMLMissileLoader &sfmlMissileLoader, const sf:
     float angle = atan2(direction.y, direction.x) * 180 / 3.14159f;
     this->_sprite.setRotation(angle);
     // PLAYING SHOT
+    // The loop shape (and therefore the missile's on-screen speed) is left as
+    // it was, but the sprite is only published every few milliseconds instead
+    // of on every iteration: this loop runs millions of times per shot and was
+    // locking a *global* mutex each time, which every other missile contended
+    // for. Nothing can observe the intermediate positions anyway -- the render
+    // thread only samples the sprite once per frame.
+    sf::Clock publishThrottle;
     while (elapsedTime < distance / speed)
     {
         elapsedTime += 0.01f; // Update elapsed time with an arbitrary value (you can adjust this for smoother animation)
-        sf::Vector2f displacement = unitDirection * speed * elapsedTime;
-        mutexSprite.lock();
-        this->_sprite.setPosition(startPosition + displacement);
-        mutexSprite.unlock();
+        if (publishThrottle.getElapsedTime().asMilliseconds() >= 4) {
+            sf::Vector2f displacement = unitDirection * speed * elapsedTime;
+            {
+                std::lock_guard<std::mutex> lock(mutexSprite);
+                this->_sprite.setPosition(startPosition + displacement);
+            }
+            publishThrottle.restart();
+        }
     }
     this->_sprite.setPosition(endPosition);
     // PLAY BOOM
@@ -118,7 +132,7 @@ void MissileThread::startThread(SFMLMissileLoader &sfmlMissileLoader, const sf::
     this->_style = style;
     this->initStyle(sfmlMissileLoader);
     this->_explosionSprite.setPosition(-500, -500);
-    this->_thread = std::thread(&MissileThread::shootMissile, this, std::ref(sfmlMissileLoader), startPosition, endPosition, std::ref(cellSize), std::ref(speed));
+    this->_thread = std::thread(&MissileThread::shootMissile, this, std::ref(sfmlMissileLoader), startPosition, endPosition, cellSize, speed);
     this->_thread.detach();
 }
 
