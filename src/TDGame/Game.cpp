@@ -470,7 +470,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     }
 
 
-                    sf::Event event;
+                    // Value-initialised: sf::Event is a plain union-backed
+                    // struct, so a bare declaration leaves type indeterminate.
+                    // On a frame where pollEvent() returns nothing, the stale
+                    // read further down would then test garbage. Zero gives
+                    // type == Closed, which is only acted on inside the loop.
+                    sf::Event event = sf::Event();
                     window.clear(sf::Color::Black);
                     this->sfmlHud->drawBackground();
                     while (window.pollEvent(event)) {
@@ -479,8 +484,12 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             closing = true;
                             break;
                         }
+                        // Sits above the Escape handlers, so it is not covered by
+                        // the pause guard further down: check explicitly, or the
+                        // player could start a wave from the pause menu.
                         if ((event.type == sf::Event::KeyPressed &&
-                            event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)) {
+                            event.key.code == sf::Keyboard::Enter) && (isWaveRunning == false)
+                            && (this->sfmlHud->getPaused() == false)) {
                             //Start Wave
                             if(this->networkController != nullptr && this->networkController->getIsServer()){
                                 this->networkController->handleMessage("startWave");
@@ -509,9 +518,17 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                             //UNPause Menu
                          
                             pauseMenu(false);
-                            
+
 
                         }
+                        // Everything below is gameplay input: build mode, tower
+                        // placement, selling, upgrading. None of it checked the
+                        // pause state, so a tower selected before pausing could
+                        // still be placed through the pause overlay. Escape is
+                        // handled above, and the pause menu's own buttons are
+                        // read outside this loop, so both still work.
+                        if (this->sfmlHud->getPaused())
+                            continue;
                         if (event.type == sf::Event::MouseButtonPressed &&
                             sf::Mouse::isButtonPressed(sf::Mouse::Right)) { // SWITCH BUILDING MODE ON/OFF
                             if (isBuilding == false) {
@@ -764,6 +781,14 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                     this->sfmlHud->draw();
                     if (event.type == sf::Event::MouseButtonPressed &&
                         sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        // Consume the event. This block is the only one that
+                        // reads `event` OUTSIDE the pollEvent loop above, so it
+                        // runs once per frame off a stale event, while
+                        // isButtonPressed() polls the button live. Holding the
+                        // click therefore re-entered here every frame and
+                        // toggled pause on and off over and over -- the play
+                        // button appeared to resume, then pause itself again.
+                        event.type = sf::Event::MouseButtonReleased;
                         int whichClicked;
                         if (this->sfmlHud->getPaused()) {
                             whichClicked = this->sfmlHud->checkForPausedClick(window);
@@ -777,26 +802,9 @@ int Game::loop(SFMLLoader &sfmlLoader, sf::RenderWindow &window, MapCell *baseCe
                                     this->isMuted = true;
                                 }
                             }
-                            else if (whichClicked == 2) {
-                                // PAUSED
-                                if (!isPaused) {
-                                    if(this->networkController == nullptr){
-                                        this->deactivateTowers();
-                                        // isWaveRunning = false;
-                                        this->isPaused = true;
-                                        pauseGame();
-                                    }
-                                    
-                                }
-                                else {
-                                    if(this->networkController == nullptr){
-                                        this->activateTowers();
-                                        // isWaveRunning = true;
-                                        this->isPaused = false;
-                                        resumeGame();
-                                    }
-                                }   
-                            }
+                            // whichClicked == 2 was the play/pause button.
+                            // Removed: Escape handles pause/resume now, via
+                            // pauseMenu().
                             else if (whichClicked == 3) {
                                 window.setMouseCursorVisible(true);
                                 this->deactivateTowers();
@@ -1887,23 +1895,30 @@ void Game::handleUpdateGameState(TDMap &map, sf::RenderWindow &window, bool* isW
 }
 
 void Game::pauseMenu(bool pause){
+    // Escape now drives the simulation as well as the overlay. These used to be
+    // separate: Escape only opened the menu, and a play/pause button inside it
+    // froze the game. The button is gone, so the two are tied together here.
+    // Multiplayer is deliberately left running -- one player must not be able
+    // to freeze the other's game.
     if(pause){
-        if(this->networkController != nullptr){
-            //this->networkController->handleMessage("pause");
-        }
-        
         this->sfmlHud->setPaused(true);
-     
-        
+        // Guard on isPaused: pressing Escape twice quickly would otherwise call
+        // activateTowers() on towers whose threads are still running, and
+        // assigning over a joinable std::thread calls std::terminate().
+        if ((this->networkController == nullptr) && (this->isPaused == false)) {
+            this->deactivateTowers();
+            this->isPaused = true;
+            this->pauseGame();
+        }
         this->sfmlHud->update();
         this->sfmlHud->draw();
     }else{
-        if(this->networkController != nullptr){
-            //this->networkController->handleMessage("unpause");
-        }
         this->sfmlHud->setPaused(false);
-  
-        
+        if ((this->networkController == nullptr) && (this->isPaused == true)) {
+            this->activateTowers();
+            this->isPaused = false;
+            this->resumeGame();
+        }
         this->sfmlHud->update();
         this->sfmlHud->draw();
     }

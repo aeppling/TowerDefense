@@ -40,9 +40,6 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     if (!wallTexture.loadFromFile("ressources/Sprites/Hud/wall.png")) {
         std::cout << "Error on loading texture..." << std::endl;
     }
-    if(!pauseButtonTexture.loadFromFile("ressources/Sprites/Buttons/play.png")){
-        std::cout << "Error on loading texture..." << std::endl;
-    }
     if(!volumeButtonTexture.loadFromFile("ressources/Sprites/Buttons/volume.png")){
         std::cout << "Error on loading texture..." << std::endl;
     }
@@ -65,12 +62,13 @@ SFMLHud::SFMLHud(SFMLLoader *sfmlLoader, sf::RenderWindow *window, int gamePosX,
     this->gameInfoContainer.setOutlineThickness(2);
     this->gameInfoContainer.setOutlineColor(outlineColor);
 
+    // Pause/resume is driven by Escape alone now, so the play button is gone.
+    // The three buttons sat at 605 / 855 / 1105; the two survivors are moved to
+    // stay symmetrical about the same centre (855) with the same 250 spacing.
     volumeButtonSprite.setTexture(volumeButtonTexture);
-    volumeButtonSprite.setPosition(605, 400);
-    pauseButtonSprite.setTexture(pauseButtonTexture);
-    pauseButtonSprite.setPosition(855, 400);
+    volumeButtonSprite.setPosition(730, 400);
     homeButtonSprite.setTexture(homeButtonTexture);
-    homeButtonSprite.setPosition(1105, 400);
+    homeButtonSprite.setPosition(980, 400);
     
 
     coinSprite.setTexture(coinTexture);
@@ -113,9 +111,8 @@ int SFMLHud::checkForPausedClick(sf::RenderWindow &window) {
     if (this->volumeButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
         return (1);
     }
-    else if (this->pauseButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
-            return (2);
-    }
+    // 2 was the play/pause button; it no longer exists. The value is left
+    // unused rather than renumbering, so Game's handler stays readable.
     else if (this->homeButtonSprite.getGlobalBounds().contains(mousePos.x + _GAME_POSITION_X, mousePos.y + _GAME_POSITION_Y)) {
         return (3);
     }
@@ -410,7 +407,6 @@ void SFMLHud::draw() {
         
         _window->draw(homeButtonSprite);
         _window->draw(volumeButtonSprite);
-        _window->draw(pauseButtonSprite);
     
     }
 
