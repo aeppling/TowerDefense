@@ -1,0 +1,108 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  BUILD_DIR: build_test
+  PACKAGE_NAME: SpaceDefender-windows-x64
+
+jobs:
+  build:
+    name: Build (Windows / MinGW-w64)
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # release: false -> reuse the MSYS2 pre-installed at C:\msys64, which is the
+      # toolchain path CMakeLists.txt hardcodes for WIN32.
+      - name: Set up MSYS2 / MinGW-w64
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          release: false
+          update: false
+          install: >-
+            zip
+          pacboy: >-
+            gcc:p
+            cmake:p
+            make:p
+
+      - name: Show toolchain versions
+        run: |
+          g++ --version
+          cmake --version
+          mingw32-make --version
+
+      - name: Configure
+        run: |
+          cmake -S . -B "$BUILD_DIR" -G "MinGW Makefiles" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_COMPILER="C:/msys64/mingw64/bin/g++.exe" \
+            -DCMAKE_C_COMPILER="C:/msys64/mingw64/bin/gcc.exe" \
+            -DCMAKE_MAKE_PROGRAM="C:/msys64/mingw64/bin/mingw32-make.exe"
+
+      - name: Build
+        run: cmake --build "$BUILD_DIR" -j 4
+
+      - name: Package
+        run: |
+          test -f "$BUILD_DIR/bin/SpaceDefender.exe"
+          test -f "$BUILD_DIR/bin/openal32.dll"
+          test -d "$BUILD_DIR/bin/ressources"
+          cd "$BUILD_DIR/bin"
+          zip -r "../../$PACKAGE_NAME.zip" SpaceDefender.exe openal32.dll ressources
+          cd ../..
+          ls -lh "$PACKAGE_NAME.zip"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+          path: ${{ env.PACKAGE_NAME }}.zip
+          if-no-files-found: error
+
+  release:
+    name: Publish GitHub Release
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: SpaceDefender v1.0.${{ github.run_number }}
+          body: |
+            Build automatique depuis `main` (commit ${{ github.sha }}).
+
+            **Installation** : télécharger `${{ env.PACKAGE_NAME }}.zip`, décompresser,
+            puis lancer `SpaceDefender.exe`. Garder `openal32.dll` et le dossier
+            `ressources/` à côté de l'exécutable.
+          files: ${{ env.PACKAGE_NAME }}.zip
+          draft: false
+          prerelease: false
